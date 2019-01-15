@@ -39,7 +39,10 @@
     //设置距离过滤参数
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     //设置预期精度参数
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //由于苹果系统的首次定位结果为粗定位，其可能无法满足需要高精度定位的场景。
+    //所以，百度提供了 kCLLocationAccuracyBest 参数，设置该参数可以获取到精度在10m左右的定位结果，但是相应的需要付出比较长的时间（10s左右），越高的精度需要持续定位时间越长。
+    //推荐使用kCLLocationAccuracyHundredMeters，一次还不错的定位，偏差在百米左右，超时时间设置在2s-3s左右即可。
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     //设置应用位置类型
     _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
     //设置是否自动停止位置更新
@@ -50,8 +53,6 @@
     _locationManager.locationTimeout = 10;
     //设置获取地址信息超时时间
     _locationManager.reGeocodeTimeout = 10;
-//    //开启持续定位
-//    [self.locationManager startUpdatingLocation];
     //如果需要持续定位返回地址信息（需要联网)
     [self.locationManager setLocatingWithReGeocode:YES];
     //开启持续定位
