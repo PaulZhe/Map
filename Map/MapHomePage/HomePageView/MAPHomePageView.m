@@ -23,6 +23,8 @@
     [super layoutSubviews];
     self.backgroundColor = [UIColor whiteColor];
     self.mapView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+//    显示我的位置，我的位置图标和地图都不会旋转
+    self.mapView.userTrackingMode = BMKUserTrackingModeNone;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
