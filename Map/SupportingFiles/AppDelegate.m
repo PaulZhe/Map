@@ -17,6 +17,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //这里注意有可能要使用GCJ02坐标，但是我现在分不清楚了
+    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:@"XocMNaWbLRWLd79E6ZbrX1VpXpzI6OIZ" authDelegate:self];
+    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
+        NSLog(@"经纬度类型设置成功");
+    } else {
+        NSLog(@"经纬度类型设置失败");
+    }
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定generalDelegate参数
