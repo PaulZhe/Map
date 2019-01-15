@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createChileView];
+    //初始化坐标
+    [self createLocation];
 }
 
 - (void)createChileView {
@@ -25,6 +27,67 @@
     //将当前地图显示缩放等级设置为17级
     [_homePageView.mapView setZoomLevel:17];
     [self.view addSubview:_homePageView];
+}
+
+- (void)createLocation {
+    //初始化实例
+    _locationManager = [[BMKLocationManager alloc] init];
+    //设置delegate
+    _locationManager.delegate = self;
+    //设置返回位置的坐标系类型
+    _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+    //设置距离过滤参数
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    //设置预期精度参数
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //设置应用位置类型
+    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+    //设置是否自动停止位置更新
+    _locationManager.pausesLocationUpdatesAutomatically = NO;
+    //设置是否允许后台定位
+//    _locationManager.allowsBackgroundLocationUpdates = YES;
+    //设置位置获取超时时间
+    _locationManager.locationTimeout = 10;
+    //设置获取地址信息超时时间
+    _locationManager.reGeocodeTimeout = 10;
+//    //开启持续定位
+//    [self.locationManager startUpdatingLocation];
+    //如果需要持续定位返回地址信息（需要联网)
+    [self.locationManager setLocatingWithReGeocode:YES];
+    //开启持续定位
+    [self.locationManager startUpdatingLocation];
+}
+
+// 定位SDK中，位置变更的回调
+- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
+    if (error)
+    {
+        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+    } if (location) {//得到定位信息，添加annotation
+        if (location.location) {
+            NSLog(@"LOC = %@",location.location);
+        }
+        if (location.rgcData) {
+            NSLog(@"rgc = %@",[location.rgcData description]);
+        }
+    }
+    if (!self.userLocation) {
+        self.userLocation = [[BMKUserLocation alloc] init];
+    }
+    self.userLocation.location = location.location;
+    [_mapView updateLocationData:_userLocation];
+}
+
+// 定位SDK中，方向变更的回调
+- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
+    if (!heading) {
+        return;
+    }
+    if (!self.userLocation) {
+        self.userLocation = [[BMKUserLocation alloc] init];
+    }
+    self.userLocation.heading = heading;
+    [self.mapView updateLocationData:self.userLocation];
 }
 
 //视图即将出现，设置地图代理
@@ -43,6 +106,7 @@
     [super viewWillDisappear:animated];
     [_homePageView.mapView viewWillDisappear];
     _homePageView.mapView.delegate = nil;
+    [_locationManager stopUpdatingLocation];
 }
 /*
 #pragma mark - Navigation

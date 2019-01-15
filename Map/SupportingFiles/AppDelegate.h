@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
+#import <BMKLocationkit/BMKLocationComponent.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, BMKLocationAuthDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) BMKMapManager *mapManager;
