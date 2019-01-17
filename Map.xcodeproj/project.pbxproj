@@ -80,28 +80,28 @@
 		D64FBBB821EC886B00CB3BFC /* MapHomePage */ = {
 			isa = PBXGroup;
 			children = (
-				D64FBBB921EC886B00CB3BFC /* HomePageController */,
-				D64FBBBC21EC886B00CB3BFC /* HomePageView */,
+				D64FBBB921EC886B00CB3BFC /* Controllers */,
+				D64FBBBC21EC886B00CB3BFC /* Views */,
 			);
 			path = MapHomePage;
 			sourceTree = "<group>";
 		};
-		D64FBBB921EC886B00CB3BFC /* HomePageController */ = {
+		D64FBBB921EC886B00CB3BFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D64FBBBA21EC886B00CB3BFC /* MAPHomePageViewController.h */,
 				D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */,
 			);
-			path = HomePageController;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		D64FBBBC21EC886B00CB3BFC /* HomePageView */ = {
+		D64FBBBC21EC886B00CB3BFC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */,
 				D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */,
 			);
-			path = HomePageView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D66CCE0121E4B45A009ADD17 = {
