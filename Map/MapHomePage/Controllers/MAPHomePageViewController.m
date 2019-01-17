@@ -21,13 +21,6 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
-//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-//    annotation.coordinate = CLLocationCoordinate2DMake(22.2877, 114.1697);
-//    annotation.coordinate = self.userLocation.location.coordinate;
-//    [self.homePageView.mapView addAnnotation:annotation];
-//    annotationMutableArray = [NSMutableArray array];
-//    [annotationMutableArray addObject:annotation];
-//    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
 - (void)createChileView {
@@ -35,8 +28,8 @@
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
     //将当前地图显示缩放等级设置为17级
     [_homePageView.mapView setZoomLevel:17];
+    [_homePageView.mapView showsUserLocation];
     [self.view addSubview:_homePageView];
-//    [self.homePageView.mapView showsUserLocation];
 }
 
 - (void)createLocation {
@@ -45,7 +38,7 @@
     //设置delegate
     _locationManager.delegate = self;
     //设置返回位置的坐标系类型
-    _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+    _locationManager.coordinateType = BMKLocationCoordinateTypeGCJ02;
     //设置距离过滤参数
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     //设置预期精度参数
@@ -84,7 +77,7 @@
     }
     if (!self.userLocation) {
         self.userLocation = [[BMKUserLocation alloc] init];
-        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
         annotation.coordinate = location.location.coordinate;
         [self.homePageView.mapView addAnnotation:annotation];
         annotationMutableArray = [NSMutableArray array];
@@ -107,8 +100,7 @@
 //    [self.mapView updateLocationData:self.userLocation];
 //}
 
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
-{
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
         BMKPinAnnotationView*annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
