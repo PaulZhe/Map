@@ -15,11 +15,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPHomePageViewController : UIViewController <BMKMapViewDelegate, BMKLocationManagerDelegate>
-@property (nonatomic, strong) BMKMapView *mapView;
+//@property (nonatomic, strong) BMKMapView *mapView;
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
 @property (nonatomic, strong) MAPHomePageView *homePageView;
-
 @end
 
 NS_ASSUME_NONNULL_END

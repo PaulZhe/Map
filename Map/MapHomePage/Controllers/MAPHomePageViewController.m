@@ -8,7 +8,9 @@
 
 #import "MAPHomePageViewController.h"
 
-@interface MAPHomePageViewController ()
+@interface MAPHomePageViewController () {
+    NSMutableArray *annotationMutableArray;
+}
 
 @end
 
@@ -19,6 +21,13 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
+//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+//    annotation.coordinate = CLLocationCoordinate2DMake(22.2877, 114.1697);
+//    annotation.coordinate = self.userLocation.location.coordinate;
+//    [self.homePageView.mapView addAnnotation:annotation];
+//    annotationMutableArray = [NSMutableArray array];
+//    [annotationMutableArray addObject:annotation];
+//    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
 - (void)createChileView {
@@ -27,6 +36,7 @@
     //将当前地图显示缩放等级设置为17级
     [_homePageView.mapView setZoomLevel:17];
     [self.view addSubview:_homePageView];
+//    [self.homePageView.mapView showsUserLocation];
 }
 
 - (void)createLocation {
@@ -50,9 +60,9 @@
     //设置是否允许后台定位
 //    _locationManager.allowsBackgroundLocationUpdates = YES;
     //设置位置获取超时时间
-    _locationManager.locationTimeout = 10;
+    _locationManager.locationTimeout = 20;
     //设置获取地址信息超时时间
-    _locationManager.reGeocodeTimeout = 10;
+    _locationManager.reGeocodeTimeout = 20;
     //如果需要持续定位返回地址信息（需要联网)
     [self.locationManager setLocatingWithReGeocode:YES];
     //开启持续定位
@@ -74,21 +84,44 @@
     }
     if (!self.userLocation) {
         self.userLocation = [[BMKUserLocation alloc] init];
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        annotation.coordinate = location.location.coordinate;
+        [self.homePageView.mapView addAnnotation:annotation];
+        annotationMutableArray = [NSMutableArray array];
+        [annotationMutableArray addObject:annotation];
+        [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
     }
     self.userLocation.location = location.location;
-    [_mapView updateLocationData:_userLocation];
+    [self.homePageView.mapView updateLocationData:_userLocation];
 }
 
 // 定位SDK中，方向变更的回调
-- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
-    if (!heading) {
-        return;
+//- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
+//    if (!heading) {
+//        return;
+//    }
+//    if (!self.userLocation) {
+//        self.userLocation = [[BMKUserLocation alloc] init];
+//    }
+//    self.userLocation.heading = heading;
+//    [self.mapView updateLocationData:self.userLocation];
+//}
+
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
+        BMKPinAnnotationView*annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+        if (annotationView == nil) {
+            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+        }
+        annotationView.pinColor = BMKPinAnnotationColorPurple;
+        annotationView.canShowCallout= YES;      //设置气泡可以弹出，默认为NO
+        annotationView.animatesDrop=YES;         //设置标注动画显示，默认为NO
+        annotationView.draggable = YES;          //设置标注可以拖动，默认为NO
+        return annotationView;
     }
-    if (!self.userLocation) {
-        self.userLocation = [[BMKUserLocation alloc] init];
-    }
-    self.userLocation.heading = heading;
-    [self.mapView updateLocationData:self.userLocation];
+    return nil;
 }
 
 //视图即将出现，设置地图代理
