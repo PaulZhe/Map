@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //初始化地图
     [self createChileView];
     //初始化坐标
     [self createLocation];
@@ -26,9 +27,6 @@
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
-    //将当前地图显示缩放等级设置为17级
-    [_homePageView.mapView setZoomLevel:17];
-    [_homePageView.mapView showsUserLocation];
     [self.view addSubview:_homePageView];
 }
 
@@ -64,28 +62,34 @@
 
 // 定位SDK中，位置变更的回调
 - (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
-    if (error)
-    {
+    if (error) {
         NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-    } if (location) {//得到定位信息，添加annotation
+    }
+    if (location) {//得到定位信息，添加annotation
         if (location.location) {
             NSLog(@"LOC = %@",location.location);
         }
         if (location.rgcData) {
             NSLog(@"rgc = %@",[location.rgcData description]);
         }
+        //给所得到的位置，添加点
+        [self addAnnotation:location];
     }
     if (!self.userLocation) {
         self.userLocation = [[BMKUserLocation alloc] init];
-        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-        annotation.coordinate = location.location.coordinate;
-        [self.homePageView.mapView addAnnotation:annotation];
-        annotationMutableArray = [NSMutableArray array];
-        [annotationMutableArray addObject:annotation];
-        [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
     }
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
+}
+
+//给所得到的位置添加点
+- (void) addAnnotation:(BMKLocation *) location {
+    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
+    annotation.coordinate = location.location.coordinate;
+    [self.homePageView.mapView addAnnotation:annotation];
+    annotationMutableArray = [NSMutableArray array];
+    [annotationMutableArray addObject:annotation];
+    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
 // 定位SDK中，方向变更的回调
@@ -100,17 +104,18 @@
 //    [self.mapView updateLocationData:self.userLocation];
 //}
 
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        BMKPinAnnotationView*annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-        if (annotationView == nil) {
-            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+//自定义添加点标记
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        BMKAnnotationView *annotationView = (BMKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
+                                                           reuseIdentifier:reuseIndetifier];
         }
-        annotationView.pinColor = BMKPinAnnotationColorPurple;
-        annotationView.canShowCallout= YES;      //设置气泡可以弹出，默认为NO
-        annotationView.animatesDrop=YES;         //设置标注动画显示，默认为NO
-        annotationView.draggable = YES;          //设置标注可以拖动，默认为NO
+        annotationView.image = [UIImage imageNamed:@"info.png"];
         return annotationView;
     }
     return nil;
@@ -134,6 +139,7 @@
     _homePageView.mapView.delegate = nil;
     [_locationManager stopUpdatingLocation];
 }
+
 /*
 #pragma mark - Navigation
 
