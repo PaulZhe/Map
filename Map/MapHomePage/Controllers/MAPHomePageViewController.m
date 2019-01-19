@@ -92,18 +92,6 @@
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
-// 定位SDK中，方向变更的回调
-//- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
-//    if (!heading) {
-//        return;
-//    }
-//    if (!self.userLocation) {
-//        self.userLocation = [[BMKUserLocation alloc] init];
-//    }
-//    self.userLocation.heading = heading;
-//    [self.mapView updateLocationData:self.userLocation];
-//}
-
 //自定义添加点标记
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
@@ -112,8 +100,7 @@
         BMKAnnotationView *annotationView = (BMKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
-                                                           reuseIdentifier:reuseIndetifier];
+            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
         annotationView.image = [UIImage imageNamed:@"info.png"];
         return annotationView;
