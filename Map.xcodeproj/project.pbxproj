@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
+		4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661721F327970035E47A /* MAPPaopaoView.m */; };
+		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
+		4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10662021F335A10035E47A /* MAPAnnotationView.m */; };
 		D638A76421F1DAF3005DFDFD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74D21F1DAF3005DFDFD /* add.png */; };
 		D638A76521F1DAF3005DFDFD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74E21F1DAF3005DFDFD /* back.png */; };
 		D638A76621F1DAF3005DFDFD /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74F21F1DAF3005DFDFD /* cancel.png */; };
@@ -43,6 +46,12 @@
 /* Begin PBXFileReference section */
 		2A0080EBCDB4CF65767B3A9B /* Pods-Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.debug.xcconfig"; sourceTree = "<group>"; };
 		4E3475517200628FE2AB9731 /* libPods-Map.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Map.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F10661621F327970035E47A /* MAPPaopaoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPaopaoView.h; sourceTree = "<group>"; };
+		4F10661721F327970035E47A /* MAPPaopaoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoView.m; sourceTree = "<group>"; };
+		4F10661921F328A10035E47A /* MAPPaopaoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPaopaoButton.h; sourceTree = "<group>"; };
+		4F10661A21F328A10035E47A /* MAPPaopaoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoButton.m; sourceTree = "<group>"; };
+		4F10661F21F335A10035E47A /* MAPAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAnnotationView.h; sourceTree = "<group>"; };
+		4F10662021F335A10035E47A /* MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotationView.m; sourceTree = "<group>"; };
 		7547F341E163CF40B251C20D /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
 		D638A74D21F1DAF3005DFDFD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		D638A74E21F1DAF3005DFDFD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -99,6 +108,28 @@
 				4E3475517200628FE2AB9731 /* libPods-Map.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F10662221F336ED0035E47A /* HomePageView */ = {
+			isa = PBXGroup;
+			children = (
+				D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */,
+				D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */,
+			);
+			path = HomePageView;
+			sourceTree = "<group>";
+		};
+		4F10662321F336FD0035E47A /* AnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				4F10661F21F335A10035E47A /* MAPAnnotationView.h */,
+				4F10662021F335A10035E47A /* MAPAnnotationView.m */,
+				4F10661621F327970035E47A /* MAPPaopaoView.h */,
+				4F10661721F327970035E47A /* MAPPaopaoView.m */,
+				4F10661921F328A10035E47A /* MAPPaopaoButton.h */,
+				4F10661A21F328A10035E47A /* MAPPaopaoButton.m */,
+			);
+			path = AnnotationView;
 			sourceTree = "<group>";
 		};
 		63490C92BDFBDE4C7ED363E4 /* Pods */ = {
@@ -174,8 +205,8 @@
 		D64FBBBC21EC886B00CB3BFC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */,
-				D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */,
+				4F10662221F336ED0035E47A /* HomePageView */,
+				4F10662321F336FD0035E47A /* AnnotationView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,7 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
+				4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */,
+				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
 				D66CCE1D21E4B45B009ADD17 /* main.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,

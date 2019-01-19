@@ -7,6 +7,7 @@
 //
 
 #import "MAPHomePageViewController.h"
+#import "MAPAnnotationView.h"
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
@@ -92,18 +93,19 @@
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
-//自定义添加点标记
+//显示气泡
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        BMKAnnotationView *annotationView = (BMKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
+        MAPAnnotationView *mapAnnotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (mapAnnotationView == nil)
         {
-            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            mapAnnotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+//            mapAnnotationView.canShowCallout = NO;
         }
-        annotationView.image = [UIImage imageNamed:@"info.png"];
-        return annotationView;
+        mapAnnotationView.image = [UIImage imageNamed:@"info.png"];
+        return mapAnnotationView;
     }
     return nil;
 }
