@@ -21,11 +21,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _countLabel.frame = CGRectMake(32, -13, 26, 26);
+    _countLabel.frame = CGRectMake(29, -12, 22, 22);
     _countLabel.backgroundColor = [UIColor colorWithRed:0.76f green:0.22f blue:0.15f alpha:1.00f];
     _countLabel.textColor = [UIColor whiteColor];
     _countLabel.layer.masksToBounds = YES;
-    _countLabel.layer.cornerRadius = 13;
+    _countLabel.layer.cornerRadius = 11;
     _countLabel.textAlignment = NSTextAlignmentCenter;
 }
 

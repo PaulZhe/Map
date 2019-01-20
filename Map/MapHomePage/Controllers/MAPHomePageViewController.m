@@ -98,14 +98,14 @@
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        MAPAnnotationView *mapAnnotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (mapAnnotationView == nil)
+        MAPAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
         {
-            mapAnnotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-//            mapAnnotationView.canShowCallout = NO;
+            annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            annotationView.canShowCallout = NO;
         }
-        mapAnnotationView.image = [UIImage imageNamed:@"info.png"];
-        return mapAnnotationView;
+        annotationView.image = [UIImage imageNamed:@"info.png"];
+        return annotationView;
     }
     return nil;
 }
