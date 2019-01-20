@@ -15,6 +15,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        _title = [[UILabel alloc] init];
+        [self addSubview:_title];
         [self initPaopaoView];
     }
     return self;
@@ -38,8 +40,8 @@
     [_picturesButton addTarget:self action:@selector(AddingMotion:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_picturesButton];
     [_picturesButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_commentButton.mas_centerY).mas_equalTo(5);
-        make.left.mas_equalTo(self->_commentButton.mas_right).mas_equalTo(5);
+        make.top.mas_equalTo(self->_commentButton.mas_top).mas_equalTo(20);
+        make.left.mas_equalTo(self->_commentButton.mas_right).mas_equalTo(2);
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
     
@@ -49,8 +51,8 @@
     [_voiceButton addTarget:self action:@selector(AddingMotion:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_voiceButton];
     [_voiceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_picturesButton.mas_centerY).mas_equalTo(5);
-        make.left.mas_equalTo(self->_picturesButton.mas_right).mas_equalTo(5);
+        make.top.mas_equalTo(self->_picturesButton.mas_centerY).mas_equalTo(12);
+        make.left.mas_equalTo(self->_picturesButton.mas_right).mas_equalTo(-5);
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
     
@@ -60,8 +62,8 @@
     [_vedioButton addTarget:self action:@selector(AddingMotion:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_vedioButton];
     [_vedioButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_voiceButton.mas_centerY).mas_equalTo(5);
-        make.left.mas_equalTo(self->_voiceButton.mas_right).mas_equalTo(5);
+        make.top.mas_equalTo(self->_voiceButton.mas_centerY).mas_equalTo(22);
+        make.left.mas_equalTo(self->_voiceButton.mas_right).mas_equalTo(-16);
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
 }
