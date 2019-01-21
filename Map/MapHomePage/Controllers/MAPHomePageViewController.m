@@ -28,6 +28,8 @@
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
+    [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_homePageView.recommendButton addTarget:self action:@selector(recommendButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
 }
 
@@ -94,7 +96,7 @@
 }
 
 //显示气泡
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation {
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
@@ -108,6 +110,16 @@
         return annotationView;
     }
     return nil;
+}
+
+//底部添加按钮点击事件
+- (void)addButtonClicked:(UIButton *) button {
+
+}
+
+//推荐按钮点击事件
+- (void)recommendButtonClicked:(UIButton *)button {
+    
 }
 
 //视图即将出现，设置地图代理
