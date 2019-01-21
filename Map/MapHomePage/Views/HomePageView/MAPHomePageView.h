@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPHomePageView : UIView <BMKMapViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;
+@property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIButton *recommendButton;
 @end
 
 NS_ASSUME_NONNULL_END
