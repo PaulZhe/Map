@@ -29,4 +29,14 @@
     _countLabel.textAlignment = NSTextAlignmentCenter;
 }
 
+//重写button的点击事件方法
+- (void) addTapBlock:(buttonBlock) block {
+    _block = block;
+    [self addTarget:self action:@selector(AddingMotion:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)AddingMotion:(UIButton *) button {
+    _block(button);
+}
+
 @end
