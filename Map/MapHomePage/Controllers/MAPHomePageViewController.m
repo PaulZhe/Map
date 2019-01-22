@@ -8,6 +8,7 @@
 
 #import "MAPHomePageViewController.h"
 #import "MAPAnnotationView.h"
+#import "MAPDynamicStateViewController.h"
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
@@ -23,6 +24,14 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
+    
+    //测试泡泡内按钮点击事件
+    _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
+    [self.view addSubview:_paopaoView];
+    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
+    [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+        [self.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
 }
 
 - (void)createChileView {
