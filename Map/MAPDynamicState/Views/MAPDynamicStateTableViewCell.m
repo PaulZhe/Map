@@ -11,7 +11,7 @@
 
 @implementation MAPDynamicStateTableViewCell
 
-- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _nameLabel = [[UILabel alloc] init];
@@ -34,33 +34,41 @@
             make.size.mas_equalTo(CGSizeMake(45, 45));
         }];
         
-        _contentLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:_contentLabel];
-        _contentLabel.numberOfLines = 0;
-        _contentLabel.font = [UIFont systemFontOfSize:18];
-        [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(45);
-            make.left.mas_equalTo(65);
-            make.right.mas_equalTo(-15);
-        }];
-        
-        _replyLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:_replyLabel];
-        _replyLabel.font = [UIFont systemFontOfSize:18];
-        _replyLabel.numberOfLines = 0;
-        _replyLabel.textColor = [UIColor grayColor];
-        [_replyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
-            make.left.mas_equalTo(65);
-            make.right.mas_equalTo(-15);
-        }];
+        if ([typeString isEqualToString:@"1"]) {
+            _contentLabel = [[UILabel alloc] init];
+            [self.contentView addSubview:_contentLabel];
+            _contentLabel.numberOfLines = 0;
+            _contentLabel.font = [UIFont systemFontOfSize:18];
+            [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(45);
+                make.left.mas_equalTo(65);
+                make.right.mas_equalTo(-15);
+            }];
+            
+            _replyLabel = [[UILabel alloc] init];
+            [self.contentView addSubview:_replyLabel];
+            _replyLabel.font = [UIFont systemFontOfSize:18];
+            _replyLabel.numberOfLines = 0;
+            _replyLabel.textColor = [UIColor grayColor];
+            [_replyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
+                make.left.mas_equalTo(65);
+                make.right.mas_equalTo(-15);
+            }];
+        } else if ([typeString isEqualToString:@"2"]) {
+            //这里是图片
+        } else if ([typeString isEqualToString:@"3"]) {
+            //这里是语音
+        } else if ([typeString isEqualToString:@"4"]) {
+            //这里是视频
+        }
         
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.numberOfLines = 0;
         _timeLabel.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_timeLabel];
         [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self->_replyLabel.mas_bottom).mas_equalTo(10);
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
             make.left.mas_equalTo(65);
             make.height.mas_equalTo(20);
             make.width.mas_equalTo(100);
@@ -72,7 +80,7 @@
         [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:_likeButton];
         [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self->_replyLabel.mas_bottom).mas_equalTo(10);
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
             make.right.mas_equalTo(self->_timeLabel.mas_right).mas_equalTo(180);
             make.size.mas_equalTo(CGSizeMake(50, 20));
         }];
@@ -83,7 +91,7 @@
         [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.contentView addSubview:_commentButton];
         [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self->_replyLabel.mas_bottom).mas_equalTo(10);
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
             make.right.mas_equalTo(-15);
             make.size.mas_equalTo(CGSizeMake(50, 20));
         }];
