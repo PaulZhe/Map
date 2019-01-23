@@ -25,13 +25,9 @@
     //初始化坐标
     [self createLocation];
     
+    
     //测试泡泡内按钮点击事件
-    _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
-    [self.view addSubview:_paopaoView];
-    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
-    [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
-        [self.navigationController pushViewController:danamicStateViewController animated:YES];
-    }];
+    [self paopaoViewButtonAddTarget];
 }
 
 - (void)createChileView {
@@ -70,6 +66,31 @@
     [self.locationManager setLocatingWithReGeocode:YES];
     //开启持续定位
     [self.locationManager startUpdatingLocation];
+}
+
+
+//测试泡泡内按钮点击事件
+- (void)paopaoViewButtonAddTarget {
+    __weak typeof(self) weakSelf = self;
+    _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
+    [self.view addSubview:_paopaoView];
+    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
+    [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"1";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
+    [_paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"2";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
+    [_paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"3";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
+    [_paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"4";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
 }
 
 // 定位SDK中，位置变更的回调

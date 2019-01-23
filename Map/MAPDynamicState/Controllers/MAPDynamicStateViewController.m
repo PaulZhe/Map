@@ -22,14 +22,17 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
+    
+    //之所以要把View创建在ViewWillAppear中是因为需要反复打开这一界面，每次界面所显示内容不同
+    _dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _dynamicStateView.dyanmicStateTableView.delegate = self;
+    [self.view addSubview:_dynamicStateView];
+    _dynamicStateView.typeMotiveString = _typeMotiveString;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    _dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _dynamicStateView.dyanmicStateTableView.delegate = self;
-    [self.view addSubview:_dynamicStateView];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

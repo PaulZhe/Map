@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPDynamicStateViewController : UIViewController
 @property (nonatomic, strong) MAPDynamicStateView *dynamicStateView;
+//接收主页传来的类型值，并传给View
+@property (nonatomic, strong) NSString *typeMotiveString;
+
 @end
 
 NS_ASSUME_NONNULL_END

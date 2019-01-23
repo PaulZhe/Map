@@ -29,15 +29,44 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MAPDynamicStateTableViewCell *cell = nil;
-    if (cell == nil) {
-        cell = [_dyanmicStateTableView dequeueReusableCellWithIdentifier:@"motion" forIndexPath:indexPath];
+    MAPDynamicStateTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
+    MAPDynamicStateTableViewCell *picturesCell = [tableView dequeueReusableCellWithIdentifier:@"pictures"];
+    MAPDynamicStateTableViewCell *voiceCell = [tableView dequeueReusableCellWithIdentifier:@"voice"];
+    MAPDynamicStateTableViewCell *vedioCell = [tableView dequeueReusableCellWithIdentifier:@"vedio"];
+    if ([_typeMotiveString isEqualToString:@"1"]) {
+        if (commentCell == nil) {
+            commentCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment" typeOfMotion:_typeMotiveString];
+        }
+        commentCell.nameLabel.text = @"1111";
+        commentCell.contentLabel.text = @"22222";
+        commentCell.timeLabel.text = @"2019";
+        return commentCell;
+    } else if ([_typeMotiveString isEqualToString:@"2"]) {
+        if (picturesCell == nil) {
+            picturesCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pictures" typeOfMotion:_typeMotiveString];
+        }
+        picturesCell.nameLabel.text = @"1111";
+        picturesCell.timeLabel.text = @"2019";
+        return picturesCell;
+    } else if ([_typeMotiveString isEqualToString:@"3"]) {
+        if (voiceCell == nil) {
+            voiceCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"voice" typeOfMotion:_typeMotiveString];
+        }
+        voiceCell.nameLabel.text = @"1111";
+        voiceCell.timeLabel.text = @"2019";
+        return voiceCell;
+    } else {
+        if (vedioCell == nil) {
+            vedioCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"vedio" typeOfMotion:_typeMotiveString];
+        }
+        vedioCell.nameLabel.text = @"1111";
+        vedioCell.timeLabel.text = @"2019";
+        return vedioCell;
     }
-    return cell;
 }
 
 @end
