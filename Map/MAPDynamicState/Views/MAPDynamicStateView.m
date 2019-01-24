@@ -51,20 +51,19 @@
         }
         picturesCell.nameLabel.text = @"1111";
         picturesCell.timeLabel.text = @"2019";
+        _picturesView = [[MAPMotivePicturesView alloc] init];
+        _picturesView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 100);
+        [picturesCell.picturesView addSubview:_picturesView];
         return picturesCell;
     } else if ([_typeMotiveString isEqualToString:@"3"]) {
         if (voiceCell == nil) {
             voiceCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"voice" typeOfMotion:_typeMotiveString];
         }
-        voiceCell.nameLabel.text = @"1111";
-        voiceCell.timeLabel.text = @"2019";
         return voiceCell;
     } else {
         if (vedioCell == nil) {
             vedioCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"vedio" typeOfMotion:_typeMotiveString];
         }
-        vedioCell.nameLabel.text = @"1111";
-        vedioCell.timeLabel.text = @"2019";
         return vedioCell;
     }
 }
