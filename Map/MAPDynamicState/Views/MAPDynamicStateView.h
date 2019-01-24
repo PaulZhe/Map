@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAPMotivePicturesView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPDynamicStateView : UIView <UITableViewDataSource>
 @property (nonatomic, strong) UITableView *dyanmicStateTableView;
 @property (nonatomic, strong) NSString *typeMotiveString; //按钮点击类别
+@property (nonatomic, strong) MAPMotivePicturesView *picturesView;
 @end
 
 NS_ASSUME_NONNULL_END

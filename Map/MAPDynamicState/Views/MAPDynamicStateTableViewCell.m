@@ -57,6 +57,13 @@
             }];
         } else if ([typeString isEqualToString:@"2"]) {
             //这里是图片
+            _picturesView = [[UIView alloc] init];
+            [self.contentView addSubview:_picturesView];
+            [_picturesView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(45);
+                make.left.mas_equalTo(65);
+                make.right.mas_equalTo(-15);
+            }];
         } else if ([typeString isEqualToString:@"3"]) {
             //这里是语音
         } else if ([typeString isEqualToString:@"4"]) {
@@ -98,7 +105,6 @@
     }
     return self;
 }
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];
