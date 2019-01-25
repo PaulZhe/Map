@@ -54,15 +54,15 @@
     return cell;
 }
 
-////返回Footer大小
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-//    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 0);
-//}
-//
-////返回Header大小
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-//    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 0);
-//}
+//返回Footer大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 0);
+}
+
+//返回Header大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 0);
+}
 
 //返回每个cell大小
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
