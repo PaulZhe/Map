@@ -66,6 +66,14 @@
             }];
         } else if ([typeString isEqualToString:@"3"]) {
             //这里是语音
+            _audioButton = [[MAPMotiveAudioButton alloc] init];
+            [self.contentView addSubview:_audioButton];
+            [_audioButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(45);
+                make.left.mas_equalTo(65);
+                make.right.mas_equalTo(-15);
+                make.height.mas_equalTo(35.0);
+            }];
         } else if ([typeString isEqualToString:@"4"]) {
             //这里是视频
         }
