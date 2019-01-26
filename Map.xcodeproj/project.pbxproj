@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
+		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013B421F6EF1E00C549A3 /* MAPDynamicStateViewController.m */; };
 		4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013B721F6EF3A00C549A3 /* MAPDynamicStateView.m */; };
 		4F1013BB21F7002D00C549A3 /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013BA21F7002D00C549A3 /* MAPDynamicStateTableViewCell.m */; };
@@ -63,6 +64,8 @@
 /* Begin PBXFileReference section */
 		2A0080EBCDB4CF65767B3A9B /* Pods-Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.debug.xcconfig"; sourceTree = "<group>"; };
 		4E3475517200628FE2AB9731 /* libPods-Map.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Map.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F04453A21FCB33500C4F71E /* MAPMotiveAudioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveAudioButton.h; sourceTree = "<group>"; };
+		4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveAudioButton.m; sourceTree = "<group>"; };
 		4F1013B321F6EF1E00C549A3 /* MAPDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateViewController.h; sourceTree = "<group>"; };
 		4F1013B421F6EF1E00C549A3 /* MAPDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPDynamicStateViewController.m; sourceTree = "<group>"; };
 		4F1013B621F6EF3A00C549A3 /* MAPDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateView.h; sourceTree = "<group>"; };
@@ -149,6 +152,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F04453421FCB12600C4F71E /* DynamicStateView */ = {
+			isa = PBXGroup;
+			children = (
+				4F1013B621F6EF3A00C549A3 /* MAPDynamicStateView.h */,
+				4F1013B721F6EF3A00C549A3 /* MAPDynamicStateView.m */,
+				4F1013B921F7002D00C549A3 /* MAPDynamicStateTableViewCell.h */,
+				4F1013BA21F7002D00C549A3 /* MAPDynamicStateTableViewCell.m */,
+			);
+			path = DynamicStateView;
+			sourceTree = "<group>";
+		};
+		4F04453521FCB14A00C4F71E /* ShowDynamicStateView */ = {
+			isa = PBXGroup;
+			children = (
+				4F04453D21FCB34300C4F71E /* PicturesView */,
+				4F04453E21FCB35400C4F71E /* AudioButton */,
+				4F04453F21FCB35F00C4F71E /* VedioButton */,
+			);
+			path = ShowDynamicStateView;
+			sourceTree = "<group>";
+		};
+		4F04453D21FCB34300C4F71E /* PicturesView */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C5E6D21F9A44F00DCF62A /* MAPMotivePicturesView.h */,
+				4F2C5E6E21F9A44F00DCF62A /* MAPMotivePicturesView.m */,
+				4F2C5E6A21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.h */,
+				4F2C5E6B21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m */,
+			);
+			path = PicturesView;
+			sourceTree = "<group>";
+		};
+		4F04453E21FCB35400C4F71E /* AudioButton */ = {
+			isa = PBXGroup;
+			children = (
+				4F04453A21FCB33500C4F71E /* MAPMotiveAudioButton.h */,
+				4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */,
+			);
+			path = AudioButton;
+			sourceTree = "<group>";
+		};
+		4F04453F21FCB35F00C4F71E /* VedioButton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VedioButton;
+			sourceTree = "<group>";
+		};
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,14 +221,8 @@
 		4F1013B121F6EEEB00C549A3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F1013B621F6EF3A00C549A3 /* MAPDynamicStateView.h */,
-				4F1013B721F6EF3A00C549A3 /* MAPDynamicStateView.m */,
-				4F1013B921F7002D00C549A3 /* MAPDynamicStateTableViewCell.h */,
-				4F1013BA21F7002D00C549A3 /* MAPDynamicStateTableViewCell.m */,
-				4F2C5E6D21F9A44F00DCF62A /* MAPMotivePicturesView.h */,
-				4F2C5E6E21F9A44F00DCF62A /* MAPMotivePicturesView.m */,
-				4F2C5E6A21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.h */,
-				4F2C5E6B21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m */,
+				4F04453421FCB12600C4F71E /* DynamicStateView */,
+				4F04453521FCB14A00C4F71E /* ShowDynamicStateView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */,
 				4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
 				4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */,
