@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *commentButton;
 
-
 @property (nonatomic, strong) MAPMotivePicturesView *picturesView;//九宫格显示图片
 @property (nonatomic, strong) MAPMotiveAudioButton *audioButton;//播放语音
 
