@@ -34,17 +34,18 @@
             make.size.mas_equalTo(CGSizeMake(45, 45));
         }];
         
+        _contentLabel = [[UILabel alloc] init];
+        [self.contentView addSubview:_contentLabel];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.font = [UIFont systemFontOfSize:18];
+        [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(45);
+            make.left.mas_equalTo(65);
+            make.right.mas_equalTo(-15);
+        }];
+        
         if ([typeString isEqualToString:@"1"]) {
-            _contentLabel = [[UILabel alloc] init];
-            [self.contentView addSubview:_contentLabel];
-            _contentLabel.numberOfLines = 0;
-            _contentLabel.font = [UIFont systemFontOfSize:18];
-            [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(45);
-                make.left.mas_equalTo(65);
-                make.right.mas_equalTo(-15);
-            }];
-            
+            //这里是回复
             _replyLabel = [[UILabel alloc] init];
             [self.contentView addSubview:_replyLabel];
             _replyLabel.font = [UIFont systemFontOfSize:18];
@@ -60,7 +61,7 @@
             _picturesView = [[UIView alloc] init];
             [self.contentView addSubview:_picturesView];
             [_picturesView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(45);
+                make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
                 make.left.mas_equalTo(65);
                 make.right.mas_equalTo(-15);
             }];
@@ -69,13 +70,21 @@
             _audioButton = [[MAPMotiveAudioButton alloc] init];
             [self.contentView addSubview:_audioButton];
             [_audioButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(45);
+                make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
                 make.left.mas_equalTo(65);
                 make.right.mas_equalTo(-15);
                 make.height.mas_equalTo(35.0);
             }];
         } else if ([typeString isEqualToString:@"4"]) {
             //这里是视频
+            _videoButton = [[MAPMotiveVideoButton alloc] init];
+            [self.contentView addSubview:_videoButton];
+            [_videoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
+                make.left.mas_equalTo(65);
+                make.right.mas_equalTo(-15);
+                make.height.mas_equalTo(150.0);
+            }];
         }
         
         _timeLabel = [[UILabel alloc] init];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MAPMotivePicturesView.h"
 #import "MAPMotiveAudioButton.h"
+#import "MAPMotiveVideoButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,8 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *commentButton;
 
-@property (nonatomic, strong) MAPMotivePicturesView *picturesView;//九宫格显示图片
+@property (nonatomic, strong) UIView *picturesView;//九宫格显示图片
 @property (nonatomic, strong) MAPMotiveAudioButton *audioButton;//播放语音
+@property (nonatomic, strong) MAPMotiveVideoButton *videoButton;//播放视频
 
 //重写init方法，实现cell的封装
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString;

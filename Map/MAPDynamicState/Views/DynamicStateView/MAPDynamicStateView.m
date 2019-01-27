@@ -59,13 +59,32 @@
         if (voiceCell == nil) {
             voiceCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"voice" typeOfMotion:_typeMotiveString];
         }
+        //添加语音点击事件
+        [voiceCell.audioButton addTapBlock:^(UIButton * _Nonnull sender) {
+            [self audioPlay];
+        }];
         return voiceCell;
     } else {
         if (vedioCell == nil) {
             vedioCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"vedio" typeOfMotion:_typeMotiveString];
         }
+        //添加视频点击事件
+        [vedioCell.videoButton addTapBlock:^(UIButton * _Nonnull sender) {
+            
+        }];
         return vedioCell;
     }
+}
+
+//播放音频
+- (void)audioPlay {
+    NSURL *audioUrl = [NSURL URLWithString:[NSString stringWithFormat:@"123"]];
+    _audioPlayer = [[AVPlayer alloc] initWithURL:audioUrl];
+    if (_playerStatue == Play) {
+        [_audioPlayer pause];
+    }
+    [_audioPlayer play];
+    _playerStatue = Play;
 }
 
 @end
