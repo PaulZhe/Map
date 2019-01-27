@@ -27,11 +27,13 @@
     [super layoutSubviews];
     self.backgroundColor = [UIColor whiteColor];
     self.mapView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 50);
+    
     //设置底部添加按钮
     self.addButton.frame = CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50);
     [self.addButton setBackgroundColor:[UIColor colorWithRed:0.96f green:0.67f blue:0.67f alpha:1.00f]];
     [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
+    
     //设置推荐按钮
     self.recommendButton.frame = CGRectMake(self.frame.size.width - 65, 25, 55, 55);
     self.recommendButton.layer.masksToBounds = YES;

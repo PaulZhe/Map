@@ -10,6 +10,10 @@
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
 		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
+		4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */; };
+		4F0FF7CD21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF7CC21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.m */; };
+		4F0FF7CF21FDA1DD005A3E64 /* ai06.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0FF7CE21FDA1DD005A3E64 /* ai06.png */; };
+		4F0FF7D121FDA1E5005A3E64 /* bofang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0FF7D021FDA1E5005A3E64 /* bofang.png */; };
 		4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013B421F6EF1E00C549A3 /* MAPDynamicStateViewController.m */; };
 		4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013B721F6EF3A00C549A3 /* MAPDynamicStateView.m */; };
 		4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661721F327970035E47A /* MAPPaopaoView.m */; };
@@ -68,6 +72,12 @@
 		4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveAudioButton.m; sourceTree = "<group>"; };
 		4F04454021FCBA9200C4F71E /* MAPDynamicStateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateTableViewCell.h; sourceTree = "<group>"; };
 		4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPDynamicStateTableViewCell.m; sourceTree = "<group>"; };
+		4F0FF7C821FD8AA3005A3E64 /* MAPMotiveVideoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVideoButton.h; sourceTree = "<group>"; };
+		4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVideoButton.m; sourceTree = "<group>"; };
+		4F0FF7CB21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVedioClickedButtonView.h; sourceTree = "<group>"; };
+		4F0FF7CC21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVedioClickedButtonView.m; sourceTree = "<group>"; };
+		4F0FF7CE21FDA1DD005A3E64 /* ai06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ai06.png; sourceTree = "<group>"; };
+		4F0FF7D021FDA1E5005A3E64 /* bofang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bofang.png; sourceTree = "<group>"; };
 		4F1013B321F6EF1E00C549A3 /* MAPDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateViewController.h; sourceTree = "<group>"; };
 		4F1013B421F6EF1E00C549A3 /* MAPDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPDynamicStateViewController.m; sourceTree = "<group>"; };
 		4F1013B621F6EF3A00C549A3 /* MAPDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateView.h; sourceTree = "<group>"; };
@@ -167,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				4F04453D21FCB34300C4F71E /* PicturesView */,
-				4F04453E21FCB35400C4F71E /* AudioButton */,
-				4F04453F21FCB35F00C4F71E /* VedioButton */,
+				4F04453E21FCB35400C4F71E /* AudioButtonView */,
+				4F04453F21FCB35F00C4F71E /* VedioButtonView */,
 			);
 			path = ShowDynamicStateView;
 			sourceTree = "<group>";
@@ -184,20 +194,24 @@
 			path = PicturesView;
 			sourceTree = "<group>";
 		};
-		4F04453E21FCB35400C4F71E /* AudioButton */ = {
+		4F04453E21FCB35400C4F71E /* AudioButtonView */ = {
 			isa = PBXGroup;
 			children = (
 				4F04453A21FCB33500C4F71E /* MAPMotiveAudioButton.h */,
 				4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */,
 			);
-			path = AudioButton;
+			path = AudioButtonView;
 			sourceTree = "<group>";
 		};
-		4F04453F21FCB35F00C4F71E /* VedioButton */ = {
+		4F04453F21FCB35F00C4F71E /* VedioButtonView */ = {
 			isa = PBXGroup;
 			children = (
+				4F0FF7C821FD8AA3005A3E64 /* MAPMotiveVideoButton.h */,
+				4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */,
+				4F0FF7CB21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.h */,
+				4F0FF7CC21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.m */,
 			);
-			path = VedioButton;
+			path = VedioButtonView;
 			sourceTree = "<group>";
 		};
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
@@ -274,6 +288,8 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F0FF7D021FDA1E5005A3E64 /* bofang.png */,
+				4F0FF7CE21FDA1DD005A3E64 /* ai06.png */,
 				D638A74D21F1DAF3005DFDFD /* add.png */,
 				D638A74E21F1DAF3005DFDFD /* back.png */,
 				D638A74F21F1DAF3005DFDFD /* cancel.png */,
@@ -439,6 +455,7 @@
 				D638A76521F1DAF3005DFDFD /* back.png in Resources */,
 				4F2C5E8021F9AF0800DCF62A /* upPicture10.png in Resources */,
 				D638A76921F1DAF3005DFDFD /* comt.png in Resources */,
+				4F0FF7D121FDA1E5005A3E64 /* bofang.png in Resources */,
 				D638A76B21F1DAF3005DFDFD /* info.png in Resources */,
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
@@ -455,6 +472,7 @@
 				D638A77721F1DAF3005DFDFD /* weChat.png in Resources */,
 				D638A76C21F1DAF3005DFDFD /* like.png in Resources */,
 				D638A77321F1DAF3005DFDFD /* souRed.png in Resources */,
+				4F0FF7CF21FDA1DD005A3E64 /* ai06.png in Resources */,
 				D638A76F21F1DAF3005DFDFD /* menu.png in Resources */,
 				4F2C5E7C21F9AF0800DCF62A /* upPicture4.png in Resources */,
 				4F2C5E8421F9AF0800DCF62A /* upPicture2.png in Resources */,
@@ -523,11 +541,13 @@
 				4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */,
 				4F2C5E6C21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m in Sources */,
 				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
+				4F0FF7CD21FD9E86005A3E64 /* MAPMotiveVedioClickedButtonView.m in Sources */,
 				D66CCE1D21E4B45B009ADD17 /* main.m in Sources */,
 				4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */,
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
+				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
