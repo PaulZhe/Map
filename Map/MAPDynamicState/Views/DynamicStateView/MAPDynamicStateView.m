@@ -70,7 +70,7 @@
         }
         //添加视频点击事件
         [vedioCell.videoButton addTapBlock:^(UIButton * _Nonnull sender) {
-            
+            [self vedioPlay];
         }];
         return vedioCell;
     }
@@ -85,6 +85,99 @@
     }
     [_audioPlayer play];
     _playerStatue = Play;
+}
+
+//播放视频
+- (void) vedioPlay {
+    //视频播放器的Layer
+    UIView *vedioView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    vedioView.backgroundColor = [UIColor lightGrayColor];
+    NSURL *vedioUrl = [NSURL URLWithString:[NSString stringWithFormat:@"123"]];
+    //播放元素
+    _vedioPlayerItem = [[AVPlayerItem alloc] initWithURL:vedioUrl];
+    //播放片添加播放对象
+    _vedioPlayer = [[AVPlayer alloc] initWithPlayerItem:_vedioPlayerItem];
+    //观察Status属性，可以在加载成功之后得到视频的长度
+    [_vedioPlayer.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    //观察loadedTimeRanges，可以获取缓存进度，实现缓冲进度条
+    [_vedioPlayer.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+    // 监听 videoPlayer 是否播放完成
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerDidFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:_vedioPlayerItem];
+    
+    _vedioPlayerLayer = [[AVPlayerLayer alloc] initWithLayer:_vedioPlayer];
+    //AVLayerVideoGravityResizeAspect 等比例  默认
+    _vedioPlayerLayer.videoGravity = AVVideoScalingModeResizeAspect;
+    _vedioPlayerLayer.frame = vedioView.bounds;
+    [vedioView.layer addSublayer:_vedioPlayerLayer];
+    
+    //初始化底部视图
+    _vedioClickedButton = [[MAPMotiveVedioClickedButtonView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 100, [UIScreen mainScreen].bounds.size.width, 100)];
+    [self addSubview:_vedioClickedButton];
+    
+    //添加一个计时的标签不断更新当前的播放进度
+    __weak typeof(self) weakSelf = self;
+    [_vedioPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:nil usingBlock:^(CMTime time) {
+        //当前时间
+        CGFloat currentTime = weakSelf.vedioPlayerItem.currentTime.value/weakSelf.vedioPlayerItem.currentTime.timescale;
+        NSLog(@"当前时间 = %f", currentTime);
+        //视频总时间
+        CGFloat totalTime = CMTimeGetSeconds(weakSelf.vedioPlayerItem.duration);
+        NSLog(@"总时间 = %f", totalTime);
+        NSString *timeString = [NSString stringWithFormat:@"%@/%@", [weakSelf formatTimeWithTime:currentTime], [weakSelf formatTimeWithTime:totalTime]];
+    }];
+}
+
+//添加视频属性观察
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"status"]) {
+        //获取playerItem的status属性最新的状态
+        AVPlayerStatus status = [[change objectForKey:@"new"] intValue];
+        switch (status) {
+            case AVPlayerStatusReadyToPlay:{
+                //标记播放状态
+                _playerStatue = Play;
+                //开始播放视频
+                [_vedioPlayer play];
+                break;
+            }
+            case AVPlayerStatusFailed:{
+                //视频加载失败，点击重新加载
+                NSLog(@"视频加载失败，点击重新加载");
+                break;
+            }
+            case AVPlayerStatusUnknown:{
+                NSLog(@"加载遇到未知问题:AVPlayerStatusUnknown");
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+//视频播放结束
+- (void)videoPlayerDidFinished:(NSNotification *)notification {
+    [_vedioPlayer pause];
+}
+
+//转换时间格式的方法
+- (NSString *)formatTimeWithTime:(CGFloat) time {
+    int minute = 0,  secend = 0;
+    NSString *minuteString, *secendString;
+    minute = time / 60;
+    secend = time - minute * 60;
+    if (minute < 10) {
+        minuteString = [NSString stringWithFormat:@"0%d", minute];
+    } else {
+        minuteString = [NSString stringWithFormat:@"%d", minute];
+    }
+    if (secend < 10) {
+        secendString = [NSString stringWithFormat:@"0%d", secend];
+    } else {
+        secendString = [NSString stringWithFormat:@"%d", secend];
+        
+    }
+    return [NSString stringWithFormat:@"%@:%@", minuteString, secendString];
 }
 
 @end
