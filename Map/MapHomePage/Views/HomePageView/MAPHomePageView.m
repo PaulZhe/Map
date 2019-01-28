@@ -19,6 +19,34 @@
         [self addSubview:_mapView];
         [self addSubview:_addButton];
         [self addSubview:_recommendButton];
+        
+        //设置底部添加按钮
+        [self.addButton setBackgroundColor:[UIColor colorWithRed:0.96f green:0.67f blue:0.67f alpha:1.00f]];
+        [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
+        
+        //设置推荐按钮
+        self.recommendButton.layer.masksToBounds = YES;
+        self.recommendButton.layer.cornerRadius = 27.5;
+        [self.recommendButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
+        [self.recommendButton setTitle:@"推荐" forState:UIControlStateNormal];
+        [self.recommendButton setTintColor:[UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f]];
+        self.recommendButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        
+        //设置定位图标，模式，精度圈
+        BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc] init];
+        //定位图标样式
+        //    displayParam.locationViewImgName =
+        //精度圈不显示
+        displayParam.isAccuracyCircleShow = NO;
+        //显示我的位置，我的位置图标会旋转，地图不会旋转
+        self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
+        //根据配置参数更新定位图层样式
+        [self.mapView updateLocationViewWithParam:displayParam];
+        //将当前地图显示缩放等级设置为17级
+        [self.mapView setZoomLevel:17];
+        //显示定位图层
+        [self.mapView showsUserLocation];
     }
     return self;
 }
@@ -30,33 +58,9 @@
     
     //设置底部添加按钮
     self.addButton.frame = CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50);
-    [self.addButton setBackgroundColor:[UIColor colorWithRed:0.96f green:0.67f blue:0.67f alpha:1.00f]];
-    [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
     
     //设置推荐按钮
     self.recommendButton.frame = CGRectMake(self.frame.size.width - 65, 25, 55, 55);
-    self.recommendButton.layer.masksToBounds = YES;
-    self.recommendButton.layer.cornerRadius = 27.5;
-    [self.recommendButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
-    [self.recommendButton setTitle:@"推荐" forState:UIControlStateNormal];
-    [self.recommendButton setTintColor:[UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f]];
-    self.recommendButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    
-    //设置定位图标，模式，精度圈
-    BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc] init];
-    //定位图标样式
-//    displayParam.locationViewImgName = 
-    //精度圈不显示
-    displayParam.isAccuracyCircleShow = NO;
-    //显示我的位置，我的位置图标会旋转，地图不会旋转
-    self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
-    //根据配置参数更新定位图层样式
-    [self.mapView updateLocationViewWithParam:displayParam];
-    //将当前地图显示缩放等级设置为17级
-    [self.mapView setZoomLevel:17];
-    //显示定位图层
-    [self.mapView showsUserLocation];
 }
 
 @end

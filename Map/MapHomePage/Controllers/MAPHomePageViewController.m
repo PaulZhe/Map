@@ -24,8 +24,6 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
-    
-    
     //测试泡泡内按钮点击事件
     [self paopaoViewButtonAddTarget];
 }
@@ -116,9 +114,10 @@
 }
 
 //给所得到的位置添加点
-- (void) addAnnotation:(BMKLocation *) location {
+- (void)addAnnotation:(BMKLocation *) location {
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = location.location.coordinate;
+    annotation.title = @"";
     [self.homePageView.mapView addAnnotation:annotation];
     annotationMutableArray = [NSMutableArray array];
     [annotationMutableArray addObject:annotation];
@@ -141,6 +140,12 @@
     }
     return nil;
 }
+
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
+    [view setSelected:view.selected animated:YES];
+//    view.selected = !view.selected;
+}
+
 
 //底部添加按钮点击事件
 - (void)addButtonClicked:(UIButton *) button {
