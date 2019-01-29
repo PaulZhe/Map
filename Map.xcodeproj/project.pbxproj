@@ -217,8 +217,8 @@
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
 			isa = PBXGroup;
 			children = (
-				4F1013B121F6EEEB00C549A3 /* Views */,
 				4F1013B021F6EEC300C549A3 /* Controllers */,
+				4F1013B121F6EEEB00C549A3 /* Views */,
 			);
 			path = MAPDynamicState;
 			sourceTree = "<group>";

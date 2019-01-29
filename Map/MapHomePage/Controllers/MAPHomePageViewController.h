@@ -11,6 +11,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
+#import "MAPAnnotationView.h"
 
 
 #import "MAPPaopaoView.h"
@@ -20,9 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MAPHomePageViewController : UIViewController <BMKMapViewDelegate, BMKLocationManagerDelegate>
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
-@property (nonatomic, strong) MAPHomePageView *homePageView;
+@property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
+@property (nonatomic, strong) MAPAnnotationView *annotationView;//气泡界面
 
-//测试泡泡内容点击事件
+//测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
 @property (nonatomic, strong) MAPHomePageViewController *homePageViewController;
 @end

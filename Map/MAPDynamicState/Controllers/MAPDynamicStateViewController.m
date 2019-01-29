@@ -58,6 +58,7 @@
 //导航栏返回按钮点击事件
 - (void)BackToHomePage:(UIButton *) button {
     [self.navigationController popViewControllerAnimated:YES];
+    [_dynamicStateView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
 @end
