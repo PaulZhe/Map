@@ -175,7 +175,6 @@
         secendString = [NSString stringWithFormat:@"0%d", secend];
     } else {
         secendString = [NSString stringWithFormat:@"%d", secend];
-        
     }
     return [NSString stringWithFormat:@"%@:%@", minuteString, secendString];
 }
