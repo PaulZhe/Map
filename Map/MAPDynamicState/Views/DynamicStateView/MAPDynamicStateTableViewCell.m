@@ -85,6 +85,10 @@
                 make.right.mas_equalTo(-15);
                 make.height.mas_equalTo(150.0);
             }];
+            __weak typeof(self) weakSelf = self;
+            [_videoButton addTapBlock:^(UIButton * _Nonnull sender) {
+                [weakSelf vedioPlay];
+            }];
         }
         
         _timeLabel = [[UILabel alloc] init];
@@ -121,6 +125,11 @@
         }];
     }
     return self;
+}
+
+//播放视频
+- (void) vedioPlay {
+    NSLog(@"点击了视频");
 }
 
 - (void)awakeFromNib {

@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPPaopaoButton *picturesButton;
 @property (nonatomic, strong) MAPPaopaoButton *voiceButton;
 @property (nonatomic, strong) MAPPaopaoButton *vedioButton;
-@property (nonatomic, strong) UILabel *title;
 @end
 
 NS_ASSUME_NONNULL_END

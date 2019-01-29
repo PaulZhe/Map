@@ -7,7 +7,6 @@
 //
 
 #import "MAPHomePageViewController.h"
-#import "MAPAnnotationView.h"
 #import "MAPDynamicStateViewController.h"
 
 @interface MAPHomePageViewController () {
@@ -24,7 +23,8 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
-    //测试泡泡内按钮点击事件
+    
+    //添加泡泡点击事件
     [self paopaoViewButtonAddTarget];
 }
 
@@ -129,14 +129,14 @@
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        MAPAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
+        _annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (_annotationView == nil)
         {
-            annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-            annotationView.canShowCallout = NO;
+            _annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            _annotationView.canShowCallout = NO;
         }
-        annotationView.image = [UIImage imageNamed:@"info.png"];
-        return annotationView;
+        _annotationView.image = [UIImage imageNamed:@"info.png"];
+        return _annotationView;
     }
     return nil;
 }

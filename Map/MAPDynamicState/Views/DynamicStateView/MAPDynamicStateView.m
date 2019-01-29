@@ -103,17 +103,17 @@
     [_vedioPlayer.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
     // 监听 videoPlayer 是否播放完成
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerDidFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:_vedioPlayerItem];
-    
+
     _vedioPlayerLayer = [[AVPlayerLayer alloc] initWithLayer:_vedioPlayer];
     //AVLayerVideoGravityResizeAspect 等比例  默认
     _vedioPlayerLayer.videoGravity = AVVideoScalingModeResizeAspect;
     _vedioPlayerLayer.frame = vedioView.bounds;
     [vedioView.layer addSublayer:_vedioPlayerLayer];
-    
+
     //初始化底部视图
     _vedioClickedButton = [[MAPMotiveVedioClickedButtonView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 100, [UIScreen mainScreen].bounds.size.width, 100)];
     [self addSubview:_vedioClickedButton];
-    
+
     //添加一个计时的标签不断更新当前的播放进度
     __weak typeof(self) weakSelf = self;
     [_vedioPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:nil usingBlock:^(CMTime time) {
@@ -124,6 +124,8 @@
         CGFloat totalTime = CMTimeGetSeconds(weakSelf.vedioPlayerItem.duration);
         NSLog(@"总时间 = %f", totalTime);
         NSString *timeString = [NSString stringWithFormat:@"%@/%@", [weakSelf formatTimeWithTime:currentTime], [weakSelf formatTimeWithTime:totalTime]];
+        weakSelf.vedioClickedButton.videoSlider.value = currentTime/totalTime;
+        weakSelf.vedioClickedButton.timeLabel.text = timeString;
     }];
 }
 
