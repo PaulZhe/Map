@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/MapHomePage/Views/AnnotationView/MAPAnnotationView.m"
-            timestampString = "570383485.7607861"
+            timestampString = "570470020.951036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/MapHomePage/Views/AnnotationView/MAPAnnotationView.m"
-            timestampString = "570383485.760888"
+            timestampString = "570470020.951134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -51,13 +51,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/MapHomePage/Views/AnnotationView/MAPAnnotationView.m"
-            timestampString = "570383485.760946"
+            filePath = "Map/MapHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "570470020.951196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "-setSelected:animated:"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-mapView:didSelectAnnotationView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/MapHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "570470020.951623"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,6 +11,7 @@
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
+    BOOL selected;
 }
 
 @end
@@ -142,8 +143,10 @@
 }
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
-    [view setSelected:view.selected animated:YES];
-//    view.selected = !view.selected;
+
+    [view setSelected:!selected animated:YES];
+    selected = !selected;
+    view.selected = NO;
 }
 
 
