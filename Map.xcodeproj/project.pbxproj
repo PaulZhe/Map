@@ -33,6 +33,7 @@
 		4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7921F9AF0800DCF62A /* upPicture6.png */; };
 		4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7A21F9AF0800DCF62A /* upPicture7.png */; };
 		4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7B21F9AF0800DCF62A /* upPicture3.png */; };
+		D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D622B1B92201DB4C004F3C6A /* MAPAlertView.m */; };
 		D638A76421F1DAF3005DFDFD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74D21F1DAF3005DFDFD /* add.png */; };
 		D638A76521F1DAF3005DFDFD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74E21F1DAF3005DFDFD /* back.png */; };
 		D638A76621F1DAF3005DFDFD /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74F21F1DAF3005DFDFD /* cancel.png */; };
@@ -105,6 +106,8 @@
 		4F2C5E7A21F9AF0800DCF62A /* upPicture7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upPicture7.png; sourceTree = "<group>"; };
 		4F2C5E7B21F9AF0800DCF62A /* upPicture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upPicture3.png; sourceTree = "<group>"; };
 		7547F341E163CF40B251C20D /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
+		D622B1B82201DB4C004F3C6A /* MAPAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAlertView.h; sourceTree = "<group>"; };
+		D622B1B92201DB4C004F3C6A /* MAPAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAlertView.m; sourceTree = "<group>"; };
 		D638A74D21F1DAF3005DFDFD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		D638A74E21F1DAF3005DFDFD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		D638A74F21F1DAF3005DFDFD /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 			children = (
 				D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */,
 				D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */,
+				D622B1B82201DB4C004F3C6A /* MAPAlertView.h */,
+				D622B1B92201DB4C004F3C6A /* MAPAlertView.m */,
 			);
 			path = HomePageView;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
 				D66CCE1D21E4B45B009ADD17 /* main.m in Sources */,
 				4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */,
+				D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */,
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,

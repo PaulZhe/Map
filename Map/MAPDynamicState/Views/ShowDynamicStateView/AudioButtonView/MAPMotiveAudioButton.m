@@ -45,7 +45,7 @@
 }
 
 //重写button的点击事件方法
-- (void) addTapBlock:(buttonBlock) block {
+- (void)addTapBlock:(buttonBlock) block {
     _block = block;
     [self addTarget:self action:@selector(PlayAudio:) forControlEvents:UIControlEventTouchUpInside];
 }
