@@ -8,6 +8,7 @@
 
 #import "MAPHomePageViewController.h"
 #import "MAPDynamicStateViewController.h"
+#import "MAPAlertView.h"
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
@@ -143,7 +144,6 @@
 }
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
-
     [view setSelected:!selected animated:YES];
     selected = !selected;
     view.selected = NO;
@@ -152,7 +152,17 @@
 
 //底部添加按钮点击事件
 - (void)addButtonClicked:(UIButton *) button {
-
+    MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
+    [_homePageView addSubview:alertView];
+    
+    alertView.btnAction = ^(NSInteger tag) {
+        //tag=100是取消按钮，101是发布按钮
+        if (tag == 100) {
+//            [alertView removeFromSuperview];
+        } else {
+            
+        }
+    };
 }
 
 //推荐按钮点击事件
