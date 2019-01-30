@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MAPMotivePicturesView.h"
 #import "AVFoundation/AVFoundation.h"
-#import "MAPMotiveVedioClickedButtonView.h"
+#import "MAPMotiveVideoButtonView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, PlayerStatus) {
 @property (nonatomic, strong) NSString *typeMotiveString; //按钮点击类别
 @property (nonatomic, strong) MAPMotivePicturesView *picturesView;//九宫格显示图片
 //点击播放按钮之后的界面
-@property (nonatomic, strong) MAPMotiveVedioClickedButtonView *vedioClickedButton;
+@property (nonatomic, strong) MAPMotiveVideoButtonView *vedioButtonView;
 
 @property (nonatomic, strong) AVPlayer *audioPlayer;//播放音频,支持播放在线音乐
 @property (nonatomic, assign) PlayerStatus playerStatue;//标记语音

@@ -36,7 +36,7 @@
     MAPDynamicStateTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
     MAPDynamicStateTableViewCell *picturesCell = [tableView dequeueReusableCellWithIdentifier:@"pictures"];
     MAPDynamicStateTableViewCell *voiceCell = [tableView dequeueReusableCellWithIdentifier:@"voice"];
-    MAPDynamicStateTableViewCell *vedioCell = [tableView dequeueReusableCellWithIdentifier:@"vedio"];
+    MAPDynamicStateTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:@"video"];
     if ([_typeMotiveString isEqualToString:@"1"]) {
         if (commentCell == nil) {
             commentCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment" typeOfMotion:_typeMotiveString];
@@ -61,18 +61,20 @@
         }
         //添加语音点击事件
         [voiceCell.audioButton addTapBlock:^(UIButton * _Nonnull sender) {
-            [self audioPlay];
+            NSLog(@"点击了语音");
+//            [self audioPlay];
         }];
         return voiceCell;
     } else {
-        if (vedioCell == nil) {
-            vedioCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"vedio" typeOfMotion:_typeMotiveString];
+        if (videoCell == nil) {
+            videoCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"video" typeOfMotion:_typeMotiveString];
         }
         //添加视频点击事件
-        [vedioCell.videoButton addTapBlock:^(UIButton * _Nonnull sender) {
+        [videoCell.videoButton addTapBlock:^(UIButton * _Nonnull sender) {
+            NSLog(@"点击了视频");
             [self vedioPlay];
         }];
-        return vedioCell;
+        return videoCell;
     }
 }
 
@@ -111,8 +113,8 @@
     [vedioView.layer addSublayer:_vedioPlayerLayer];
 
     //初始化底部视图
-    _vedioClickedButton = [[MAPMotiveVedioClickedButtonView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 100, [UIScreen mainScreen].bounds.size.width, 100)];
-    [self addSubview:_vedioClickedButton];
+    _vedioButtonView = [[MAPMotiveVideoButtonView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 100, [UIScreen mainScreen].bounds.size.width, 100)];
+    [self addSubview:_vedioButtonView];
 
     //添加一个计时的标签不断更新当前的播放进度
     __weak typeof(self) weakSelf = self;
@@ -124,8 +126,8 @@
         CGFloat totalTime = CMTimeGetSeconds(weakSelf.vedioPlayerItem.duration);
         NSLog(@"总时间 = %f", totalTime);
         NSString *timeString = [NSString stringWithFormat:@"%@/%@", [weakSelf formatTimeWithTime:currentTime], [weakSelf formatTimeWithTime:totalTime]];
-        weakSelf.vedioClickedButton.videoSlider.value = currentTime/totalTime;
-        weakSelf.vedioClickedButton.timeLabel.text = timeString;
+        weakSelf.vedioButtonView.videoSlider.value = currentTime/totalTime;
+        weakSelf.vedioButtonView.timeLabel.text = timeString;
     }];
 }
 
@@ -133,8 +135,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"status"]) {
         //获取playerItem的status属性最新的状态
-        AVPlayerStatus status = [[change objectForKey:@"new"] intValue];
-        switch (status) {
+        switch (_vedioPlayerItem.status) {
             case AVPlayerStatusReadyToPlay:{
                 //标记播放状态
                 _playerStatue = Play;
