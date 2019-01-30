@@ -4,6 +4,7 @@ pod 'BaiduMapKit'
 pod 'JSONModel'
 pod 'BMKLocationKit'
 pod 'Masonry'
+pod 'AFNetworking'
 end
 
 

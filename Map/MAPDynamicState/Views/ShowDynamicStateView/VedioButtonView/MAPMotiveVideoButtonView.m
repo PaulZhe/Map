@@ -1,15 +1,15 @@
 //
-//  MAPMotiveVedioClickedButtonView.m
+//  MAPMotiveVideoButtonView.m
 //  Map
 //
-//  Created by 涂强尧 on 2019/1/27.
+//  Created by 涂强尧 on 2019/1/30.
 //  Copyright © 2019 小哲的DELL. All rights reserved.
 //
 
-#import "MAPMotiveVedioClickedButtonView.h"
+#import "MAPMotiveVideoButtonView.h"
 #import <Masonry.h>
 
-@implementation MAPMotiveVedioClickedButtonView
+@implementation MAPMotiveVideoButtonView
 
 - (instancetype) init {
     self = [super init];

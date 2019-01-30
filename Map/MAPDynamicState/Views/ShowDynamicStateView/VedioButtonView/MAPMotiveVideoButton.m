@@ -27,14 +27,14 @@
     [_backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.left.mas_equalTo(self.mas_left);
-        make.width.mas_equalTo(self.mas_width);
+        make.right.mas_equalTo(self.mas_right);
         make.height.mas_equalTo(self.mas_height);
     }];
     _backgroudImageView.backgroundColor = [UIColor lightGrayColor];
-    _backgroudImageView.userInteractionEnabled = YES;
     
     [_playVedioImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self.backgroudImageView.center);
+        make.centerX.mas_equalTo(self->_backgroudImageView.mas_centerX);
+        make.centerY.mas_equalTo(self->_backgroudImageView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     _playVedioImageView.image = [UIImage imageNamed:@"start"];

@@ -35,9 +35,9 @@
     _audioImageView.image = [UIImage imageNamed:@"sound"];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.audioImageView.mas_right).offset(5);
-        make.centerY.equalTo(self);
-        make.height.equalTo(self.mas_height).multipliedBy(0.6);
+        make.left.mas_equalTo(self.audioImageView.mas_right).mas_equalTo(5);
+        make.centerY.mas_equalTo(self);
+        make.height.mas_equalTo(self.mas_height).multipliedBy(0.6);
     }];
     _timeLabel.textColor = [UIColor whiteColor];
     _timeLabel.textAlignment = NSTextAlignmentLeft;
