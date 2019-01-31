@@ -9,26 +9,28 @@
 #import "MAPIssueButton.h"
 #import <Masonry.h>
 
+const float issueButtonWidth = 100;
+const float issueButtonHeight = 130;
+
 @implementation MAPIssueButton
 
-- (instancetype) init {
-    self = [super init];
-    if (self) {
-        _nameLabel = [[UILabel alloc] init];
-        [self addSubview:_nameLabel];
-    }
-    return self;
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image{
+    MAPIssueButton *button = [super buttonWithType:UIButtonTypeSystem];
+    button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    button.imageView.contentMode = UIViewContentModeCenter;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    return button;
 }
 
-- (void) layoutSubviews {
-    [super layoutSubviews];
-    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(110);
-        make.size.mas_equalTo(CGSizeMake(100, 20));
-    }];
-    _nameLabel.textColor = [UIColor whiteColor];
-    _nameLabel.textAlignment = NSTextAlignmentCenter;
-    _nameLabel.font = [UIFont systemFontOfSize:15 ];
+- (CGRect)imageRectForContentRect:(CGRect)contentRect{
+    return CGRectMake(0, 0, issueButtonWidth, issueButtonWidth);
+}
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect{
+    return CGRectMake(0, issueButtonWidth + 2, issueButtonWidth, 20);
 }
 
 @end

@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+extern const float issueButtonWidth;
+extern const float issueButtonHeight;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPIssueButton : UIButton
-@property (nonatomic, strong) UILabel *nameLabel;
+
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END
