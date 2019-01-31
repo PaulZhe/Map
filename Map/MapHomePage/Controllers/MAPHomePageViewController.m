@@ -9,6 +9,8 @@
 #import "MAPHomePageViewController.h"
 #import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
+#import <Masonry.h>
+#import "MAPAddDynamicStateViewController.h"
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
@@ -149,8 +151,7 @@
     view.selected = NO;
 }
 
-
-//底部添加按钮点击事件
+#pragma 添加按钮
 - (void)addButtonClicked:(UIButton *) button {
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
     [_homePageView addSubview:alertView];
@@ -160,11 +161,38 @@
         if (tag == 100) {
 //            [alertView removeFromSuperview];
         } else {
-            
+            //创建发布界面
+            [self creatIssueView];
         }
     };
 }
 
+//创建发布界面
+- (void)creatIssueView {
+    MAPIssueView *issueView = [[MAPIssueView alloc] init];
+    [self->_homePageView addSubview:issueView];
+    issueView.layer.masksToBounds = YES;
+    issueView.layer.cornerRadius = 150;
+    [issueView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self->_homePageView.mas_centerX);
+        make.centerY.mas_equalTo(self->_homePageView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(300, 300));
+    }];
+    MAPAddDynamicStateViewController *addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
+    issueView.btnAction = ^(NSInteger tag) {
+        if (tag == 101) {
+            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+        } else if (tag == 102) {
+            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+        } else if (tag == 103) {
+            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+        } else if (tag == 104) {
+            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+        }
+    };
+}
+
+#pragma 推荐按钮
 //推荐按钮点击事件
 - (void)recommendButtonClicked:(UIButton *)button {
     

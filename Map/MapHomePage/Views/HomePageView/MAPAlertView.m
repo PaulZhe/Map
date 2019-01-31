@@ -85,7 +85,7 @@
     UIButton *btn = (UIButton *)sender;
     _btnAction(btn.tag);
     
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 }
 
 @end

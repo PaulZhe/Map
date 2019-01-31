@@ -19,6 +19,9 @@
 		4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661721F327970035E47A /* MAPPaopaoView.m */; };
 		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
 		4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10662021F335A10035E47A /* MAPAnnotationView.m */; };
+		4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */; };
+		4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */; };
+		4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */; };
 		4F2C5E6C21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C5E6B21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m */; };
 		4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C5E6E21F9A44F00DCF62A /* MAPMotivePicturesView.m */; };
 		4F2C5E7C21F9AF0800DCF62A /* upPicture4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7021F9AF0700DCF62A /* upPicture4.png */; };
@@ -89,6 +92,12 @@
 		4F10661A21F328A10035E47A /* MAPPaopaoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoButton.m; sourceTree = "<group>"; };
 		4F10661F21F335A10035E47A /* MAPAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAnnotationView.h; sourceTree = "<group>"; };
 		4F10662021F335A10035E47A /* MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotationView.m; sourceTree = "<group>"; };
+		4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateViewController.h; sourceTree = "<group>"; };
+		4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateViewController.m; sourceTree = "<group>"; };
+		4F2C2C1E2202DFFB00CA0ECB /* MAPIssueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueView.h; sourceTree = "<group>"; };
+		4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPIssueView.m; sourceTree = "<group>"; };
+		4F2C2C212202E05100CA0ECB /* MAPIssueButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueButton.h; sourceTree = "<group>"; };
+		4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPIssueButton.m; sourceTree = "<group>"; };
 		4F2C5E6A21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotivePicturesCollectionViewCell.h; sourceTree = "<group>"; };
 		4F2C5E6B21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotivePicturesCollectionViewCell.m; sourceTree = "<group>"; };
 		4F2C5E6D21F9A44F00DCF62A /* MAPMotivePicturesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotivePicturesView.h; sourceTree = "<group>"; };
@@ -268,6 +277,43 @@
 			path = AnnotationView;
 			sourceTree = "<group>";
 		};
+		4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C2C192202DF6600CA0ECB /* Controllers */,
+				4F2C2C1A2202DF6D00CA0ECB /* Views */,
+			);
+			path = MAPAddDynamicState;
+			sourceTree = "<group>";
+		};
+		4F2C2C192202DF6600CA0ECB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */,
+				4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4F2C2C1A2202DF6D00CA0ECB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C2C242202E22900CA0ECB /* IssueView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4F2C2C242202E22900CA0ECB /* IssueView */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C2C1E2202DFFB00CA0ECB /* MAPIssueView.h */,
+				4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */,
+				4F2C2C212202E05100CA0ECB /* MAPIssueButton.h */,
+				4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */,
+			);
+			path = IssueView;
+			sourceTree = "<group>";
+		};
 		63490C92BDFBDE4C7ED363E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +432,7 @@
 				D61F8A7C21ECB2A600106FBC /* SupportingFiles */,
 				D64FBBB821EC886B00CB3BFC /* MapHomePage */,
 				4F1013AF21F6EE4600C549A3 /* MAPDynamicState */,
+				4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */,
 				D66CCE1B21E4B45B009ADD17 /* Info.plist */,
 			);
 			path = Map;
@@ -543,6 +590,7 @@
 				4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
 				4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */,
+				4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */,
 				4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */,
 				4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */,
 				4F2C5E6C21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m in Sources */,
@@ -554,7 +602,9 @@
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
+				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
+				4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
