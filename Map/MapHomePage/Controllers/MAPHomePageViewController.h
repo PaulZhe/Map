@@ -12,6 +12,7 @@
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
 #import "MAPAnnotationView.h"
+#import "MAPIssueView.h"
 
 
 #import "MAPPaopaoView.h"
