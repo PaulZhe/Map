@@ -19,6 +19,7 @@
 		4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661721F327970035E47A /* MAPPaopaoView.m */; };
 		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
 		4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10662021F335A10035E47A /* MAPAnnotationView.m */; };
+		4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */; };
 		4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */; };
 		4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */; };
 		4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */; };
@@ -92,6 +93,8 @@
 		4F10661A21F328A10035E47A /* MAPPaopaoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoButton.m; sourceTree = "<group>"; };
 		4F10661F21F335A10035E47A /* MAPAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAnnotationView.h; sourceTree = "<group>"; };
 		4F10662021F335A10035E47A /* MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotationView.m; sourceTree = "<group>"; };
+		4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateView.h; sourceTree = "<group>"; };
+		4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateView.m; sourceTree = "<group>"; };
 		4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateViewController.h; sourceTree = "<group>"; };
 		4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateViewController.m; sourceTree = "<group>"; };
 		4F2C2C1E2202DFFB00CA0ECB /* MAPIssueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueView.h; sourceTree = "<group>"; };
@@ -277,6 +280,15 @@
 			path = AnnotationView;
 			sourceTree = "<group>";
 		};
+		4F1420482204341900A6E769 /* AddDynamicStateView */ = {
+			isa = PBXGroup;
+			children = (
+				4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */,
+				4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */,
+			);
+			path = AddDynamicStateView;
+			sourceTree = "<group>";
+		};
 		4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +310,7 @@
 		4F2C2C1A2202DF6D00CA0ECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4F1420482204341900A6E769 /* AddDynamicStateView */,
 				4F2C2C242202E22900CA0ECB /* IssueView */,
 			);
 			path = Views;
@@ -605,6 +618,7 @@
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
 				4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */,
+				4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

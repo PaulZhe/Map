@@ -32,6 +32,7 @@
     [self paopaoViewButtonAddTarget];
 }
 
+#pragma MAP -- 初始化界面
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
@@ -40,6 +41,7 @@
     [self.view addSubview:_homePageView];
 }
 
+#pragma MAP -- 初始化位置
 - (void)createLocation {
     //初始化实例
     _locationManager = [[BMKLocationManager alloc] init];
@@ -70,7 +72,6 @@
     [self.locationManager startUpdatingLocation];
 }
 
-
 //测试泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget {
     __weak typeof(self) weakSelf = self;
@@ -95,7 +96,7 @@
     }];
 }
 
-// 定位SDK中，位置变更的回调
+#pragma MAP -- 定位中位置变更的回调
 - (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
     if (error) {
         NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
@@ -117,7 +118,7 @@
     [self.homePageView.mapView updateLocationData:_userLocation];
 }
 
-//给所得到的位置添加点
+#pragma MAP -- 添加点
 - (void)addAnnotation:(BMKLocation *) location {
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = location.location.coordinate;
@@ -128,7 +129,7 @@
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
-//显示气泡
+#pragma MAP -- 自定义气泡
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
@@ -145,13 +146,14 @@
     return nil;
 }
 
+//气泡的点击
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
     [view setSelected:!selected animated:YES];
     selected = !selected;
     view.selected = NO;
 }
 
-#pragma 添加按钮
+#pragma MAP -- 添加按钮点击事件
 - (void)addButtonClicked:(UIButton *) button {
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
     [_homePageView addSubview:alertView];
@@ -192,7 +194,7 @@
     };
 }
 
-#pragma 推荐按钮
+#pragma MAP -- 推荐按钮点击事件
 //推荐按钮点击事件
 - (void)recommendButtonClicked:(UIButton *)button {
     
