@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_addDynamicStateView];
 }
 
 //导航栏返回按钮点击事件

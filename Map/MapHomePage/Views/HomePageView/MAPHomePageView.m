@@ -21,7 +21,7 @@
         [self addSubview:_recommendButton];
         
         //设置底部添加按钮
-        [self.addButton setBackgroundColor:[UIColor colorWithRed:0.96f green:0.67f blue:0.67f alpha:1.00f]];
+        [self.addButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
         

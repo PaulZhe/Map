@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAPAddDynamicStateView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPAddDynamicStateViewController : UIViewController
-
+@property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
 @end
 
 NS_ASSUME_NONNULL_END
