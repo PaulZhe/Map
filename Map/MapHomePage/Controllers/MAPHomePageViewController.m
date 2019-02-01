@@ -15,6 +15,7 @@
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
     BOOL selected;
+    BOOL addButtonSelected;
 }
 
 @end
@@ -155,13 +156,14 @@
 
 #pragma MAP -- 添加按钮点击事件
 - (void)addButtonClicked:(UIButton *) button {
+    
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
     [_homePageView addSubview:alertView];
     
     alertView.btnAction = ^(NSInteger tag) {
         //tag=100是取消按钮，101是发布按钮
         if (tag == 100) {
-//            [alertView removeFromSuperview];
+            [alertView removeFromSuperview];
         } else {
             //创建发布界面
             [self creatIssueView];
@@ -180,6 +182,7 @@
         make.centerY.mas_equalTo(self->_homePageView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(300, 300));
     }];
+    
     MAPAddDynamicStateViewController *addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {

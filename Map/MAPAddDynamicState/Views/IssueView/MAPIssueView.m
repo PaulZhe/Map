@@ -7,7 +7,13 @@
 //
 
 #import "MAPIssueView.h"
+#import "MAPAlertView.h"
 #import <Masonry.h>
+@interface MAPIssueView()
+
+@property (strong, nonatomic) UIView *transparentView;
+
+@end
 
 @implementation MAPIssueView
 
@@ -76,6 +82,12 @@
 }
 
 - (void)clickedButton:(UIButton *)button {
+    for (id obj in self.superview.subviews) {
+        if ([obj isMemberOfClass:[MAPAlertView class]]) {
+            [obj removeFromSuperview];
+            [self removeFromSuperview];
+        }
+    }
     _btnAction(button.tag);
 }
 
