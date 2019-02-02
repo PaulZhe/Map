@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPAddDynamicStateViewController : UIViewController
 @property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
+@property (nonatomic, strong) NSString *typeString;//标记字符串
 @end
 
 NS_ASSUME_NONNULL_END
