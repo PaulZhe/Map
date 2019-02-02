@@ -20,6 +20,7 @@
 		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
 		4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10662021F335A10035E47A /* MAPAnnotationView.m */; };
 		4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */; };
+		4F15287E220593CB005164BF /* MAPAddCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15287D220593CB005164BF /* MAPAddCommentView.m */; };
 		4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */; };
 		4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */; };
 		4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */; };
@@ -95,6 +96,8 @@
 		4F10662021F335A10035E47A /* MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotationView.m; sourceTree = "<group>"; };
 		4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateView.h; sourceTree = "<group>"; };
 		4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateView.m; sourceTree = "<group>"; };
+		4F15287C220593CB005164BF /* MAPAddCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddCommentView.h; sourceTree = "<group>"; };
+		4F15287D220593CB005164BF /* MAPAddCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddCommentView.m; sourceTree = "<group>"; };
 		4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateViewController.h; sourceTree = "<group>"; };
 		4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateViewController.m; sourceTree = "<group>"; };
 		4F2C2C1E2202DFFB00CA0ECB /* MAPIssueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueView.h; sourceTree = "<group>"; };
@@ -289,6 +292,23 @@
 			path = AddDynamicStateView;
 			sourceTree = "<group>";
 		};
+		4F15287922059350005164BF /* TypesAddDyanmicStateView */ = {
+			isa = PBXGroup;
+			children = (
+				4F15287B220593B3005164BF /* AddCommentView */,
+			);
+			path = TypesAddDyanmicStateView;
+			sourceTree = "<group>";
+		};
+		4F15287B220593B3005164BF /* AddCommentView */ = {
+			isa = PBXGroup;
+			children = (
+				4F15287C220593CB005164BF /* MAPAddCommentView.h */,
+				4F15287D220593CB005164BF /* MAPAddCommentView.m */,
+			);
+			path = AddCommentView;
+			sourceTree = "<group>";
+		};
 		4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,8 +330,9 @@
 		4F2C2C1A2202DF6D00CA0ECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F1420482204341900A6E769 /* AddDynamicStateView */,
 				4F2C2C242202E22900CA0ECB /* IssueView */,
+				4F1420482204341900A6E769 /* AddDynamicStateView */,
+				4F15287922059350005164BF /* TypesAddDyanmicStateView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -614,6 +635,7 @@
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
+				4F15287E220593CB005164BF /* MAPAddCommentView.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,

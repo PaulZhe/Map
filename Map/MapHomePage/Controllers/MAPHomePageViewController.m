@@ -186,12 +186,16 @@
     MAPAddDynamicStateViewController *addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
+            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
+            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 103) {
+            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 104) {
+            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         }
     };
