@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPAddPicturesView : UIView
+@interface MAPAddPicturesView : UIView <UITextFieldDelegate>
 @property (nonatomic, strong) UILabel *hintLabel;//提示添加标题
 @property (nonatomic, strong) UITextField *addTitleTextField;//添加标题输入框
 @property (nonatomic, strong) UIView *addPicturesView;//九宫格添加图片
