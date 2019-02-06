@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MAPAddCommentView.h"
 #import "MAPAddPicturesView.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPAddDynamicStateView : UIView
-@property (nonatomic, strong) UIView *mapView;//显示地图
+@property (nonatomic, strong) BMKMapView *mapView;//显示地图
 @property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
 @property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
 @property (nonatomic, strong) UIButton *adjustmentButton;//地点微调按钮

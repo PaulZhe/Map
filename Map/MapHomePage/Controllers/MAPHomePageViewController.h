@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MAPHomePageViewController : UIViewController <BMKMapViewDelegate, BMKLocationManagerDelegate>
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
+@property (nonatomic, strong) BMKPointAnnotation *annotation;//标记点
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
 @property (nonatomic, strong) MAPAnnotationView *annotationView;//气泡界面
 

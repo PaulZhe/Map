@@ -14,8 +14,7 @@
 - (instancetype) initWithTypeString:(NSString *) typeString {
     self = [super init];
     if (self) {
-        _mapView = [[UIView alloc] init];
-        _mapView.backgroundColor = [UIColor redColor];
+        _mapView = [[BMKMapView alloc] init];
         [self addSubview:_mapView];
         
         _addDynamicStateView = [[UIView alloc] init];

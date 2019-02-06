@@ -32,13 +32,29 @@
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
-    NSLog(@"controller = %@", _typeString);
+    
+    //设置地图的代理
+    [_addDynamicStateView.mapView viewWillAppear];
+    _addDynamicStateView.mapView.delegate = self;
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_addDynamicStateView.mapView viewWillDisappear];
+    _addDynamicStateView.mapView.delegate = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
+    [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
+    NSLog(@"annotation = %f,%f", _Latitude, _Longitud);
+    annotation.title = @"";
+    [_addDynamicStateView.mapView addAnnotation:annotation];
+    NSMutableArray *annotationMutableArray = [NSMutableArray array];
+    [annotationMutableArray addObject:annotation];
+    [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
 //导航栏返回按钮点击事件
