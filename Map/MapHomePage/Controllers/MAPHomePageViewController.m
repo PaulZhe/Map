@@ -121,12 +121,12 @@
 
 #pragma MAP -- 添加点
 - (void)addAnnotation:(BMKLocation *) location {
-    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-    annotation.coordinate = location.location.coordinate;
-    annotation.title = @"";
-    [self.homePageView.mapView addAnnotation:annotation];
+    _annotation = [[BMKPointAnnotation alloc] init];
+    _annotation.coordinate = location.location.coordinate;
+    _annotation.title = @"";
+    [self.homePageView.mapView addAnnotation:_annotation];
     annotationMutableArray = [NSMutableArray array];
-    [annotationMutableArray addObject:annotation];
+    [annotationMutableArray addObject:_annotation];
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
@@ -187,15 +187,23 @@
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
             addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
             addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 103) {
             addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         } else if (tag == 104) {
             addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
             [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
         }
     };

@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MAPAddDynamicStateView.h"
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPAddDynamicStateViewController : UIViewController
+@interface MAPAddDynamicStateViewController : UIViewController <BMKMapViewDelegate>
 @property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
 @property (nonatomic, strong) NSString *typeString;//标记字符串
+@property (nonatomic, assign) double Latitude;
+@property (nonatomic, assign) double Longitud;//记录点的位置
 @end
+
 
 NS_ASSUME_NONNULL_END
