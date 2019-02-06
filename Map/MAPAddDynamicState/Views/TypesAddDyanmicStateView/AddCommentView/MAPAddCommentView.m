@@ -45,6 +45,7 @@
 }
 
 - (void) layoutSubviews {
+    [super layoutSubviews];
     [_addCommentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(0);

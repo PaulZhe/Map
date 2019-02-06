@@ -24,10 +24,20 @@
         [self addSubview:_addTitleTextField];
         _addTitleTextField.borderStyle = UITextBorderStyleNone;
         _addTitleTextField.layer.cornerRadius = 15;
-        _addTitleTextField.layer.borderWidth = 2.0f;
+        _addTitleTextField.layer.borderWidth = 0.8f;
         _addTitleTextField.layer.borderColor = [UIColor colorWithRed:0.14f green:0.14f blue:0.14f alpha:1.00f].CGColor;
-//        _addTitleTextField.leftView = view;
-//        _addTitleTextField.leftViewMode = UITextFieldViewModeAlways;
+        //设置左边空格量
+        UILabel *leftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
+        leftView.backgroundColor = [UIColor clearColor];
+        _addTitleTextField.leftView = leftView;
+        _addTitleTextField.leftViewMode = UITextFieldViewModeAlways;
+        //设置字数标签
+        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(340, 0, 40, 30)];
+        _countLabel.text = @"0/10";
+        _countLabel.textAlignment = NSTextAlignmentRight;
+        _countLabel.font = [UIFont fontWithName:@"Arial" size:15.0f];
+        _countLabel.backgroundColor = [UIColor clearColor];
+        [_addTitleTextField addSubview:_countLabel];
         //给textField添加字数限制
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChangeValue:) name:UITextFieldTextDidChangeNotification object:_addTitleTextField];
         
@@ -61,32 +71,32 @@
     
 }
 
+//字数限制
 - (void) textFieldDidChangeValue:(NSNotification *) notifcation {
     UITextField *textField = (UITextField *)[notifcation object];
+    NSInteger kMaxLength = 10 ;
     NSString *toBeString = textField.text;
-    
-    //获取高亮部分
-    UITextRange *selectedRange = [textField markedTextRange];
-    UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-    
-    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-    if (!position)
-    {
-        if (toBeString.length > 10)
-        {
-            NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:10];
-            if (rangeIndex.length == 1)
-            {
-                textField.text = [toBeString substringToIndex:10];
+    NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage;
+        //ios7之前使用[UITextInputMode currentInputMode].primaryLanguage
+    if ([lang isEqualToString:@"zh-Hans"]) { //中文输入
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {// 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+            if (toBeString.length > kMaxLength) {
+                textField.text = [toBeString substringToIndex:kMaxLength];
+            } else {
+                _countLabel.text = [NSString stringWithFormat:@"%lu/%@", _addTitleTextField.text.length, @"10"];
             }
-            else
-            {
-                NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, 10)];
-                textField.text = [toBeString substringWithRange:rangeRange];
-            }
+        } else{//有高亮选择的字符串，则暂不对文字进行统计和限制
+        }
+    } else {//中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+        if (toBeString.length > kMaxLength) {
+            textField.text = [toBeString substringToIndex:kMaxLength];
+        } else {
+            _countLabel.text = [NSString stringWithFormat:@"%lu/%@", _addTitleTextField.text.length, @"10"];
         }
     }
-    
 }
 
 @end
