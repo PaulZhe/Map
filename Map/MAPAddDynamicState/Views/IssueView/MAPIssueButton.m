@@ -14,7 +14,7 @@ const float issueButtonHeight = 130;
 
 @implementation MAPIssueButton
 
-+ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image{
++ (instancetype) buttonWithTitle:(NSString *)title image:(UIImage *)image{
     MAPIssueButton *button = [super buttonWithType:UIButtonTypeSystem];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -25,11 +25,11 @@ const float issueButtonHeight = 130;
     return button;
 }
 
-- (CGRect)imageRectForContentRect:(CGRect)contentRect{
+- (CGRect) imageRectForContentRect:(CGRect)contentRect{
     return CGRectMake(0, 0, issueButtonWidth, issueButtonWidth);
 }
 
-- (CGRect)titleRectForContentRect:(CGRect)contentRect{
+- (CGRect) titleRectForContentRect:(CGRect)contentRect{
     return CGRectMake(0, issueButtonWidth + 2, issueButtonWidth, 20);
 }
 

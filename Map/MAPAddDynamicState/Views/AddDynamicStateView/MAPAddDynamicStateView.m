@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         _mapView = [[BMKMapView alloc] init];
+        [_mapView setZoomLevel:21];
         [self addSubview:_mapView];
         
         _addDynamicStateView = [[UIView alloc] init];
