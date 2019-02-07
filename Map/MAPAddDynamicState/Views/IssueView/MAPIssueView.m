@@ -53,7 +53,7 @@
     return self;
 }
 
-- (void)layoutSubviews {
+- (void) layoutSubviews {
     [super layoutSubviews];
     [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(20);
@@ -81,7 +81,7 @@
     
 }
 
-- (void)clickedButton:(UIButton *)button {
+- (void) clickedButton:(UIButton *)button {
     for (id obj in self.superview.subviews) {
         if ([obj isMemberOfClass:[MAPAlertView class]]) {
             [obj removeFromSuperview];
