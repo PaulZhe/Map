@@ -55,7 +55,8 @@
             
         } else {
             //添加视频界面
-            
+            _addVedioView = [[MAPAddVedioView alloc] init];
+            [_addDynamicStateView addSubview:_addVedioView];
         }
     }
     return self;
@@ -110,6 +111,13 @@
     }];
     
     [_addPicturesView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_lineView.mas_bottom);
+        make.left.mas_equalTo(self->_addDynamicStateView.mas_left);
+        make.right.mas_equalTo(self->_addDynamicStateView.mas_right);
+        make.bottom.mas_equalTo(self->_issueButton.mas_top);
+    }];
+    
+    [_addVedioView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self->_lineView.mas_bottom);
         make.left.mas_equalTo(self->_addDynamicStateView.mas_left);
         make.right.mas_equalTo(self->_addDynamicStateView.mas_right);

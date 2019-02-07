@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "MAPAddCommentView.h"
 #import "MAPAddPicturesView.h"
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "MAPAddVedioView.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 //不同界面对应不同的view
 @property (nonatomic, strong) MAPAddCommentView *addCommentView; //添加评论输入框
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框
-@property (nonatomic, strong) UIView *addAndioView;//添加语音s录入框
-@property (nonatomic, strong) UIView *addVedioView;//添加视频界输入框
+@property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
+@property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
 
 //重写view的init方法
 - (instancetype) initWithTypeString:(NSString *) typeString;
