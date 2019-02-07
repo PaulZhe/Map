@@ -10,10 +10,11 @@
 #import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
 #import <Masonry.h>
-#import "MAPAddDynamicStateViewController.h"
+
 
 @interface MAPHomePageViewController () {
     NSMutableArray *annotationMutableArray;
+    NSInteger addDynamicStateTypeTag;
     BOOL selected;
     BOOL addButtonSelected;
 }
@@ -33,7 +34,7 @@
     [self paopaoViewButtonAddTarget];
 }
 
-#pragma MAP -- 初始化界面
+#pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
@@ -42,7 +43,7 @@
     [self.view addSubview:_homePageView];
 }
 
-#pragma MAP -- 初始化位置
+#pragma MAP -------------------------初始化位置-------------------------
 - (void)createLocation {
     //初始化实例
     _locationManager = [[BMKLocationManager alloc] init];
@@ -97,7 +98,7 @@
     }];
 }
 
-#pragma MAP -- 定位中位置变更的回调
+#pragma MAP ----------------------定位中位置变更的回调--------------------
 - (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
     if (error) {
         NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
@@ -119,7 +120,7 @@
     [self.homePageView.mapView updateLocationData:_userLocation];
 }
 
-#pragma MAP -- 添加点
+#pragma MAP --------------------------添加点---------------------------
 - (void)addAnnotation:(BMKLocation *) location {
     _annotation = [[BMKPointAnnotation alloc] init];
     _annotation.coordinate = location.location.coordinate;
@@ -130,7 +131,7 @@
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
-#pragma MAP -- 自定义气泡
+#pragma MAP -------------------------自定义气泡--------------------------
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
@@ -147,14 +148,14 @@
     return nil;
 }
 
-//气泡的点击
+//气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
     [view setSelected:!selected animated:YES];
     selected = !selected;
     view.selected = NO;
 }
 
-#pragma MAP -- 添加按钮点击事件
+#pragma MAP -----------------------添加按钮点击事件------------------------
 - (void)addButtonClicked:(UIButton *) button {
     
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
@@ -183,38 +184,102 @@
         make.size.mas_equalTo(CGSizeMake(300, 300));
     }];
     
-    MAPAddDynamicStateViewController *addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
+    _addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
+    addDynamicStateTypeTag = 0;
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
-            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+            //添加评论
+            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
-            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+            //添加图片
+            self->addDynamicStateTypeTag = tag;
+            [self addDynamicStateFromShootingOrAlbum];
         } else if (tag == 103) {
-            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+            //添加语音
+            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
+            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+            self->addDynamicStateTypeTag = tag;
         } else if (tag == 104) {
-            addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:addDyanmicStateViewController animated:YES];
+            //添加视频
+            self->addDynamicStateTypeTag = tag;
+            [self addDynamicStateFromShootingOrAlbum];
         }
     };
 }
 
-#pragma MAP -- 推荐按钮点击事件
-//推荐按钮点击事件
+//从拍摄or相册添加图片or视频
+- (void) addDynamicStateFromShootingOrAlbum {
+    UIView *addSelectedView = [[UIView alloc] init];
+    addSelectedView.tag = 200;
+    [self->_homePageView addSubview:addSelectedView];
+    [addSelectedView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.view.mas_bottom);
+        make.left.mas_equalTo(self.view.mas_left);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.height.mas_equalTo(92);
+    }];
+    addSelectedView.backgroundColor = [UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f];
+    
+    //拍摄
+    UIButton *shootingButton = [[UIButton alloc] init];
+    [addSelectedView addSubview:shootingButton];
+    [shootingButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(addSelectedView.mas_top);
+        make.left.mas_equalTo(addSelectedView.mas_left);
+        make.right.mas_equalTo(addSelectedView.mas_right);
+        make.height.mas_equalTo(45);
+    }];
+    shootingButton.backgroundColor = [UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f];
+    [shootingButton setTitle:[NSString stringWithFormat:@"拍摄"] forState:UIControlStateNormal];
+    
+    //中间白线
+    UIView *whiteView = [[UIView alloc] init];
+    whiteView.backgroundColor = [UIColor whiteColor];
+    [addSelectedView addSubview:whiteView];
+    [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(shootingButton.mas_bottom);
+        make.left.mas_equalTo(self.view.mas_left);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.height.mas_equalTo(2);
+    }];
+    
+    //相册
+    UIButton *albumButton = [[UIButton alloc] init];
+    [addSelectedView addSubview:albumButton];
+    [albumButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(addSelectedView.mas_bottom);
+        make.left.mas_equalTo(addSelectedView.mas_left);
+        make.right.mas_equalTo(addSelectedView.mas_right);
+        make.height.mas_equalTo(45);
+    }];
+    albumButton.backgroundColor = [UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f];
+    [albumButton setTitle:[NSString stringWithFormat:@"相册"] forState:UIControlStateNormal];
+    [albumButton addTarget:self action:@selector(clickedAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//通过相册添加图片点击事件
+- (void) clickedAlbumButton:(UIButton *) button {
+    if (addDynamicStateTypeTag == 102) {
+        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
+    } else if (addDynamicStateTypeTag == 104) {
+        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
+    }
+    self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+    self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+    [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+}
+
+#pragma MAP -----------------------推荐按钮点击事件-------------------------
 - (void)recommendButtonClicked:(UIButton *)button {
     
 }
 
+#pragma MAP -----------------------试图的出现与消失-------------------------
 //视图即将出现，设置地图代理
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -223,6 +288,19 @@
     _homePageView.mapView.delegate = self;
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
+    
+    //删除相册or拍摄view
+    for(id tmpView in [_homePageView subviews]) {
+        //找到要删除的子视图的对象
+        if([tmpView isKindOfClass:[UIView class]]){
+            UIView *view = (UIView *)tmpView;
+            if(view.tag == 200)   //判断是否满足自己要删除的子视图的条件
+            {
+                [view removeFromSuperview]; //删除子视图
+                break;  //跳出for循环，因为子视图已经找到，无须往下遍历
+            }
+        }
+    }
 }
 
 //视图即将消失，设置地图代理为nil
@@ -233,15 +311,5 @@
     _homePageView.mapView.delegate = nil;
     [_locationManager stopUpdatingLocation];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

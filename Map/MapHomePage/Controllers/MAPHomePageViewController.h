@@ -13,6 +13,7 @@
 #import "MAPHomePageView.h"
 #import "MAPAnnotationView.h"
 #import "MAPIssueView.h"
+#import "MAPAddDynamicStateViewController.h"
 
 
 #import "MAPPaopaoView.h"
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) BMKPointAnnotation *annotation;//标记点
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
 @property (nonatomic, strong) MAPAnnotationView *annotationView;//气泡界面
+@property (nonatomic, strong) MAPAddDynamicStateViewController *addDyanmicStateViewController;//添加动态controller
 
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;

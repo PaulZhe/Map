@@ -47,6 +47,7 @@
     _addDynamicStateView.mapView.delegate = nil;
 }
 
+//显示定位点
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
@@ -56,11 +57,8 @@
     annotationMutableArray = [NSMutableArray array];
     [annotationMutableArray addObject:annotation];
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
-//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-//    annotation.coordinate = CLLocationCoordinate2DMake(39.915, 116.404);
-//    annotation.title = @"这里是北京";
-//    [_addDynamicStateView.mapView addAnnotation:annotation];
 }
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
