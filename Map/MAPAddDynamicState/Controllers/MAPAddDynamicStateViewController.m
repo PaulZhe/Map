@@ -83,7 +83,7 @@
         {
             annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
-        annotationView.image = [UIImage imageNamed:@"info"];
+        annotationView.image = [UIImage imageNamed:@"local"];
         return annotationView;
     }
     return nil;

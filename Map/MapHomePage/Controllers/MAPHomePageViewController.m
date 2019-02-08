@@ -229,11 +229,8 @@
             [self addDynamicStateFromShootingOrAlbum];
         } else if (tag == 103) {
             //添加语音
-            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
             self->addDynamicStateTypeTag = tag;
+            [self addAudioView];
         } else if (tag == 104) {
             //添加视频
             self->addDynamicStateTypeTag = tag;
@@ -247,9 +244,9 @@
     addSelectedView.tag = 201;
     [self->_homePageView addSubview:addSelectedView];
     [addSelectedView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view.mas_bottom);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.right.mas_equalTo(self.view.mas_right);
+        make.bottom.mas_equalTo(self.homePageView.mas_bottom);
+        make.left.mas_equalTo(self.homePageView.mas_left);
+        make.right.mas_equalTo(self.homePageView.mas_right);
         make.height.mas_equalTo(92);
     }];
     addSelectedView.backgroundColor = [UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f];
@@ -304,10 +301,79 @@
 //添加语音
 - (void) addAudioView {
     UIView *addAudioView = [[UIView alloc] init];
+    addAudioView.backgroundColor = [UIColor whiteColor];
+    addAudioView.tag = 203;
     [_homePageView addSubview:addAudioView];
     [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.top.mas_equalTo(self.homePageView.mas_top).mas_equalTo(215);
+        make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
+        make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
+        make.bottom.mas_equalTo(self.homePageView.mas_bottom).mas_equalTo(-170);
     }];
+    
+    UIButton *cancelButton = [[UIButton alloc] init];
+    cancelButton.tag = 101;
+    [addAudioView addSubview:cancelButton];
+    [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(addAudioView.mas_top).mas_equalTo(10);
+        make.right.mas_equalTo(addAudioView.mas_right).mas_equalTo(-10);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+    }];
+    [cancelButton setImage:[UIImage imageNamed:@"shanchu"] forState:UIControlStateNormal];
+    [cancelButton addTarget:self action:@selector(ClikedButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.text = @"长按录制语音";
+    nameLabel.textAlignment = NSTextAlignmentCenter;
+    nameLabel.font = [UIFont systemFontOfSize:22];
+    [addAudioView addSubview:nameLabel];
+    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(addAudioView.mas_centerX);
+        make.top.mas_equalTo(addAudioView.mas_top).mas_equalTo(50);
+        make.size.mas_equalTo(CGSizeMake(140, 40));
+    }];
+    
+    UILabel *timeLabel = [[UILabel alloc] init];
+    timeLabel.text = @"00:12";
+    timeLabel.textAlignment = NSTextAlignmentCenter;
+    timeLabel.font = [UIFont systemFontOfSize:20];
+    [addAudioView addSubview:timeLabel];
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(addAudioView.mas_centerX);
+        make.top.mas_equalTo(nameLabel.mas_bottom).mas_equalTo(25);
+        make.size.mas_equalTo(CGSizeMake(100, 30));
+    }];
+    
+    UIButton *audioButton = [[UIButton alloc] init];
+    audioButton.tag = 102;
+    [addAudioView addSubview:audioButton];
+    [audioButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(addAudioView.mas_centerX);
+        make.top.mas_equalTo(timeLabel.mas_bottom).mas_equalTo(25);
+        make.size.mas_equalTo(CGSizeMake(140, 140));
+    }];
+    [audioButton setImage:[UIImage imageNamed:@"souRed"] forState:UIControlStateNormal];
+    [audioButton addTarget:self action:@selector(ClikedButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+//button点击事件
+- (void) ClikedButton:(UIButton *) button {
+    if (button.tag == 101) {
+        for(id tmpView in [_homePageView subviews]) {
+            if([tmpView isKindOfClass:[UIView class]]){
+                UIView *view = (UIView *)tmpView;
+                if(view.tag == 203) {  //判断是否满足自己要删除的子视图的条件
+                    [view removeFromSuperview]; //删除子视图
+                }
+            }
+        }
+    } else if (button.tag == 102) {
+            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
+            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+    }
+    
 }
 
 #pragma MAP -----------------------推荐按钮点击事件-------------------------
