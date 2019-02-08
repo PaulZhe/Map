@@ -28,9 +28,6 @@
     if (self) {
         _transparentView = [[UIView alloc] initWithFrame:frame];
         _transparentView.backgroundColor= [UIColor colorWithWhite:0 alpha:0.25];
-        //为阴影层增加手势
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapShadow)];
-        [self addGestureRecognizer:tap];
         [self addSubview:_transparentView];
         
         _alterView = [[UIView alloc] initWithFrame:CGRectMake((frame.size.width-240)/2, (frame.size.height-180)/2, 240, 180)];
@@ -83,23 +80,11 @@
     return self;
 }
 
-- (void)tapShadow {
-    for (id obj in self.superview.subviews) {
-        if ([obj isMemberOfClass:[MAPIssueView class]]) {
-            [obj removeFromSuperview];
-            [self removeFromSuperview];
-        }
-    }
-//    [self.superview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//    [self removeFromSuperview];
-}
-
 - (void)btnClick:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
     _btnAction(btn.tag);
     
-    [_alterView removeFromSuperview];
 }
 
 @end

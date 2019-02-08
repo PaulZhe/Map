@@ -32,6 +32,9 @@
     
     //添加泡泡点击事件
     [self paopaoViewButtonAddTarget];
+    
+    //删除view
+    [self clearAwaySomeViews];
 }
 
 #pragma MAP -------------------------初始化界面-------------------------
@@ -98,6 +101,33 @@
     }];
 }
 
+#pragma MAP -------------------------清除多余view-------------------------
+- (void) clearAwaySomeViews {
+    //添加清除主界面之外所有view的手势
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenAddDynamicStateView:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = YES;
+    //将触摸事件添加到当前view
+    [_homePageView addGestureRecognizer:tapGestureRecognizer];
+}
+//手势点击事件
+- (void)HiddenAddDynamicStateView:(UITapGestureRecognizer*)tap {
+    //删除相册or拍摄view
+    for(id tmpView in [_homePageView subviews]) {
+        //找到要删除的子视图的对象
+        if([tmpView isKindOfClass:[UIView class]]){
+            UIView *view = (UIView *)tmpView;
+            if(view.tag == 200) {  //判断是否满足自己要删除的子视图的条件
+                [view removeFromSuperview]; //删除子视图
+            } else if (view.tag == 201) {
+                [view removeFromSuperview];
+            } else if (view.tag == 202) {
+                [view removeFromSuperview];
+            }
+        }
+    }
+}
+
 #pragma MAP ----------------------定位中位置变更的回调--------------------
 - (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
     if (error) {
@@ -147,7 +177,6 @@
     }
     return nil;
 }
-
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
     [view setSelected:!selected animated:YES];
@@ -159,6 +188,7 @@
 - (void)addButtonClicked:(UIButton *) button {
     
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
+    alertView.tag = 202;
     [_homePageView addSubview:alertView];
     
     alertView.btnAction = ^(NSInteger tag) {
@@ -171,10 +201,10 @@
         }
     };
 }
-
 //创建发布界面
 - (void)creatIssueView {
     MAPIssueView *issueView = [[MAPIssueView alloc] init];
+    issueView.tag = 200;
     [self->_homePageView addSubview:issueView];
     issueView.layer.masksToBounds = YES;
     issueView.layer.cornerRadius = 150;
@@ -211,11 +241,10 @@
         }
     };
 }
-
 //从拍摄or相册添加图片or视频
 - (void) addDynamicStateFromShootingOrAlbum {
     UIView *addSelectedView = [[UIView alloc] init];
-    addSelectedView.tag = 200;
+    addSelectedView.tag = 201;
     [self->_homePageView addSubview:addSelectedView];
     [addSelectedView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom);
@@ -261,7 +290,6 @@
     [albumButton setTitle:[NSString stringWithFormat:@"相册"] forState:UIControlStateNormal];
     [albumButton addTarget:self action:@selector(clickedAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
 }
-
 //通过相册添加图片点击事件
 - (void) clickedAlbumButton:(UIButton *) button {
     if (addDynamicStateTypeTag == 102) {
@@ -273,6 +301,14 @@
     self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
+//添加语音
+- (void) addAudioView {
+    UIView *addAudioView = [[UIView alloc] init];
+    [_homePageView addSubview:addAudioView];
+    [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+}
 
 #pragma MAP -----------------------推荐按钮点击事件-------------------------
 - (void)recommendButtonClicked:(UIButton *)button {
@@ -281,31 +317,15 @@
 
 #pragma MAP -----------------------试图的出现与消失-------------------------
 //视图即将出现，设置地图代理
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_homePageView.mapView viewWillAppear];
     _homePageView.mapView.delegate = self;
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
-    
-    //删除相册or拍摄view
-    for(id tmpView in [_homePageView subviews]) {
-        //找到要删除的子视图的对象
-        if([tmpView isKindOfClass:[UIView class]]){
-            UIView *view = (UIView *)tmpView;
-            if(view.tag == 200)   //判断是否满足自己要删除的子视图的条件
-            {
-                [view removeFromSuperview]; //删除子视图
-                break;  //跳出for循环，因为子视图已经找到，无须往下遍历
-            }
-        }
-    }
 }
-
 //视图即将消失，设置地图代理为nil
--(void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_homePageView.mapView viewWillDisappear];
     _homePageView.mapView.delegate = nil;
