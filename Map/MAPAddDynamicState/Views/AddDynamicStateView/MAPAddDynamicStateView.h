@@ -14,6 +14,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void (^buttonBlock)(UIButton *sender);
 
 @interface MAPAddDynamicStateView : UIView
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
@@ -27,9 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框
 @property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
 @property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
-
+//地点微调点击事件
+@property (nonatomic, copy) buttonBlock block;
+- (void)addTapBlock:(buttonBlock)block;
 //重写view的init方法
 - (instancetype) initWithTypeString:(NSString *) typeString;
+
 @end
 
 NS_ASSUME_NONNULL_END
