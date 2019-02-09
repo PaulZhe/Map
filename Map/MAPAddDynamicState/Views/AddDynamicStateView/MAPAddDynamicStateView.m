@@ -126,4 +126,14 @@
     }];
 }
 
+//地点微调点击事件
+- (void)addTapBlock:(buttonBlock)block {
+    _block = block;
+    [_adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) adjustmentLocation:(UIButton *) button {
+    _block(button);
+}
+
 @end
