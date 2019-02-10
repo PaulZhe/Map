@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeString;//标记字符串
 @property (nonatomic, assign) double Latitude;
 @property (nonatomic, assign) double Longitud;//记录点的位置
-@property (nonatomic, strong) BMKPoiSearch *poiSearch;//POI城市检索对象
 @end
 
 
