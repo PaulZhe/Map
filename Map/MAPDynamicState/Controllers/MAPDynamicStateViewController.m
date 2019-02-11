@@ -20,6 +20,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
+    
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
