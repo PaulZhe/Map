@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAPMotiveReplyView.h"
 #import "MAPMotivePicturesView.h"
 #import "MAPMotiveAudioButton.h"
 #import "MAPMotiveVideoButton.h"
@@ -17,12 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *contentLabel;
-@property (nonatomic, strong) UILabel *replyLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *commentButton;
 
-@property (nonatomic, strong) UIView *picturesView;//九宫格显示图片
+@property (nonatomic, strong) MAPMotiveReplyView *replyView;//回复界面
+@property (nonatomic, strong) MAPMotivePicturesView *picturesView;//九宫格显示图片
 @property (nonatomic, strong) MAPMotiveAudioButton *audioButton;//播放语音
 @property (nonatomic, strong) MAPMotiveVideoButton *videoButton;//播放视频
 

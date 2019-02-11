@@ -46,19 +46,16 @@
         
         if ([typeString isEqualToString:@"1"]) {
             //这里是回复
-            _replyLabel = [[UILabel alloc] init];
-            [self.contentView addSubview:_replyLabel];
-            _replyLabel.font = [UIFont systemFontOfSize:18];
-            _replyLabel.numberOfLines = 0;
-            _replyLabel.textColor = [UIColor grayColor];
-            [_replyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            _replyView = [[MAPMotiveReplyView alloc] init];
+            [self.contentView addSubview:_replyView];
+            [_replyView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
                 make.left.mas_equalTo(65);
                 make.right.mas_equalTo(-15);
             }];
         } else if ([typeString isEqualToString:@"2"]) {
             //这里是图片
-            _picturesView = [[UIView alloc] init];
+            _picturesView = [[MAPMotivePicturesView alloc] init];
             [self.contentView addSubview:_picturesView];
             [_picturesView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);

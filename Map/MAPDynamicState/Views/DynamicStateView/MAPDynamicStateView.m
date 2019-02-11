@@ -51,9 +51,6 @@
         }
         picturesCell.nameLabel.text = @"1111";
         picturesCell.timeLabel.text = @"2019";
-        _picturesView = [[MAPMotivePicturesView alloc] init];
-        _picturesView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 100);
-        [picturesCell.picturesView addSubview:_picturesView];
         return picturesCell;
     } else if ([_typeMotiveString isEqualToString:@"3"]) {
         if (voiceCell == nil) {
