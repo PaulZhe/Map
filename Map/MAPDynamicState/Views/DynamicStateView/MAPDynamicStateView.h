@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, PlayerStatus) {
 @interface MAPDynamicStateView : UIView <UITableViewDataSource>
 @property (nonatomic, strong) UITableView *dyanmicStateTableView;
 @property (nonatomic, strong) NSString *typeMotiveString; //按钮点击类别
-@property (nonatomic, strong) MAPMotivePicturesView *picturesView;//九宫格显示图片
 //点击播放按钮之后的界面
 @property (nonatomic, strong) MAPMotiveVideoButtonView *vedioButtonView;
 
