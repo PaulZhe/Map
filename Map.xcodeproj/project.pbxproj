@@ -496,6 +496,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D65B13272212CC74006FB3BC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D64FBBB821EC886B00CB3BFC /* MapHomePage */,
+				4F1013AF21F6EE4600C549A3 /* MAPDynamicState */,
+				4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */,
+				4F4DF57D2212BE0C00A5E153 /* Managers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		D66CCE0121E4B45A009ADD17 = {
 			isa = PBXGroup;
 			children = (
@@ -531,10 +542,7 @@
 				4F2C5E7721F9AF0800DCF62A /* upPicture12.png */,
 				D638A74C21F1DAF3005DFDFD /* Images */,
 				D61F8A7C21ECB2A600106FBC /* SupportingFiles */,
-				D64FBBB821EC886B00CB3BFC /* MapHomePage */,
-				4F1013AF21F6EE4600C549A3 /* MAPDynamicState */,
-				4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */,
-				4F4DF57D2212BE0C00A5E153 /* Managers */,
+				D65B13272212CC74006FB3BC /* Classes */,
 				D66CCE1B21E4B45B009ADD17 /* Info.plist */,
 			);
 			path = Map;
