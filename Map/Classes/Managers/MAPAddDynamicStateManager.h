@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MAPAddDynamicStateManager : NSObject
 
 
+
 @end
 
 NS_ASSUME_NONNULL_END
