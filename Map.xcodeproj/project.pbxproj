@@ -75,6 +75,7 @@
 		D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66CCE1621E4B45B009ADD17 /* Assets.xcassets */; };
 		D66CCE1A21E4B45B009ADD17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66CCE1821E4B45B009ADD17 /* LaunchScreen.storyboard */; };
 		D66CCE1D21E4B45B009ADD17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D66CCE1C21E4B45B009ADD17 /* main.m */; };
+		D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE37F22145832009B1406 /* MAPCommentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,8 @@
 		D66CCE1921E4B45B009ADD17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D66CCE1B21E4B45B009ADD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D66CCE1C21E4B45B009ADD17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D6DAE37E22145832009B1406 /* MAPCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPCommentModel.h; sourceTree = "<group>"; };
+		D6DAE37F22145832009B1406 /* MAPCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPCommentModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,7 @@
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
 			isa = PBXGroup;
 			children = (
+				D6DAE37D221457DB009B1406 /* Model */,
 				4F1013B021F6EEC300C549A3 /* Controllers */,
 				4F1013B121F6EEEB00C549A3 /* Views */,
 			);
@@ -548,6 +552,15 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		D6DAE37D221457DB009B1406 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D6DAE37E22145832009B1406 /* MAPCommentModel.h */,
+				D6DAE37F22145832009B1406 /* MAPCommentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -717,6 +730,7 @@
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
 				4F15287E220593CB005164BF /* MAPAddCommentView.m in Sources */,
+				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
