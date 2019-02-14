@@ -12,12 +12,14 @@
 #import <Masonry.h>
 
 
-@interface MAPHomePageViewController () {
+@interface MAPHomePageViewController ()<UIGestureRecognizerDelegate> {
     NSMutableArray *annotationMutableArray;
     NSInteger addDynamicStateTypeTag;
     BOOL selected;
     BOOL addButtonSelected;
 }
+
+@property (nonatomic, strong) UIView *addAudioView;
 
 @end
 
@@ -44,6 +46,8 @@
     [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_homePageView.recommendButton addTarget:self action:@selector(recommendButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
+    
+    _addAudioView = [[UIView alloc] init];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -104,29 +108,34 @@
 #pragma MAP -------------------------清除多余view-------------------------
 - (void) clearAwaySomeViews {
     //添加清除主界面之外所有view的手势
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenAddDynamicStateView:)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenAddDynamicStateView)];
+    tapGestureRecognizer.delegate = self;
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
     tapGestureRecognizer.cancelsTouchesInView = YES;
     //将触摸事件添加到当前view
     [_homePageView addGestureRecognizer:tapGestureRecognizer];
 }
 //手势点击事件
-- (void)HiddenAddDynamicStateView:(UITapGestureRecognizer*)tap {
+- (void)HiddenAddDynamicStateView {
     //删除相册or拍摄view
     for(id tmpView in [_homePageView subviews]) {
         //找到要删除的子视图的对象
         if([tmpView isKindOfClass:[UIView class]]){
             UIView *view = (UIView *)tmpView;
-            if(view.tag == 200) {  //判断是否满足自己要删除的子视图的条件
-                [view removeFromSuperview]; //删除子视图
-            } else if (view.tag == 201) {
-                [view removeFromSuperview];
-            } else if (view.tag == 202) {
+            if(view.tag == 200 || view.tag == 201 || view.tag == 202 || view.tag == 203) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203
                 [view removeFromSuperview];
             }
         }
     }
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([touch.view.superview isEqual:self.homePageView] || [touch.view.superview.superview.superview isEqual:self.homePageView]) {
+        return NO;
+    }
+    return YES;
+}
+
 
 #pragma MAP ----------------------定位中位置变更的回调--------------------
 - (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
@@ -222,6 +231,7 @@
             self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
             self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+            [self HiddenAddDynamicStateView];
             [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
             //添加图片
@@ -296,41 +306,39 @@
     }
     self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
     self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+    [self HiddenAddDynamicStateView];
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 //添加语音
-- (void) addAudioView {
-    UIView *addAudioView = [[UIView alloc] init];
-    addAudioView.backgroundColor = [UIColor whiteColor];
-    addAudioView.tag = 203;
-    [_homePageView addSubview:addAudioView];
-    [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void)addAudioView {
+    for(id tmpView in [_homePageView subviews]) {
+        //找到要删除的子视图的对象
+        if([tmpView isKindOfClass:[UIView class]]){
+            UIView *view = (UIView *)tmpView;
+            if(view.tag == 201) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203
+                [view removeFromSuperview];
+            }
+        }
+    }
+    
+    _addAudioView.backgroundColor = [UIColor whiteColor];
+    _addAudioView.tag = 203;
+    [_homePageView addSubview:_addAudioView];
+    [_addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.homePageView.mas_top).mas_equalTo(215);
         make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
         make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
         make.bottom.mas_equalTo(self.homePageView.mas_bottom).mas_equalTo(-170);
     }];
     
-    UIButton *cancelButton = [[UIButton alloc] init];
-    cancelButton.tag = 101;
-    [addAudioView addSubview:cancelButton];
-    [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(addAudioView.mas_top).mas_equalTo(10);
-        make.right.mas_equalTo(addAudioView.mas_right).mas_equalTo(-10);
-        make.size.mas_equalTo(CGSizeMake(25, 25));
-    }];
-    [cancelButton setImage:[UIImage imageNamed:@"shanchu"] forState:UIControlStateNormal];
-    [cancelButton addTarget:self action:@selector(ClikedButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = @"长按录制语音";
     nameLabel.textAlignment = NSTextAlignmentCenter;
     nameLabel.font = [UIFont systemFontOfSize:22];
-    [addAudioView addSubview:nameLabel];
+    [_addAudioView addSubview:nameLabel];
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(addAudioView.mas_centerX);
-        make.top.mas_equalTo(addAudioView.mas_top).mas_equalTo(50);
+        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
+        make.top.mas_equalTo(self->_addAudioView.mas_top).mas_equalTo(50);
         make.size.mas_equalTo(CGSizeMake(140, 40));
     }];
     
@@ -338,18 +346,18 @@
     timeLabel.text = @"00:12";
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.font = [UIFont systemFontOfSize:20];
-    [addAudioView addSubview:timeLabel];
+    [_addAudioView addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(addAudioView.mas_centerX);
+        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
         make.top.mas_equalTo(nameLabel.mas_bottom).mas_equalTo(25);
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
     
     UIButton *audioButton = [[UIButton alloc] init];
     audioButton.tag = 102;
-    [addAudioView addSubview:audioButton];
+    [_addAudioView addSubview:audioButton];
     [audioButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(addAudioView.mas_centerX);
+        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
         make.top.mas_equalTo(timeLabel.mas_bottom).mas_equalTo(25);
         make.size.mas_equalTo(CGSizeMake(140, 140));
     }];
@@ -357,23 +365,12 @@
     [audioButton addTarget:self action:@selector(ClikedButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 //button点击事件
-- (void) ClikedButton:(UIButton *) button {
-    if (button.tag == 101) {
-        for(id tmpView in [_homePageView subviews]) {
-            if([tmpView isKindOfClass:[UIView class]]){
-                UIView *view = (UIView *)tmpView;
-                if(view.tag == 203) {  //判断是否满足自己要删除的子视图的条件
-                    [view removeFromSuperview]; //删除子视图
-                }
-            }
-        }
-    } else if (button.tag == 102) {
-            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
-            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
-    }
-    
+- (void)ClikedButton:(UIButton *) button {
+        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
+        self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
+        self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+        [self HiddenAddDynamicStateView];
+        [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 
 #pragma MAP -----------------------推荐按钮点击事件-------------------------
