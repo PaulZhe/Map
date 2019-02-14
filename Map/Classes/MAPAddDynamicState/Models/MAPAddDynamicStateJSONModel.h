@@ -10,8 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPAddDynamicStateJSONModel : JSONModel
-
+@interface MAPAddPointJSONModel : JSONModel
+@property (nonatomic, strong) NSString *pointNAme;
+@property (nonatomic, assign) double latitude;//经度
+@property (nonatomic, assign) double longitude;//纬度
 @end
+
+
+
+@interface MAPAddDynamicStateJSONModel : JSONModel
+@property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *data;
+@end
+
 
 NS_ASSUME_NONNULL_END
