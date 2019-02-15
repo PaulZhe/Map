@@ -46,6 +46,7 @@
         if ([typeString isEqualToString:@"101"]) {
             //添加评论界面
             _addCommentView = [[MAPAddCommentView alloc] init];
+            _addCommentView.delegate = self;
             [_addDynamicStateView addSubview:_addCommentView];
         } else if ([typeString isEqualToString:@"102"]) {
             //添加图片界面
@@ -131,9 +132,24 @@
     _block = block;
     [_adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
 }
-
 - (void) adjustmentLocation:(UIButton *) button {
     _block(button);
+}
+
+//键盘的弹出与收回事件
+- (void) keyboardWillAppearOrWillDisappear:(NSString *)appearOrDisappearString AndKeykeyboardHeight:(CGFloat)keyboardHeight{
+    if ([appearOrDisappearString isEqualToString:@"disappear"]) {
+        [UIView animateWithDuration:1 animations:^{
+            self->_mapView.transform = CGAffineTransformMakeTranslation(0, 0);
+            self->_addDynamicStateView.transform = CGAffineTransformMakeTranslation(0, 0);
+        }];
+    } else if ([appearOrDisappearString isEqualToString:@"appear"]) {
+        // 视图整体上升
+        [UIView animateWithDuration:1.0 animations:^{
+            self->_mapView.transform = CGAffineTransformMakeTranslation(0, keyboardHeight - self.frame.size.height);
+            self->_addDynamicStateView.transform = CGAffineTransformMakeTranslation(0, keyboardHeight - self.frame.size.height);
+        }];
+    }
 }
 
 @end

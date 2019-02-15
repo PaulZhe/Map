@@ -240,7 +240,7 @@
         } else if (tag == 103) {
             //添加语音
             self->addDynamicStateTypeTag = tag;
-            [self addAudioView];
+            [self addAudioDynamicStateView];
         } else if (tag == 104) {
             //添加视频
             self->addDynamicStateTypeTag = tag;
@@ -310,7 +310,7 @@
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 //添加语音
-- (void)addAudioView {
+- (void) addAudioDynamicStateView {
     for(id tmpView in [_homePageView subviews]) {
         //找到要删除的子视图的对象
         if([tmpView isKindOfClass:[UIView class]]){

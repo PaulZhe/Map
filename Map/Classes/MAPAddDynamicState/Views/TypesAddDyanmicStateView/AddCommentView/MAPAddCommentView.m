@@ -37,9 +37,14 @@
         _countLabel.enabled = NO;
         [_addCommentTextView addSubview:_countLabel];
         
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenkeyboardView)];
+        //将触摸事件添加到当前view
+        [_addCommentTextView addGestureRecognizer:tapGestureRecognizer];
+        _flag = 0;
+        
         //监听键盘的出现与消失
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -73,23 +78,39 @@
     }
 }
 
-//键盘的弹出与收回
+//键盘的收回
 - (void) keyboardWillDisappear:(NSNotification *)notification{
-    [UIView animateWithDuration:1 animations:^{
-        self.transform = CGAffineTransformMakeTranslation(0, 0);
-    }];
+    // 计算键盘高度
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    if ([_delegate respondsToSelector:@selector(keyboardWillAppearOrWillDisappear: AndKeykeyboardHeight:)]) {
+        [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"disappear"] AndKeykeyboardHeight:keyboardY];
+    }
+    _flag = 0;
 }
-
+//键盘的弹出
 - (void) keyboardWillAppear:(NSNotification *)notification{
     // 计算键盘高度
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
-    // 视图整体上升
-    [UIView animateWithDuration:1.0 animations:^{self.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height);}];
+    if ([_delegate respondsToSelector:@selector(keyboardWillAppearOrWillDisappear:AndKeykeyboardHeight:)]) {
+        [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"appear"] AndKeykeyboardHeight:keyboardY];
+    }
+    _flag = 1;
+    
+    
 }
 
-- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [_addCommentTextView resignFirstResponder];
+- (void) HiddenkeyboardView {
+    if (_flag == 1) {
+        [_addCommentTextView endEditing:YES];
+    } else if (_flag == 0) {
+        [_addCommentTextView becomeFirstResponder];
+    }
 }
 
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 @end
