@@ -22,15 +22,16 @@
         _addCommentTextView.keyboardType = UIKeyboardTypeDefault;
         _addCommentTextView.returnKeyType = UIReturnKeyDefault;
         // 自定义文本框placeholder
-        _placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 320, 35)];
+        _placeHolderLabel = [[UILabel alloc] init];
         _placeHolderLabel.text = @"添加评论...";
         _placeHolderLabel.font = [UIFont fontWithName:@"Arial" size:16.5f];
         _placeHolderLabel.backgroundColor = [UIColor clearColor];
         _placeHolderLabel.enabled = NO;
         [_addCommentTextView addSubview:_placeHolderLabel];
         // 自定义文本框字数统计
-        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(320, 330, 80, 20)];
+        _countLabel = [[UILabel alloc] init];
         _countLabel.text = @"0/140";
+        _countLabel.tintColor = [UIColor blackColor];
         _countLabel.textAlignment = NSTextAlignmentRight;
         _countLabel.font = [UIFont fontWithName:@"Arial" size:15.0f];
         _countLabel.backgroundColor = [UIColor clearColor];
@@ -56,6 +57,16 @@
         make.right.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.height.mas_equalTo(360);
+    }];
+    [_placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_addCommentTextView.mas_top).mas_equalTo(3);
+        make.left.mas_equalTo(self->_addCommentTextView.mas_left).mas_equalTo(5);
+        make.size.mas_equalTo(CGSizeMake(100, 30));
+    }];
+    [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self->_addCommentTextView.mas_bottom);
+        make.right.mas_equalTo(self->_addCommentTextView.mas_right);
+        make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
 }
 
