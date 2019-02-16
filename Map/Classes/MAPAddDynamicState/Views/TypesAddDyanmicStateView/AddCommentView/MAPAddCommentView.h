@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MAPAddCommentViewDelegate <NSObject>
 //键盘的弹出与消失
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
-
 @end
 
 @interface MAPAddCommentView : UIView <UITextViewDelegate>

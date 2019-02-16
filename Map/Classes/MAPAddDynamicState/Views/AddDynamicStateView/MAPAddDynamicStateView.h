@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^buttonBlock)(UIButton *sender);
 
-@interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate>
+@interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate, MAPAddPicturesViewDelegate, MAPAddVedioViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
 @property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
 @property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
