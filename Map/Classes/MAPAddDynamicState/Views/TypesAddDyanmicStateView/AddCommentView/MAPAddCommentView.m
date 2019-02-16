@@ -50,7 +50,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_addCommentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
@@ -108,8 +108,6 @@
         [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"appear"] AndKeykeyboardHeight:keyboardY];
     }
     _flag = 1;
-    
-    
 }
 
 - (void) HiddenkeyboardView {

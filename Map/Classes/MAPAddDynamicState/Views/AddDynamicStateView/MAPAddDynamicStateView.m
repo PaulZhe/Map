@@ -51,6 +51,7 @@
         } else if ([typeString isEqualToString:@"102"]) {
             //添加图片界面
             _addPicturesView = [[MAPAddPicturesView alloc] init];
+            _addPicturesView.delegate = self;
             [_addDynamicStateView addSubview:_addPicturesView];
         } else if ([typeString isEqualToString:@"103"]) {
             //添加语音界面
@@ -58,6 +59,7 @@
         } else {
             //添加视频界面
             _addVedioView = [[MAPAddVedioView alloc] init];
+            _addVedioView.delegate = self;
             [_addDynamicStateView addSubview:_addVedioView];
         }
     }
@@ -137,7 +139,7 @@
 }
 
 //键盘的弹出与收回事件
-- (void) keyboardWillAppearOrWillDisappear:(NSString *)appearOrDisappearString AndKeykeyboardHeight:(CGFloat)keyboardHeight{
+- (void)keyboardWillAppearOrWillDisappear:(NSString *)appearOrDisappearString AndKeykeyboardHeight:(CGFloat)keyboardHeight{
     if ([appearOrDisappearString isEqualToString:@"disappear"]) {
         [UIView animateWithDuration:1 animations:^{
             self->_mapView.transform = CGAffineTransformMakeTranslation(0, 0);

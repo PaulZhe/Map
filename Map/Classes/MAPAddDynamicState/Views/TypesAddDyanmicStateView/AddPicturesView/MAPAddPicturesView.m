@@ -43,6 +43,16 @@
         
         _addPicturesView = [[UIView alloc] init];
         [self addSubview:_addPicturesView];
+        
+        UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
+        UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
+        [_addTitleTextField addGestureRecognizer:tapTextGesture];
+        [self addGestureRecognizer:tapSurfaceGesture];
+        
+        //监听键盘的出现与消失
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
+
     }
     return self;
 }
@@ -97,6 +107,38 @@
             _countLabel.text = [NSString stringWithFormat:@"%lu/%@", _addTitleTextField.text.length, @"10"];
         }
     }
+}
+
+//键盘的收回
+- (void) keyboardWillDisappear:(NSNotification *)notification{
+    // 计算键盘高度
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    if ([_delegate respondsToSelector:@selector(keyboardWillAppearOrWillDisappear: AndKeykeyboardHeight:)]) {
+        [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"disappear"] AndKeykeyboardHeight:keyboardY];
+    }
+}
+//键盘的弹出
+- (void) keyboardWillAppear:(NSNotification *)notification{
+    // 计算键盘高度
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    if ([_delegate respondsToSelector:@selector(keyboardWillAppearOrWillDisappear:AndKeykeyboardHeight:)]) {
+        [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"appear"] AndKeykeyboardHeight:keyboardY];
+    }
+}
+
+- (void)hiddenKeyboardView {
+    [_addTitleTextField endEditing:YES];
+}
+
+- (void)showKeyboard {
+    [_addTitleTextField becomeFirstResponder];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 @end
