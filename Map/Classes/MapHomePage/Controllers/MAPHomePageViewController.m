@@ -325,10 +325,10 @@
     _addAudioView.tag = 203;
     [_homePageView addSubview:_addAudioView];
     [_addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.homePageView.mas_top).mas_equalTo(215);
+        make.center.mas_equalTo(self.homePageView);
         make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
         make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
-        make.bottom.mas_equalTo(self.homePageView.mas_bottom).mas_equalTo(-170);
+        make.height.mas_equalTo(self.addAudioView.mas_width).multipliedBy(1.2);
     }];
     
     UILabel *nameLabel = [[UILabel alloc] init];

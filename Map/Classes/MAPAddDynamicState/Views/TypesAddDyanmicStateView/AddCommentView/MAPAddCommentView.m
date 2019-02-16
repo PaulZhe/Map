@@ -56,7 +56,7 @@
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(0);
         make.left.mas_equalTo(0);
-        make.height.mas_equalTo(360);
+        make.bottom.mas_equalTo(self);
     }];
     [_placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self->_addCommentTextView.mas_top).mas_equalTo(3);
