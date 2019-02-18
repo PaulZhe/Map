@@ -8,6 +8,15 @@
 
 #import "MAPAddDynamicStateView.h"
 #import <Masonry.h>
+@interface MAPAddDynamicStateView()
+
+@property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
+@property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
+@property (nonatomic, strong) UIButton *adjustmentButton;//地点微调按钮
+@property (nonatomic, strong) UIView *lineView;//分界线
+@property (nonatomic, strong) UIButton *issueButton;//发布按钮
+
+@end
 
 @implementation MAPAddDynamicStateView
 
