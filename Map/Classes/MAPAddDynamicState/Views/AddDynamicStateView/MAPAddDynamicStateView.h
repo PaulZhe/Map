@@ -18,11 +18,6 @@ typedef void (^buttonBlock)(UIButton *sender);
 
 @interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate, MAPAddPicturesViewDelegate, MAPAddVedioViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
-@property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
-@property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
-@property (nonatomic, strong) UIButton *adjustmentButton;//地点微调按钮
-@property (nonatomic, strong) UIView *lineView;//分界线
-@property (nonatomic, strong) UIButton *issueButton;//发布按钮
 //不同界面对应不同的view
 @property (nonatomic, strong) MAPAddCommentView *addCommentView; //添加评论输入框
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框
