@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
-@property (nonatomic, strong) MAPHomePageViewController *homePageViewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

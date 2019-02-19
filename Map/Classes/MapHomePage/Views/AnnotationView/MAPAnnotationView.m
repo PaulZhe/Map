@@ -15,9 +15,7 @@
 @implementation MAPAnnotationView
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    if (self.selected == selected) {
-//        return;
-//    }
+
     if (selected){
         if (self.paopaoView == nil){
             //自定义泡泡
