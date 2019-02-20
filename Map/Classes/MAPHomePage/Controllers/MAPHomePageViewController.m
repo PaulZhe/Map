@@ -10,7 +10,7 @@
 #import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
 #import <Masonry.h>
-
+#import "MAPLoginManager.h"
 
 @interface MAPHomePageViewController ()<UIGestureRecognizerDelegate> {
     NSMutableArray *annotationMutableArray;
@@ -48,6 +48,14 @@
     [self.view addSubview:_homePageView];
     
     _addAudioView = [[UIView alloc] init];
+    
+    //loginManager测试
+    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
+    [loginManager requestUserMessageWith:@"2" Success:^(MAPGetUserMessageModel *messageModel) {
+        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
+    } Failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
