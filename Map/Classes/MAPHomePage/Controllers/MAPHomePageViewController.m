@@ -122,7 +122,7 @@
         //找到要删除的子视图的对象
         if([tmpView isKindOfClass:[UIView class]]){
             UIView *view = (UIView *)tmpView;
-            if(view.tag == 200 || view.tag == 201 || view.tag == 202 || view.tag == 203) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203
+            if(view.tag == 200 || view.tag == 201 || view.tag == 202 || view.tag == 203 || view.tag == 204) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203 recommendView.tag == 204
                 [view removeFromSuperview];
             }
         }
@@ -375,6 +375,35 @@
 
 #pragma MAP -----------------------推荐按钮点击事件-------------------------
 - (void)recommendButtonClicked:(UIButton *)button {
+    MAPRecommendView *recommendView = [[MAPRecommendView alloc] init];
+    recommendView.tag = 204;
+    [_homePageView addSubview:recommendView];
+    [recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_homePageView.mas_top).mas_offset(0);
+        make.left.mas_equalTo(self->_homePageView.mas_left).mas_offset(0);
+        make.right.mas_equalTo(self->_homePageView.mas_right).mas_offset(0);
+        make.bottom.mas_equalTo(self->_homePageView.mas_bottom).mas_offset(0);
+    }];
+    
+    recommendView.btnAction = ^(NSInteger tag) {
+        if (tag == 101) {
+            
+        } else if (tag == 102) {
+            
+        } else if (tag == 103) {
+            
+        } else if (tag == 104) {
+            for(id tmpView in [self->_homePageView subviews]) {
+                //找到要删除的子视图的对象
+                if([tmpView isKindOfClass:[UIView class]]){
+                    UIView *view = (UIView *)tmpView;
+                    if(view.tag == 204) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203 recommendView.tag == 204
+                        [view removeFromSuperview];
+                    }
+                }
+            }
+        }
+    };
     
 }
 
