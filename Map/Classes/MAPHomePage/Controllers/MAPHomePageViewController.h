@@ -14,6 +14,8 @@
 #import "MAPAnnotationView.h"
 #import "MAPIssueView.h"
 #import "MAPAddDynamicStateViewController.h"
+#import "MAPRecommendView.h"
+#import "MAPRecommendViewController.h"
 
 
 #import "MAPPaopaoView.h"
