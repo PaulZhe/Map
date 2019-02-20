@@ -7,6 +7,7 @@
 //
 
 #import "MAPAddDynamicStateManager.h"
+#import <AFNetworking.h>
 
 @implementation MAPAddDynamicStateManager
 
