@@ -480,24 +480,8 @@
 			isa = PBXGroup;
 			children = (
 				D61D0F7D221D43B00098483A /* Model */,
-				D61D0F7C221D43AA0098483A /* Views */,
-				D61D0F7B221D43990098483A /* Controllers */,
 			);
 			path = MAPLogin;
-			sourceTree = "<group>";
-		};
-		D61D0F7B221D43990098483A /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D61D0F7C221D43AA0098483A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		D61D0F7D221D43B00098483A /* Model */ = {
