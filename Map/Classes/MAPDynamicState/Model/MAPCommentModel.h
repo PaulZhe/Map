@@ -13,7 +13,7 @@
 
 @interface MAPCommentContentModel : JSONModel
 
-@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, assign) int ID;
 @property (nonatomic, copy) NSString *pointId;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *username;
