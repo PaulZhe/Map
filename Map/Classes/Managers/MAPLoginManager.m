@@ -23,11 +23,11 @@ static MAPLoginManager *manager = nil;
     return manager;
 }
 
-- (void)requestUserMessageWith:(NSString *)ID
+- (void)requestUserMessageWith:(NSNumber *)ID
                        Success:(MAPGetUserMessage)succeedBlock
                        Failure:(MAPGetUserMessageFailure)failBlock {
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager POST:@"http://39.106.39.48:/user/getUserMessageById" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:@"http://39.106.39.48:8080/user/getUserMessageById" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 请求成功

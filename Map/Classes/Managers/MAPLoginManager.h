@@ -15,7 +15,7 @@ typedef void(^MAPGetUserMessageFailure)(NSError *error);
 @interface MAPLoginManager : NSObject
 
 + (instancetype)sharedManager;
-- (void)requestUserMessageWith:(NSString *)ID
+- (void)requestUserMessageWith:(NSNumber *)ID
                        Success:(MAPGetUserMessage)succeedBlock
                        Failure:(MAPGetUserMessageFailure)failBlock;
 
