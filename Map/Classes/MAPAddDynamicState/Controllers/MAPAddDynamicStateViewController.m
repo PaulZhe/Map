@@ -42,6 +42,16 @@
         //地点微调点击事件;
         [weakSelf adjustmentLocationAction];
     }];
+    
+    __weak typeof(self) weakPictureSelf = self;
+    [_addDynamicStateView.addPicturesView addTapBlock:^(UIButton * _Nonnull sender) {
+        BOOL isPicker = NO;
+        weakPictureSelf.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        isPicker = true;
+        if (isPicker) {
+            [weakPictureSelf presentViewController:weakPictureSelf.pickerController animated:YES completion:nil];
+        }
+    }];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -65,6 +75,8 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    _pickerController.delegate = self;
+    _pickerController.allowsEditing = YES;
 }
 
 //地点微调点击事件;
@@ -91,6 +103,22 @@
 //导航栏返回按钮点击事件
 - (void) BackToHomePage:(UIButton *) button {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+//{
+//    //    获取图片
+//    UIImage *image = info[UIImagePickerControllerOriginalImage];
+//    self.image.image = image;
+//    //    获取图片后返回
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//}
+
+//按取消按钮时候的功能
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    //    返回
+    [_pickerController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
