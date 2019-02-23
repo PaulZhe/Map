@@ -148,14 +148,5 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-#pragma MAP  --------------调用系统相册-----------
-- (void)addTapBlock:(buttonBlock)block {
-    _block = block;
-    [_addPictureButton addTarget:self action:@selector(addPictures:) forControlEvents:UIControlEventTouchUpInside];
-}
-- (void) addPictures:(UIButton *) button {
-    _block(button);
-}
-
 
 @end
