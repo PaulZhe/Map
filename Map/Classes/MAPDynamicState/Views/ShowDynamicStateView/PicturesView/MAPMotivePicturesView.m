@@ -9,6 +9,8 @@
 #import "MAPMotivePicturesView.h"
 #import "MAPMotivePicturesCollectionViewCell.h"
 
+@interface MAPMotivePicturesView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@end
 
 @implementation MAPMotivePicturesView
 
