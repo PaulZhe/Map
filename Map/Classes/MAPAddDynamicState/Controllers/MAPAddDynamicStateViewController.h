@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPAddDynamicStateViewController : UIViewController <BMKMapViewDelegate, BMKPoiSearchDelegate, UIImagePickerControllerDelegate, UINavigationBarDelegate>
+@interface MAPAddDynamicStateViewController : UIViewController <BMKMapViewDelegate, BMKPoiSearchDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
 @property (nonatomic, strong) NSString *typeString;//标记字符串
 @property (nonatomic, assign) double Latitude;

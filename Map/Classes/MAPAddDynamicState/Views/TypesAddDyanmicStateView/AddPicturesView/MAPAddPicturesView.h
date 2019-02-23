@@ -10,8 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^buttonBlock)(UIButton *sender);
-
 @protocol MAPAddPicturesViewDelegate <NSObject>
 //键盘的弹出与消失
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
@@ -26,8 +24,7 @@ typedef void (^buttonBlock)(UIButton *sender);
 @property (nonatomic, strong) UIButton *addPictureButton;//添加图片虚框
 @property (nonatomic, strong) UIImagePickerController *pickerController;//相册权限
 @property (nonatomic, weak) id<MAPAddPicturesViewDelegate> delegate;
-@property (nonatomic, copy) buttonBlock block;//添加图片点击事件
-- (void)addTapBlock:(buttonBlock)block;
+
 @end
 
 NS_ASSUME_NONNULL_END
