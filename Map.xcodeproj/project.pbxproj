@@ -49,6 +49,7 @@
 		4FDD95702211CFE30047A9BC /* MAPMotiveReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */; };
 		D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F78221D423D0098483A /* MAPLoginManager.m */; };
 		D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */; };
+		D620E5312221AC9400CEF270 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D620E5302221AC9400CEF270 /* Info.plist */; };
 		D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D622B1B92201DB4C004F3C6A /* MAPAlertView.m */; };
 		D638A76421F1DAF3005DFDFD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74D21F1DAF3005DFDFD /* add.png */; };
 		D638A76521F1DAF3005DFDFD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74E21F1DAF3005DFDFD /* back.png */; };
@@ -154,6 +155,7 @@
 		D61D0F78221D423D0098483A /* MAPLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPLoginManager.m; sourceTree = "<group>"; };
 		D61D0F7E221D44BA0098483A /* MAPGetUserMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetUserMessageModel.h; sourceTree = "<group>"; };
 		D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetUserMessageModel.m; sourceTree = "<group>"; };
+		D620E5302221AC9400CEF270 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Map/Info.plist; sourceTree = SOURCE_ROOT; };
 		D622B1B82201DB4C004F3C6A /* MAPAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAlertView.h; sourceTree = "<group>"; };
 		D622B1B92201DB4C004F3C6A /* MAPAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAlertView.m; sourceTree = "<group>"; };
 		D638A74D21F1DAF3005DFDFD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 		D65B13272212CC74006FB3BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D620E5302221AC9400CEF270 /* Info.plist */,
 				D61D0F7A221D43840098483A /* MAPLogin */,
 				D64FBBB821EC886B00CB3BFC /* MAPHomePage */,
 				4F1013AF21F6EE4600C549A3 /* MAPDynamicState */,
@@ -721,6 +724,7 @@
 				D638A77921F1DAF3005DFDFD /* 头像.JPG in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
+				D620E5312221AC9400CEF270 /* Info.plist in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
 				D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */,
