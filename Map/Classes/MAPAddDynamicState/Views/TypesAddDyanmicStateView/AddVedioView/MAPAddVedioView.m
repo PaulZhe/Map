@@ -43,6 +43,10 @@
         _addVedioView = [[UIView alloc] init];
         [self addSubview:_addVedioView];
         
+        _addVedioButton = [[UIButton alloc] init];
+        [_addVedioView addSubview:_addVedioButton];
+        _addVedioButton.backgroundColor = [UIColor blackColor];
+        
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
         [_addTitleTextField addGestureRecognizer:tapTextGesture];
@@ -75,6 +79,13 @@
         make.left.mas_equalTo(self.mas_left).mas_equalTo(0);
         make.right.mas_equalTo(self.mas_right).mas_equalTo(0);
         make.bottom.mas_equalTo(self.mas_bottom);
+    }];
+    
+    [_addVedioButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_addVedioView).mas_offset(10);
+        make.left.mas_equalTo(self.mas_left).mas_offset(10);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-10);
+        make.height.mas_equalTo(50);
     }];
     
 }
