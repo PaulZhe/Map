@@ -413,13 +413,14 @@
         make.bottom.mas_equalTo(self->_homePageView.mas_bottom).mas_offset(0);
     }];
     
+    MAPRecommendViewController *recommendViewController = [[MAPRecommendViewController alloc] init];
     recommendView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
-            
+            [self.navigationController pushViewController:recommendViewController animated:YES];
         } else if (tag == 102) {
-            
+            [self.navigationController pushViewController:recommendViewController animated:YES];
         } else if (tag == 103) {
-            
+            [self.navigationController pushViewController:recommendViewController animated:YES];
         } else if (tag == 104) {
             for(id tmpView in [self->_homePageView subviews]) {
                 //找到要删除的子视图的对象

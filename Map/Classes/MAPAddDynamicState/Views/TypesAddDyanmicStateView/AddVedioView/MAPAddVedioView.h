@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITextField *addTitleTextField;//添加标题输入框
 @property (nonatomic, strong) UILabel *countLabel;//输入框字数限制
 @property (nonatomic, strong) UIView *addVedioView;//添加视频
+@property (nonatomic, strong) UIButton *addVedioButton;
 @property (nonatomic, weak) id<MAPAddVedioViewDelegate> delegate;
 @end
 
