@@ -44,6 +44,7 @@
     }];
     
     [_addDynamicStateView.addPicturesView.addPictureButton addTarget:self action:@selector(openPhotoAlbumAddPicture:) forControlEvents:UIControlEventTouchUpInside];
+    [_addDynamicStateView.addVedioView.addVedioButton addTarget:self action:@selector(openPhotoAlbumAddPicture:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
