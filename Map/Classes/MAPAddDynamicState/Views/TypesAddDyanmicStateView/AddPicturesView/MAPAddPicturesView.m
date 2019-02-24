@@ -44,6 +44,10 @@
         _addPicturesView = [[UIView alloc] init];
         [self addSubview:_addPicturesView];
         
+        _addPictureButton = [[UIButton alloc] init];
+        [_addPicturesView addSubview:_addPictureButton];
+        _addPictureButton.backgroundColor = [UIColor blackColor];
+        
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
         [_addTitleTextField addGestureRecognizer:tapTextGesture];
@@ -79,8 +83,15 @@
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
     
+    [_addPictureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_addPicturesView).mas_offset(10);
+        make.left.mas_equalTo(self.mas_left).mas_offset(10);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-10);
+        make.height.mas_equalTo(50);
+    }];
 }
 
+#pragma MAP  -------------textField的阴纹和字数限制与键盘弹出与收回------------
 //字数限制
 - (void) textFieldDidChangeValue:(NSNotification *) notifcation {
     UITextField *textField = (UITextField *)[notifcation object];
@@ -108,7 +119,6 @@
         }
     }
 }
-
 //键盘的收回
 - (void) keyboardWillDisappear:(NSNotification *)notification{
     // 计算键盘高度
@@ -127,18 +137,16 @@
         [_delegate keyboardWillAppearOrWillDisappear:[NSString stringWithFormat:@"appear"] AndKeykeyboardHeight:keyboardY];
     }
 }
-
 - (void)hiddenKeyboardView {
     [_addTitleTextField endEditing:YES];
 }
-
 - (void)showKeyboard {
     [_addTitleTextField becomeFirstResponder];
 }
-
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
+
 
 @end
