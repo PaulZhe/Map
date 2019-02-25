@@ -561,8 +561,8 @@
 			isa = PBXGroup;
 			children = (
 				D68297632223D92200D3F4A8 /* Model */,
-				D64FBBB921EC886B00CB3BFC /* Controllers */,
 				D64FBBBC21EC886B00CB3BFC /* Views */,
+				D64FBBB921EC886B00CB3BFC /* Controllers */,
 			);
 			path = MAPHomePage;
 			sourceTree = "<group>";

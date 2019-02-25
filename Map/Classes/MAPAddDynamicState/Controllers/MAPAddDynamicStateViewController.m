@@ -42,10 +42,7 @@
         //地点微调点击事件;
         [weakSelf adjustmentLocationAction];
     }];
-    
-    [_addDynamicStateView.addPicturesView.addPictureButton addTarget:self action:@selector(openPhotoAlbumAddPicture:) forControlEvents:UIControlEventTouchUpInside];
-    [_addDynamicStateView.addVedioView.addVedioButton addTarget:self action:@selector(openPhotoAlbumAddPicture:) forControlEvents:UIControlEventTouchUpInside];
-    
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -69,9 +66,6 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    _pickerController = [[UIImagePickerController alloc] init];
-    _pickerController.delegate = self;
-    _pickerController.allowsEditing = YES;
 }
 
 //添加自定义点
@@ -101,34 +95,5 @@
 }
 
 #pragma MAP   --------------打开相册选取图片-------------------
-//打开相册添加图片
-- (void) openPhotoAlbumAddPicture:(UIButton *) button {
-    BOOL isPicker = NO;
-    //打开相册
-    _pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    isPicker = true;
-    if (isPicker) {
-        [self presentViewController:_pickerController animated:YES completion:nil];
-    }else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"相机不可用" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:action];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    //    获取图片
-//    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    //    获取图片后返回
-    [_pickerController dismissViewControllerAnimated:YES completion:nil];
-}
-
-//按取消按钮时候的功能
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    //    返回
-    [_pickerController dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end
