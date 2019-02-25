@@ -10,7 +10,6 @@
 #import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
 #import <Masonry.h>
-#import "MAPLoginManager.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
@@ -21,6 +20,8 @@
 #import "MAPRecommendView.h"
 #import "MAPRecommendViewController.h"
 #import "MAPPaopaoView.h"
+#import "MAPLoginManager.h"
+#import "MAPAddPointManager.h"
 
 @interface MAPHomePageViewController ()<UIGestureRecognizerDelegate, BMKMapViewDelegate, BMKLocationManagerDelegate> {
     NSMutableArray *annotationMutableArray;
@@ -30,7 +31,7 @@
 }
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
-@property (nonatomic, strong) BMKPointAnnotation *annotation;//标记点
+//@property (nonatomic, strong) BMKPointAnnotation *annotation;//标记点
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
 @property (nonatomic, strong) MAPAnnotationView *annotationView;//气泡界面
 @property (nonatomic, strong) MAPAddDynamicStateViewController *addDyanmicStateViewController;//添加动态controller
@@ -69,11 +70,19 @@
     
     _addAudioView = [[UIView alloc] init];
     
-    //loginManager测试
-    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
-    [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
-        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
-    } Failure:^(NSError *error) {
+//    //loginManager测试
+//    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
+//    [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
+//        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
+//    } Failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+    //addPointManager测试
+    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+    [addPointManager addPointWithName:@"香港测试点1" Latitude:22.28 Longitude:114.16 success:^(MAPAddPointModel *resultModel) {
+        NSLog(@"%@++++", resultModel.message);
+    } error:^(NSError *error) {
         NSLog(@"%@", error);
     }];
 }
@@ -189,12 +198,12 @@
 
 #pragma MAP --------------------------添加点---------------------------
 - (void)addAnnotation:(BMKLocation *) location {
-    _annotation = [[BMKPointAnnotation alloc] init];
-    _annotation.coordinate = location.location.coordinate;
-    _annotation.title = @"";
-    [self.homePageView.mapView addAnnotation:_annotation];
+    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
+    annotation.coordinate = location.location.coordinate;
+    annotation.title = @"";
+    [self.homePageView.mapView addAnnotation:annotation];
     annotationMutableArray = [NSMutableArray array];
-    [annotationMutableArray addObject:_annotation];
+    [annotationMutableArray addObject:annotation];
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
@@ -257,8 +266,8 @@
         if (tag == 101) {
             //添加评论
             self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
-            self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-            self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+            self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+            self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
             [self HiddenAddDynamicStateView];
             [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
@@ -332,8 +341,8 @@
     } else if (addDynamicStateTypeTag == 104) {
         self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
     }
-    self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-    self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
+    self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+    self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
     [self HiddenAddDynamicStateView];
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
@@ -394,11 +403,11 @@
 }
 //button点击事件
 - (void)ClikedButton:(UIButton *) button {
-        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
-        self->_addDyanmicStateViewController.Latitude = self->_annotation.coordinate.latitude;
-        self->_addDyanmicStateViewController.Longitud = self->_annotation.coordinate.longitude;
-        [self HiddenAddDynamicStateView];
-        [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+    self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
+    self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+    self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+    [self HiddenAddDynamicStateView];
+    [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 
 #pragma MAP -----------------------推荐按钮点击事件-------------------------
