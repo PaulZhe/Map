@@ -26,8 +26,11 @@ static MAPLoginManager *manager = nil;
 - (void)requestUserMessageWith:(NSNumber *)ID
                        Success:(MAPGetUserMessage)succeedBlock
                        Failure:(MAPGetUserMessageFailure)failBlock {
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZXhwIjoxNTUxNjc2NDk1LCJpYXQiOjE1NTEwNzE2OTUsInVzZXJuYW1lIjoi5byg5ZOyIn0.bhLIBx2OZm5YrZbCLEgesz_ad3wq0G3tpjEcGAlKSXQ";
+    
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    [manager POST:@"http://39.106.39.48:8080/user/getUserMessageById" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    [manager POST:@"http://39.106.39.48:8080/user/getMessageByUserid" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 请求成功
