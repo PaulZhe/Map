@@ -22,6 +22,7 @@
 #import "MAPPaopaoView.h"
 #import "MAPLoginManager.h"
 #import "MAPAddPointManager.h"
+#import "MAPGetPointManager.h"
 
 @interface MAPHomePageViewController ()<UIGestureRecognizerDelegate, BMKMapViewDelegate, BMKLocationManagerDelegate> {
     NSMutableArray *annotationMutableArray;
@@ -31,9 +32,7 @@
 }
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
-//@property (nonatomic, strong) BMKPointAnnotation *annotation;//标记点
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
-@property (nonatomic, strong) MAPAnnotationView *annotationView;//气泡界面
 @property (nonatomic, strong) MAPAddDynamicStateViewController *addDyanmicStateViewController;//添加动态controller
 
 //测试泡泡点击事件
@@ -45,6 +44,25 @@
 @end
 
 @implementation MAPHomePageViewController
+
+#pragma MAP -----------------------试图的出现与消失-------------------------
+//视图即将出现，设置地图代理
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_homePageView.mapView viewWillAppear];
+    _homePageView.mapView.delegate = self;
+    //隐藏导航栏
+    self.navigationController.navigationBar.hidden = YES;
+    
+    //
+}
+//视图即将消失，设置地图代理为nil
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_homePageView.mapView viewWillDisappear];
+    _homePageView.mapView.delegate = nil;
+    [_locationManager stopUpdatingLocation];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,12 +97,12 @@
 //    }];
     
     //addPointManager测试
-    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-    [addPointManager addPointWithName:@"香港测试点1" Latitude:22.28 Longitude:114.16 success:^(MAPAddPointModel *resultModel) {
-        NSLog(@"%@++++", resultModel.message);
-    } error:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+//    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+//    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.281965 Longitude:114.163176 success:^(MAPAddPointModel *resultModel) {
+//        NSLog(@"%@++++", resultModel.message);
+//    } error:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -194,6 +212,9 @@
     }
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
+    
+    //获取定位坐标周围点
+    [self getLocationAroundPoints];
 }
 
 #pragma MAP --------------------------添加点---------------------------
@@ -211,15 +232,27 @@
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
-        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        _annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (_annotationView == nil)
-        {
-            _annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-            _annotationView.canShowCallout = NO;
+        if (_userLocation == nil) {
+            static NSString *reuseIndetifier = @"userAnnotationReuseIndetifier";
+            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+            if (annotationView == nil)
+            {
+                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+                annotationView.canShowCallout = NO;
+            }
+            annotationView.image = [UIImage imageNamed:@"local.png"];
+            return annotationView;
+        } else {
+            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+            if (annotationView == nil)
+            {
+                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+                annotationView.canShowCallout = NO;
+            }
+            annotationView.image = [UIImage imageNamed:@"info.png"];
+            return annotationView;
         }
-        _annotationView.image = [UIImage imageNamed:@"info.png"];
-        return _annotationView;
     }
     return nil;
 }
@@ -286,7 +319,7 @@
     };
 }
 //从拍摄or相册添加图片or视频
-- (void) addDynamicStateFromShootingOrAlbum {
+- (void)addDynamicStateFromShootingOrAlbum {
     UIView *addSelectedView = [[UIView alloc] init];
     addSelectedView.tag = 201;
     [self->_homePageView addSubview:addSelectedView];
@@ -442,24 +475,28 @@
             }
         }
     };
-    
 }
 
-#pragma MAP -----------------------试图的出现与消失-------------------------
-//视图即将出现，设置地图代理
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [_homePageView.mapView viewWillAppear];
-    _homePageView.mapView.delegate = self;
-    //隐藏导航栏
-    self.navigationController.navigationBar.hidden = YES;
+#pragma MAP -----------------------获取定位周围点-------------------------
+- (void)getLocationAroundPoints {
+    MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+    [manager fetchPointWithLongitude:_userLocation.location.coordinate.longitude
+                            Latitude:_userLocation.location.coordinate.latitude
+                               Range:30000
+                             succeed:^(MAPGetPointModel *pointModel) {
+                                 for (int i = 0; i < pointModel.data.count; i++) {
+                                     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pointModel.data[i] latitude], [pointModel.data[i] longitude]);
+                                     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
+                                     annotation.coordinate = coordinate;
+                                     annotation.title = @"";
+                                     [self.homePageView.mapView addAnnotation:annotation];
+                                     self->annotationMutableArray = [NSMutableArray array];
+                                     [self->annotationMutableArray addObject:annotation];
+                                     [self.homePageView.mapView showAnnotations:self->annotationMutableArray animated:YES];
+                                 }
+                             }
+                               error:^(NSError *error) {
+                                   NSLog(@"+++++getLocationAroundPointsError:%@", error);
+                               }];
 }
-//视图即将消失，设置地图代理为nil
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [_homePageView.mapView viewWillDisappear];
-    _homePageView.mapView.delegate = nil;
-    [_locationManager stopUpdatingLocation];
-}
-
 @end

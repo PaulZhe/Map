@@ -75,6 +75,8 @@
 		D638A77A21F1DAF3005DFDFD /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A76321F1DAF3005DFDFD /* 定位.png */; };
 		D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */; };
 		D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */; };
+		D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B42225506F00E30917 /* MAPGetPointManager.m */; };
+		D660A4B82225519800E30917 /* MAPGetPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B72225519800E30917 /* MAPGetPointModel.m */; };
 		D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D66CCE0E21E4B45A009ADD17 /* AppDelegate.m */; };
 		D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66CCE1321E4B45A009ADD17 /* Main.storyboard */; };
 		D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66CCE1621E4B45B009ADD17 /* Assets.xcassets */; };
@@ -184,6 +186,10 @@
 		D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageViewController.m; sourceTree = "<group>"; };
 		D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPHomePageView.h; sourceTree = "<group>"; };
 		D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageView.m; sourceTree = "<group>"; };
+		D660A4B32225506F00E30917 /* MAPGetPointManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointManager.h; sourceTree = "<group>"; };
+		D660A4B42225506F00E30917 /* MAPGetPointManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetPointManager.m; sourceTree = "<group>"; };
+		D660A4B62225519800E30917 /* MAPGetPointModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointModel.h; sourceTree = "<group>"; };
+		D660A4B72225519800E30917 /* MAPGetPointModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetPointModel.m; sourceTree = "<group>"; };
 		D66CCE0A21E4B45A009ADD17 /* Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Map.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66CCE0D21E4B45A009ADD17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D66CCE0E21E4B45A009ADD17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -418,6 +424,8 @@
 				D61D0F78221D423D0098483A /* MAPLoginManager.m */,
 				D68297602223D87F00D3F4A8 /* MAPAddPointManager.h */,
 				D68297612223D87F00D3F4A8 /* MAPAddPointManager.m */,
+				D660A4B32225506F00E30917 /* MAPGetPointManager.h */,
+				D660A4B42225506F00E30917 /* MAPGetPointManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -645,6 +653,8 @@
 			children = (
 				D68297642223DA2A00D3F4A8 /* MAPAddPointModel.h */,
 				D68297652223DA2A00D3F4A8 /* MAPAddPointModel.m */,
+				D660A4B62225519800E30917 /* MAPGetPointModel.h */,
+				D660A4B72225519800E30917 /* MAPGetPointModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -825,11 +835,13 @@
 				4F2C5E6C21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m in Sources */,
 				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
 				D66CCE1D21E4B45B009ADD17 /* main.m in Sources */,
+				D660A4B82225519800E30917 /* MAPGetPointModel.m in Sources */,
 				4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */,
 				D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */,
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
+				D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */,
 				4F15287E220593CB005164BF /* MAPAddCommentView.m in Sources */,
 				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
