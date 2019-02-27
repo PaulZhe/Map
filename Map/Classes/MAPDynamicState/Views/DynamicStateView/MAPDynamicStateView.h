@@ -10,6 +10,7 @@
 #import "MAPMotivePicturesView.h"
 #import "AVFoundation/AVFoundation.h"
 #import "MAPMotiveVideoButtonView.h"
+#import "MAPCommentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,8 @@ typedef NS_ENUM(NSInteger, PlayerStatus) {
 @property (nonatomic, strong) AVPlayer *vedioPlayer;//视频播放器
 @property (nonatomic, strong) AVPlayerItem *vedioPlayerItem;//播放元素
 @property (nonatomic, strong) AVPlayerLayer *vedioPlayerLayer;//播放界面
+
+@property (nonatomic, strong) MAPCommentModel *commentModel;
 @end
 
 NS_ASSUME_NONNULL_END

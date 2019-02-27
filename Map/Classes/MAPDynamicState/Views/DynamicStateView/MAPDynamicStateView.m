@@ -41,9 +41,12 @@
         if (commentCell == nil) {
             commentCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment" typeOfMotion:_typeMotiveString];
         }
-        commentCell.nameLabel.text = @"1111";
-        commentCell.contentLabel.text = @"22222";
-        commentCell.timeLabel.text = @"2019";
+//        commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
+//        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
+//        commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
+        commentCell.nameLabel.text = @"111111111";
+        commentCell.contentLabel.text = @"22222222";
+        commentCell.timeLabel.text = @"333333333";
         return commentCell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         if (picturesCell == nil) {
