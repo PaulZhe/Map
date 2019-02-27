@@ -96,13 +96,16 @@
 //        NSLog(@"%@", error);
 //    }];
     
-    //addPointManager测试
+//    //addPointManager测试
 //    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-//    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.281965 Longitude:114.163176 success:^(MAPAddPointModel *resultModel) {
+//    [addPointManager addPointWithName:@"香港测试点1" Latitude:22.28 Longitude:114.16 success:^(MAPAddPointModel *resultModel) {
 //        NSLog(@"%@++++", resultModel.message);
 //    } error:^(NSError *error) {
 //        NSLog(@"%@", error);
 //    }];
+    
+//    //添加评论测试
+//    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -142,7 +145,19 @@
     _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
     [self.view addSubview:_paopaoView];
     MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
+//    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+        ///添加评论
+//        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        ///获取评论
+//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//        [manager fetchPointCommentWithPointID:6
+//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+//                                             NSLog(@"getComment:%@", resultModel.message);
+//                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
+//                                         } error:^(NSError *error) {
+//                                             NSLog(@"%@", error);
+//                                         }];
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
@@ -228,16 +243,16 @@
     [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
 }
 
-#pragma MAP -------------------------自定义气泡--------------------------
+#pragma MAP -------------------------自定义样式点标记--------------------------
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         if (_userLocation == nil) {
-            static NSString *reuseIndetifier = @"userAnnotationReuseIndetifier";
-            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+            static NSString *userReuseIndetifier = @"userAnnotationReuseIndetifier";
+            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:userReuseIndetifier];
             if (annotationView == nil)
             {
-                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userReuseIndetifier];
                 annotationView.canShowCallout = NO;
             }
             annotationView.image = [UIImage imageNamed:@"local.png"];
@@ -256,6 +271,12 @@
     }
     return nil;
 }
+
+- (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    NSLog(@"%@；；；；；；；；；", views);
+}
+
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
     [view setSelected:!selected animated:YES];
@@ -265,7 +286,6 @@
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
 - (void)addButtonClicked:(UIButton *) button {
-    
     MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
     alertView.tag = 202;
     [_homePageView addSubview:alertView];
@@ -368,7 +388,7 @@
     [albumButton addTarget:self action:@selector(clickedAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 //通过相册添加图片点击事件
-- (void) clickedAlbumButton:(UIButton *) button {
+- (void)clickedAlbumButton:(UIButton *) button {
     if (addDynamicStateTypeTag == 102) {
         self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
     } else if (addDynamicStateTypeTag == 104) {
@@ -380,7 +400,7 @@
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 //添加语音
-- (void) addAudioDynamicStateView {
+- (void)addAudioDynamicStateView {
     for(id tmpView in [_homePageView subviews]) {
         //找到要删除的子视图的对象
         if([tmpView isKindOfClass:[UIView class]]){
@@ -499,4 +519,17 @@
                                    NSLog(@"+++++getLocationAroundPointsError:%@", error);
                                }];
 }
+
+//添加评论
+- (void)addCommentsWithPointID:(int)ID Content:(NSString *)content {
+    MAPAddPointManager *manager = [MAPAddPointManager sharedManager];
+    [manager addMessageWithPointId:ID
+                           Content:content
+                           success:^(MAPAddPointModel *resultModel) {
+                               NSLog(@"addComment:%@", resultModel.message);
+                           } error:^(NSError *error) {
+                               NSLog(@"%@", error);
+                           }];
+}
+
 @end
