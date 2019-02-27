@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,13 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface MAPAddPicturesView : UIView <UITextFieldDelegate>
+@interface MAPAddPicturesView : UIView <UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) UILabel *hintLabel;//提示添加标题
 @property (nonatomic, strong) UITextField *addTitleTextField;//添加标题输入框
 @property (nonatomic, strong) UILabel *countLabel;//输入框字数限制
-@property (nonatomic, strong) UIView *addPicturesView;//九宫格添加图片
-@property (nonatomic, strong) UIButton *addPictureButton;//添加图片虚框
-@property (nonatomic, strong) UIImagePickerController *pickerController;//相册权限
+@property (nonatomic, strong) UIView *addPicturesView;//添加图片
+@property (nonatomic, strong) UICollectionView *picturesCollectionView;//九宫格显示图片
 @property (nonatomic, weak) id<MAPAddPicturesViewDelegate> delegate;
 
 @end

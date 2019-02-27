@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
 @end
 
-@interface MAPAddCommentView : UIView <UITextViewDelegate>
+@interface MAPAddCommentView : UIView <UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UITextView *addCommentTextView;//添加评论窗口
 @property (nonatomic, strong) UILabel *placeHolderLabel;//自定义文本框placehoder
 @property (nonatomic, strong) UILabel *countLabel;//自定义文本框字数统计

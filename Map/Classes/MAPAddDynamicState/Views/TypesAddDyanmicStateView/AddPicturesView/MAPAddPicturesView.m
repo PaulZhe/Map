@@ -44,9 +44,14 @@
         _addPicturesView = [[UIView alloc] init];
         [self addSubview:_addPicturesView];
         
-        _addPictureButton = [[UIButton alloc] init];
-        [_addPicturesView addSubview:_addPictureButton];
-        _addPictureButton.backgroundColor = [UIColor blackColor];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _picturesCollectionView.delegate = self;
+        _picturesCollectionView.dataSource = self;
+        _picturesCollectionView.backgroundColor = [UIColor whiteColor];
+        _picturesCollectionView.showsVerticalScrollIndicator = NO;
+        _picturesCollectionView.showsHorizontalScrollIndicator = NO;
+        [_addPicturesView addSubview:_picturesCollectionView];
         
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
@@ -83,11 +88,11 @@
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
     
-    [_addPictureButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_addPicturesView).mas_offset(10);
-        make.left.mas_equalTo(self.mas_left).mas_offset(10);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-10);
-        make.height.mas_equalTo(50);
+    [_picturesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).mas_equalTo(5);
+        make.left.mas_equalTo(self.mas_left).mas_equalTo(0);
+        make.right.mas_equalTo(self.mas_right).mas_equalTo(0);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
     }];
 }
 
