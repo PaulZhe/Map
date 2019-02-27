@@ -25,6 +25,11 @@ typedef void(^MAPErrorHandle)(NSError *error);
  @param longitude 经度
 **/
 - (void)addPointWithName:(NSString *)name Latitude:(double)latitude Longitude:(double)longitude success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock;
-
+/**
+ 上传文字信息的方法
+ @param pointId 点的ID
+ @param content 信息内容
+ */
+- (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock;
 
 @end

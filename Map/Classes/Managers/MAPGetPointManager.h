@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "MAPGetPointModel.h"
+#import "MAPCommentModel.h"
 
 // 获取周边point的回调block
 typedef void(^MAPGetPointHandle)(MAPGetPointModel *pointModel);
+// 定位请求返回数据的block
+typedef void(^MAPGetCommentHandle)(MAPCommentModel *resultModel);
 // 请求失败统一回调block
 typedef void(^ErrorHandle)(NSError *error);
 
@@ -20,5 +23,7 @@ typedef void(^ErrorHandle)(NSError *error);
 
 // 获取周围坐标的方法
 - (void)fetchPointWithLongitude:(double)longitude Latitude:(double)latitude Range:(int)range succeed:(MAPGetPointHandle)succeedBlock error:(ErrorHandle)errorBlock;
+// 获取坐标点的信息方法
+- (void)fetchPointCommentWithPointID:(int)ID type:(int)type succeed:(MAPGetCommentHandle)succeedBlock error:(ErrorHandle)errorBlock;
 
 @end
