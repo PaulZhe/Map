@@ -2,12 +2,11 @@
 //  MAPAddCommentView.h
 //  Map
 //
-//  Created by 涂强尧 on 2019/2/2.
+//  Created by 涂强尧 on 2019/2/28.
 //  Copyright © 2019 小哲的DELL. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <Photos/Photos.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
 @end
 
-@interface MAPAddCommentView : UIView <UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface MAPAddCommentView : UIView <UITextViewDelegate>
 @property (nonatomic, strong) UITextView *addCommentTextView;//添加评论窗口
 @property (nonatomic, strong) UILabel *placeHolderLabel;//自定义文本框placehoder
 @property (nonatomic, strong) UILabel *countLabel;//自定义文本框字数统计

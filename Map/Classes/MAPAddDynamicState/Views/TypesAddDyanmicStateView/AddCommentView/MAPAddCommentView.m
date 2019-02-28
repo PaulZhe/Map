@@ -2,14 +2,14 @@
 //  MAPAddCommentView.m
 //  Map
 //
-//  Created by 涂强尧 on 2019/2/2.
+//  Created by 涂强尧 on 2019/2/28.
 //  Copyright © 2019 小哲的DELL. All rights reserved.
 //
 
 #import "MAPAddCommentView.h"
 #import <Masonry.h>
 
-@implementation MAPAddCommentView 
+@implementation MAPAddCommentView
 
 - (instancetype) init {
     self = [super init];
