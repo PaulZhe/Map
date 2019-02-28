@@ -29,7 +29,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return _commentModel.data.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -41,12 +41,15 @@
         if (commentCell == nil) {
             commentCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment" typeOfMotion:_typeMotiveString];
         }
-//        commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
-//        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
-//        commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
-        commentCell.nameLabel.text = @"111111111";
-        commentCell.contentLabel.text = @"22222222";
-        commentCell.timeLabel.text = @"333333333";
+//        if (!_commentModel) {
+//            commentCell.nameLabel.text = @"111111111";
+//            commentCell.contentLabel.text = @"22222222";
+//            commentCell.timeLabel.text = @"333333333";
+//        } else {
+            commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
+            commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
+            commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
+//        }
         return commentCell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         if (picturesCell == nil) {

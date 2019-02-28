@@ -10,4 +10,8 @@
 
 @implementation MAPAddPointModel
 
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
 @end

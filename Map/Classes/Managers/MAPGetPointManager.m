@@ -63,6 +63,7 @@ static MAPGetPointManager *manager = nil;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
+        NSLog(@"%@", responseObject);
         MAPCommentModel *model = [[MAPCommentModel alloc] initWithDictionary:responseObject error:&error];
         NSLog(@"%@", model);
         if (error) {
