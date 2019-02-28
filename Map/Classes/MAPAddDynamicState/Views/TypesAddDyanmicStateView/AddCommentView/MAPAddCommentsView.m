@@ -1,15 +1,15 @@
 //
-//  MAPAddCommentView.m
+//  MAPAddCommentsView.m
 //  Map
 //
 //  Created by 涂强尧 on 2019/2/28.
 //  Copyright © 2019 小哲的DELL. All rights reserved.
 //
 
-#import "MAPAddCommentView.h"
+#import "MAPAddCommentsView.h"
 #import <Masonry.h>
 
-@implementation MAPAddCommentView
+@implementation MAPAddCommentsView
 
 - (instancetype) init {
     self = [super init];
@@ -37,20 +37,7 @@
         _countLabel.backgroundColor = [UIColor clearColor];
         _countLabel.enabled = NO;
         [_addCommentTextView addSubview:_countLabel];
-        
-        _addPicturesView = [[UIView alloc] init];
-        [self addSubview:_addPicturesView];
-        
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        _picturesCollectionView.dataSource = self;
-        _picturesCollectionView.delegate = self;
-        _picturesCollectionView.backgroundColor = [UIColor whiteColor];
-        _picturesCollectionView.showsHorizontalScrollIndicator = NO;
-        _picturesCollectionView.showsVerticalScrollIndicator = NO;
-        [_addPicturesView addSubview:_picturesCollectionView];
-        [_picturesCollectionView registerClass:[MAPMotivePicturesCollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
-        
+   
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenkeyboardView)];
         //将触摸事件添加到当前view
         [_addCommentTextView addGestureRecognizer:tapGestureRecognizer];
@@ -80,18 +67,6 @@
         make.bottom.mas_equalTo(self->_addCommentTextView.mas_bottom);
         make.right.mas_equalTo(self->_addCommentTextView.mas_right);
         make.size.mas_equalTo(CGSizeMake(100, 30));
-    }];
-    [_addPicturesView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.addCommentTextView.mas_bottom).mas_offset(5);
-        make.right.mas_equalTo(self.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.mas_left).mas_offset(0);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(0);
-    }];
-    [_picturesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(0);
-        make.right.mas_equalTo(self.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.mas_left).mas_offset(0);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(0);
     }];
 }
 
@@ -146,33 +121,4 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
-
-#pragma mark - collectionDelegate
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 12;
-}
-
-- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-     MAPMotivePicturesCollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
-    NSString* str1 = [NSString stringWithFormat:@"upPicture1"];
-    NSString* str2 = [NSString stringWithFormat:@"upPicture2"];
-    NSString* str3 = [NSString stringWithFormat:@"upPicture3"];
-    NSString* str4 = [NSString stringWithFormat:@"upPicture4"];
-    NSString* str5 = [NSString stringWithFormat:@"upPicture5"];
-    NSString* str6 = [NSString stringWithFormat:@"upPicture6"];
-    NSString* str7 = [NSString stringWithFormat:@"upPicture7"];
-    NSString* str8 = [NSString stringWithFormat:@"upPicture8"];
-    NSString* str9 = [NSString stringWithFormat:@"upPicture9"];
-    NSString* str10 = [NSString stringWithFormat:@"upPicture10"];
-    NSString* str11 = [NSString stringWithFormat:@"upPicture11"];
-    NSString* str12 = [NSString stringWithFormat:@"upPicture12"];
-    NSArray* sec = [NSArray arrayWithObjects:str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, nil];
-    cell.picturesImageView.image = [UIImage imageNamed:[sec objectAtIndex:indexPath.item]];
-    return cell;
-}
-
 @end

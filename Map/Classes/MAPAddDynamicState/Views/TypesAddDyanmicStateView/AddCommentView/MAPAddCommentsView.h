@@ -1,5 +1,5 @@
 //
-//  MAPAddCommentView.h
+//  MAPAddCommentsView.h
 //  Map
 //
 //  Created by 涂强尧 on 2019/2/28.
@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MAPMotivePicturesCollectionViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,12 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
 @end
 
-@interface MAPAddCommentView : UIView <UITextViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MAPAddCommentsView : UIView <UITextViewDelegate>
 @property (nonatomic, strong) UITextView *addCommentTextView;//添加评论窗口
 @property (nonatomic, strong) UILabel *placeHolderLabel;//自定义文本框placehoder
 @property (nonatomic, strong) UILabel *countLabel;//自定义文本框字数统计
 @property (nonatomic, strong) UIView *addPicturesView;//添加图片
-@property (nonatomic, strong) UICollectionView *picturesCollectionView;//九宫格显示图片
 @property (nonatomic, assign) NSInteger flag;
 @property (nonatomic, weak) id<MAPAddCommentViewDelegate> delegate;
 @end

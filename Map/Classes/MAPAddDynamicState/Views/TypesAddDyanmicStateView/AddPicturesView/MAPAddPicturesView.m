@@ -8,7 +8,7 @@
 
 #import "MAPAddPicturesView.h"
 #import <Masonry.h>
-#import <QuartzCore/QuartzCore.h>
+//#import <QuartzCore/QuartzCore.h>
 
 @implementation MAPAddPicturesView
 
@@ -52,6 +52,7 @@
         _picturesCollectionView.showsVerticalScrollIndicator = NO;
         _picturesCollectionView.showsHorizontalScrollIndicator = NO;
         [_addPicturesView addSubview:_picturesCollectionView];
+        [_picturesCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
         
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
@@ -89,10 +90,10 @@
     }];
     
     [_picturesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_equalTo(5);
-        make.left.mas_equalTo(self.mas_left).mas_equalTo(0);
-        make.right.mas_equalTo(self.mas_right).mas_equalTo(0);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
+        make.top.mas_equalTo(self.addPicturesView.mas_top).mas_equalTo(5);
+        make.left.mas_equalTo(self.mas_left).mas_equalTo(5);
+        make.right.mas_equalTo(self.mas_right).mas_equalTo(-5);
+        make.bottom.mas_equalTo(self.addPicturesView.mas_bottom).mas_offset(-5);
     }];
 }
 
@@ -153,5 +154,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+#pragma mark - collectionDelegate
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 12;
+}
+
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
+    return cell;
+}
 
 @end

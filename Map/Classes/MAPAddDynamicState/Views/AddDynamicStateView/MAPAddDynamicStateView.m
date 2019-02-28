@@ -54,7 +54,7 @@
         
         if ([typeString isEqualToString:@"101"]) {
             //添加评论界面
-            _addCommentView = [[MAPAddCommentView alloc] init];
+            _addCommentView = [[MAPAddCommentsView alloc] init];
             _addCommentView.delegate = self;
             [_addDynamicStateView addSubview:_addCommentView];
         } else if ([typeString isEqualToString:@"102"]) {

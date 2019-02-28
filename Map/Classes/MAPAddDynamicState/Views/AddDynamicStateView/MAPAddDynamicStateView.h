@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-#import "MAPAddCommentView.h"
+#import "MAPAddCommentsView.h"
 #import "MAPAddPicturesView.h"
 #import "MAPAddVedioView.h"
 
@@ -19,7 +19,7 @@ typedef void (^buttonBlock)(UIButton *sender);
 @interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate, MAPAddPicturesViewDelegate, MAPAddVedioViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
 //不同界面对应不同的view
-@property (nonatomic, strong) MAPAddCommentView *addCommentView; //添加评论输入框
+@property (nonatomic, strong) MAPAddCommentsView *addCommentView; //添加评论输入框
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框
 @property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
 @property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
