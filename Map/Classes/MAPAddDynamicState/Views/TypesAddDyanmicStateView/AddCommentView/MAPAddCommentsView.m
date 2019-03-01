@@ -64,8 +64,8 @@
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self->_addCommentTextView.mas_bottom);
-        make.right.mas_equalTo(self->_addCommentTextView.mas_right);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-5);
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
 }
