@@ -90,10 +90,10 @@
     }];
     
     [_picturesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.addPicturesView.mas_top).mas_equalTo(5);
-        make.left.mas_equalTo(self.mas_left).mas_equalTo(5);
-        make.right.mas_equalTo(self.mas_right).mas_equalTo(-5);
-        make.bottom.mas_equalTo(self.addPicturesView.mas_bottom).mas_offset(-5);
+        make.top.mas_equalTo(self.addPicturesView.mas_top).mas_equalTo(0);
+        make.left.mas_equalTo(self.mas_left).mas_equalTo(10);
+        make.right.mas_equalTo(self.mas_right).mas_equalTo(-10);
+        make.bottom.mas_equalTo(self.addPicturesView.mas_bottom).mas_offset(-10);
     }];
 }
 
@@ -160,13 +160,51 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 12;
+    return 13;
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
-    
+    NSString* str1 = [NSString stringWithFormat:@"upPicture1"];
+    NSString* str2 = [NSString stringWithFormat:@"upPicture2"];
+    NSString* str3 = [NSString stringWithFormat:@"upPicture3"];
+    NSString* str4 = [NSString stringWithFormat:@"upPicture4"];
+    NSString* str5 = [NSString stringWithFormat:@"upPicture5"];
+    NSString* str6 = [NSString stringWithFormat:@"upPicture6"];
+    NSString* str7 = [NSString stringWithFormat:@"upPicture7"];
+    NSString* str8 = [NSString stringWithFormat:@"upPicture8"];
+    NSString* str9 = [NSString stringWithFormat:@"upPicture9"];
+    NSString* str10 = [NSString stringWithFormat:@"upPicture10"];
+    NSString* str11 = [NSString stringWithFormat:@"upPicture11"];
+    NSString* str12 = [NSString stringWithFormat:@"upPicture12"];
+    NSString* str13 = [NSString stringWithFormat:@"xukuang"];
+    NSArray* sec = [NSArray arrayWithObjects:str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[sec objectAtIndex:indexPath.item]]];
+    imageView.frame = CGRectMake(0, 0, ([UIScreen mainScreen].bounds.size.width - 41)/3, ([UIScreen mainScreen].bounds.size.width - 41)/3);
+    [cell addSubview:imageView];
+
     return cell;
 }
 
+//返回每个cell大小
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 41)/3, ([UIScreen mainScreen].bounds.size.width - 41)/3);
+}
+
+//返回cell之间 行 间隙
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
+}
+
+//返回cell之间 列 间隙
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 12) {
+            NSLog(@"点击了");
+    }
+}
 @end
