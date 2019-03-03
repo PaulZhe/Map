@@ -24,6 +24,7 @@
 		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
 		4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10662021F335A10035E47A /* MAPAnnotationView.m */; };
 		4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */; };
+		4F2BBC10222C15B800306ECE /* xukuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2BBC0F222C15B800306ECE /* xukuang.png */; };
 		4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */; };
 		4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C1F2202DFFB00CA0ECB /* MAPIssueView.m */; };
 		4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C2C222202E05100CA0ECB /* MAPIssueButton.m */; };
@@ -119,6 +120,7 @@
 		4F10662021F335A10035E47A /* MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotationView.m; sourceTree = "<group>"; };
 		4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateView.h; sourceTree = "<group>"; };
 		4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateView.m; sourceTree = "<group>"; };
+		4F2BBC0F222C15B800306ECE /* xukuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xukuang.png; sourceTree = "<group>"; };
 		4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateViewController.h; sourceTree = "<group>"; };
 		4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateViewController.m; sourceTree = "<group>"; };
 		4F2C2C1E2202DFFB00CA0ECB /* MAPIssueView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueView.h; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F2BBC0F222C15B800306ECE /* xukuang.png */,
 				4F0C2A5F220D932400102404 /* shanchu.png */,
 				4F0FF7D021FDA1E5005A3E64 /* bofang.png */,
 				4F0FF7CE21FDA1DD005A3E64 /* ai06.png */,
@@ -766,6 +769,7 @@
 				D638A76721F1DAF3005DFDFD /* comment.png in Resources */,
 				D638A77521F1DAF3005DFDFD /* video.png in Resources */,
 				4F2C5E8321F9AF0800DCF62A /* upPicture12.png in Resources */,
+				4F2BBC10222C15B800306ECE /* xukuang.png in Resources */,
 				4F2C5E8221F9AF0800DCF62A /* upPicture1.png in Resources */,
 				D638A76A21F1DAF3005DFDFD /* image.png in Resources */,
 				4F2C5E7D21F9AF0800DCF62A /* upPicture5.png in Resources */,
