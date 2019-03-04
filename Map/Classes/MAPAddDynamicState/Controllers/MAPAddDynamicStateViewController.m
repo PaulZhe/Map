@@ -8,6 +8,7 @@
 
 #import "MAPAddDynamicStateViewController.h"
 #import <Masonry.h>
+#import <Photos/Photos.h>
 
 @interface MAPAddDynamicStateViewController () {
     NSMutableArray *annotationMutableArray;
@@ -66,6 +67,8 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+
+
 }
 
 //添加自定义点

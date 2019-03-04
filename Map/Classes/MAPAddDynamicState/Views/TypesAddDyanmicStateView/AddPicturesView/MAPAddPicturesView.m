@@ -203,8 +203,7 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 12) {
-            NSLog(@"点击了");
-    }
+    //如果cell被覆盖无法响应点击事件
 }
+
 @end
