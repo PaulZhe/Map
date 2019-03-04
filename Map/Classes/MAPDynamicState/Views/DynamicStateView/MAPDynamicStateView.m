@@ -19,6 +19,9 @@
         _dyanmicStateTableView.dataSource = self;
         [self addSubview:_dyanmicStateTableView];
         [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"motion"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [_dyanmicStateTableView reloadData];
+//        });
     }
     return self;
     
@@ -29,6 +32,9 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    if (!_commentModel) {
+        return 3;
+    }
     return _commentModel.data.count;
 }
 

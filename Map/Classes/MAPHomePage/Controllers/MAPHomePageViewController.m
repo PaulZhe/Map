@@ -144,27 +144,30 @@
     __weak typeof(self) weakSelf = self;
     _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
     [self.view addSubview:_paopaoView];
+    
     MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
-    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
         ///添加评论
 //        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
-        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        [manager fetchPointCommentWithPointID:6
-                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-                                             NSLog(@"getComment:%@", resultModel.message);
-                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
-                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-                                         } error:^(NSError *error) {
-                                             NSLog(@"%@", error);
-                                         }];
+//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//        [manager fetchPointCommentWithPointID:6
+//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+//                                             NSLog(@"getComment:%@", resultModel.message);
+//                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
+//                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+//                                         } error:^(NSError *error) {
+//                                             NSLog(@"%@", error);
+//                                         }];
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
     [_paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"2";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+
     }];
     [_paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"3";
