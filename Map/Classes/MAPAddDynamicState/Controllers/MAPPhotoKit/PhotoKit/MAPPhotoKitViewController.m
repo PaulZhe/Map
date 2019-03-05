@@ -9,6 +9,7 @@
 #import "MAPPhotoKitViewController.h"
 #import <Photos/Photos.h>
 #import <Masonry.h>
+#import "MAPPhotoSelectViewController.h"
 
 @interface MAPPhotoKitViewController ()
 
@@ -117,7 +118,38 @@
         titleLable.text = [NSString stringWithFormat:@"%@(%ld)", assetCollection.localizedTitle, fectchResult.count];
         [titleLable sizeToFit];
         [button addSubview:titleLable];
+        
+        PHAsset *asset = nil;
+        if (fectchResult.count != 0) {
+            asset = fectchResult[fectchResult.count - 1];
+        }
+        
+        // 使用PHImageManager从PHAsset中请求图片
+        PHImageManager *imageManager = [[PHImageManager alloc] init];
+        [imageManager requestImageForAsset:asset targetSize:CGSizeMake(60, 60) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.frame = CGRectMake(0, 0, 60, 60);
+            [button addSubview:imageView];
+            if (result) {
+                imageView.image = result;
+            } else {
+                imageView.image = [UIImage imageNamed:@""];
+            }
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+        }];
     }
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.photoesArray.count*60);
 }
 
+//跳向图库界面
+- (void)pushPhotoAlubum:(UIButton *) button {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (PHAsset *asset in [PHAsset fetchAssetsInAssetCollection:[self.photoesArray objectAtIndex:button.tag - 1001] options:nil]) {
+        [array addObject:asset];
+    }
+    
+    MAPPhotoSelectViewController *selectViewController = [[MAPPhotoSelectViewController alloc] init];
+    [self.navigationController pushViewController:selectViewController animated:YES];
+}
 @end

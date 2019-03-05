@@ -12,6 +12,7 @@
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
 		4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07AE5F22282506002071BB /* MAPAddCommentsView.m */; };
 		4F07E54C222E8B0600F00EDD /* MAPPhotoKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */; };
+		4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */; };
 		4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */; };
 		4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
@@ -100,6 +101,8 @@
 		4F07AE5F22282506002071BB /* MAPAddCommentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddCommentsView.m; sourceTree = "<group>"; };
 		4F07E54A222E8B0600F00EDD /* MAPPhotoKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoKitViewController.h; sourceTree = "<group>"; };
 		4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPhotoKitViewController.m; sourceTree = "<group>"; };
+		4F07E550222EB1A800F00EDD /* MAPPhotoSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoSelectViewController.h; sourceTree = "<group>"; };
+		4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPhotoSelectViewController.m; sourceTree = "<group>"; };
 		4F08DD7C220C2D1B00BCF161 /* MAPAddVedioView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddVedioView.h; sourceTree = "<group>"; };
 		4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddVedioView.m; sourceTree = "<group>"; };
 		4F0A15CB22069FD9007F1D0D /* MAPAddPicturesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesView.h; sourceTree = "<group>"; };
@@ -297,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				4F07E54D222E9F8800F00EDD /* PhotoKit */,
+				4F07E54E222EB16C00F00EDD /* New Group */,
 			);
 			path = MAPPhotoKit;
 			sourceTree = "<group>";
@@ -308,6 +312,15 @@
 				4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */,
 			);
 			path = PhotoKit;
+			sourceTree = "<group>";
+		};
+		4F07E54E222EB16C00F00EDD /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4F07E550222EB1A800F00EDD /* MAPPhotoSelectViewController.h */,
+				4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		4F08DD7B220C2CDC00BCF161 /* AddVedioView */ = {
@@ -886,6 +899,7 @@
 				4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */,
 				D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */,
 				D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */,
+				4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */,
 				4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,14 +1042,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Map";
+				PRODUCT_BUNDLE_IDENTIFIER = Map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1045,14 +1061,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Map";
+				PRODUCT_BUNDLE_IDENTIFIER = Map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
