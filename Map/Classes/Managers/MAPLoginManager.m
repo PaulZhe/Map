@@ -9,6 +9,8 @@
 #import "MAPLoginManager.h"
 #import <AFNetworking.h>
 
+
+
 static MAPLoginManager *manager = nil;
 
 @implementation MAPLoginManager
@@ -20,13 +22,15 @@ static MAPLoginManager *manager = nil;
             manager = [[MAPLoginManager alloc] init];
         }
     });
+    
+    
     return manager;
 }
 
 - (void)requestUserMessageWith:(NSNumber *)ID
                        Success:(MAPGetUserMessage)succeedBlock
                        Failure:(MAPGetUserMessageFailure)failBlock {
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZXhwIjoxNTUxNjc2NDk1LCJpYXQiOjE1NTEwNzE2OTUsInVzZXJuYW1lIjoi5byg5ZOyIn0.bhLIBx2OZm5YrZbCLEgesz_ad3wq0G3tpjEcGAlKSXQ";
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
     
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
