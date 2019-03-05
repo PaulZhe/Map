@@ -31,5 +31,20 @@ typedef void(^MAPErrorHandle)(NSError *error);
  @param content 信息内容
  */
 - (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock;
+/**
+ *上传图片文件
+ *@param pointId       点的ID
+ *@param title         图片标题
+ *@param fileDataArray 图片数组
+ */
+- (void)uploadPhotosWithPointId:(int)pointId Title:(NSString *)title Data:(NSArray *)fileDataArray success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock;
+/**
+ *上传音频，视频文件
+ *@param fileData 添加的数据
+ *@param type     数据类型   （2 音频，3 视频)
+ *@param pointId  点的ID
+ *@param title    文件标题
+ */
+- (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock;
 
 @end

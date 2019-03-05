@@ -26,7 +26,7 @@ static MAPAddPointManager *manager = nil;
 - (void)addPointWithName:(NSString *)name Latitude:(double)latitude Longitude:(double)longitude success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/point/addPoint"];
     NSDictionary *param = @{@"name" : name, @"longitude" : [NSNumber numberWithDouble:longitude], @"latitude" : [NSNumber numberWithDouble:latitude]};
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZXhwIjoxNTUxNjc2NDk1LCJpYXQiOjE1NTEwNzE2OTUsInVzZXJuYW1lIjoi5byg5ZOyIn0.bhLIBx2OZm5YrZbCLEgesz_ad3wq0G3tpjEcGAlKSXQ";
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
@@ -57,7 +57,7 @@ static MAPAddPointManager *manager = nil;
 - (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/addMessage/%d", pointId];
     NSDictionary *param = @{@"content" : content};
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZXhwIjoxNTUxNjc2NDk1LCJpYXQiOjE1NTEwNzE2OTUsInVzZXJuYW1lIjoi5byg5ZOyIn0.bhLIBx2OZm5YrZbCLEgesz_ad3wq0G3tpjEcGAlKSXQ";
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
@@ -83,6 +83,94 @@ static MAPAddPointManager *manager = nil;
         NSLog(@"%@", error);
         errorBlock(error);
     }];
+}
+
+// 上传多张图片
+- (void)uploadPhotosWithPointId:(int)pointId Title:(NSString *)title Data:(NSArray *)fileDataArray success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/uploadMangPhotos/%d", pointId];
+    
+    NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    
+    [manager POST:URL parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        for (id obj in fileDataArray) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            // 设置时间格式
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+            [formData appendPartWithFileData:obj name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        NSLog(@"---上传进度--- %@",uploadProgress);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"response : %@", responseObject);
+        NSError *error;
+        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseObject error:&error];
+        NSLog(@"result:%@", result);
+        if (result.status == 0) {
+            succeedBlock(result);
+        } else {
+            NSLog(@"%@", result.message);
+            NSError *error = [[NSError alloc] initWithDomain:result.message code:(NSInteger)result.status userInfo:nil];
+            errorBlock(error);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        errorBlock(error);
+    }];
+}
+
+// 上传文件
+- (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
+    NSString *URL = [NSString stringWithFormat:@"http://47.95.207.40/markMap/upload/%d", pointId];
+    //    NSLog(@"url:%@", URL);
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:type], @"file" : fileData}];
+    if (type == 3) {
+        [param setObject:title forKey:@"title"];
+    }
+    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    
+    [manager POST:URL parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        if (type == 2) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.mp3", str];
+            [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"mp3"];
+        } else if (type == 3) {
+            NSString *fileName = [NSString stringWithFormat:@"%@.mp4", str];
+            [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"MOV/mp4"];
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"responseJSON : %@", responseJSON);
+        NSError *error;
+        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseJSON error:&error];
+        NSLog(@"result:%@", result);
+        if (result.status == 0) {
+            succeedBlock(result);
+        } else {
+            NSLog(@"%@", result.message);
+            NSError *error = [[NSError alloc] initWithDomain:result.message code:(NSInteger)result.status userInfo:nil];
+            errorBlock(error);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        errorBlock(error);
+    }];
+    
 }
 
 @end
