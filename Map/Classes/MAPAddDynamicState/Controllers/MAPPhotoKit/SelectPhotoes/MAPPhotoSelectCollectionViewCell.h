@@ -1,8 +1,8 @@
 //
-//  MAPPhotoSelectViewController.h
+//  MAPPhotoSelectCollectionViewCell.h
 //  Map
 //
-//  Created by 涂强尧 on 2019/3/5.
+//  Created by 涂强尧 on 2019/3/6.
 //  Copyright © 2019 小哲的DELL. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPPhotoSelectViewController : UIViewController
+@interface MAPPhotoSelectCollectionViewCell : UICollectionViewCell
 
 @end
 
