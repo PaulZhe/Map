@@ -152,4 +152,5 @@
     MAPPhotoSelectViewController *selectViewController = [[MAPPhotoSelectViewController alloc] init];
     [self.navigationController pushViewController:selectViewController animated:YES];
 }
+
 @end
