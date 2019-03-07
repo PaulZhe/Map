@@ -8,6 +8,7 @@
 
 #import "MAPAddPicturesView.h"
 #import <Masonry.h>
+#import "MAPAddPicturesCollectionViewCell.h"
 //#import <QuartzCore/QuartzCore.h>
 
 @implementation MAPAddPicturesView
@@ -52,12 +53,12 @@
         _picturesCollectionView.showsVerticalScrollIndicator = NO;
         _picturesCollectionView.showsHorizontalScrollIndicator = NO;
         [_addPicturesView addSubview:_picturesCollectionView];
-        [_picturesCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
+        [_picturesCollectionView registerClass:[MAPAddPicturesCollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
         
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
         [_addTitleTextField addGestureRecognizer:tapTextGesture];
-        [self addGestureRecognizer:tapSurfaceGesture];
+        [_addTitleTextField addGestureRecognizer:tapSurfaceGesture];
         
         //监听键盘的出现与消失
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
@@ -164,7 +165,7 @@
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
+    MAPAddPicturesCollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
     NSString* str1 = [NSString stringWithFormat:@"upPicture1"];
     NSString* str2 = [NSString stringWithFormat:@"upPicture2"];
     NSString* str3 = [NSString stringWithFormat:@"upPicture3"];
@@ -179,10 +180,7 @@
     NSString* str12 = [NSString stringWithFormat:@"upPicture12"];
     NSString* str13 = [NSString stringWithFormat:@"xukuang"];
     NSArray* sec = [NSArray arrayWithObjects:str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[sec objectAtIndex:indexPath.item]]];
-    imageView.frame = CGRectMake(0, 0, ([UIScreen mainScreen].bounds.size.width - 41)/3, ([UIScreen mainScreen].bounds.size.width - 41)/3);
-    [cell addSubview:imageView];
-
+    cell.imageView.image = [UIImage imageNamed:[sec objectAtIndex:indexPath.item]];
     return cell;
 }
 
@@ -201,9 +199,12 @@
     return 10;
 }
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //如果cell被覆盖无法响应点击事件
+    if (indexPath.row == 12) {
+        NSLog(@"点击了");
+        [_delegate getToPhotoAlbumView];
+    }
 }
 
 @end
