@@ -9,9 +9,8 @@
 #import "MAPLoginManager.h"
 #import <AFNetworking.h>
 
-
-
 static MAPLoginManager *manager = nil;
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyNTM1MzUzLCJpYXQiOjE1NTE5MzA1NTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.gA4N8Gp4NVTNnpprNpynawYuOOiiefzZ04MzfthFmxE";
 
 @implementation MAPLoginManager
 
@@ -30,8 +29,7 @@ static MAPLoginManager *manager = nil;
 - (void)requestUserMessageWith:(NSNumber *)ID
                        Success:(MAPGetUserMessage)succeedBlock
                        Failure:(MAPGetUserMessageFailure)failBlock {
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
-    
+
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     [manager POST:@"http://39.106.39.48:8080/user/getMessageByUserid" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {

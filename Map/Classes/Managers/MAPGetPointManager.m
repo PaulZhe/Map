@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPGetPointManager *manager = nil;
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyNTM1MzUzLCJpYXQiOjE1NTE5MzA1NTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.gA4N8Gp4NVTNnpprNpynawYuOOiiefzZ04MzfthFmxE";
 
 @implementation MAPGetPointManager
 
@@ -53,8 +54,6 @@ static MAPGetPointManager *manager = nil;
 - (void)fetchPointCommentWithPointID:(int)ID type:(int)type succeed:(MAPGetCommentHandle)succeedBlock error:(ErrorHandle)errorBlock{
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/none/getMessage/%d", ID];
     NSDictionary *param = @{@"type":[NSNumber numberWithInt:type]};
-    
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZXhwIjoxNTUxNjc2NDk1LCJpYXQiOjE1NTEwNzE2OTUsInVzZXJuYW1lIjoi5byg5ZOyIn0.bhLIBx2OZm5YrZbCLEgesz_ad3wq0G3tpjEcGAlKSXQ";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
