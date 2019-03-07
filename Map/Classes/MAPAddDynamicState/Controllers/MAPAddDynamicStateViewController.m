@@ -65,8 +65,8 @@
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
     
     //测试上传图片
-    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
-    [self postImageCommentWithArray:imageArray andTitle:@"Test"];
+//    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
+//    [self postImageCommentWithArray:imageArray andTitle:@"Test"];
 }
 
 - (void) viewDidLoad {
@@ -103,21 +103,21 @@
 }
 
 // 上传图片评论
-- (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
-    NSMutableArray *dataArray = [NSMutableArray array];
-    for (id image in imageArray) {
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        [dataArray addObject:imageData];
-    }
-    __weak MAPAddDynamicStateViewController *weakSelf = self;
-    
-    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
-        NSLog(@"上传成功");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    } error:^(NSError *error) {
-        NSLog(@"上传失败");
-    }];
-}
+//- (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
+//    NSMutableArray *dataArray = [NSMutableArray array];
+//    for (id image in imageArray) {
+//        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+//        [dataArray addObject:imageData];
+//    }
+//    __weak MAPAddDynamicStateViewController *weakSelf = self;
+//
+//    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
+//        NSLog(@"上传成功");
+//        [weakSelf.navigationController popViewControllerAnimated:YES];
+//    } error:^(NSError *error) {
+//        NSLog(@"上传失败");
+//    }];
+//}
 
 #pragma MAP   --------------打开相册选取图片-------------------
 
