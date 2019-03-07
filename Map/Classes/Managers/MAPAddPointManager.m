@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPAddPointManager *manager = nil;
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyNTM1MzUzLCJpYXQiOjE1NTE5MzA1NTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.gA4N8Gp4NVTNnpprNpynawYuOOiiefzZ04MzfthFmxE";
 
 @implementation MAPAddPointManager
 
@@ -26,8 +27,7 @@ static MAPAddPointManager *manager = nil;
 - (void)addPointWithName:(NSString *)name Latitude:(double)latitude Longitude:(double)longitude success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/point/addPoint"];
     NSDictionary *param = @{@"name" : name, @"longitude" : [NSNumber numberWithDouble:longitude], @"latitude" : [NSNumber numberWithDouble:latitude]};
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
-    
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -57,8 +57,7 @@ static MAPAddPointManager *manager = nil;
 - (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/addMessage/%d", pointId];
     NSDictionary *param = @{@"content" : content};
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
-    
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
     
@@ -90,7 +89,6 @@ static MAPAddPointManager *manager = nil;
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/uploadMangPhotos/%d", pointId];
     
     NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     
@@ -133,7 +131,6 @@ static MAPAddPointManager *manager = nil;
     if (type == 3) {
         [param setObject:title forKey:@"title"];
     }
-    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTUyMzU5ODkzLCJpYXQiOjE1NTE3NTUwOTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.PPweYfpmodOvc6nTSMGtqx_ONYS08XcjhOmtVWZR4cM";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
