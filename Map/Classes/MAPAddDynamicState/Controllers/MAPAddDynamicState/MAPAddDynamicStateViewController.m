@@ -10,6 +10,7 @@
 #import "MAPAddPointManager.h"
 #import <Masonry.h>
 #import <Photos/Photos.h>
+#import "MAPPhotoKitViewController.h"
 
 @interface MAPAddDynamicStateViewController () {
     NSMutableArray *annotationMutableArray;
@@ -36,6 +37,8 @@
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
+    //设置跳转相册代理
+    _addDynamicStateView.addPicturesView.delegate = self;
     //设置地图的代理
     [_addDynamicStateView.mapView viewWillAppear];
     _addDynamicStateView.mapView.delegate = self;
@@ -120,5 +123,9 @@
 }
 
 #pragma MAP   --------------打开相册选取图片-------------------
+- (void) getToPhotoAlbumView {
+    MAPPhotoKitViewController *photoKitViewController = [[MAPPhotoKitViewController alloc] init];
+    [self.navigationController pushViewController:photoKitViewController animated:YES];
+}
 
 @end

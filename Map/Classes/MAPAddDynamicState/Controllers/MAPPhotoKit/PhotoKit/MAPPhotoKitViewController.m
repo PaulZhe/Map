@@ -50,15 +50,9 @@
 
 //在该界面添加scrollerView
 - (void) addSubViews {
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
     scrollView.tag = 5000;
     [self.view addSubview:scrollView];
-    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(64);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
-        make.bottom.mas_offset(self.view.mas_bottom).mas_offset(0);
-    }];
     
     //获取相册分类
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
