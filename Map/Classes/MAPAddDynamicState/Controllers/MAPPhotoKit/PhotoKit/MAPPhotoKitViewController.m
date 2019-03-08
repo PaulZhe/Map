@@ -17,6 +17,16 @@
 
 @implementation MAPPhotoKitViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barStyle = UIBaselineAdjustmentNone;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
+    backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -50,7 +60,7 @@
 
 //在该界面添加scrollerView
 - (void) addSubViews {
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     scrollView.tag = 5000;
     [self.view addSubview:scrollView];
     
@@ -61,8 +71,7 @@
         PHCollection *collection = smartAlbums[i];
         if ([collection isKindOfClass:[PHAssetCollection class]]) {
             PHAssetCollection *assetCollection = (PHAssetCollection *) collection;
-            if ([assetCollection.localizedTitle isEqualToString:@"相机胶卷"]) {
-                [assetCollection.localizedTitle isEqualToString:@"所有照片"];
+            if ([assetCollection.localizedTitle isEqualToString:@"相机胶卷"] || [assetCollection.localizedTitle isEqualToString:@"所有照片"]) {
                 [self.photoesArray insertObject:assetCollection atIndex:0];
             }else if ([assetCollection.localizedTitle isEqualToString:@"视频"]){
                 
@@ -84,6 +93,7 @@
     for (NSInteger i = 0; i < topLevelUserCollections.count; i++) {
         //获取图片
         PHCollection *collection = topLevelUserCollections[i];
+        NSLog(@"pictures %ld = %@", i, collection);
         if ([collection isKindOfClass:[PHAssetCollection class]]) {
             PHAssetCollection *assetCollecion = (PHAssetCollection *) collection;
             [self.photoesArray addObject:assetCollecion];
@@ -92,7 +102,6 @@
         }
     }
     
-    NSArray *photoArray = _imageDictionary[@"photoArray"];
     for (NSInteger i = 0; i < self.photoesArray.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 60*i, self.view.frame.size.width, 60);
@@ -127,7 +136,7 @@
             if (result) {
                 imageView.image = result;
             } else {
-                imageView.image = [UIImage imageNamed:@""];
+                imageView.image = [UIImage imageNamed:@"noimage"];
             }
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
@@ -144,7 +153,28 @@
     }
     
     MAPPhotoSelectViewController *selectViewController = [[MAPPhotoSelectViewController alloc] init];
+    selectViewController.PHFetchResult = [PHAsset fetchAssetsInAssetCollection:[_photoesArray objectAtIndex:button.tag - 1001] options:nil];
+    PHAssetCollection *assetCollection = [_photoesArray objectAtIndex:button.tag - 1001];
+    selectViewController.albumIdentifier = assetCollection.localIdentifier;
+    selectViewController.maxcount = [_maxCountString integerValue];
+    selectViewController.isOriginal = _isHaveOriginal;
+    selectViewController.mySubmitDictionary = _imageDictionary;
+    selectViewController.imageDictionary = _imageDictionary;
+    selectViewController.haveCount = [_imageDictionary[@"imageDataArray"] count];
+    selectViewController.idNeed = _ifNeed;
+    __weak MAPPhotoKitViewController *weakself = self;
+    [selectViewController setGetSubmitDictionary:^(NSMutableDictionary * _Nonnull submitDictionary) {
+        if (weakself.getSubmitDictionary) {
+            weakself.imageDictionary = submitDictionary;
+            weakself.getSubmitDictionary(submitDictionary);
+        }
+    }];
     [self.navigationController pushViewController:selectViewController animated:YES];
+}
+
+//返回至添加图片界面
+- (void) BackToHomePage:(UIButton *) button {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

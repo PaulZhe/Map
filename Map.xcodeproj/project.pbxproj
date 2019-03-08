@@ -10,6 +10,9 @@
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
 		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
+		4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BB82232A8F00093E57E /* ico_check_nomal.png */; };
+		4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BBA2232A8FC0093E57E /* ico_check_select.png */; };
+		4F071BBD2232A9C00093E57E /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BBC2232A9C00093E57E /* noimage.png */; };
 		4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07AE5F22282506002071BB /* MAPAddCommentsView.m */; };
 		4F07E54C222E8B0600F00EDD /* MAPPhotoKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */; };
 		4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */; };
@@ -99,6 +102,9 @@
 		4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveAudioButton.m; sourceTree = "<group>"; };
 		4F04454021FCBA9200C4F71E /* MAPDynamicStateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateTableViewCell.h; sourceTree = "<group>"; };
 		4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPDynamicStateTableViewCell.m; sourceTree = "<group>"; };
+		4F071BB82232A8F00093E57E /* ico_check_nomal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_check_nomal.png; sourceTree = "<group>"; };
+		4F071BBA2232A8FC0093E57E /* ico_check_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_check_select.png; sourceTree = "<group>"; };
+		4F071BBC2232A9C00093E57E /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
 		4F07AE5E22282506002071BB /* MAPAddCommentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddCommentsView.h; sourceTree = "<group>"; };
 		4F07AE5F22282506002071BB /* MAPAddCommentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddCommentsView.m; sourceTree = "<group>"; };
 		4F07E54A222E8B0600F00EDD /* MAPPhotoKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoKitViewController.h; sourceTree = "<group>"; };
@@ -589,6 +595,9 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F071BBA2232A8FC0093E57E /* ico_check_select.png */,
+				4F071BBC2232A9C00093E57E /* noimage.png */,
+				4F071BB82232A8F00093E57E /* ico_check_nomal.png */,
 				4F2BBC0F222C15B800306ECE /* xukuang.png */,
 				4F0C2A5F220D932400102404 /* shanchu.png */,
 				4F0FF7D021FDA1E5005A3E64 /* bofang.png */,
@@ -796,12 +805,15 @@
 				4F0C2A60220D932400102404 /* shanchu.png in Resources */,
 				D638A76B21F1DAF3005DFDFD /* info.png in Resources */,
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
+				4F071BBD2232A9C00093E57E /* noimage.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
 				D638A76E21F1DAF3005DFDFD /* local.png in Resources */,
+				4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */,
 				D638A77121F1DAF3005DFDFD /* QQ.png in Resources */,
 				D638A77921F1DAF3005DFDFD /* 头像.JPG in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
+				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
 				D620E5312221AC9400CEF270 /* Info.plist in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,

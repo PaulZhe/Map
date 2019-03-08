@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 //键盘的弹出与消失
 - (void) keyboardWillAppearOrWillDisappear:(NSString *) appearOrDisappearString AndKeykeyboardHeight:(CGFloat) keyboardHeight;
 //跳转到相册界面
-- (void) getToPhotoAlbumView;
+- (void) getToPhotoAlbumViewAndViewController:(UINavigationController *)navigationController;
 @end
 
 @interface MAPAddPicturesView : UIView <UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
