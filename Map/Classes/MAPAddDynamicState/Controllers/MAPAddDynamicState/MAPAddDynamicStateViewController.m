@@ -107,25 +107,24 @@
 
 // 上传图片评论
 - (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
-    NSMutableArray *dataArray = [NSMutableArray array];
-    for (id image in imageArray) {
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        [dataArray addObject:imageData];
-    }
-    __weak MAPAddDynamicStateViewController *weakSelf = self;
-    
-    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
-        NSLog(@"上传成功");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    } error:^(NSError *error) {
-        NSLog(@"上传失败");
-    }];
+//    NSMutableArray *dataArray = [NSMutableArray array];
+//    for (id image in imageArray) {
+//        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+//        [dataArray addObject:imageData];
+//    }
+//    __weak MAPAddDynamicStateViewController *weakSelf = self;
+//    
+//    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
+//        NSLog(@"上传成功");
+//        [weakSelf.navigationController popViewControllerAnimated:YES];
+//    } error:^(NSError *error) {
+//        NSLog(@"上传失败");
+//    }];
 }
 
 #pragma MAP   --------------打开相册选取图片-------------------
-- (void) getToPhotoAlbumView {
-    MAPPhotoKitViewController *photoKitViewController = [[MAPPhotoKitViewController alloc] init];
-    [self.navigationController pushViewController:photoKitViewController animated:YES];
+- (void)getToPhotoAlbumViewAndViewController:(UINavigationController *)navigationController{
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

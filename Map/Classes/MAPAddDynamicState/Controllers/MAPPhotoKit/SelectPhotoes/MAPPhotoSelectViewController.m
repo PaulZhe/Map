@@ -36,17 +36,13 @@
 
 #pragma MAP  -------------------------设置导航栏button--------------------
 - (void) setNavigationButton {
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [leftButton addTarget:self action:@selector(backToLastView:) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backToLastView:)];
+    leftButton.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
+    self.navigationItem.leftBarButtonItem = leftButton;
     
-    UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 0, 30, 30)];
-    [cancelButton addTarget:self action:@selector(backToFirstView:) forControlEvents:UIControlEventTouchUpInside];
-    [cancelButton setTitle:[NSString stringWithFormat:@"取消"] forState:UIControlStateNormal];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(backToFirstView:)];
+    cancelButton.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
+    self.navigationItem.rightBarButtonItem = cancelButton;
 }
 
 - (void)backToLastView:(UIButton *) button {
@@ -54,7 +50,7 @@
 }
 
 - (void)backToFirstView:(UIButton *) button {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma MAP  -------------------------设置collectionView--------------------
@@ -128,7 +124,6 @@
             }
         }
     }
-    NSLog(@"%ld",indexPath.item);
     return cell;
 }
 

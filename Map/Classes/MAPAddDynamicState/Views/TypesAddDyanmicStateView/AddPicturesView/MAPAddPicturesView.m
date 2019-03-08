@@ -9,7 +9,13 @@
 #import "MAPAddPicturesView.h"
 #import <Masonry.h>
 #import "MAPAddPicturesCollectionViewCell.h"
+#import "MAPPhotoKitViewController.h"
 //#import <QuartzCore/QuartzCore.h>
+
+@interface MAPAddPicturesView ()
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSDictionary *selectImageDictionary;
+@end
 
 @implementation MAPAddPicturesView
 
@@ -63,7 +69,8 @@
         //监听键盘的出现与消失
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
-
+        
+        _dataSource = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -161,26 +168,37 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 13;
+    if (_dataSource.count == 0) {
+        return 1;
+    } else {
+        return _dataSource.count + 1;
+    }
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MAPAddPicturesCollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
-    NSString* str1 = [NSString stringWithFormat:@"upPicture1"];
-    NSString* str2 = [NSString stringWithFormat:@"upPicture2"];
-    NSString* str3 = [NSString stringWithFormat:@"upPicture3"];
-    NSString* str4 = [NSString stringWithFormat:@"upPicture4"];
-    NSString* str5 = [NSString stringWithFormat:@"upPicture5"];
-    NSString* str6 = [NSString stringWithFormat:@"upPicture6"];
-    NSString* str7 = [NSString stringWithFormat:@"upPicture7"];
-    NSString* str8 = [NSString stringWithFormat:@"upPicture8"];
-    NSString* str9 = [NSString stringWithFormat:@"upPicture9"];
-    NSString* str10 = [NSString stringWithFormat:@"upPicture10"];
-    NSString* str11 = [NSString stringWithFormat:@"upPicture11"];
-    NSString* str12 = [NSString stringWithFormat:@"upPicture12"];
-    NSString* str13 = [NSString stringWithFormat:@"xukuang"];
-    NSArray* sec = [NSArray arrayWithObjects:str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, str13, nil];
-    cell.imageView.image = [UIImage imageNamed:[sec objectAtIndex:indexPath.item]];
+    
+    NSString *addPicture = [NSString stringWithFormat:@"xukuang"];
+    if (_dataSource.count == 0) {
+        cell.imageView.image = [UIImage imageNamed:addPicture];
+    } else {
+        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+        requestOptions.synchronous = NO;
+        requestOptions.networkAccessAllowed = NO;
+        requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+        [[PHImageManager defaultManager] requestImageForAsset:_dataSource[indexPath.item] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            if (result) {
+                cell.imageView.image = result;
+            } else {
+                cell.imageView.image = [UIImage imageNamed:addPicture];
+            }
+        }];
+        
+        if (indexPath.item == _dataSource.count) {
+            cell.imageView.image = [UIImage imageNamed:addPicture];
+        }
+    }
     return cell;
 }
 
@@ -201,10 +219,30 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //如果cell被覆盖无法响应点击事件
-    if (indexPath.row == 12) {
-        NSLog(@"点击了");
-        [_delegate getToPhotoAlbumView];
+    if (indexPath.row == _dataSource.count) {
+        MAPPhotoKitViewController *photoKitViewController = [[MAPPhotoKitViewController alloc] initWithMaxCount:@"9" andIsHaveOriginal:@"0" andOldImagesDictonary:_selectImageDictionary andIfGetImageArray:YES];
+        
+        [photoKitViewController setGetSubmitDictionary:^(NSMutableDictionary *selectDictionary) {
+            NSLog(@"dic = %@", selectDictionary);
+            self->_selectImageDictionary = selectDictionary;
+            [self upDataCollection];
+        }];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:photoKitViewController];
+        [_delegate getToPhotoAlbumViewAndViewController:navigationController];
     }
 }
 
+//返回至添加图片界面，进行重新赋值
+- (void)upDataCollection {
+    if (_dataSource.count > 0) {
+        [_dataSource removeAllObjects];
+    }
+    
+    NSMutableArray *photoesArray = [_selectImageDictionary objectForKey:@"photoArray"];
+    for (int i = 0; i < photoesArray.count; i++) {
+        [_dataSource addObject:[photoesArray[i] objectForKey:@"photoArray"]];
+    }
+    [_picturesCollectionView reloadData];
+}
 @end
