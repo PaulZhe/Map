@@ -18,6 +18,7 @@
 		4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */; };
 		4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */; };
 		4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */; };
+		4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
 		4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */; };
 		4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */; };
@@ -115,6 +116,8 @@
 		4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddVedioView.m; sourceTree = "<group>"; };
 		4F0A15CB22069FD9007F1D0D /* MAPAddPicturesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesView.h; sourceTree = "<group>"; };
 		4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesView.m; sourceTree = "<group>"; };
+		4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPScrollerViewShowPhotoViewController.h; sourceTree = "<group>"; };
+		4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPScrollerViewShowPhotoViewController.m; sourceTree = "<group>"; };
 		4F0C2A5F220D932400102404 /* shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shanchu.png; sourceTree = "<group>"; };
 		4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesCollectionViewCell.h; sourceTree = "<group>"; };
 		4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesCollectionViewCell.m; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 			children = (
 				4F07E54D222E9F8800F00EDD /* PhotoKit */,
 				4F07E54E222EB16C00F00EDD /* SelectPhotoes */,
+				4F0A5CF52233F47D00C010C4 /* ScrollerViewShowPhoto */,
 			);
 			path = MAPPhotoKit;
 			sourceTree = "<group>";
@@ -355,6 +359,15 @@
 				4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */,
 			);
 			path = AddPicturesView;
+			sourceTree = "<group>";
+		};
+		4F0A5CF52233F47D00C010C4 /* ScrollerViewShowPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */,
+				4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */,
+			);
+			path = ScrollerViewShowPhoto;
 			sourceTree = "<group>";
 		};
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
@@ -922,6 +935,7 @@
 				D68297622223D87F00D3F4A8 /* MAPAddPointManager.m in Sources */,
 				4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */,
 				D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */,
+				4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */,
 				D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */,
 				4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */,
 				4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */,

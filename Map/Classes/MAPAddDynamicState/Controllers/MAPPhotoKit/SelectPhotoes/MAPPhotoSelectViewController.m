@@ -56,7 +56,7 @@
 #pragma MAP  -------------------------设置collectionView--------------------
 - (void)addSubview {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    self.selectedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 50) collectionViewLayout:flowLayout];
+    self.selectedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 5, self.view.frame.size.width, self.view.frame.size.height - 64 - 50) collectionViewLayout:flowLayout];
     [_selectedCollectionView registerClass:[MAPPhotoSelectCollectionViewCell class] forCellWithReuseIdentifier:@"photoes"];
     _selectedCollectionView.delegate = self;
     _selectedCollectionView.dataSource = self;
@@ -99,6 +99,7 @@
 //完成按钮点击事件
 - (void)pressComplete:(UIButton *) button {
     self.getSubmitDictionary(_thisSelecteDictionary);
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma MAP  ------------------------collectionViewDelegate---------------
@@ -112,19 +113,35 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MAPPhotoSelectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoes" forIndexPath:indexPath];
+    [cell getPhotoWithAset:_PHFetchResult[indexPath.item] andWhichOne:indexPath.item + 10000];
     PHAssetCollection *assetColletion = (PHAssetCollection *)_PHFetchResult[indexPath.item];
     NSArray *phtotArray = _thisSelecteDictionary[@"photoArray"];
     if (phtotArray.count > 0) {
         for (int i = 0; i < phtotArray.count; i++) {
             if ([phtotArray[i][@"photoIdentifier"] isEqualToString:assetColletion.localIdentifier]) {
-//                cell.selectBtn.selected = YES;
+                cell.selectButton.selected = YES;
                 break;
             }else{
-//                cell.selectBtn.selected = NO;
+                cell.selectButton.selected = NO;
             }
         }
     }
     return cell;
+}
+
+//返回每个cell大小
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((self.view.frame.size.width - 25) / 4, (self.view.frame.size.width - 25) / 4);
+}
+
+//返回cell之间 行 间隙
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 5;
+}
+
+//返回cell之间 列 间隙
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 5;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
