@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableDictionary *thisSelectedDictionary;
 @property (nonatomic, strong) UICollectionView *ImageShowCollectionView;
 @property (nonatomic, strong) UIView *backBlackView;
+@property (nonatomic, assign) float currentX;
 
 @end
 
@@ -51,6 +52,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressBackButton:)];
     [_ImageShowCollectionView addGestureRecognizer:tap];
     
+    if (_whichOne.length > 0) {
+        NSInteger which = [_whichOne integerValue];
+        [_ImageShowCollectionView setContentOffset:CGPointMake(self.view.frame.size.width * which, 0)];
+        
+        _currentX = self.view.frame.size.width * which;
+        _backBlackView = [UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * which, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
     
 }
 
