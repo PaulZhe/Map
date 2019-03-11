@@ -10,11 +10,19 @@
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
 		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
+		4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BB82232A8F00093E57E /* ico_check_nomal.png */; };
+		4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BBA2232A8FC0093E57E /* ico_check_select.png */; };
+		4F071BBD2232A9C00093E57E /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BBC2232A9C00093E57E /* noimage.png */; };
 		4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07AE5F22282506002071BB /* MAPAddCommentsView.m */; };
+		4F07E54C222E8B0600F00EDD /* MAPPhotoKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */; };
+		4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */; };
 		4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */; };
 		4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */; };
+		4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
+		4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */; };
 		4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */; };
+		4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EEE4F222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m */; };
 		4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */; };
 		4F0FF7CF21FDA1DD005A3E64 /* ai06.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0FF7CE21FDA1DD005A3E64 /* ai06.png */; };
 		4F0FF7D121FDA1E5005A3E64 /* bofang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0FF7D021FDA1E5005A3E64 /* bofang.png */; };
@@ -95,15 +103,28 @@
 		4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveAudioButton.m; sourceTree = "<group>"; };
 		4F04454021FCBA9200C4F71E /* MAPDynamicStateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateTableViewCell.h; sourceTree = "<group>"; };
 		4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPDynamicStateTableViewCell.m; sourceTree = "<group>"; };
+		4F071BB82232A8F00093E57E /* ico_check_nomal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_check_nomal.png; sourceTree = "<group>"; };
+		4F071BBA2232A8FC0093E57E /* ico_check_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_check_select.png; sourceTree = "<group>"; };
+		4F071BBC2232A9C00093E57E /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
 		4F07AE5E22282506002071BB /* MAPAddCommentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddCommentsView.h; sourceTree = "<group>"; };
 		4F07AE5F22282506002071BB /* MAPAddCommentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddCommentsView.m; sourceTree = "<group>"; };
+		4F07E54A222E8B0600F00EDD /* MAPPhotoKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoKitViewController.h; sourceTree = "<group>"; };
+		4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPhotoKitViewController.m; sourceTree = "<group>"; };
+		4F07E550222EB1A800F00EDD /* MAPPhotoSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoSelectViewController.h; sourceTree = "<group>"; };
+		4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPhotoSelectViewController.m; sourceTree = "<group>"; };
 		4F08DD7C220C2D1B00BCF161 /* MAPAddVedioView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddVedioView.h; sourceTree = "<group>"; };
 		4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddVedioView.m; sourceTree = "<group>"; };
 		4F0A15CB22069FD9007F1D0D /* MAPAddPicturesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesView.h; sourceTree = "<group>"; };
 		4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesView.m; sourceTree = "<group>"; };
+		4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPScrollerViewShowPhotoViewController.h; sourceTree = "<group>"; };
+		4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPScrollerViewShowPhotoViewController.m; sourceTree = "<group>"; };
 		4F0C2A5F220D932400102404 /* shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shanchu.png; sourceTree = "<group>"; };
+		4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesCollectionViewCell.h; sourceTree = "<group>"; };
+		4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesCollectionViewCell.m; sourceTree = "<group>"; };
 		4F0DD90422018F08006BD23F /* MAPMotiveVideoButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVideoButtonView.h; sourceTree = "<group>"; };
 		4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVideoButtonView.m; sourceTree = "<group>"; };
+		4F0EEE4E222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoSelectCollectionViewCell.h; sourceTree = "<group>"; };
+		4F0EEE4F222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPhotoSelectCollectionViewCell.m; sourceTree = "<group>"; };
 		4F0FF7C821FD8AA3005A3E64 /* MAPMotiveVideoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVideoButton.h; sourceTree = "<group>"; };
 		4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVideoButton.m; sourceTree = "<group>"; };
 		4F0FF7CE21FDA1DD005A3E64 /* ai06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ai06.png; sourceTree = "<group>"; };
@@ -281,6 +302,45 @@
 			path = VedioButtonView;
 			sourceTree = "<group>";
 		};
+		4F07E548222E8AC800F00EDD /* MAPAddDynamicState */ = {
+			isa = PBXGroup;
+			children = (
+				4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */,
+				4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */,
+			);
+			path = MAPAddDynamicState;
+			sourceTree = "<group>";
+		};
+		4F07E549222E8ADA00F00EDD /* MAPPhotoKit */ = {
+			isa = PBXGroup;
+			children = (
+				4F07E54D222E9F8800F00EDD /* PhotoKit */,
+				4F07E54E222EB16C00F00EDD /* SelectPhotoes */,
+				4F0A5CF52233F47D00C010C4 /* ScrollerViewShowPhoto */,
+			);
+			path = MAPPhotoKit;
+			sourceTree = "<group>";
+		};
+		4F07E54D222E9F8800F00EDD /* PhotoKit */ = {
+			isa = PBXGroup;
+			children = (
+				4F07E54A222E8B0600F00EDD /* MAPPhotoKitViewController.h */,
+				4F07E54B222E8B0600F00EDD /* MAPPhotoKitViewController.m */,
+			);
+			path = PhotoKit;
+			sourceTree = "<group>";
+		};
+		4F07E54E222EB16C00F00EDD /* SelectPhotoes */ = {
+			isa = PBXGroup;
+			children = (
+				4F07E550222EB1A800F00EDD /* MAPPhotoSelectViewController.h */,
+				4F07E551222EB1A800F00EDD /* MAPPhotoSelectViewController.m */,
+				4F0EEE4E222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.h */,
+				4F0EEE4F222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m */,
+			);
+			path = SelectPhotoes;
+			sourceTree = "<group>";
+		};
 		4F08DD7B220C2CDC00BCF161 /* AddVedioView */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,8 +355,19 @@
 			children = (
 				4F0A15CB22069FD9007F1D0D /* MAPAddPicturesView.h */,
 				4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */,
+				4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */,
+				4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */,
 			);
 			path = AddPicturesView;
+			sourceTree = "<group>";
+		};
+		4F0A5CF52233F47D00C010C4 /* ScrollerViewShowPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */,
+				4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */,
+			);
+			path = ScrollerViewShowPhoto;
 			sourceTree = "<group>";
 		};
 		4F1013AF21F6EE4600C549A3 /* MAPDynamicState */ = {
@@ -392,8 +463,8 @@
 		4F2C2C192202DF6600CA0ECB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */,
-				4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */,
+				4F07E548222E8AC800F00EDD /* MAPAddDynamicState */,
+				4F07E549222E8ADA00F00EDD /* MAPPhotoKit */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -537,6 +608,9 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F071BBA2232A8FC0093E57E /* ico_check_select.png */,
+				4F071BBC2232A9C00093E57E /* noimage.png */,
+				4F071BB82232A8F00093E57E /* ico_check_nomal.png */,
 				4F2BBC0F222C15B800306ECE /* xukuang.png */,
 				4F0C2A5F220D932400102404 /* shanchu.png */,
 				4F0FF7D021FDA1E5005A3E64 /* bofang.png */,
@@ -744,12 +818,15 @@
 				4F0C2A60220D932400102404 /* shanchu.png in Resources */,
 				D638A76B21F1DAF3005DFDFD /* info.png in Resources */,
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
+				4F071BBD2232A9C00093E57E /* noimage.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
 				D638A76E21F1DAF3005DFDFD /* local.png in Resources */,
+				4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */,
 				D638A77121F1DAF3005DFDFD /* QQ.png in Resources */,
 				D638A77921F1DAF3005DFDFD /* 头像.JPG in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
+				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
 				D620E5312221AC9400CEF270 /* Info.plist in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
@@ -824,10 +901,12 @@
 			files = (
 				4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */,
 				4F10662121F335A10035E47A /* MAPAnnotationView.m in Sources */,
+				4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
 				D68297662223DA2A00D3F4A8 /* MAPAddPointModel.m in Sources */,
 				4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */,
 				4F4DF5812212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m in Sources */,
+				4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */,
 				4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */,
 				4F8B6B8F221D219100A6E21A /* MAPRecommendViewController.m in Sources */,
 				4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */,
@@ -835,6 +914,7 @@
 				4F97E14422202D950084F476 /* MAPLineView.m in Sources */,
 				4F8B6B93221D21CC00A6E21A /* MAPRecommendView.m in Sources */,
 				4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */,
+				4F07E54C222E8B0600F00EDD /* MAPPhotoKitViewController.m in Sources */,
 				4FDD95702211CFE30047A9BC /* MAPMotiveReplyView.m in Sources */,
 				4F2C5E6C21F9A17E00DCF62A /* MAPMotivePicturesCollectionViewCell.m in Sources */,
 				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
@@ -855,7 +935,9 @@
 				D68297622223D87F00D3F4A8 /* MAPAddPointManager.m in Sources */,
 				4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */,
 				D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */,
+				4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */,
 				D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */,
+				4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */,
 				4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -998,14 +1080,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Map";
+				PRODUCT_BUNDLE_IDENTIFIER = Map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1015,14 +1099,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Map";
+				PRODUCT_BUNDLE_IDENTIFIER = Map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

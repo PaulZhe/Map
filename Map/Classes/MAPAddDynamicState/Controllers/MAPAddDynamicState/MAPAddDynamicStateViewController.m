@@ -10,6 +10,7 @@
 #import "MAPAddPointManager.h"
 #import <Masonry.h>
 #import <Photos/Photos.h>
+#import "MAPPhotoKitViewController.h"
 
 @interface MAPAddDynamicStateViewController () {
     NSMutableArray *annotationMutableArray;
@@ -36,6 +37,8 @@
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
+    //设置跳转相册代理
+    _addDynamicStateView.addPicturesView.delegate = self;
     //设置地图的代理
     [_addDynamicStateView.mapView viewWillAppear];
     _addDynamicStateView.mapView.delegate = self;
@@ -103,22 +106,26 @@
 }
 
 // 上传图片评论
-//- (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
-//    NSMutableArray *dataArray = [NSMutableArray array];
-//    for (id image in imageArray) {
-//        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-//        [dataArray addObject:imageData];
-//    }
-//    __weak MAPAddDynamicStateViewController *weakSelf = self;
-//
-//    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
-//        NSLog(@"上传成功");
-//        [weakSelf.navigationController popViewControllerAnimated:YES];
-//    } error:^(NSError *error) {
-//        NSLog(@"上传失败");
-//    }];
-//}
+
+- (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (id image in imageArray) {
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        [dataArray addObject:imageData];
+    }
+    __weak MAPAddDynamicStateViewController *weakSelf = self;
+
+    [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:6 Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
+        NSLog(@"上传成功");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    } error:^(NSError *error) {
+        NSLog(@"上传失败");
+    }];
+}
 
 #pragma MAP   --------------打开相册选取图片-------------------
+- (void)getToPhotoAlbumViewAndViewController:(UINavigationController *)navigationController{
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
 
 @end
