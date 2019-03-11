@@ -19,6 +19,8 @@
 		4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08DD7D220C2D1B00BCF161 /* MAPAddVedioView.m */; };
 		4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */; };
 		4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */; };
+		4F0BDFD722368621002AA1FF /* photoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0BDFD622368621002AA1FF /* photoBack.png */; };
+		4F0BDFDA22369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BDFD922369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
 		4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */; };
 		4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */; };
@@ -118,6 +120,9 @@
 		4F0A15CC22069FD9007F1D0D /* MAPAddPicturesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesView.m; sourceTree = "<group>"; };
 		4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPScrollerViewShowPhotoViewController.h; sourceTree = "<group>"; };
 		4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPScrollerViewShowPhotoViewController.m; sourceTree = "<group>"; };
+		4F0BDFD622368621002AA1FF /* photoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBack.png; sourceTree = "<group>"; };
+		4F0BDFD822369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		4F0BDFD922369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		4F0C2A5F220D932400102404 /* shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shanchu.png; sourceTree = "<group>"; };
 		4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesCollectionViewCell.h; sourceTree = "<group>"; };
 		4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesCollectionViewCell.m; sourceTree = "<group>"; };
@@ -366,6 +371,8 @@
 			children = (
 				4F0A5CF62233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.h */,
 				4F0A5CF72233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m */,
+				4F0BDFD822369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.h */,
+				4F0BDFD922369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m */,
 			);
 			path = ScrollerViewShowPhoto;
 			sourceTree = "<group>";
@@ -608,6 +615,7 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F0BDFD622368621002AA1FF /* photoBack.png */,
 				4F071BBA2232A8FC0093E57E /* ico_check_select.png */,
 				4F071BBC2232A9C00093E57E /* noimage.png */,
 				4F071BB82232A8F00093E57E /* ico_check_nomal.png */,
@@ -849,6 +857,7 @@
 				4F2BBC10222C15B800306ECE /* xukuang.png in Resources */,
 				4F2C5E8221F9AF0800DCF62A /* upPicture1.png in Resources */,
 				D638A76A21F1DAF3005DFDFD /* image.png in Resources */,
+				4F0BDFD722368621002AA1FF /* photoBack.png in Resources */,
 				4F2C5E7D21F9AF0800DCF62A /* upPicture5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,6 +933,7 @@
 				D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */,
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
+				4F0BDFDA22369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
 				D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */,
 				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
