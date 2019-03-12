@@ -210,7 +210,85 @@
 
 //点击选择
 - (void)pressSelecte:(UIButton *)button {
+    int current = _backBlackView.frame.origin.x/self.view.frame.size.width;
+    NSMutableArray *photoArray = [NSMutableArray arrayWithArray:_thisSelectedDictionary[@"photoArray"]];
+    PHAssetCollection *assetCollection = (PHAssetCollection *)_PHFectchResult[current];
+    UIImageView *imageView = (id)[button viewWithTag:15001];
+    if (button.selected == NO) {
+        if (photoArray.count >= _maxCount) {
+            [button setSelected:NO];
+        } else {
+            imageView.image = [UIImage imageNamed:@"ico_check_select"];
+            [_freshSelectedMutableArray addObject:[NSString stringWithFormat:@"%d", current + 10000]];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+            [dictionary setValue:[NSString stringWithFormat:@"%@", assetCollection.localIdentifier] forKey:@"photoIdentifier"];
+            [dictionary setValue:_alumbIdentifier forKey:@"albumIdentifier"];
+            [dictionary setValue:_PHFectchResult[current] forKey:@"photoAsset"];
+            [_thisSelectedDictionary setObject:photoArray forKey:@"photoAsset"];
+            [button setSelected:YES];
+        }
+    } else {
+        imageView.image = [UIImage imageNamed:@"ico_check_nomal"];
+        [button setSelected:NO];
+        for (int i = 0; i < _freshSelectedMutableArray.count; i++) {
+            if (current == [_freshSelectedMutableArray[i] integerValue] - 10000) {
+                [_freshSelectedMutableArray removeObjectAtIndex:i];
+            }
+        }
+        
+        for (int i = 0; i < [photoArray count]; i++) {
+            if ([photoArray[i][@"photoIdentifier"] isEqualToString:assetCollection.localIdentifier]) {
+                [photoArray removeObjectAtIndex:i];
+                button.selected = NO;
+            }
+        }
+        [_thisSelectedDictionary setObject:photoArray forKey:@"photoArray"];
+    }
     
+    UILabel *comlpleteLable = (id)[self.view viewWithTag:16000];
+    comlpleteLable.text = [NSString stringWithFormat:@"%ld", [_thisSelectedDictionary[@"photoArray"] count]];
+    
+    if ([_thisSelectedDictionary[@"photoArray"] count] == 0) {
+        comlpleteLable.hidden = YES;
+    } else {
+        comlpleteLable.hidden = NO;
+    }
+    
+    if ([_isOriginalString isEqualToString:@"1"]) {
+        [_submitDictionary setObject:@"1" forKey:@"isOriginal"];
+    }else{
+        [_submitDictionary setObject:@"0" forKey:@"isOriginal"];
+    }
+    
+    NSMutableArray *myPhotoArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _freshSelectedMutableArray.count; i++) {
+        NSMutableDictionary *photoDictionary = [[NSMutableDictionary alloc] init];
+        PHAssetCollection *assetCollection = (PHAssetCollection *)_PHFectchResult[[_freshSelectedMutableArray[i] integerValue] - 10000];
+        [photoDictionary setObject:[NSString stringWithFormat:@"%@",assetCollection.localIdentifier] forKey:@"photoIdentifier"];
+        [photoDictionary setObject:_alumbIdentifier forKey:@"albumIdentifier"];
+        [photoDictionary setObject:_PHFectchResult[[_freshSelectedMutableArray[i] integerValue] - 10000] forKey:@"photoAsset"];
+        [myPhotoArray addObject:photoDictionary];
+    }
+    [_submitDictionary setObject:myPhotoArray forKey:@"photoArray"];
+    
+    if (_isNeed == YES) {
+        __weak MAPScrollerViewShowPhotoViewController *showPhotoSelf = self;
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < _freshSelectedMutableArray.count; i++) {
+            PHImageRequestOptions *requsetOptions = [[PHImageRequestOptions alloc] init];
+            requsetOptions.synchronous = NO;
+            requsetOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
+            requsetOptions.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+            
+            [[PHImageManager defaultManager] requestImageForAsset:_PHFectchResult[[_freshSelectedMutableArray[i] integerValue] - 10000] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requsetOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                if (result) {
+                    NSData *imageData = UIImageJPEGRepresentation(result, 0.3);
+                    UIImage *image = [UIImage imageWithData:imageData];
+//                    NSData *imageDatatwo = [showPhotoSelf ]
+                }
+            }];
+        }
+    }
 }
 
 //点击完成
