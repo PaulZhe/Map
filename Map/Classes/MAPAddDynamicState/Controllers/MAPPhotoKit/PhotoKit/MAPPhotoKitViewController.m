@@ -161,7 +161,7 @@
     selectViewController.mySubmitDictionary = _imageDictionary;
     selectViewController.imageDictionary = _imageDictionary;
     selectViewController.haveCount = [_imageDictionary[@"imageDataArray"] count];
-    selectViewController.idNeed = _ifNeed;
+    selectViewController.ifNeed = _ifNeed;
     __weak MAPPhotoKitViewController *weakself = self;
     [selectViewController setGetSubmitDictionary:^(NSMutableDictionary * _Nonnull submitDictionary) {
         if (weakself.getSubmitDictionary) {

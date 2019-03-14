@@ -9,6 +9,7 @@
 #import "MAPPhotoSelectViewController.h"
 #import <Masonry.h>
 #import "MAPPhotoSelectCollectionViewCell.h"
+#import "MAPScrollerViewShowPhotoViewController.h"
 
 @interface MAPPhotoSelectViewController ()
 @property (nonatomic, strong) UICollectionView *selectedCollectionView;
@@ -145,7 +146,44 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    MAPScrollerViewShowPhotoViewController *showPhotoViewController = [[MAPScrollerViewShowPhotoViewController alloc] init];
+    showPhotoViewController.PHFectchResult = self.PHFetchResult;
+    showPhotoViewController.whichOne = [NSString stringWithFormat:@"%ld", indexPath.item];
+    showPhotoViewController.lastDictionary = _thisSelecteDictionary;
+    showPhotoViewController.alumbIdentifier = _albumIdentifier;
+    showPhotoViewController.isNeed = _ifNeed;
+    showPhotoViewController.maxCount = _maxcount;
+    showPhotoViewController.isOriginalString = _isOriginal;
     
+    [showPhotoViewController setSelectedDictionaryBlock:^(NSDictionary * _Nonnull newSelectDictionary) {
+        self->_thisSelecteDictionary = [[NSMutableDictionary alloc] initWithDictionary:newSelectDictionary];
+        for (int i = 0; i < self->_PHFetchResult.count; i++) {
+            PHAssetCollection *assetCollection = (PHAssetCollection *)self->_PHFetchResult[i];
+            if ([self->_thisSelecteDictionary[@"photoArray"] count] > 0) {
+                for (int j = 0; j < [self->_thisSelecteDictionary[@"photoArray"] count]; j++) {
+                    if ([self->_thisSelecteDictionary[@"photoArray"][j][@"photoIdentifier"] isEqualToString:assetCollection.localIdentifier]) {
+                        UIButton *selectButton = (id)[self.view viewWithTag:i + 10000];
+                        [selectButton setSelected:YES];
+                        break;
+                    } else {
+                        UIButton *selectButton = (id)[self.view viewWithTag:i + 10000];
+                        [selectButton setSelected:NO];
+                    }
+                }
+            } else{
+                UIButton *selectBtn = (id)[self.view viewWithTag:i + 10000];
+                [selectBtn setSelected:NO];
+            }
+        }
+        if ([self->_thisSelecteDictionary[@"photoArray"] count] > 0) {
+            UILabel *comlpleteLbl = (id)[self.view viewWithTag:16000];
+            comlpleteLbl.text = [NSString stringWithFormat:@"%ld",[self->_thisSelecteDictionary[@"photoArray"] count]];
+            self.title = [NSString stringWithFormat:@"%ld/%ld",[self->_thisSelecteDictionary[@"photoArray"] count],self->_maxcount];
+            comlpleteLbl.hidden = NO;
+        }else{
+            self.title = [NSString stringWithFormat:@"0/%ld",self->_maxcount];
+        }
+    }];
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
