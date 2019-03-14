@@ -11,6 +11,7 @@
 
 @interface MAPScrollerViewShowPhotoViewController ()
 @property (nonatomic, strong) UIScrollView *imagesShowScrollerView;
+@property (nonatomic, strong) UIScrollView *currentScroller;
 @property (nonatomic, strong) UIImageView *currentImage;
 @property (nonatomic, strong) NSMutableDictionary *thisSelectedDictionary;
 @property (nonatomic, strong) UICollectionView *ImageShowCollectionView;
@@ -284,15 +285,160 @@
                 if (result) {
                     NSData *imageData = UIImageJPEGRepresentation(result, 0.3);
                     UIImage *image = [UIImage imageWithData:imageData];
-//                    NSData *imageDatatwo = [showPhotoSelf ]
+                    NSData *imageDatatwo = [showPhotoSelf resetSizeOfImageData:image maxSize:100];
+                    [dataArray addObject:imageDatatwo];
+                } else {
+                    
                 }
             }];
+            [_submitDictionary setObject:dataArray forKey:@"imageDataArray"];
         }
+    } else {
+        
+    }
+    
+    if (_freshSelectedMutableArray.count > 0) {
+
+    } else {
+        NSArray *dataArray = [NSArray new];
+        [_submitDictionary setObject:dataArray forKey:@"imageDataArray"];
     }
 }
 
 //点击完成
 - (void)pressComplete:(UIButton *)button {
+    NSArray *photoArray = _thisSelectedDictionary[@"photoArray"];
+    __weak MAPScrollerViewShowPhotoViewController *detailSelf = self;
+    NSMutableArray *dataMutableArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < photoArray.count; i++) {
+        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+        requestOptions.synchronous = NO;
+        requestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+        for (int j = 0; j < _PHFectchResult.count; j++) {
+            PHAssetCollection *assetCollection = (PHAssetCollection *)_PHFectchResult[j];
+            if ([assetCollection.localIdentifier isEqualToString:photoArray[i][@"photoIdentifier"]]) {
+                [[PHImageManager defaultManager] requestImageForAsset:_PHFectchResult[j] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                    if (result) {
+                        NSData *imageData = UIImageJPEGRepresentation(result, 0.3);
+                        UIImage *image = [UIImage imageWithData:imageData];
+                        NSData *imageDataTwo = [detailSelf resetSizeOfImageData:image maxSize:100];
+                        [dataMutableArray addObject:imageDataTwo];
+                    } else {
+                        
+                    }
+                }];
+            }
+        }
+        [_thisSelectedDictionary setObject:dataMutableArray forKey:@"imageDataArray"];
+    }
+    self.getSubmitDictionary(_thisSelectedDictionary);
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//改变分辨率
+- (NSData *)resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger)maxSize
+{
+    //先调整分辨率
+    CGSize newSize = CGSizeMake(source_image.size.width, source_image.size.height);
+    CGFloat tempHeight = newSize.height / 1024;
+    CGFloat tempWidth = newSize.width / 1024;
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(source_image.size.width / tempWidth, source_image.size.height / tempWidth);
+    } else if (tempHeight > 1.0 && tempWidth < tempHeight) {
+        newSize = CGSizeMake(source_image.size.width / tempHeight, source_image.size.height / tempHeight);
+    }
     
+    UIGraphicsBeginImageContext(newSize);
+    [source_image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //调整大小
+    NSData *imageData = UIImageJPEGRepresentation(newImage,1.0);
+    NSUInteger sizeOrigin = [imageData length];
+    NSUInteger sizeOriginKB = sizeOrigin / 1024;
+    if (sizeOriginKB > maxSize) {
+        NSData *finallImageData = UIImageJPEGRepresentation(newImage,0.50);
+        if ([finallImageData length]/1024>200) {
+            NSData *finallImageData1 = UIImageJPEGRepresentation(newImage,0.30);
+            return finallImageData1;
+        }
+        return finallImageData;
+    }
+    
+    return imageData;
+}
+
+#pragma mark - scrollViewDelegtate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if ([scrollView isEqual:_ImageShowCollectionView]) {
+        _currentX = scrollView.contentOffset.x;
+        _backBlackView.frame = CGRectMake(scrollView.contentOffset.x, _currentScroller.frame.origin.y, _currentScroller.frame.size.width, _currentScroller.frame.size.height);
+        _currentScroller.zoomScale = 1.0;
+        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+        requestOptions.synchronous = NO;
+        requestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        [[PHImageManager defaultManager] requestImageForAsset:[self.PHFectchResult objectAtIndex:scrollView.contentOffset.x / self.view.frame.size.width] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            if (result) {
+                self->_currentImage.image = result;
+            }else{
+                self->_currentImage.image = [UIImage imageNamed:@"noimage"];
+            }
+            self->_currentImage.contentMode = UIViewContentModeScaleAspectFit;
+            self->_currentImage.clipsToBounds = YES;
+            [self->_ImageShowCollectionView bringSubviewToFront:self->_backBlackView];
+            self->_currentImage.hidden = NO;
+        }];
+        UIButton *selectedButton = (id)[self.view viewWithTag:15000];
+        UIImageView *selectImageView = (id)[selectedButton viewWithTag:15001];
+        int current = scrollView.contentOffset.x / self.view.frame.size.width;
+        
+        PHAssetCollection *assetCollection = (PHAssetCollection *)_PHFectchResult[current];
+        NSArray *photoArray = _thisSelectedDictionary[@"photoArray"];
+        
+        for (int j = 0; j < photoArray.count; j++) {
+            if ([assetCollection.localIdentifier isEqualToString:photoArray[j][@"photoIdentifier"]]) {
+                [selectedButton setSelected:YES];
+                selectImageView.image = [UIImage imageNamed:@"ico_check_select"];
+                break;
+            }else{
+                [selectedButton setSelected:NO];
+                selectImageView.image = [UIImage imageNamed:@"ico_check_nomal"];
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([scrollView isEqual:_ImageShowCollectionView]) {
+        float a = ABS(scrollView.contentOffset.x - _currentX);
+        if (a > self.view.frame.size.width / 2) {
+            _currentImage.image = nil;
+            _backBlackView.hidden = YES;
+        }
+    }
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return _currentImage;
+}
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    //scrollView放大代理
+    if (scrollView != _ImageShowCollectionView) {
+        CGPoint uiii;
+        if (scrollView.contentSize.width>scrollView.frame.size.width) {
+            uiii.x = scrollView.contentSize.width/2.0;
+        }else{
+            uiii.x = scrollView.frame.size.width/2.0;
+        }
+        if (scrollView.contentSize.height>scrollView.frame.size.height) {
+            uiii.y = scrollView.contentSize.height/2.0;
+        }else{
+            uiii.y = scrollView.frame.size.height/2.0;
+        }
+        _currentImage.center = uiii;
+    }
 }
 @end

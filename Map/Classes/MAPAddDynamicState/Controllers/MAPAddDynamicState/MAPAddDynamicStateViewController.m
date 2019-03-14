@@ -125,7 +125,7 @@
 
 #pragma MAP   --------------打开相册选取图片-------------------
 - (void)getToPhotoAlbumViewAndViewController:(UINavigationController *)navigationController{
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

@@ -22,7 +22,7 @@ typedef void (^getSubmitDictonary) (NSMutableDictionary *submitDictionary);
 @property (nonatomic, copy) NSString *albumIdentifier;
 @property (nonatomic, copy) getSubmitDictonary getSubmitDictionary;
 @property (nonatomic, assign) NSInteger haveCount;
-@property (nonatomic, assign) BOOL idNeed;
+@property (nonatomic, assign) BOOL ifNeed;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 - (NSData *) resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger) maxSize;
 NS_ASSUME_NONNULL_END
