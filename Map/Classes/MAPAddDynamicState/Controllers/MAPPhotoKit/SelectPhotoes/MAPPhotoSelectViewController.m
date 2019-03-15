@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableDictionary *submitDictionary;
 @property (nonatomic, strong) NSMutableDictionary *thisSelecteDictionary;
 @property (nonatomic, assign) dispatch_queue_t queue;
+@property (nonatomic, strong) NSMutableArray *imageMutableArray;
 @property (nonatomic, assign) NSInteger page;
 @end
 
@@ -46,10 +47,19 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
 }
 
+//返回键的点击事件+返回前一界面选择图片不消失
 - (void)backToLastView:(UIButton *) button {
+    for (UINavigationController *nvc in self.navigationController.viewControllers) {
+        if ([nvc isKindOfClass:[MAPPhotoSelectViewController class]]) {
+            MAPPhotoSelectViewController *photo = (MAPPhotoSelectViewController *)nvc;
+            photo.imageDictionary = _thisSelecteDictionary;
+            [self.navigationController popToViewController:nvc animated:YES];
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//取消按钮点击事件
 - (void)backToFirstView:(UIButton *) button {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -114,6 +124,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MAPPhotoSelectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoes" forIndexPath:indexPath];
+    cell.delegate = self;
     [cell getPhotoWithAset:_PHFetchResult[indexPath.item] andWhichOne:indexPath.item + 10000];
     PHAssetCollection *assetColletion = (PHAssetCollection *)_PHFetchResult[indexPath.item];
     NSArray *phtotArray = _thisSelecteDictionary[@"photoArray"];
@@ -184,10 +195,52 @@
             self.title = [NSString stringWithFormat:@"0/%ld",self->_maxcount];
         }
     }];
+    [showPhotoViewController setGetSubmitDictionary:^(NSMutableDictionary *dic){
+        self.getSubmitDictionary(dic);
+    }];
+    
+    [showPhotoViewController setOriginBlock:^(NSString *isOriginal){
+        self.isOriginal = isOriginal;
+        [self->_submitDictionary setObject:isOriginal forKey:@"isOriginal"];
+    }];
+    
+    [self.navigationController pushViewController:showPhotoViewController animated:YES];
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    if (_imageMutableArray.count > 1 && _page+1 < _imageMutableArray.count) {
+        if (scrollView.contentOffset.y > ((self.view.frame.size.width - 25) / 4 + 5)*50 + ((self.view.frame.size.width - 25)/4 +5)*75*_page){
+            _page = _page + 1;
+            PHImageRequestOptions *requestOptins = [[PHImageRequestOptions alloc] init];
+            requestOptins.synchronous = NO;
+            requestOptins.networkAccessAllowed = NO;
+            requestOptins.resizeMode = PHImageRequestOptionsResizeModeExact;
+            requestOptins.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+            NSMutableArray *imageArray = [NSMutableArray arrayWithArray:[_imageMutableArray objectAtIndex:_page]];
+            NSInteger sum = _page * 300;
+            dispatch_async(_queue, ^{
+                for (NSInteger i = 0; i < imageArray.count; i++) {
+                    UIImageView *imageView = (UIImageView *) [self.view viewWithTag:5000+i+sum];
+                    __block UIImage *image = [[UIImage alloc] init];
+                    [[PHImageManager defaultManager] requestImageForAsset:[imageArray objectAtIndex:i] targetSize:CGSizeMake(self.view.frame.size.width / 4, self.view.frame.size.height/4) contentMode:PHImageContentModeAspectFill options:requestOptins resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                        if (result) {
+                            image = result;
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                imageView.image = image;
+                            });
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                imageView.image = [UIImage imageNamed:@"noimage"];
+                            });
+                        }
+                        imageView.contentMode = UIViewContentModeScaleAspectFill;
+                        imageView.clipsToBounds = YES;
+                        imageView.userInteractionEnabled = YES;
+                    }];
+                }
+            });
+        }
+    }
 }
 
 //调整图片分辨率
