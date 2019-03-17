@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
+#import "MAPPhotoSelectCollectionViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^getSubmitDictonary) (NSMutableDictionary *submitDictionary);
 
-@interface MAPPhotoSelectViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface MAPPhotoSelectViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectDelegate>
 @property (nonatomic, copy) PHFetchResult *PHFetchResult;
 @property (nonatomic, assign) NSInteger maxcount;
 @property (nonatomic, copy) NSString *isOriginal;

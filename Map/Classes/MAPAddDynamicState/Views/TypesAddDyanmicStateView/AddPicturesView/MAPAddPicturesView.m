@@ -191,11 +191,10 @@
             if (result) {
                 cell.imageView.image = result;
             } else {
-                cell.imageView.image = [UIImage imageNamed:addPicture];
+                cell.imageView.image = [UIImage imageNamed:@"noimage"];
             }
         }];
-        
-        if (indexPath.item == _dataSource.count) {
+        if (indexPath.item == self->_dataSource.count) {
             cell.imageView.image = [UIImage imageNamed:addPicture];
         }
     }
@@ -241,7 +240,7 @@
     
     NSMutableArray *photoesArray = [_selectImageDictionary objectForKey:@"photoArray"];
     for (int i = 0; i < photoesArray.count; i++) {
-        [_dataSource addObject:[photoesArray[i] objectForKey:@"photoArray"]];
+        [_dataSource addObject:[photoesArray[i] objectForKey:@"photoAsset"]];
     }
     [_picturesCollectionView reloadData];
 }
