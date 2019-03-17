@@ -8,11 +8,11 @@
 
 #import "MAPPhotoSelectViewController.h"
 #import <Masonry.h>
-#import "MAPPhotoSelectCollectionViewCell.h"
 #import "MAPScrollerViewShowPhotoViewController.h"
 
 @interface MAPPhotoSelectViewController ()
 @property (nonatomic, strong) UICollectionView *selectedCollectionView;
+@property (nonatomic, strong) NSMutableArray *lowQulityArray;
 @property (nonatomic, strong) NSMutableDictionary *submitDictionary;
 @property (nonatomic, strong) NSMutableDictionary *thisSelecteDictionary;
 @property (nonatomic, assign) dispatch_queue_t queue;
@@ -30,6 +30,10 @@
     } else {
         self.isOriginal = @"0";
     }
+    
+    _lowQulityArray = [[NSMutableArray alloc] init];
+    _submitDictionary = [[NSMutableDictionary alloc] initWithDictionary:_mySubmitDictionary];
+    _thisSelecteDictionary = [[NSMutableDictionary alloc] initWithDictionary:_submitDictionary];
     //设置导航栏button
     [self setNavigationButton];
     //设置九宫格显示图片
@@ -275,6 +279,46 @@
         return finallImageData;
     }
     return imageData;
+}
+
+- (void)selectButton:(UIButton *)sender {
+    NSLog(@"%ld",sender.tag);
+    UILabel *comlpleteLbl = (id)[self.view viewWithTag:16000];
+    NSMutableArray *photoArr = [NSMutableArray arrayWithArray:_thisSelecteDictionary[@"photoArray"]];
+    PHAssetCollection *assetCollection =  (PHAssetCollection *)_PHFetchResult[sender.tag - 10000];
+    
+    UIButton *button = (id)[self.view viewWithTag:sender.tag];
+    if (button.selected == YES) {
+        for (int i = 0; i < [photoArr count]; i++) {
+            if ([photoArr[i][@"photoIdentifier"] isEqualToString:assetCollection.localIdentifier]) {
+                [photoArr removeObjectAtIndex:i];
+                sender.selected = NO;
+            }
+        }
+        [_thisSelecteDictionary setObject:photoArr forKey:@"photoArray"];
+    }else{
+        if (photoArr.count < _maxcount) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setValue:[NSString stringWithFormat:@"%@",assetCollection.localIdentifier] forKey:@"photoIdentifier"];
+            [dic setValue:_albumIdentifier forKey:@"albumIdentifier"];
+            [dic setValue:_PHFetchResult[sender.tag - 10000] forKey:@"photoAsset"];
+            [photoArr addObject:dic];
+            
+            sender.selected = YES;
+            
+            [_thisSelecteDictionary setObject:photoArr forKey:@"photoArray"];
+        }else{
+            NSLog(@"不能选了");
+        }
+    }
+    
+    comlpleteLbl.text = [NSString stringWithFormat:@"%ld",photoArr.count];
+    self.title = [NSString stringWithFormat:@"%ld/%ld",photoArr.count,_maxcount];
+    if (photoArr.count == 0) {
+        comlpleteLbl.hidden = YES;
+    }else{
+        comlpleteLbl.hidden = NO;
+    }
 }
 
 @end
