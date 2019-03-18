@@ -29,14 +29,17 @@
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
-    _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
-    [self.view addSubview:_addDynamicStateView];
-    [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.right.mas_equalTo(self.view.mas_right);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
-    }];
+    if (!_addDynamicStateView) {
+        _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
+        [self.view addSubview:_addDynamicStateView];
+        [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view.mas_top);
+            make.left.mas_equalTo(self.view.mas_left);
+            make.right.mas_equalTo(self.view.mas_right);
+            make.bottom.mas_equalTo(self.view.mas_bottom);
+        }];
+    }
+    
     //设置跳转相册代理
     _addDynamicStateView.addPicturesView.delegate = self;
     //设置地图的代理
@@ -60,13 +63,14 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-    [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
-    annotation.title = @"";
-    [_addDynamicStateView.mapView addAnnotation:annotation];
-    annotationMutableArray = [NSMutableArray array];
-    [annotationMutableArray addObject:annotation];
-    [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
-    
+    if (!annotation) {
+        [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
+        annotation.title = @"";
+        [_addDynamicStateView.mapView addAnnotation:annotation];
+        annotationMutableArray = [NSMutableArray array];
+        [annotationMutableArray addObject:annotation];
+        [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
+    }
     //测试上传图片
 //    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
 //    [self postImageCommentWithArray:imageArray andTitle:@"Test"];
@@ -125,7 +129,7 @@
 
 #pragma MAP   --------------打开相册选取图片-------------------
 - (void)getToPhotoAlbumViewAndViewController:(UINavigationController *)navigationController{
-    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

@@ -187,13 +187,15 @@
         requestOptions.networkAccessAllowed = NO;
         requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
         requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-        [[PHImageManager defaultManager] requestImageForAsset:_dataSource[indexPath.item] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            if (result) {
-                cell.imageView.image = result;
-            } else {
-                cell.imageView.image = [UIImage imageNamed:@"noimage"];
-            }
-        }];
+        if (indexPath.item < _dataSource.count) {
+            [[PHImageManager defaultManager] requestImageForAsset:_dataSource[indexPath.item] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                if (result) {
+                    cell.imageView.image = result;
+                } else {
+                    cell.imageView.image = [UIImage imageNamed:@"noimage"];
+                }
+            }];
+        }
         if (indexPath.item == self->_dataSource.count) {
             cell.imageView.image = [UIImage imageNamed:addPicture];
         }

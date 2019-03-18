@@ -9,6 +9,7 @@
 #import "MAPPhotoSelectViewController.h"
 #import <Masonry.h>
 #import "MAPScrollerViewShowPhotoViewController.h"
+#import "MAPPhotoKitViewController.h"
 
 @interface MAPPhotoSelectViewController ()
 @property (nonatomic, strong) UICollectionView *selectedCollectionView;
@@ -21,6 +22,10 @@
 @end
 
 @implementation MAPPhotoSelectViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +46,7 @@
 }
 
 #pragma MAP  -------------------------设置导航栏button--------------------
-- (void) setNavigationButton {
+- (void)setNavigationButton {
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backToLastView:)];
     leftButton.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -54,8 +59,8 @@
 //返回键的点击事件+返回前一界面选择图片不消失
 - (void)backToLastView:(UIButton *) button {
     for (UINavigationController *nvc in self.navigationController.viewControllers) {
-        if ([nvc isKindOfClass:[MAPPhotoSelectViewController class]]) {
-            MAPPhotoSelectViewController *photo = (MAPPhotoSelectViewController *)nvc;
+        if ([nvc isKindOfClass:[MAPPhotoKitViewController class]]) {
+            MAPPhotoKitViewController *photo = (MAPPhotoKitViewController  *)nvc;
             photo.imageDictionary = _thisSelecteDictionary;
             [self.navigationController popToViewController:nvc animated:YES];
         }
@@ -114,7 +119,7 @@
 //完成按钮点击事件
 - (void)pressComplete:(UIButton *) button {
     self.getSubmitDictionary(_thisSelecteDictionary);
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma MAP  ------------------------collectionViewDelegate---------------
