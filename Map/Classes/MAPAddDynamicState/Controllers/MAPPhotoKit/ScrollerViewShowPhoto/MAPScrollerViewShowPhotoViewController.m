@@ -49,6 +49,9 @@
     _ImageShowCollectionView.showsVerticalScrollIndicator = NO;
     _ImageShowCollectionView.showsHorizontalScrollIndicator = NO;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.itemSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    flowLayout.minimumLineSpacing = 0;
+    flowLayout.minimumInteritemSpacing = 0;
     [self.view addSubview:_ImageShowCollectionView];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressBackButton:)];
@@ -116,9 +119,9 @@
     backImageView.image = [UIImage imageNamed:@"photoBack"];
     [backButton addSubview:backImageView];
     
-    //右上角选择按钮
+    //点击选择按钮
     UIButton *selectButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 64, 0, 64, 64)];
-    [selectButton addTarget:selectButton action:@selector(pressSelecte:) forControlEvents:UIControlEventTouchUpInside];
+    [selectButton addTarget:self action:@selector(pressSelecte:) forControlEvents:UIControlEventTouchUpInside];
     selectButton.tag = 15000;
     [topView addSubview:selectButton];
     
@@ -147,7 +150,7 @@
     [self.view addSubview:downView];
     
     //完成按钮
-    UIButton *comepleteButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.height - 80, 5, 80, 40)];
+    UIButton *comepleteButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 5, 80, 40)];
     comepleteButton.tag = 150000;
     [comepleteButton addTarget:self action:@selector(pressComplete:) forControlEvents:UIControlEventTouchUpInside];
     [downView addSubview:comepleteButton];
@@ -225,6 +228,7 @@
             [dictionary setValue:[NSString stringWithFormat:@"%@", assetCollection.localIdentifier] forKey:@"photoIdentifier"];
             [dictionary setValue:_alumbIdentifier forKey:@"albumIdentifier"];
             [dictionary setValue:_PHFectchResult[current] forKey:@"photoAsset"];
+            [photoArray addObject:dictionary];
             [_thisSelectedDictionary setObject:photoArray forKey:@"photoAsset"];
             [button setSelected:YES];
         }
@@ -248,7 +252,7 @@
     
     UILabel *comlpleteLable = (id)[self.view viewWithTag:16000];
     comlpleteLable.text = [NSString stringWithFormat:@"%ld", [_thisSelectedDictionary[@"photoArray"] count]];
-    
+    NSLog(@"text = %@", comlpleteLable.text);
     if ([_thisSelectedDictionary[@"photoArray"] count] == 0) {
         comlpleteLable.hidden = YES;
     } else {
@@ -300,7 +304,7 @@
     if (_freshSelectedMutableArray.count > 0) {
 
     } else {
-        NSArray *dataArray = [NSArray new];
+        NSArray *dataArray = [[NSArray alloc] init];
         [_submitDictionary setObject:dataArray forKey:@"imageDataArray"];
     }
 }
@@ -424,6 +428,7 @@
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return _currentImage;
 }
+
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     //scrollView放大代理
     if (scrollView != _ImageShowCollectionView) {
