@@ -172,6 +172,8 @@
     
     UILabel *completeLabel = [[UILabel alloc] initWithFrame:CGRectMake(numberLabel.frame.origin.x + numberLabel.frame.size.width, (comepleteButton.frame.size.height - 30) / 2, 60, 30)];
     completeLabel.text = @"完成";
+    
+    
     completeLabel.textColor = [UIColor whiteColor];
     completeLabel.textAlignment = NSTextAlignmentCenter;
     [comepleteButton addSubview:completeLabel];
