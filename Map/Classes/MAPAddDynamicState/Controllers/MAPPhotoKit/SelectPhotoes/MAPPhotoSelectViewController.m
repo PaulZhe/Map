@@ -287,7 +287,6 @@
 }
 
 - (void)selectButton:(UIButton *)sender {
-    NSLog(@"%ld",sender.tag);
     UILabel *comlpleteLbl = (id)[self.view viewWithTag:16000];
     NSMutableArray *photoArr = [NSMutableArray arrayWithArray:_thisSelecteDictionary[@"photoArray"]];
     PHAssetCollection *assetCollection =  (PHAssetCollection *)_PHFetchResult[sender.tag - 10000];

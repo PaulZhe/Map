@@ -157,7 +157,7 @@
     
     UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (comepleteButton.frame.size.height - 20)/2, 20, 20)];
     numberLabel.textColor = [UIColor whiteColor];
-    numberLabel.backgroundColor = [UIColor greenColor];
+    numberLabel.backgroundColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];;
     numberLabel.font = [UIFont systemFontOfSize:12];
     numberLabel.layer.cornerRadius = 10;
     numberLabel.clipsToBounds = YES;
@@ -172,8 +172,6 @@
     
     UILabel *completeLabel = [[UILabel alloc] initWithFrame:CGRectMake(numberLabel.frame.origin.x + numberLabel.frame.size.width, (comepleteButton.frame.size.height - 30) / 2, 60, 30)];
     completeLabel.text = @"完成";
-    
-    
     completeLabel.textColor = [UIColor whiteColor];
     completeLabel.textAlignment = NSTextAlignmentCenter;
     [comepleteButton addSubview:completeLabel];
@@ -231,7 +229,7 @@
             [dictionary setValue:_alumbIdentifier forKey:@"albumIdentifier"];
             [dictionary setValue:_PHFectchResult[current] forKey:@"photoAsset"];
             [photoArray addObject:dictionary];
-            [_thisSelectedDictionary setObject:photoArray forKey:@"photoAsset"];
+            [_thisSelectedDictionary setObject:photoArray forKey:@"photoArray"];
             [button setSelected:YES];
         }
     } else {
