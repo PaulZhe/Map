@@ -21,7 +21,7 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         //垂直方向滚动
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 100) collectionViewLayout:flowLayout];
+        _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 200) collectionViewLayout:flowLayout];
         _picturesCollectionView.dataSource = self;
         _picturesCollectionView.delegate = self;
         _picturesCollectionView.backgroundColor = [UIColor clearColor];
@@ -68,7 +68,7 @@
 
 //返回每个cell大小
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(50, 50);
+    return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 111)/3, ([UIScreen mainScreen].bounds.size.width - 111)/3);
 }
 
 //返回cell之间 行 间隙
