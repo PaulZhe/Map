@@ -13,7 +13,7 @@
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _picturesImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        _picturesImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ([UIScreen mainScreen].bounds.size.width - 111)/3, ([UIScreen mainScreen].bounds.size.width - 111)/3)];
         [self.contentView addSubview:_picturesImageView];
     }
     return self;

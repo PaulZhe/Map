@@ -44,6 +44,39 @@
             make.right.mas_equalTo(-15);
         }];
         
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.numberOfLines = 0;
+        _timeLabel.font = [UIFont systemFontOfSize:15];
+        [self.contentView addSubview:_timeLabel];
+        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
+            make.left.mas_equalTo(65);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(100);
+        }];
+        
+        _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+        [_likeButton setTitle:@"(2)" forState:UIControlStateNormal];
+        [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:_likeButton];
+        [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
+            make.right.mas_equalTo(self->_timeLabel.mas_right).mas_equalTo(180);
+            make.size.mas_equalTo(CGSizeMake(50, 20));
+        }];
+        
+        _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_commentButton setImage:[UIImage imageNamed:@"comt"] forState:UIControlStateNormal];
+        [_commentButton setTitle:@"(2)" forState:UIControlStateNormal];
+        [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:_commentButton];
+        [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
+            make.right.mas_equalTo(-15);
+            make.size.mas_equalTo(CGSizeMake(50, 20));
+        }];
+        
         if ([typeString isEqualToString:@"1"]) {
             //这里是回复
             _replyView = [[MAPMotiveReplyView alloc] init];
@@ -84,42 +117,9 @@
             }];
         }
         
-        _timeLabel = [[UILabel alloc] init];
-        _timeLabel.numberOfLines = 0;
-        _timeLabel.font = [UIFont systemFontOfSize:15];
-        [self.contentView addSubview:_timeLabel];
-        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
-            make.left.mas_equalTo(65);
-            make.height.mas_equalTo(20);
-            make.width.mas_equalTo(100);
-        }];
-        
-        _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-        [_likeButton setTitle:@"(2)" forState:UIControlStateNormal];
-        [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [self.contentView addSubview:_likeButton];
-        [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
-            make.right.mas_equalTo(self->_timeLabel.mas_right).mas_equalTo(180);
-            make.size.mas_equalTo(CGSizeMake(50, 20));
-        }];
-        
-        _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_commentButton setImage:[UIImage imageNamed:@"comt"] forState:UIControlStateNormal];
-        [_commentButton setTitle:@"(2)" forState:UIControlStateNormal];
-        [_commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [self.contentView addSubview:_commentButton];
-        [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
-            make.right.mas_equalTo(-15);
-            make.size.mas_equalTo(CGSizeMake(50, 20));
-        }];
     }
     return self;
 }
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];
