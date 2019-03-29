@@ -70,10 +70,8 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
-    
     //添加泡泡点击事件
     [self paopaoViewButtonAddTarget];
-    
     //删除view
     [self clearAwaySomeViews];
 }
