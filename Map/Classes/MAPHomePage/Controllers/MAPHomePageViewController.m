@@ -45,7 +45,7 @@
 
 @implementation MAPHomePageViewController
 
-#pragma MAP -----------------------试图的出现与消失-------------------------
+#pragma MAP -----------------------视图的出现与消失-------------------------
 //视图即将出现，设置地图代理
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -71,7 +71,7 @@
     //初始化坐标
     [self createLocation];
     //添加泡泡点击事件
-    [self paopaoViewButtonAddTarget];
+//    [self paopaoViewButtonAddTarget];
     //删除view
     [self clearAwaySomeViews];
 }
@@ -138,20 +138,23 @@
 }
 
 //测试泡泡内按钮点击事件
-- (void)paopaoViewButtonAddTarget {
+- (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
     __weak typeof(self) weakSelf = self;
-    _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(50, 50, 200, 140)];
-    [self.view addSubview:_paopaoView];
+    if (!paopaoView) {
+        paopaoView = [MAPPaopaoView new];
+    }
     
     MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
     danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    [_paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+    [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
         ///添加评论
 //        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
+        MAPAnnotationView *tempAnnotationView = (MAPAnnotationView *)sender.superview.superview;
+        int ID = [tempAnnotationView.annotation.title intValue];
         MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        [manager fetchPointCommentWithPointID:6
+        [manager fetchPointCommentWithPointID:ID
                                          type:0 succeed:^(MAPCommentModel *resultModel) {
                                              NSLog(@"getComment:%@", resultModel.message);
                                              danamicStateViewController.dynamicStateView.commentModel = resultModel;
@@ -162,16 +165,16 @@
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
-    [_paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
+    [paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"2";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
 
     }];
-    [_paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
+    [paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"3";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
-    [_paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
+    [paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"4";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
@@ -265,6 +268,15 @@
             if (annotationView == nil)
             {
                 annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+//                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];;
+//                //定义paopaoView
+//                pView.frame = _paopaoView.frame;
+//                annotationView.paopaoView = pView;
+//                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
+//                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
+//                annotationView.paopaoView = _paopaoView;
+                
+                [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
                 annotationView.canShowCallout = NO;
             }
             annotationView.image = [UIImage imageNamed:@"info.png"];
@@ -510,8 +522,9 @@
                                      CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pointModel.data[i] latitude], [pointModel.data[i] longitude]);
                                      BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
                                      annotation.coordinate = coordinate;
-                                     annotation.title = @"";
+                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID]];
                                      [self.homePageView.mapView addAnnotation:annotation];
+                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID] ];
                                      self->annotationMutableArray = [NSMutableArray array];
                                      [self->annotationMutableArray addObject:annotation];
                                      [self.homePageView.mapView showAnnotations:self->annotationMutableArray animated:YES];
