@@ -45,7 +45,7 @@
 
 @implementation MAPHomePageViewController
 
-#pragma MAP -----------------------试图的出现与消失-------------------------
+#pragma MAP -----------------------视图的出现与消失-------------------------
 //视图即将出现，设置地图代理
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -512,8 +512,9 @@
                                      CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([pointModel.data[i] latitude], [pointModel.data[i] longitude]);
                                      BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
                                      annotation.coordinate = coordinate;
-                                     annotation.title = @"";
+                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID]];
                                      [self.homePageView.mapView addAnnotation:annotation];
+                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID] ];
                                      self->annotationMutableArray = [NSMutableArray array];
                                      [self->annotationMutableArray addObject:annotation];
                                      [self.homePageView.mapView showAnnotations:self->annotationMutableArray animated:YES];
