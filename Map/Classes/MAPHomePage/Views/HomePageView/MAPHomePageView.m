@@ -15,23 +15,23 @@
     if (self) {
         self.mapView = [[BMKMapView alloc] init];
         self.addButton = [[UIButton alloc] init];
-        self.recommendButton = [[UIButton alloc] init];
+        self.navigationButton = [[UIButton alloc] init];
         [self addSubview:_mapView];
         [self addSubview:_addButton];
-        [self addSubview:_recommendButton];
+        [self addSubview:_navigationButton];
         
         //设置底部添加按钮
         [self.addButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
         
-        //设置推荐按钮
-        self.recommendButton.layer.masksToBounds = YES;
-        self.recommendButton.layer.cornerRadius = 27.5;
-        [self.recommendButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
-        [self.recommendButton setTitle:@"推荐" forState:UIControlStateNormal];
-        [self.recommendButton setTintColor:[UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f]];
-        self.recommendButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        //设置导航按钮
+        self.navigationButton.layer.masksToBounds = YES;
+        self.navigationButton.layer.cornerRadius = 27.5;
+        [self.navigationButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
+        [self.navigationButton setTitle:@"导航" forState:UIControlStateNormal];
+        [self.navigationButton setTintColor:[UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f]];
+        self.navigationButton.titleLabel.font = [UIFont systemFontOfSize:16];
         
         //设置定位图标，模式，精度圈
         BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc] init];
@@ -60,7 +60,7 @@
     self.addButton.frame = CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50);
     
     //设置推荐按钮
-    self.recommendButton.frame = CGRectMake(self.frame.size.width - 65, 25, 55, 55);
+    self.navigationButton.frame = CGRectMake(self.frame.size.width - 65, 25, 55, 55);
 }
 
 @end
