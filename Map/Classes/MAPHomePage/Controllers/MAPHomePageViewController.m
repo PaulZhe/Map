@@ -17,8 +17,7 @@
 #import "MAPAnnotationView.h"
 #import "MAPIssueView.h"
 #import "MAPAddDynamicStateViewController.h"
-#import "MAPRecommendView.h"
-#import "MAPRecommendViewController.h"
+#import "MAPNavigationViewController.h"
 #import "MAPPaopaoView.h"
 #import "MAPLoginManager.h"
 #import "MAPAddPointManager.h"
@@ -81,7 +80,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
     [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_homePageView.recommendButton addTarget:self action:@selector(recommendButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_homePageView.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
     
     _addAudioView = [[UIView alloc] init];
@@ -477,38 +476,12 @@
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 
-#pragma MAP -----------------------推荐按钮点击事件-------------------------
-- (void)recommendButtonClicked:(UIButton *)button {
-    MAPRecommendView *recommendView = [[MAPRecommendView alloc] init];
-    recommendView.tag = 204;
-    [_homePageView addSubview:recommendView];
-    [recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_homePageView.mas_top).mas_offset(0);
-        make.left.mas_equalTo(self->_homePageView.mas_left).mas_offset(0);
-        make.right.mas_equalTo(self->_homePageView.mas_right).mas_offset(0);
-        make.bottom.mas_equalTo(self->_homePageView.mas_bottom).mas_offset(0);
-    }];
-    
-    MAPRecommendViewController *recommendViewController = [[MAPRecommendViewController alloc] init];
-    recommendView.btnAction = ^(NSInteger tag) {
-        if (tag == 101) {
-            [self.navigationController pushViewController:recommendViewController animated:YES];
-        } else if (tag == 102) {
-            [self.navigationController pushViewController:recommendViewController animated:YES];
-        } else if (tag == 103) {
-            [self.navigationController pushViewController:recommendViewController animated:YES];
-        } else if (tag == 104) {
-            for(id tmpView in [self->_homePageView subviews]) {
-                //找到要删除的子视图的对象
-                if([tmpView isKindOfClass:[UIView class]]){
-                    UIView *view = (UIView *)tmpView;
-                    if(view.tag == 204) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203 recommendView.tag == 204
-                        [view removeFromSuperview];
-                    }
-                }
-            }
-        }
-    };
+#pragma MAP -----------------------导航按钮点击事件-------------------------
+- (void)navigationButtonClicked:(UIButton *)button {
+    MAPNavigationViewController *navigationViewController = [[MAPNavigationViewController alloc] init];
+    navigationViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+    navigationViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+    [self.navigationController pushViewController:navigationViewController animated:YES];
 }
 
 #pragma MAP -----------------------获取定位周围点-------------------------
