@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "MAPLocationTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

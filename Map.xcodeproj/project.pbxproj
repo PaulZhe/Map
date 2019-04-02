@@ -55,6 +55,7 @@
 		4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7A21F9AF0800DCF62A /* upPicture7.png */; };
 		4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C5E7B21F9AF0800DCF62A /* upPicture3.png */; };
 		4F4DF5812212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DF5802212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m */; };
+		4F5A690C22537B2700F7BE2E /* MAPLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A690B22537B2700F7BE2E /* MAPLocationTableViewCell.m */; };
 		4FDD95702211CFE30047A9BC /* MAPMotiveReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */; };
 		D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F78221D423D0098483A /* MAPLoginManager.m */; };
 		D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */; };
@@ -174,6 +175,8 @@
 		4F2C5E7B21F9AF0800DCF62A /* upPicture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upPicture3.png; sourceTree = "<group>"; };
 		4F4DF57F2212BF8900A5E153 /* MAPAddDynamicStateJSONModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateJSONModel.h; sourceTree = "<group>"; };
 		4F4DF5802212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateJSONModel.m; sourceTree = "<group>"; };
+		4F5A690A22537B2700F7BE2E /* MAPLocationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPLocationTableViewCell.h; sourceTree = "<group>"; };
+		4F5A690B22537B2700F7BE2E /* MAPLocationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPLocationTableViewCell.m; sourceTree = "<group>"; };
 		4FDD956E2211CFE30047A9BC /* MAPMotiveReplyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveReplyView.h; sourceTree = "<group>"; };
 		4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveReplyView.m; sourceTree = "<group>"; };
 		7547F341E163CF40B251C20D /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -530,6 +533,8 @@
 			children = (
 				4F099DDF2252497700CA2C2F /* MAPNavigationView.h */,
 				4F099DE02252497700CA2C2F /* MAPNavigationView.m */,
+				4F5A690A22537B2700F7BE2E /* MAPLocationTableViewCell.h */,
+				4F5A690B22537B2700F7BE2E /* MAPLocationTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				4F0A5CF82233F4BC00C010C4 /* MAPScrollerViewShowPhotoViewController.m in Sources */,
 				D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */,
 				4F099DDE2252485100CA2C2F /* MAPNavigationViewController.m in Sources */,
+				4F5A690C22537B2700F7BE2E /* MAPLocationTableViewCell.m in Sources */,
 				4F07E552222EB1A800F00EDD /* MAPPhotoSelectViewController.m in Sources */,
 				4F08DD7E220C2D1B00BCF161 /* MAPAddVedioView.m in Sources */,
 			);
