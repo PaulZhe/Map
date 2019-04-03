@@ -17,8 +17,10 @@
         _locationTextField = [[UITextField alloc] init];
         _locationTextField.backgroundColor = [UIColor colorWithRed:0.99f green:0.90f blue:0.89f alpha:1.00f];
         _locationTextField.borderStyle = UITextBorderStyleNone;
+        _locationTextField.font = [UIFont systemFontOfSize:15];
+        _locationTextField.delegate = self;
         //设置左边空格量
-        UILabel *leftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 50)];
+        UILabel *leftView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 10)];
         leftView.backgroundColor = [UIColor clearColor];
         _locationTextField.leftView = leftView;
         _locationTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -29,7 +31,7 @@
             make.top.mas_equalTo(self.mas_top);
             make.left.mas_equalTo(self.mas_left);
             make.right.mas_equalTo(self.mas_right);
-            make.bottom.mas_equalTo(self.mas_bottom);
+            make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
         }];
     }
     return self;

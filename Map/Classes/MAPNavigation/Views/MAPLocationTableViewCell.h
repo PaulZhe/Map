@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPLocationTableViewCell : UITableViewCell
+@interface MAPLocationTableViewCell : UITableViewCell <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *locationTextField;
 @end
 
