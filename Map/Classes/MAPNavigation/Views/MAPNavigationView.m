@@ -25,6 +25,9 @@
         _loactionTableView = [[UITableView alloc] init];
         _loactionTableView.dataSource = self;
         _loactionTableView.delegate = self;
+        _loactionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _loactionTableView.showsVerticalScrollIndicator = NO;
+        _loactionTableView.showsHorizontalScrollIndicator = NO;
         [_loactionTableView registerClass:[MAPLocationTableViewCell class] forCellReuseIdentifier:@"location"];
         [_navigationView addSubview:_loactionTableView];
         
@@ -81,7 +84,7 @@
     MAPLocationTableViewCell *cell = [_loactionTableView dequeueReusableCellWithIdentifier:@"location" forIndexPath:indexPath];
     if (cell) {
         NSArray *array = [NSArray arrayWithObjects:@"起点", @"终点", @"1", nil];
-        cell.locationTextField.text = array[indexPath.row];
+        cell.locationTextField.placeholder = array[indexPath.row];
     }
     return cell;
 }
