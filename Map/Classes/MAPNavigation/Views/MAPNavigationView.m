@@ -85,6 +85,7 @@
     if (cell) {
         NSArray *array = [NSArray arrayWithObjects:@"起点", @"终点", @"1", nil];
         cell.locationTextField.placeholder = array[indexPath.row];
+        [cell.locationTextField setValue:[UIColor redColor] forKeyPath:@"_placeholderLabel.textColor"];
     }
     return cell;
 }
