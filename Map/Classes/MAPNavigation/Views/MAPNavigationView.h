@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPNavigationView : UIView <UITableViewDelegate, UITableViewDataSource>
+@interface MAPNavigationView : UIView <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
 @property (nonatomic, strong) UIView *navigationView;//导航界面
 @property (nonatomic, strong) UITableView *loactionTableView;//多个地点
