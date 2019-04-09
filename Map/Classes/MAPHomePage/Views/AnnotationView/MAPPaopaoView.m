@@ -11,7 +11,7 @@
 
 @implementation MAPPaopaoView
 
-- (instancetype) initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
@@ -20,7 +20,7 @@
     return self;
 }
 
-- (void) initPaopaoView {
+- (void)initPaopaoView {
     _commentButton = [[MAPPaopaoButton alloc] init];
     _commentButton.countLabel.text = @"2";
     [_commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
@@ -65,6 +65,5 @@
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
 }
-
 
 @end
