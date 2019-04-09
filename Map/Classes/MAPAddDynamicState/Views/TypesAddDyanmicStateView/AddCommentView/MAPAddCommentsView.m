@@ -11,7 +11,7 @@
 
 @implementation MAPAddCommentsView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _addCommentTextView = [[UITextView alloc] init];
