@@ -52,8 +52,6 @@
     _homePageView.mapView.delegate = self;
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
-    
-    //
 }
 //视图即将消失，设置地图代理为nil
 - (void)viewWillDisappear:(BOOL)animated {
@@ -68,7 +66,7 @@
     //初始化地图
     [self createChileView];
     //初始化坐标
-    [self createLocation];
+//    [self createLocation];
     //添加泡泡点击事件
 //    [self paopaoViewButtonAddTarget];
     //删除view
@@ -79,6 +77,7 @@
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
+    _homePageView.mapView.showsUserLocation = YES;
     [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_homePageView.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
@@ -106,35 +105,35 @@
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
-- (void)createLocation {
-    //初始化实例
-    _locationManager = [[BMKLocationManager alloc] init];
-    //设置delegate
-    _locationManager.delegate = self;
-    //设置返回位置的坐标系类型
-    _locationManager.coordinateType = BMKLocationCoordinateTypeGCJ02;
-    //设置距离过滤参数
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    //设置预期精度参数
-    //由于苹果系统的首次定位结果为粗定位，其可能无法满足需要高精度定位的场景。
-    //所以，百度提供了 kCLLocationAccuracyBest 参数，设置该参数可以获取到精度在10m左右的定位结果，但是相应的需要付出比较长的时间（10s左右），越高的精度需要持续定位时间越长。
-    //推荐使用kCLLocationAccuracyHundredMeters，一次还不错的定位，偏差在百米左右，超时时间设置在2s-3s左右即可。
-    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    //设置应用位置类型
-    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
-    //设置是否自动停止位置更新
-    _locationManager.pausesLocationUpdatesAutomatically = NO;
-    //设置是否允许后台定位
-//    _locationManager.allowsBackgroundLocationUpdates = YES;
-    //设置位置获取超时时间
-    _locationManager.locationTimeout = 20;
-    //设置获取地址信息超时时间
-    _locationManager.reGeocodeTimeout = 20;
-    //如果需要持续定位返回地址信息（需要联网)
-    [self.locationManager setLocatingWithReGeocode:YES];
-    //开启持续定位
-    [self.locationManager startUpdatingLocation];
-}
+//- (void)createLocation {
+//    //初始化实例
+//    _locationManager = [[BMKLocationManager alloc] init];
+//    //设置delegate
+//    _locationManager.delegate = self;
+//    //设置返回位置的坐标系类型
+//    _locationManager.coordinateType = BMKLocationCoordinateTypeGCJ02;
+//    //设置距离过滤参数
+//    _locationManager.distanceFilter = kCLDistanceFilterNone;
+//    //设置预期精度参数
+//    //由于苹果系统的首次定位结果为粗定位，其可能无法满足需要高精度定位的场景。
+//    //所以，百度提供了 kCLLocationAccuracyBest 参数，设置该参数可以获取到精度在10m左右的定位结果，但是相应的需要付出比较长的时间（10s左右），越高的精度需要持续定位时间越长。
+//    //推荐使用kCLLocationAccuracyHundredMeters，一次还不错的定位，偏差在百米左右，超时时间设置在2s-3s左右即可。
+//    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//    //设置应用位置类型
+//    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+//    //设置是否自动停止位置更新
+//    _locationManager.pausesLocationUpdatesAutomatically = NO;
+//    //设置是否允许后台定位
+////    _locationManager.allowsBackgroundLocationUpdates = YES;
+//    //设置位置获取超时时间
+//    _locationManager.locationTimeout = 20;
+//    //设置获取地址信息超时时间
+//    _locationManager.reGeocodeTimeout = 20;
+//    //如果需要持续定位返回地址信息（需要联网)
+//    [self.locationManager setLocatingWithReGeocode:YES];
+//    //开启持续定位
+//    [self.locationManager startUpdatingLocation];
+//}
 
 //测试泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
@@ -223,8 +222,8 @@
         if (location.rgcData) {
             NSLog(@"rgc = %@",[location.rgcData description]);
         }
-        //给所得到的位置，添加点
-        [self addAnnotation:location];
+//        //给所得到的位置，添加点
+//        [self addAnnotation:location];
     }
     if (!self.userLocation) {
         self.userLocation = [[BMKUserLocation alloc] init];
@@ -251,17 +250,17 @@
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
-        if (_userLocation == nil) {
-            static NSString *userReuseIndetifier = @"userAnnotationReuseIndetifier";
-            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:userReuseIndetifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userReuseIndetifier];
-                annotationView.canShowCallout = NO;
-            }
-            annotationView.image = [UIImage imageNamed:@"local.png"];
-            return annotationView;
-        } else {
+//        if (_userLocation == nil) {
+//            static NSString *userReuseIndetifier = @"userAnnotationReuseIndetifier";
+//            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:userReuseIndetifier];
+//            if (annotationView == nil)
+//            {
+//                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userReuseIndetifier];
+//                annotationView.canShowCallout = NO;
+//            }
+//            annotationView.image = [UIImage imageNamed:@"local.png"];
+//            return annotationView;
+//        } else {
             static NSString *reuseIndetifier = @"annotationReuseIndetifier";
             BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
             if (annotationView == nil)
@@ -280,7 +279,7 @@
             }
             annotationView.image = [UIImage imageNamed:@"info.png"];
             return annotationView;
-        }
+//        }
     }
     return nil;
 }

@@ -67,7 +67,7 @@
 }
 
 //返回每个cell大小
-- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 111)/3, ([UIScreen mainScreen].bounds.size.width - 111)/3);
 }
 
