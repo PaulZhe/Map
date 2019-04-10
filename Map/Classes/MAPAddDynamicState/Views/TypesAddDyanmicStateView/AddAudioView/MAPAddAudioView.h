@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ButtonClick)(UIButton *sender);
+
 @interface MAPAddAudioView : UIView
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *audioButton;
+@property (nonatomic, copy) ButtonClick audioButtonAction;
 
 @end

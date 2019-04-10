@@ -26,10 +26,11 @@
         _timeLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:_timeLabel];
         
-        UIButton *audioButton = [[UIButton alloc] init];
-        audioButton.tag = 102;
-        [audioButton setImage:[UIImage imageNamed:@"souRed"] forState:UIControlStateNormal];
-        [self addSubview:audioButton];
+        _audioButton = [[UIButton alloc] init];
+        _audioButton.tag = 102;
+        [_audioButton setImage:[UIImage imageNamed:@"souRed"] forState:UIControlStateNormal];
+        [self addSubview:_audioButton];
+        [_audioButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return self;
@@ -54,6 +55,12 @@
         make.top.mas_equalTo(self->_timeLabel.mas_bottom).mas_equalTo(25);
         make.size.mas_equalTo(CGSizeMake(140, 140));
     }];
+}
+
+- (void)buttonClick:(UIButton *)button {
+    if (_audioButtonAction) {
+        self.audioButtonAction(button);
+    }
 }
 
 @end

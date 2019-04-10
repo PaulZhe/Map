@@ -22,6 +22,7 @@
 #import "MAPLoginManager.h"
 #import "MAPAddPointManager.h"
 #import "MAPGetPointManager.h"
+#import "MAPAddAudioView.h"
 
 @interface MAPHomePageViewController ()<UIGestureRecognizerDelegate, BMKMapViewDelegate, BMKLocationManagerDelegate> {
     NSMutableArray *annotationMutableArray;
@@ -37,8 +38,6 @@
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
 @property (nonatomic, strong) MAPHomePageViewController *homePageViewController;
-
-@property (nonatomic, strong) UIView *addAudioView;
 
 @end
 
@@ -81,8 +80,6 @@
     [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_homePageView.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
-    
-    _addAudioView = [[UIView alloc] init];
     
 //    //loginManager测试
 //    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
@@ -423,48 +420,24 @@
         }
     }
     
-    _addAudioView.backgroundColor = [UIColor whiteColor];
-    _addAudioView.tag = 203;
-    [_homePageView addSubview:_addAudioView];
-    [_addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
+    MAPAddAudioView *addAudioView = [[MAPAddAudioView alloc] init];
+    addAudioView.backgroundColor = [UIColor whiteColor];
+    addAudioView.audioButtonAction = ^(UIButton *sender) {
+        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
+        self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+        self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+        [self HiddenAddDynamicStateView];
+        [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+    };
+    addAudioView.tag = 203;
+    [_homePageView addSubview:addAudioView];
+    [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(self.homePageView);
         make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
         make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
-        make.height.mas_equalTo(self.addAudioView.mas_width).multipliedBy(1.2);
+        make.height.mas_equalTo(addAudioView.mas_width).multipliedBy(1.2);
     }];
-    
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"长按录制语音";
-    nameLabel.textAlignment = NSTextAlignmentCenter;
-    nameLabel.font = [UIFont systemFontOfSize:22];
-    [_addAudioView addSubview:nameLabel];
-    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
-        make.top.mas_equalTo(self->_addAudioView.mas_top).mas_equalTo(50);
-        make.size.mas_equalTo(CGSizeMake(140, 40));
-    }];
-    
-    UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.text = @"00:12";
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    timeLabel.font = [UIFont systemFontOfSize:20];
-    [_addAudioView addSubview:timeLabel];
-    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
-        make.top.mas_equalTo(nameLabel.mas_bottom).mas_equalTo(25);
-        make.size.mas_equalTo(CGSizeMake(100, 30));
-    }];
-    
-    UIButton *audioButton = [[UIButton alloc] init];
-    audioButton.tag = 102;
-    [_addAudioView addSubview:audioButton];
-    [audioButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self->_addAudioView.mas_centerX);
-        make.top.mas_equalTo(timeLabel.mas_bottom).mas_equalTo(25);
-        make.size.mas_equalTo(CGSizeMake(140, 140));
-    }];
-    [audioButton setImage:[UIImage imageNamed:@"souRed"] forState:UIControlStateNormal];
-    [audioButton addTarget:self action:@selector(ClikedButton:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 //button点击事件
 - (void)ClikedButton:(UIButton *) button {
