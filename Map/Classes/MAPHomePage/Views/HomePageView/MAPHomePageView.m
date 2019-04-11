@@ -36,8 +36,8 @@
         //设置定位图标，模式，精度圈
         BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc] init];
         //定位图标样式
-        displayParam.locationViewImgName = @"local.png";;
-//        displayParam.locationViewImage = [UIImage imageNamed:@"local.phg"];
+        displayParam.locationViewImgName = @"local";
+        displayParam.locationViewImage = [UIImage imageNamed:@"local"];
         //精度圈不显示
         displayParam.isAccuracyCircleShow = YES;
         //显示我的位置，我的位置图标会旋转，地图不会旋转
