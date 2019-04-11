@@ -48,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_homePageView.mapView viewWillAppear];
-    _homePageView.mapView.delegate = self;
+//    _homePageView.mapView.delegate = self;
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -56,7 +56,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_homePageView.mapView viewWillDisappear];
-    _homePageView.mapView.delegate = nil;
+//    _homePageView.mapView.delegate = nil;
     [_locationManager stopUpdatingLocation];
 }
 
@@ -76,7 +76,9 @@
 - (void)createChileView {
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
+    _homePageView.mapView.delegate = self;
     _homePageView.mapView.showsUserLocation = YES;
+    [self.locationManager startUpdatingLocation];
     [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_homePageView.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_homePageView];
@@ -101,6 +103,60 @@
 //    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
 }
 
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    NSLog(@"定位失败");
+}
+- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
+    if (error) {
+        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+    }
+    if (!location) {
+        return;
+    }
+    
+    self.userLocation.location = location.location;
+    //实现该方法，否则定位图标不出现
+    [_homePageView.mapView updateLocationData:self.userLocation];
+    //获取定位坐标周围点
+    self->_homePageView.mapView.centerCoordinate = self->_userLocation.location.coordinate;
+}
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeGCJ02;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = NO;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+
+- (BMKUserLocation *)userLocation {
+    if (!_userLocation) {
+        //初始化BMKUserLocation类的实例
+        _userLocation = [[BMKUserLocation alloc] init];
+    }
+    return _userLocation;
+}
 #pragma MAP -------------------------初始化位置-------------------------
 //- (void)createLocation {
 //    //初始化实例
@@ -208,90 +264,90 @@
 
 
 #pragma MAP ----------------------定位中位置变更的回调--------------------
-- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
-    if (error) {
-        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-    }
-    if (location) {//得到定位信息，添加annotation
-        if (location.location) {
-            NSLog(@"LOC = %@",location.location);
-        }
-        if (location.rgcData) {
-            NSLog(@"rgc = %@",[location.rgcData description]);
-        }
-//        //给所得到的位置，添加点
-//        [self addAnnotation:location];
-    }
-    if (!self.userLocation) {
-        self.userLocation = [[BMKUserLocation alloc] init];
-    }
-    self.userLocation.location = location.location;
-    [self.homePageView.mapView updateLocationData:_userLocation];
-    
-    //获取定位坐标周围点
-    [self getLocationAroundPoints];
-}
+//- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
+//    if (error) {
+//        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+//    }
+//    if (location) {//得到定位信息，添加annotation
+//        if (location.location) {
+//            NSLog(@"LOC = %@",location.location);
+//        }
+//        if (location.rgcData) {
+//            NSLog(@"rgc = %@",[location.rgcData description]);
+//        }
+////        //给所得到的位置，添加点
+////        [self addAnnotation:location];
+//    }
+//    if (!self.userLocation) {
+//        self.userLocation = [[BMKUserLocation alloc] init];
+//    }
+//    self.userLocation.location = location.location;
+//    [self.homePageView.mapView updateLocationData:_userLocation];
+//
+////    //获取定位坐标周围点
+////    [self getLocationAroundPoints];
+//}
 
 #pragma MAP --------------------------添加点---------------------------
-- (void)addAnnotation:(BMKLocation *) location {
-    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
-    annotation.coordinate = location.location.coordinate;
-    annotation.title = @"";
-    [self.homePageView.mapView addAnnotation:annotation];
-    annotationMutableArray = [NSMutableArray array];
-    [annotationMutableArray addObject:annotation];
-    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
-}
+//- (void)addAnnotation:(BMKLocation *) location {
+//    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
+//    annotation.coordinate = location.location.coordinate;
+//    annotation.title = @"";
+//    [self.homePageView.mapView addAnnotation:annotation];
+//    annotationMutableArray = [NSMutableArray array];
+//    [annotationMutableArray addObject:annotation];
+//    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
+//}
 
 #pragma MAP -------------------------自定义样式点标记--------------------------
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
-    {
-//        if (_userLocation == nil) {
-//            static NSString *userReuseIndetifier = @"userAnnotationReuseIndetifier";
-//            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:userReuseIndetifier];
+//- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
+//    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+//    {
+////        if (_userLocation == nil) {
+////            static NSString *userReuseIndetifier = @"userAnnotationReuseIndetifier";
+////            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:userReuseIndetifier];
+////            if (annotationView == nil)
+////            {
+////                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userReuseIndetifier];
+////                annotationView.canShowCallout = NO;
+////            }
+////            annotationView.image = [UIImage imageNamed:@"local.png"];
+////            return annotationView;
+////        } else {
+//            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+//            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
 //            if (annotationView == nil)
 //            {
-//                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:userReuseIndetifier];
+//                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+////                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
+////                //定义paopaoView
+////                pView.frame = _paopaoView.frame;
+////                annotationView.paopaoView = pView;
+////                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
+////                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
+////                annotationView.paopaoView = _paopaoView;
+//
+//                [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
 //                annotationView.canShowCallout = NO;
 //            }
-//            annotationView.image = [UIImage imageNamed:@"local.png"];
+//            annotationView.image = [UIImage imageNamed:@"info.png"];
 //            return annotationView;
-//        } else {
-            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-            BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-//                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
-//                //定义paopaoView
-//                pView.frame = _paopaoView.frame;
-//                annotationView.paopaoView = pView;
-//                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
-//                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
-//                annotationView.paopaoView = _paopaoView;
-                
-                [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
-                annotationView.canShowCallout = NO;
-            }
-            annotationView.image = [UIImage imageNamed:@"info.png"];
-            return annotationView;
-//        }
-    }
-    return nil;
-}
-
-- (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
-{
-    NSLog(@"%@；；；；；；；；；", views);
-}
-
-//气泡的点击事件
-- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
-    [view setSelected:!selected animated:YES];
-    selected = !selected;
-    view.selected = NO;
-}
+////        }
+//    }
+//    return nil;
+//}
+//
+//- (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+//{
+//    NSLog(@"%@；；；；；；；；；", views);
+//}
+//
+////气泡的点击事件
+//- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
+//    [view setSelected:!selected animated:YES];
+//    selected = !selected;
+//    view.selected = NO;
+//}
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
 - (void)addButtonClicked:(UIButton *) button {

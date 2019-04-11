@@ -4,7 +4,7 @@
 
 --------------------------------------------------------------------------------------
 
-iOS 地图 SDK v4.2.0是适用于iOS系统移动设备的矢量地图开发包
+iOS 地图 SDK v4.3.0是适用于iOS系统移动设备的矢量地图开发包
 
 --------------------------------------------------------------------------------------
 
@@ -45,36 +45,29 @@ LBS云检索：支持查询存储在LBS云内的自有数据；
  pod setup //更新CocoPods的本地库
  pod search BaiduMapKit  //查看最新地图SDK
  
+ 
+ 
 
-V4.2.0版本：
+v4.3.0版本：
 
 【新 增】
-
-1.新增步骑行组件BaiduMapAPI_WalkNavi，WalkNavi组件需要和Base组件，MapForWalkNavi组件，Search组件，Location组件，Utils组件配合使用。其中需要注意的是，如果使用步骑行WalkNavi组件，则相应的地图功能需要使用MapForWalkNavi组件，而不是Map组件。
-
-2.POI检索（城市检索，周边检索）新增加父子节点功能 。当scope=2时，Poi的详细信息字段（BMKPOIDetailInfo）下新增children <BMKPOIDetailChildrenInfo>字段
-
-3.Sug检索 新增加父子节点功能（该功能需要权限）。当scope=2时，Suggestion检索结果（BMKSuggestionInfo）下新增children <BMKSuggestionChildrenInfo>字段
-
-4.GC检索的返回结果BMKGeoCodeSearchResult中，新增precise, confidence, level等字段。
-
-5.RGC检索的返回结果BMKReverseGeoCodeSearchResult中，新增poiRegions字段
-
+1.全面升级地图SDK Demo，采用全新UI设计，更严谨的代码风格，更丰富的演示样例。
+2.全面升级短串分享、行政区域检索、公交信息检索、室内路线检索、公交路线检索、跨城公交路线检索、驾乘路线检索、步行路线检索、骑行路线检索服务，单CPU架构（以ARM64为例）Search组件对集成App的体积贡献减少30%。
+3.新增paopaoView和annotationView添加事件和按钮的能力。
+4.支持arm64e CPU架构。
 【优 化】
-
-1.不再区分普通版和Bitcode版，只发布支持Bitcode的版本，如果不需要Bitcode功能，可以自行剥离。以Base组件为例：
-xcrun bitcode_strip -r BaiduMapAPI_Base -o BaiduMapAPI_Base
-
-2.考虑到armv7兼容armv7s，因此不再提供armv7s的CPU架构。
-
-3.Map组件的体积缩减了13%。
-
-4.优化了地图引擎的内存管理
-
-5.不再提供Radar周边雷达组件
-
-6.不再提供Location定位组件，开发者可以使用定位SDK实现定位功能。
-
+1.升级优化地图手势，提高手势识别精准度，提升地图操作体验。
+2.优化标注（BMKAnnotationView）使用体验，贴近开发者使用方式。
 【修 复】
-
-1.若干bug修复
+1.修复annotationView在地图以外的范围显示的问题。
+2.修复罗盘模式下，罗盘旋转异常的问题。
+3.修复瓦片图不使用缓存数据的问题。
+4.修复BMKAnnotationView的属性draggable为NO时，长按泡泡可以发生拖拽行为的问题。
+5.修复BMKMapView手势开关gestureEnable为NO时，ChangeCenterWithDoubleTouchPointEnabled为YES时，仍然可以旋转地图的问题。
+6.修复地图放在UIScrollView中无法响应手势的问题。
+7.修复多地图及其偶尔出现的纹理错乱的问题。
+8.修改地图BMKMapView中属性buildingsEnabled默认为NO的问题，应该是为YES，以及buildingsEnable后需要拖动一下地图才会更新效果。
+9.修复点击地图，region没有发生变化，但是触发regionDidChange的问题。
+10.修复isUserLocationVisible属性失效。
+11.修复单页面多地图场景下的内存泄漏问题。
+12.修复其他小bugs若干。
