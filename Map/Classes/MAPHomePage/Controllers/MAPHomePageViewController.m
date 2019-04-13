@@ -488,8 +488,8 @@
                                      self->annotationMutableArray = [NSMutableArray array];
                                      [self->annotationMutableArray addObject:annotation];
                                      [self.homePageView.mapView showAnnotations:self->annotationMutableArray animated:YES];
-//                                     // 移动到中心点
-//                                     self->_homePageView.mapView.centerCoordinate = self->_userLocation.location.coordinate;
+                                     // 移动到中心点
+                                     self->_homePageView.mapView.centerCoordinate = self->_userLocation.location.coordinate;
                                  }
                              }
                                error:^(NSError *error) {
