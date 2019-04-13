@@ -14,7 +14,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
-#import "MAPAnnotationView.h"
+//#import "MAPAnnotationView.h"
 #import "MAPIssueView.h"
 #import "MAPAddDynamicStateViewController.h"
 #import "MAPNavigationViewController.h"
@@ -252,46 +252,47 @@
 
 #pragma MAP -------------------------自定义样式点标记--------------------------
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-    //                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
-    //                //定义paopaoView
-    //                pView.frame = _paopaoView.frame;
-    //                annotationView.paopaoView = pView;
-    //                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
-    //                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
-    //                annotationView.paopaoView = _paopaoView;
-
-//            [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
-            annotationView.canShowCallout = NO;
-        }
-        annotationView.image = [UIImage imageNamed:@"info.png"];
-        return annotationView;
-//        if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+//    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+//        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+//        BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+//        if (annotationView == nil)
 //        {
-//            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-//            BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-//            if (annotationView == nil)
-//            {
-//                annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
-//                                                               reuseIdentifier:reuseIndetifier];
-//            }
+//            annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+//    //                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
+//    //                //定义paopaoView
+//    //                pView.frame = _paopaoView.frame;
+//    //                annotationView.paopaoView = pView;
+//    //                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
+//    //                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
+//    //                annotationView.paopaoView = _paopaoView;
 //
-//            annotationView.image = [UIImage imageNamed:@"poi.png"];
-//
-//            annotationView.canShowCallout = YES;
-//            MAPPaopaoView *paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
-//
-//            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:paopaoView];
-//            pView.backgroundColor = [UIColor lightGrayColor];
-//            pView.frame = paopaoView.frame;
-//            annotationView.paopaoView = pView;
-//            return annotationView;
+////            [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
+//            annotationView.canShowCallout = NO;
 //        }
+//        annotationView.image = [UIImage imageNamed:@"info.png"];
+//        return annotationView;
+//    }
+        if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+        {
+            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+            BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+            if (annotationView == nil)
+            {
+                annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
+                                                               reuseIdentifier:reuseIndetifier];
+            }
+
+            annotationView.image = [UIImage imageNamed:@"info.png"];
+
+            annotationView.canShowCallout = YES;
+            _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
+//            _paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
+
+            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
+            pView.backgroundColor = [UIColor clearColor];
+            pView.frame = _paopaoView.frame;
+            annotationView.paopaoView = pView;
+            return annotationView;
     }
     return nil;
 }
@@ -302,7 +303,7 @@
 }
 
 //气泡的点击事件
-- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(MAPAnnotationView *)view {
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
     [view setSelected:!selected animated:YES];
     selected = !selected;
     view.selected = NO;
