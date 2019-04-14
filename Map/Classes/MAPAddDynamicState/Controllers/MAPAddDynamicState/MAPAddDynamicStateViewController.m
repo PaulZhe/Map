@@ -20,7 +20,7 @@
 
 @implementation MAPAddDynamicStateViewController
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
@@ -50,48 +50,47 @@
         //地点微调点击事件;
         [weakSelf adjustmentLocationAction];
     }];
-
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_addDynamicStateView.mapView viewWillDisappear];
     _addDynamicStateView.mapView.delegate = nil;
 }
 
 //显示定位点
-- (void) viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-    if (!annotation) {
-        [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
-        annotation.title = @"";
-        [_addDynamicStateView.mapView addAnnotation:annotation];
-        annotationMutableArray = [NSMutableArray array];
-        [annotationMutableArray addObject:annotation];
-        [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
-    }
+    [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
+    NSLog(@"location = %@", annotation);
+    annotation.title = @"";
+    [_addDynamicStateView.mapView addAnnotation:annotation];
+    annotationMutableArray = [NSMutableArray array];
+    [annotationMutableArray addObject:annotation];
+    [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
+
     //测试上传图片
 //    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
 //    [self postImageCommentWithArray:imageArray andTitle:@"Test"];
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
-
 }
 
 //添加自定义点
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        BMKAnnotationView *annotationView = (BMKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
+                                                           reuseIdentifier:reuseIndetifier];
         }
         annotationView.image = [UIImage imageNamed:@"local"];
         return annotationView;
@@ -100,12 +99,12 @@
 }
 
 //导航栏返回按钮点击事件
-- (void) BackToHomePage:(UIButton *) button {
+- (void)BackToHomePage:(UIButton *) button {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 //地点微调点击事件;
-- (void) adjustmentLocationAction {
+- (void)adjustmentLocationAction {
     NSLog(@"点击了");
 }
 

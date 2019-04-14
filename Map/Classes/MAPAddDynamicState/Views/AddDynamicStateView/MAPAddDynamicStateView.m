@@ -24,7 +24,8 @@
     self = [super init];
     if (self) {
         _mapView = [[BMKMapView alloc] init];
-        [_mapView setZoomLevel:21];
+        //将当前地图显示缩放等级设置为21级
+        [self.mapView setZoomLevel:21];
         [self addSubview:_mapView];
         
         _addDynamicStateView = [[UIView alloc] init];
