@@ -66,8 +66,6 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
-    //添加泡泡点击事件
-//    [self paopaoViewButtonAddTarget];
     //删除view
     [self clearAwaySomeViews];
 }
@@ -133,49 +131,6 @@
     //开启持续定位
     [self.locationManager startUpdatingLocation];
 }
-
-//测试泡泡内按钮点击事件
-//- (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
-//    __weak typeof(self) weakSelf = self;
-//    if (!paopaoView) {
-//        paopaoView = [MAPPaopaoView new];
-//    }
-//    
-//    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
-//    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    
-//    [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
-//        ///添加评论
-////        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
-//        ///获取评论
-//        MAPAnnotationView *tempAnnotationView = (MAPAnnotationView *)sender.superview.superview;
-//        int ID = [tempAnnotationView.annotation.title intValue];
-//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//        [manager fetchPointCommentWithPointID:ID
-//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-//                                             NSLog(@"getComment:%@", resultModel.message);
-//                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
-//                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-//                                         } error:^(NSError *error) {
-//                                             NSLog(@"%@", error);
-//                                         }];
-//        danamicStateViewController.typeMotiveString = @"1";
-//        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-//    }];
-//    [paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
-//        danamicStateViewController.typeMotiveString = @"2";
-//        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-//
-//    }];
-//    [paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
-//        danamicStateViewController.typeMotiveString = @"3";
-//        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-//    }];
-//    [paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
-//        danamicStateViewController.typeMotiveString = @"4";
-//        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-//    }];
-//}
 
 #pragma MAP -------------------------清除多余view-------------------------
 - (void) clearAwaySomeViews {
@@ -272,27 +227,29 @@
 //        annotationView.image = [UIImage imageNamed:@"info.png"];
 //        return annotationView;
 //    }
-        if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
         {
-            static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-            BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
-                                                               reuseIdentifier:reuseIndetifier];
-            }
-
-            annotationView.image = [UIImage imageNamed:@"info.png"];
-
-            annotationView.canShowCallout = YES;
-            _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
-//            _paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
-
-            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
-            pView.backgroundColor = [UIColor clearColor];
-            pView.frame = _paopaoView.frame;
-            annotationView.paopaoView = pView;
-            return annotationView;
+            annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
+                                                           reuseIdentifier:reuseIndetifier];
+        }
+        
+        annotationView.image = [UIImage imageNamed:@"info.png"];
+        
+        annotationView.canShowCallout = YES;
+        _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
+        //给paopaoView中button添加点击事件
+        [self paopaoViewButtonAddTarget:_paopaoView];
+        
+        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
+        pView.backgroundColor = [UIColor clearColor];
+        pView.frame = _paopaoView.frame;
+        annotationView.paopaoView = pView;
+        return annotationView;
     }
     return nil;
 }
@@ -307,6 +264,49 @@
     [view setSelected:!selected animated:YES];
     selected = !selected;
     view.selected = NO;
+}
+
+//泡泡内按钮点击事件
+- (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
+    __weak typeof(self) weakSelf = self;
+    if (!paopaoView) {
+        paopaoView = [MAPPaopaoView new];
+    }
+    
+    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
+    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+        ///添加评论
+        //        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        ///获取评论
+        //        MAPAnnotationView *tempAnnotationView = (MAPAnnotationView *)sender.superview.superview;
+        //        int ID = [tempAnnotationView.annotation.title intValue];
+        //        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        //        [manager fetchPointCommentWithPointID:ID
+        //                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+        //                                             NSLog(@"getComment:%@", resultModel.message);
+        //                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
+        //                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+        //                                         } error:^(NSError *error) {
+        //                                             NSLog(@"%@", error);
+        //                                         }];
+        danamicStateViewController.typeMotiveString = @"1";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
+    [paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"2";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+        
+    }];
+    [paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"3";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
+    [paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
+        danamicStateViewController.typeMotiveString = @"4";
+        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+    }];
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
