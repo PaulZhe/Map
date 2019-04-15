@@ -14,7 +14,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
-//#import "MAPAnnotationView.h"
+#import "BMKAnnotationView+MAPAnnotationView.h"
 #import "MAPIssueView.h"
 #import "MAPAddDynamicStateViewController.h"
 #import "MAPNavigationViewController.h"
@@ -23,6 +23,7 @@
 #import "MAPAddPointManager.h"
 #import "MAPGetPointManager.h"
 #import "MAPAddAudioView.h"
+#import "MAPAudioRecordUtils.h"
 
 @interface MAPHomePageViewController ()<UIGestureRecognizerDelegate, BMKMapViewDelegate, BMKLocationManagerDelegate> {
     NSMutableArray *annotationMutableArray;
@@ -34,6 +35,8 @@
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
 @property (nonatomic, strong) MAPAddDynamicStateViewController *addDyanmicStateViewController;//添加动态controller
+
+@property (nonatomic, strong) MAPAudioRecordUtils *audioRecordUtils;
 
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
@@ -261,9 +264,24 @@
 
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
-    [view setSelected:!selected animated:YES];
-    selected = !selected;
-    view.selected = NO;
+//    [view setSelected:!selected animated:YES];
+    if (!view.selected) {
+        view.paopaoView.center = CGPointMake(CGRectGetWidth(_homePageView.bounds) / 2.f + view.calloutOffset.x + 37, -CGRectGetHeight(view.paopaoView.bounds) / 2.f + view.calloutOffset.y + 40);
+        view.selected = YES;
+    } else {
+        [mapView deselectAnnotation:view.annotation animated:NO];
+        
+        view.selected = NO;
+    }
+//    selected = !selected;
+//    view.selected = NO;
+    [mapView deselectAnnotation:view.annotation animated:NO];
+    [view setSelected:NO];
+}
+
+//当取消选中一个annotation views时，调用此接口
+- (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
+    
 }
 
 //泡泡内按钮点击事件
@@ -438,13 +456,25 @@
     
     MAPAddAudioView *addAudioView = [[MAPAddAudioView alloc] init];
     addAudioView.backgroundColor = [UIColor whiteColor];
+    //添加跳转功能的点击事件
     addAudioView.audioButtonAction = ^(UIButton *sender) {
+        //结束录音
+        [self->_audioRecordUtils endClick];
+        
         self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
         self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
         self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
         [self HiddenAddDynamicStateView];
         [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
     };
+    //录音功能
+    addAudioView.audioTouchDownAction = ^(UIButton *sender) {
+        if (!self->_audioRecordUtils) {
+            self.audioRecordUtils = [[MAPAudioRecordUtils alloc] init];
+        }
+        [self->_audioRecordUtils startClick];
+    };
+    
     addAudioView.tag = 203;
     [_homePageView addSubview:addAudioView];
     [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -455,6 +485,9 @@
     }];
 
 }
+
+
+
 //button点击事件
 - (void)ClikedButton:(UIButton *) button {
     self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];

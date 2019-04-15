@@ -85,6 +85,7 @@
 		D638A77A21F1DAF3005DFDFD /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A76321F1DAF3005DFDFD /* 定位.png */; };
 		D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */; };
 		D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */; };
+		D656B5ED22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */; };
 		D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B42225506F00E30917 /* MAPGetPointManager.m */; };
 		D660A4B82225519800E30917 /* MAPGetPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B72225519800E30917 /* MAPGetPointModel.m */; };
 		D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D66CCE0E21E4B45A009ADD17 /* AppDelegate.m */; };
@@ -95,6 +96,7 @@
 		D68297622223D87F00D3F4A8 /* MAPAddPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D68297612223D87F00D3F4A8 /* MAPAddPointManager.m */; };
 		D68297662223DA2A00D3F4A8 /* MAPAddPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D68297652223DA2A00D3F4A8 /* MAPAddPointModel.m */; };
 		D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DAE37F22145832009B1406 /* MAPCommentModel.m */; };
+		D6FA34032264C47F00BF842D /* MAPAudioRecordUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FA34022264C47F00BF842D /* MAPAudioRecordUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,6 +214,8 @@
 		D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageViewController.m; sourceTree = "<group>"; };
 		D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPHomePageView.h; sourceTree = "<group>"; };
 		D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageView.m; sourceTree = "<group>"; };
+		D656B5EB22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMKAnnotationView+MAPAnnotationView.h"; sourceTree = "<group>"; };
+		D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BMKAnnotationView+MAPAnnotationView.m"; sourceTree = "<group>"; };
 		D660A4B32225506F00E30917 /* MAPGetPointManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointManager.h; sourceTree = "<group>"; };
 		D660A4B42225506F00E30917 /* MAPGetPointManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetPointManager.m; sourceTree = "<group>"; };
 		D660A4B62225519800E30917 /* MAPGetPointModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointModel.h; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 		D68297652223DA2A00D3F4A8 /* MAPAddPointModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPointModel.m; sourceTree = "<group>"; };
 		D6DAE37E22145832009B1406 /* MAPCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPCommentModel.h; sourceTree = "<group>"; };
 		D6DAE37F22145832009B1406 /* MAPCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPCommentModel.m; sourceTree = "<group>"; };
+		D6FA34012264C47F00BF842D /* MAPAudioRecordUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAudioRecordUtils.h; sourceTree = "<group>"; };
+		D6FA34022264C47F00BF842D /* MAPAudioRecordUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAudioRecordUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +427,8 @@
 				4F10661721F327970035E47A /* MAPPaopaoView.m */,
 				4F10661921F328A10035E47A /* MAPPaopaoButton.h */,
 				4F10661A21F328A10035E47A /* MAPPaopaoButton.m */,
+				D656B5EB22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.h */,
+				D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */,
 			);
 			path = AnnotationView;
 			sourceTree = "<group>";
@@ -676,6 +684,7 @@
 				4F1013AF21F6EE4600C549A3 /* MAPDynamicState */,
 				4F2C2C182202DF4500CA0ECB /* MAPAddDynamicState */,
 				4F8B6B8A221D211700A6E21A /* MAPNavigation */,
+				D6FA34002264C42200BF842D /* Utils */,
 				4F4DF57D2212BE0C00A5E153 /* Managers */,
 			);
 			path = Classes;
@@ -740,6 +749,15 @@
 				D6DAE37F22145832009B1406 /* MAPCommentModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D6FA34002264C42200BF842D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D6FA34012264C47F00BF842D /* MAPAudioRecordUtils.h */,
+				D6FA34022264C47F00BF842D /* MAPAudioRecordUtils.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -913,6 +931,7 @@
 				4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */,
 				D60CBDE4225CE31A000CBB42 /* MAPAddAudioView.m in Sources */,
 				D66CCE1D21E4B45B009ADD17 /* main.m in Sources */,
+				D6FA34032264C47F00BF842D /* MAPAudioRecordUtils.m in Sources */,
 				D660A4B82225519800E30917 /* MAPGetPointModel.m in Sources */,
 				4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */,
 				D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */,
@@ -923,6 +942,7 @@
 				D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */,
 				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
+				D656B5ED22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m in Sources */,
 				4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */,
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
@@ -1080,7 +1100,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1099,7 +1119,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VBXN755W85;
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
