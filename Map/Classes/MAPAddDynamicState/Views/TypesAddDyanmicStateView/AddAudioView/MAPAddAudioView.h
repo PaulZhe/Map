@@ -16,5 +16,6 @@ typedef void(^ButtonClick)(UIButton *sender);
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *audioButton;
 @property (nonatomic, copy) ButtonClick audioButtonAction;
+@property (nonatomic, copy) ButtonClick audioTouchDownAction;
 
 @end

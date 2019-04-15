@@ -31,6 +31,7 @@
         [_audioButton setImage:[UIImage imageNamed:@"souRed"] forState:UIControlStateNormal];
         [self addSubview:_audioButton];
         [_audioButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_audioButton addTarget:self action:@selector(buttonTouchDown:) forControlEvents:UIControlEventTouchDown];
         
     }
     return self;
@@ -60,6 +61,12 @@
 - (void)buttonClick:(UIButton *)button {
     if (_audioButtonAction) {
         self.audioButtonAction(button);
+    }
+}
+
+- (void)buttonTouchDown:(UIButton *)button {
+    if (_audioTouchDownAction) {
+        self.audioTouchDownAction(button);
     }
 }
 
