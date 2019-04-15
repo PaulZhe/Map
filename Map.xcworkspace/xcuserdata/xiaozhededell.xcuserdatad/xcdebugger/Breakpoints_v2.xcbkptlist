@@ -52,12 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "576599476.844118"
+            timestampString = "577031619.771777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "-BMKLocationManager:didUpdateLocation:orError:"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,74 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "576599476.8445719"
+            timestampString = "577031619.772252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "576599476.844816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "-paopaoViewButtonAddTarget:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__55-[MAPHomePageViewController paopaoViewButtonAddTarget:]_block_invoke.131"
-                  moduleName = "Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaozhededell/Desktop/Map/Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-                  timestampString = "576244422.354779"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "171"
-                  endingLineNumber = "171"
-                  offsetFromSymbolStart = "213">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.134"
-                  moduleName = "Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xiaozhededell/Desktop/Map/Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-                  timestampString = "576244422.360966"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "576599476.8450511"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "-paopaoViewButtonAddTarget:"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "-getLocationAroundPoints"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -162,11 +100,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "576599476.845259"
+            timestampString = "577031619.772516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498">
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-HiddenAddDynamicStateView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "577031619.772839"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "-getLocationAroundPoints"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -198,6 +154,54 @@
             startingLineNumber = "27"
             endingLineNumber = "27"
             landmarkName = "-setSelected:animated:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "577031619.773243"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "-mapView:didSelectAnnotationView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "577031619.773559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "-mapView:didDeselectAnnotationView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
+            timestampString = "577031619.77388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

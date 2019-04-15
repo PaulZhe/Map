@@ -61,7 +61,7 @@
 //显示定位点
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
+    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
     NSLog(@"location = %@", annotation);
     annotation.title = @"";
