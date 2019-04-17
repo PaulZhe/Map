@@ -8,6 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
+		4F03465B22660D57009BDC01 /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F03464D22660D57009BDC01 /* baiduNaviSDK.bundle */; };
+		4F03465C22660D57009BDC01 /* baiduNaviSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F03464E22660D57009BDC01 /* baiduNaviSDK.xcassets */; };
+		4F03465D22660D57009BDC01 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03464F22660D57009BDC01 /* libbaiduNaviSDK.a */; };
+		4F03465E22660D57009BDC01 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465022660D57009BDC01 /* readme.txt */; };
+		4F03465F22660D57009BDC01 /* mode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465222660D57009BDC01 /* mode.bundle */; };
+		4F03466022660D57009BDC01 /* street.sty in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465322660D57009BDC01 /* street.sty */; };
+		4F03466122660D57009BDC01 /* DVStreet.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465422660D57009BDC01 /* DVStreet.cfg */; };
+		4F03466222660D57009BDC01 /* DVHotcity.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465522660D57009BDC01 /* DVHotcity.cfg */; };
+		4F03466322660D57009BDC01 /* DVDirectory.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465622660D57009BDC01 /* DVDirectory.cfg */; };
+		4F03466422660D57009BDC01 /* DVHotMap.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465722660D57009BDC01 /* DVHotMap.cfg */; };
+		4F03466522660D57009BDC01 /* DVSDirectory.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465822660D57009BDC01 /* DVSDirectory.cfg */; };
+		4F03466622660D57009BDC01 /* DVVersion_pkg.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465922660D57009BDC01 /* DVVersion_pkg.cfg */; };
+		4F03466722660D57009BDC01 /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F03465A22660D57009BDC01 /* updatelog.txt */; };
+		4F03466922660D67009BDC01 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466822660D67009BDC01 /* AdSupport.framework */; };
+		4F03466B22660D70009BDC01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466A22660D70009BDC01 /* MobileCoreServices.framework */; };
+		4F03466D22660D77009BDC01 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466C22660D77009BDC01 /* AssetsLibrary.framework */; };
+		4F03466F22660D7D009BDC01 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466E22660D7D009BDC01 /* libiconv.tbd */; };
+		4F03467122660D85009BDC01 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467022660D85009BDC01 /* UserNotifications.framework */; };
+		4F03467322660D8C009BDC01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467222660D8C009BDC01 /* AudioToolbox.framework */; };
+		4F03467522660D93009BDC01 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467422660D93009BDC01 /* AVFoundation.framework */; };
+		4F03467722660D9B009BDC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467622660D9B009BDC01 /* MediaPlayer.framework */; };
+		4F03467922660DA4009BDC01 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467822660DA4009BDC01 /* libc++.tbd */; };
+		4F03467B22660DAB009BDC01 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467A22660DAB009BDC01 /* CoreBluetooth.framework */; };
+		4F03467D22660DB2009BDC01 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467C22660DB2009BDC01 /* CoreMotion.framework */; };
+		4F03467F22660DBB009BDC01 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467E22660DBB009BDC01 /* CoreLocation.framework */; };
+		4F03468122660DC2009BDC01 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468022660DC1009BDC01 /* ImageIO.framework */; };
+		4F03468322660DC8009BDC01 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */; };
 		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
 		4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BB82232A8F00093E57E /* ico_check_nomal.png */; };
@@ -102,6 +129,42 @@
 /* Begin PBXFileReference section */
 		2A0080EBCDB4CF65767B3A9B /* Pods-Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.debug.xcconfig"; sourceTree = "<group>"; };
 		4E3475517200628FE2AB9731 /* libPods-Map.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Map.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F03464422660D57009BDC01 /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
+		4F03464522660D57009BDC01 /* BNCoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCoreServices.h; sourceTree = "<group>"; };
+		4F03464622660D57009BDC01 /* BNLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocation.h; sourceTree = "<group>"; };
+		4F03464722660D57009BDC01 /* BNRoutePlanManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanManagerProtocol.h; sourceTree = "<group>"; };
+		4F03464822660D57009BDC01 /* BNCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCommonDef.h; sourceTree = "<group>"; };
+		4F03464922660D57009BDC01 /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
+		4F03464A22660D57009BDC01 /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
+		4F03464B22660D57009BDC01 /* BNLocationManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocationManagerProtocol.h; sourceTree = "<group>"; };
+		4F03464C22660D57009BDC01 /* BNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNaviModel.h; sourceTree = "<group>"; };
+		4F03464D22660D57009BDC01 /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
+		4F03464E22660D57009BDC01 /* baiduNaviSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = baiduNaviSDK.xcassets; sourceTree = "<group>"; };
+		4F03464F22660D57009BDC01 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
+		4F03465022660D57009BDC01 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		4F03465222660D57009BDC01 /* mode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mode.bundle; sourceTree = "<group>"; };
+		4F03465322660D57009BDC01 /* street.sty */ = {isa = PBXFileReference; lastKnownFileType = file; path = street.sty; sourceTree = "<group>"; };
+		4F03465422660D57009BDC01 /* DVStreet.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVStreet.cfg; sourceTree = "<group>"; };
+		4F03465522660D57009BDC01 /* DVHotcity.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVHotcity.cfg; sourceTree = "<group>"; };
+		4F03465622660D57009BDC01 /* DVDirectory.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVDirectory.cfg; sourceTree = "<group>"; };
+		4F03465722660D57009BDC01 /* DVHotMap.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVHotMap.cfg; sourceTree = "<group>"; };
+		4F03465822660D57009BDC01 /* DVSDirectory.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVSDirectory.cfg; sourceTree = "<group>"; };
+		4F03465922660D57009BDC01 /* DVVersion_pkg.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVVersion_pkg.cfg; sourceTree = "<group>"; };
+		4F03465A22660D57009BDC01 /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
+		4F03466822660D67009BDC01 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		4F03466A22660D70009BDC01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4F03466C22660D77009BDC01 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4F03466E22660D7D009BDC01 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		4F03467022660D85009BDC01 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4F03467222660D8C009BDC01 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4F03467422660D93009BDC01 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4F03467622660D9B009BDC01 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4F03467822660DA4009BDC01 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4F03467A22660DAB009BDC01 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		4F03467C22660DB2009BDC01 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		4F03467E22660DBB009BDC01 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4F03468022660DC1009BDC01 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4F04453A21FCB33500C4F71E /* MAPMotiveAudioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveAudioButton.h; sourceTree = "<group>"; };
 		4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveAudioButton.m; sourceTree = "<group>"; };
 		4F04454021FCBA9200C4F71E /* MAPDynamicStateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPDynamicStateTableViewCell.h; sourceTree = "<group>"; };
@@ -243,6 +306,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F03468322660DC8009BDC01 /* libsqlite3.0.tbd in Frameworks */,
+				4F03468122660DC2009BDC01 /* ImageIO.framework in Frameworks */,
+				4F03467F22660DBB009BDC01 /* CoreLocation.framework in Frameworks */,
+				4F03467D22660DB2009BDC01 /* CoreMotion.framework in Frameworks */,
+				4F03467B22660DAB009BDC01 /* CoreBluetooth.framework in Frameworks */,
+				4F03467922660DA4009BDC01 /* libc++.tbd in Frameworks */,
+				4F03467722660D9B009BDC01 /* MediaPlayer.framework in Frameworks */,
+				4F03467522660D93009BDC01 /* AVFoundation.framework in Frameworks */,
+				4F03467322660D8C009BDC01 /* AudioToolbox.framework in Frameworks */,
+				4F03467122660D85009BDC01 /* UserNotifications.framework in Frameworks */,
+				4F03466F22660D7D009BDC01 /* libiconv.tbd in Frameworks */,
+				4F03466D22660D77009BDC01 /* AssetsLibrary.framework in Frameworks */,
+				4F03466B22660D70009BDC01 /* MobileCoreServices.framework in Frameworks */,
+				4F03466922660D67009BDC01 /* AdSupport.framework in Frameworks */,
+				4F03465D22660D57009BDC01 /* libbaiduNaviSDK.a in Frameworks */,
 				3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,9 +331,68 @@
 		2F20D26CC71979885D5DC72F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */,
+				4F03468022660DC1009BDC01 /* ImageIO.framework */,
+				4F03467E22660DBB009BDC01 /* CoreLocation.framework */,
+				4F03467C22660DB2009BDC01 /* CoreMotion.framework */,
+				4F03467A22660DAB009BDC01 /* CoreBluetooth.framework */,
+				4F03467822660DA4009BDC01 /* libc++.tbd */,
+				4F03467622660D9B009BDC01 /* MediaPlayer.framework */,
+				4F03467422660D93009BDC01 /* AVFoundation.framework */,
+				4F03467222660D8C009BDC01 /* AudioToolbox.framework */,
+				4F03467022660D85009BDC01 /* UserNotifications.framework */,
+				4F03466E22660D7D009BDC01 /* libiconv.tbd */,
+				4F03466C22660D77009BDC01 /* AssetsLibrary.framework */,
+				4F03466A22660D70009BDC01 /* MobileCoreServices.framework */,
+				4F03466822660D67009BDC01 /* AdSupport.framework */,
 				4E3475517200628FE2AB9731 /* libPods-Map.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F03464222660D57009BDC01 /* BaiduNaviSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4F03464322660D57009BDC01 /* inc */,
+				4F03464D22660D57009BDC01 /* baiduNaviSDK.bundle */,
+				4F03464E22660D57009BDC01 /* baiduNaviSDK.xcassets */,
+				4F03464F22660D57009BDC01 /* libbaiduNaviSDK.a */,
+				4F03465022660D57009BDC01 /* readme.txt */,
+				4F03465122660D57009BDC01 /* resource */,
+				4F03465A22660D57009BDC01 /* updatelog.txt */,
+			);
+			path = BaiduNaviSDK;
+			sourceTree = "<group>";
+		};
+		4F03464322660D57009BDC01 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				4F03464422660D57009BDC01 /* BNRoutePlanModel.h */,
+				4F03464522660D57009BDC01 /* BNCoreServices.h */,
+				4F03464622660D57009BDC01 /* BNLocation.h */,
+				4F03464722660D57009BDC01 /* BNRoutePlanManagerProtocol.h */,
+				4F03464822660D57009BDC01 /* BNCommonDef.h */,
+				4F03464922660D57009BDC01 /* BNStrategyManagerProtocol.h */,
+				4F03464A22660D57009BDC01 /* BNUIManagerProtocol.h */,
+				4F03464B22660D57009BDC01 /* BNLocationManagerProtocol.h */,
+				4F03464C22660D57009BDC01 /* BNaviModel.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		4F03465122660D57009BDC01 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				4F03465222660D57009BDC01 /* mode.bundle */,
+				4F03465322660D57009BDC01 /* street.sty */,
+				4F03465422660D57009BDC01 /* DVStreet.cfg */,
+				4F03465522660D57009BDC01 /* DVHotcity.cfg */,
+				4F03465622660D57009BDC01 /* DVDirectory.cfg */,
+				4F03465722660D57009BDC01 /* DVHotMap.cfg */,
+				4F03465822660D57009BDC01 /* DVSDirectory.cfg */,
+				4F03465922660D57009BDC01 /* DVVersion_pkg.cfg */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		4F04453421FCB12600C4F71E /* DynamicStateView */ = {
@@ -693,6 +830,7 @@
 		D66CCE0121E4B45A009ADD17 = {
 			isa = PBXGroup;
 			children = (
+				4F03464222660D57009BDC01 /* BaiduNaviSDK */,
 				D66CCE0C21E4B45A009ADD17 /* Map */,
 				D66CCE0B21E4B45A009ADD17 /* Products */,
 				63490C92BDFBDE4C7ED363E4 /* Pods */,
@@ -823,8 +961,10 @@
 				D66CCE1A21E4B45B009ADD17 /* LaunchScreen.storyboard in Resources */,
 				4F2C5E7E21F9AF0800DCF62A /* upPicture8.png in Resources */,
 				D638A77221F1DAF3005DFDFD /* sound.png in Resources */,
+				4F03465E22660D57009BDC01 /* readme.txt in Resources */,
 				D638A77821F1DAF3005DFDFD /* weibo.png in Resources */,
 				4F2C5E8121F9AF0800DCF62A /* upPicture11.png in Resources */,
+				4F03465C22660D57009BDC01 /* baiduNaviSDK.xcassets in Resources */,
 				D638A77421F1DAF3005DFDFD /* start.png in Resources */,
 				D638A76521F1DAF3005DFDFD /* back.png in Resources */,
 				4F2C5E8021F9AF0800DCF62A /* upPicture10.png in Resources */,
@@ -835,21 +975,30 @@
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
 				4F071BBD2232A9C00093E57E /* noimage.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
+				4F03465B22660D57009BDC01 /* baiduNaviSDK.bundle in Resources */,
 				4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */,
 				D638A77121F1DAF3005DFDFD /* QQ.png in Resources */,
 				D638A77921F1DAF3005DFDFD /* 头像.JPG in Resources */,
 				4F1228EC22636C0D00BD0B16 /* local.png in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
+				4F03465F22660D57009BDC01 /* mode.bundle in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
+				4F03466422660D57009BDC01 /* DVHotMap.cfg in Resources */,
+				4F03466322660D57009BDC01 /* DVDirectory.cfg in Resources */,
 				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
+				4F03466122660D57009BDC01 /* DVStreet.cfg in Resources */,
 				D620E5312221AC9400CEF270 /* Info.plist in Resources */,
+				4F03466222660D57009BDC01 /* DVHotcity.cfg in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
+				4F03466622660D57009BDC01 /* DVVersion_pkg.cfg in Resources */,
+				4F03466022660D57009BDC01 /* street.sty in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
 				D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */,
 				4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */,
 				D638A76D21F1DAF3005DFDFD /* link.png in Resources */,
 				D638A77721F1DAF3005DFDFD /* weChat.png in Resources */,
 				D638A76C21F1DAF3005DFDFD /* like.png in Resources */,
+				4F03466522660D57009BDC01 /* DVSDirectory.cfg in Resources */,
 				D638A77321F1DAF3005DFDFD /* souRed.png in Resources */,
 				4F0FF7CF21FDA1DD005A3E64 /* ai06.png in Resources */,
 				D638A76F21F1DAF3005DFDFD /* menu.png in Resources */,
@@ -858,6 +1007,7 @@
 				D638A77021F1DAF3005DFDFD /* priv.png in Resources */,
 				D638A76421F1DAF3005DFDFD /* add.png in Resources */,
 				4F2C5E7F21F9AF0800DCF62A /* upPicture9.png in Resources */,
+				4F03466722660D57009BDC01 /* updatelog.txt in Resources */,
 				D638A76721F1DAF3005DFDFD /* comment.png in Resources */,
 				D638A77521F1DAF3005DFDFD /* video.png in Resources */,
 				4F2C5E8321F9AF0800DCF62A /* upPicture12.png in Resources */,
@@ -1105,6 +1255,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduNaviSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tqy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1123,6 +1277,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduNaviSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tqy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
