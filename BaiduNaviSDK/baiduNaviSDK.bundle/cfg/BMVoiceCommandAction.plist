@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   BMVoiceCommandAction.plist
+   baiduNaviSDK
+
+   Created by baidu on 2017/9/30.
+   Copyright (c) 2017年 baidu. All rights reserved.
+-->
+<plist version="1.0">
+<array>
+<!--  驾车页更改路线  -->
+    <!--  更改偏好  -->
+    <dict>
+        <key>name</key>
+        <string>recommend_route</string>
+        <key>action</key>
+        <string>changeToRecommendedPreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>avoid_congestion</string>
+        <key>action</key>
+        <string>changeToAvoidJamPreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>prefer_quicker</string>
+        <key>action</key>
+        <string>changeToLessTimePreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>prefer_shorter</string>
+        <key>action</key>
+        <string>changeToLessDistPreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>prefer_no_highway</string>
+        <key>action</key>
+        <string>changeToLessTollPreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <dict>
+        <key>name</key>
+        <string>prefer_highway</string>
+        <key>action</key>
+        <string>changeToHighWayPreference:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+<!--  走/不走xxx路  -->
+    <dict>
+        <key>name</key>
+        <string>personalize_route</string>
+        <key>action</key>
+        <string>changeRouteWithRoads:avoidRoads:withComplete:</string>
+        <key>args</key>
+        <array>
+            <string>go_road</string>
+            <string>avoid_road</string>
+        </array>
+    </dict>
+    <!--  开始导航  -->
+    <dict>
+        <key>name</key>
+        <string>open_navigate</string>
+        <key>action</key>
+        <string>enterNavigation:</string>
+        <key>args</key>
+        <array/>
+    </dict>
+    <!--  选择路线  -->
+    <dict>
+        <key>name</key>
+        <string>route</string>
+        <key>action</key>
+        <string>selectRoute:tips:needConfirm:withComplete:</string>
+        <key>args</key>
+        <array>
+            <string>index</string>
+            <string>tts_tips</string>
+            <string>need_confirm</string>
+        </array>
+    </dict>
+</array>
+</plist>
