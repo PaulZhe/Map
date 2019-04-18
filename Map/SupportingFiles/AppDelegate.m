@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MAPHomePageViewController.h"
-#import "BNCoreServices.h"
+
 
 @interface AppDelegate ()
 
@@ -33,12 +33,13 @@
         NSLog(@"manager start failed!");
     }
     
-    [BNCoreServices_Instance startServicesAsyn:^{
-        //导航SDK鉴权
-        [BNCoreServices_Instance authorizeNaviAppKey:@"luyGEHG2lHmVRDUA44DUuX83uDoKLu9H" completion:^(BOOL suc) {
-            NSLog(@"authorizeNaviAppKey ret = %d", suc);
-        }];
-    } fail:nil];
+//    [BNCoreServices_Instance startServicesAsyn:^{
+//        //导航SDK鉴权
+//        [BNCoreServices_Instance authorizeNaviAppKey:@"luyGEHG2lHmVRDUA44DUuX83uDoKLu9H" completion:^(BOOL suc) {
+//            NSLog(@"authorizeNaviAppKey ret = %d", suc);
+//        }];
+//    } fail:nil];
+    
     //设置主界面导航栏
     MAPHomePageViewController *homePageViewController = [[MAPHomePageViewController alloc] init];
     UINavigationController *homePageNavigation = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
