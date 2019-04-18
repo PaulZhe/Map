@@ -8,20 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3475517200628FE2AB9731 /* libPods-Map.a */; };
-		4F03466922660D67009BDC01 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466822660D67009BDC01 /* AdSupport.framework */; };
-		4F03466B22660D70009BDC01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466A22660D70009BDC01 /* MobileCoreServices.framework */; };
-		4F03466D22660D77009BDC01 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466C22660D77009BDC01 /* AssetsLibrary.framework */; };
-		4F03466F22660D7D009BDC01 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466E22660D7D009BDC01 /* libiconv.tbd */; };
-		4F03467122660D85009BDC01 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467022660D85009BDC01 /* UserNotifications.framework */; };
-		4F03467322660D8C009BDC01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467222660D8C009BDC01 /* AudioToolbox.framework */; };
-		4F03467522660D93009BDC01 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467422660D93009BDC01 /* AVFoundation.framework */; };
-		4F03467722660D9B009BDC01 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467622660D9B009BDC01 /* MediaPlayer.framework */; };
-		4F03467922660DA4009BDC01 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467822660DA4009BDC01 /* libc++.tbd */; };
-		4F03467B22660DAB009BDC01 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467A22660DAB009BDC01 /* CoreBluetooth.framework */; };
-		4F03467D22660DB2009BDC01 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467C22660DB2009BDC01 /* CoreMotion.framework */; };
-		4F03467F22660DBB009BDC01 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467E22660DBB009BDC01 /* CoreLocation.framework */; };
-		4F03468122660DC2009BDC01 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468022660DC1009BDC01 /* ImageIO.framework */; };
-		4F03468322660DC8009BDC01 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */; };
 		4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04453B21FCB33500C4F71E /* MAPMotiveAudioButton.m */; };
 		4F04454221FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04454121FCBA9200C4F71E /* MAPDynamicStateTableViewCell.m */; };
 		4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F071BB82232A8F00093E57E /* ico_check_nomal.png */; };
@@ -70,19 +56,6 @@
 		4F4DF5812212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DF5802212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m */; };
 		4F5A690C22537B2700F7BE2E /* MAPLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A690B22537B2700F7BE2E /* MAPLocationTableViewCell.m */; };
 		4FDD95702211CFE30047A9BC /* MAPMotiveReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */; };
-		4FE5AB5C22676B4B00F88C9B /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB4E22676B4B00F88C9B /* baiduNaviSDK.bundle */; };
-		4FE5AB5D22676B4B00F88C9B /* baiduNaviSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB4F22676B4B00F88C9B /* baiduNaviSDK.xcassets */; };
-		4FE5AB5E22676B4B00F88C9B /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE5AB5022676B4B00F88C9B /* libbaiduNaviSDK.a */; };
-		4FE5AB5F22676B4B00F88C9B /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5122676B4B00F88C9B /* readme.txt */; };
-		4FE5AB6022676B4B00F88C9B /* mode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5322676B4B00F88C9B /* mode.bundle */; };
-		4FE5AB6122676B4B00F88C9B /* street.sty in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5422676B4B00F88C9B /* street.sty */; };
-		4FE5AB6222676B4B00F88C9B /* DVStreet.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5522676B4B00F88C9B /* DVStreet.cfg */; };
-		4FE5AB6322676B4B00F88C9B /* DVHotcity.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5622676B4B00F88C9B /* DVHotcity.cfg */; };
-		4FE5AB6422676B4B00F88C9B /* DVDirectory.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5722676B4B00F88C9B /* DVDirectory.cfg */; };
-		4FE5AB6522676B4B00F88C9B /* DVHotMap.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5822676B4B00F88C9B /* DVHotMap.cfg */; };
-		4FE5AB6622676B4B00F88C9B /* DVSDirectory.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5922676B4B00F88C9B /* DVSDirectory.cfg */; };
-		4FE5AB6722676B4B00F88C9B /* DVVersion_pkg.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5A22676B4B00F88C9B /* DVVersion_pkg.cfg */; };
-		4FE5AB6822676B4B00F88C9B /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FE5AB5B22676B4B00F88C9B /* updatelog.txt */; };
 		D60CBDE4225CE31A000CBB42 /* MAPAddAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */; };
 		D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F78221D423D0098483A /* MAPLoginManager.m */; };
 		D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */; };
@@ -750,28 +723,6 @@
 		4FE5AB3422676B1200F88C9B /* DVVersion_pkg.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = DVVersion_pkg.cfg; sourceTree = "<group>"; };
 		4FE5AB3522676B1200F88C9B /* updatelog.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
 		4FE5AB3622676B1200F88C9B /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		4FE5AB4522676B4B00F88C9B /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
-		4FE5AB4622676B4B00F88C9B /* BNCoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCoreServices.h; sourceTree = "<group>"; };
-		4FE5AB4722676B4B00F88C9B /* BNLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocation.h; sourceTree = "<group>"; };
-		4FE5AB4822676B4B00F88C9B /* BNRoutePlanManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanManagerProtocol.h; sourceTree = "<group>"; };
-		4FE5AB4922676B4B00F88C9B /* BNCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCommonDef.h; sourceTree = "<group>"; };
-		4FE5AB4A22676B4B00F88C9B /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
-		4FE5AB4B22676B4B00F88C9B /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
-		4FE5AB4C22676B4B00F88C9B /* BNLocationManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocationManagerProtocol.h; sourceTree = "<group>"; };
-		4FE5AB4D22676B4B00F88C9B /* BNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNaviModel.h; sourceTree = "<group>"; };
-		4FE5AB4E22676B4B00F88C9B /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
-		4FE5AB4F22676B4B00F88C9B /* baiduNaviSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = baiduNaviSDK.xcassets; sourceTree = "<group>"; };
-		4FE5AB5022676B4B00F88C9B /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
-		4FE5AB5122676B4B00F88C9B /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
-		4FE5AB5322676B4B00F88C9B /* mode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mode.bundle; sourceTree = "<group>"; };
-		4FE5AB5422676B4B00F88C9B /* street.sty */ = {isa = PBXFileReference; lastKnownFileType = file; path = street.sty; sourceTree = "<group>"; };
-		4FE5AB5522676B4B00F88C9B /* DVStreet.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVStreet.cfg; sourceTree = "<group>"; };
-		4FE5AB5622676B4B00F88C9B /* DVHotcity.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVHotcity.cfg; sourceTree = "<group>"; };
-		4FE5AB5722676B4B00F88C9B /* DVDirectory.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVDirectory.cfg; sourceTree = "<group>"; };
-		4FE5AB5822676B4B00F88C9B /* DVHotMap.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVHotMap.cfg; sourceTree = "<group>"; };
-		4FE5AB5922676B4B00F88C9B /* DVSDirectory.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVSDirectory.cfg; sourceTree = "<group>"; };
-		4FE5AB5A22676B4B00F88C9B /* DVVersion_pkg.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVVersion_pkg.cfg; sourceTree = "<group>"; };
-		4FE5AB5B22676B4B00F88C9B /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
 		7547F341E163CF40B251C20D /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
 		D60CBDE2225CE31A000CBB42 /* MAPAddAudioView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddAudioView.h; sourceTree = "<group>"; };
 		D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddAudioView.m; sourceTree = "<group>"; };
@@ -837,21 +788,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F03468322660DC8009BDC01 /* libsqlite3.0.tbd in Frameworks */,
-				4F03468122660DC2009BDC01 /* ImageIO.framework in Frameworks */,
-				4F03467F22660DBB009BDC01 /* CoreLocation.framework in Frameworks */,
-				4F03467D22660DB2009BDC01 /* CoreMotion.framework in Frameworks */,
-				4F03467B22660DAB009BDC01 /* CoreBluetooth.framework in Frameworks */,
-				4F03467922660DA4009BDC01 /* libc++.tbd in Frameworks */,
-				4F03467722660D9B009BDC01 /* MediaPlayer.framework in Frameworks */,
-				4F03467522660D93009BDC01 /* AVFoundation.framework in Frameworks */,
-				4F03467322660D8C009BDC01 /* AudioToolbox.framework in Frameworks */,
-				4F03467122660D85009BDC01 /* UserNotifications.framework in Frameworks */,
-				4F03466F22660D7D009BDC01 /* libiconv.tbd in Frameworks */,
-				4F03466D22660D77009BDC01 /* AssetsLibrary.framework in Frameworks */,
-				4FE5AB5E22676B4B00F88C9B /* libbaiduNaviSDK.a in Frameworks */,
-				4F03466B22660D70009BDC01 /* MobileCoreServices.framework in Frameworks */,
-				4F03466922660D67009BDC01 /* AdSupport.framework in Frameworks */,
 				3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2470,52 +2406,6 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
-		4FE5AB4322676B4B00F88C9B /* BaiduNaviSDK */ = {
-			isa = PBXGroup;
-			children = (
-				4FE5AB4422676B4B00F88C9B /* inc */,
-				4FE5AB4E22676B4B00F88C9B /* baiduNaviSDK.bundle */,
-				4FE5AB4F22676B4B00F88C9B /* baiduNaviSDK.xcassets */,
-				4FE5AB5022676B4B00F88C9B /* libbaiduNaviSDK.a */,
-				4FE5AB5122676B4B00F88C9B /* readme.txt */,
-				4FE5AB5222676B4B00F88C9B /* resource */,
-				4FE5AB5B22676B4B00F88C9B /* updatelog.txt */,
-			);
-			name = BaiduNaviSDK;
-			path = ../../BaiduNaviSDK_v4.1.3/BaiduNaviSDK;
-			sourceTree = "<group>";
-		};
-		4FE5AB4422676B4B00F88C9B /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				4FE5AB4522676B4B00F88C9B /* BNRoutePlanModel.h */,
-				4FE5AB4622676B4B00F88C9B /* BNCoreServices.h */,
-				4FE5AB4722676B4B00F88C9B /* BNLocation.h */,
-				4FE5AB4822676B4B00F88C9B /* BNRoutePlanManagerProtocol.h */,
-				4FE5AB4922676B4B00F88C9B /* BNCommonDef.h */,
-				4FE5AB4A22676B4B00F88C9B /* BNStrategyManagerProtocol.h */,
-				4FE5AB4B22676B4B00F88C9B /* BNUIManagerProtocol.h */,
-				4FE5AB4C22676B4B00F88C9B /* BNLocationManagerProtocol.h */,
-				4FE5AB4D22676B4B00F88C9B /* BNaviModel.h */,
-			);
-			path = inc;
-			sourceTree = "<group>";
-		};
-		4FE5AB5222676B4B00F88C9B /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				4FE5AB5322676B4B00F88C9B /* mode.bundle */,
-				4FE5AB5422676B4B00F88C9B /* street.sty */,
-				4FE5AB5522676B4B00F88C9B /* DVStreet.cfg */,
-				4FE5AB5622676B4B00F88C9B /* DVHotcity.cfg */,
-				4FE5AB5722676B4B00F88C9B /* DVDirectory.cfg */,
-				4FE5AB5822676B4B00F88C9B /* DVHotMap.cfg */,
-				4FE5AB5922676B4B00F88C9B /* DVSDirectory.cfg */,
-				4FE5AB5A22676B4B00F88C9B /* DVVersion_pkg.cfg */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
 		63490C92BDFBDE4C7ED363E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2647,7 +2537,6 @@
 		D66CCE0121E4B45A009ADD17 = {
 			isa = PBXGroup;
 			children = (
-				4FE5AB4322676B4B00F88C9B /* BaiduNaviSDK */,
 				D66CCE0C21E4B45A009ADD17 /* Map */,
 				D66CCE0B21E4B45A009ADD17 /* Products */,
 				63490C92BDFBDE4C7ED363E4 /* Pods */,
@@ -2819,10 +2708,8 @@
 				D66CCE1A21E4B45B009ADD17 /* LaunchScreen.storyboard in Resources */,
 				4F2C5E7E21F9AF0800DCF62A /* upPicture8.png in Resources */,
 				D638A77221F1DAF3005DFDFD /* sound.png in Resources */,
-				4FE5AB5F22676B4B00F88C9B /* readme.txt in Resources */,
 				D638A77821F1DAF3005DFDFD /* weibo.png in Resources */,
 				4F2C5E8121F9AF0800DCF62A /* upPicture11.png in Resources */,
-				4FE5AB5D22676B4B00F88C9B /* baiduNaviSDK.xcassets in Resources */,
 				D638A77421F1DAF3005DFDFD /* start.png in Resources */,
 				D638A76521F1DAF3005DFDFD /* back.png in Resources */,
 				4F2C5E8021F9AF0800DCF62A /* upPicture10.png in Resources */,
@@ -2833,30 +2720,21 @@
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
 				4F071BBD2232A9C00093E57E /* noimage.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
-				4FE5AB5C22676B4B00F88C9B /* baiduNaviSDK.bundle in Resources */,
 				4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */,
 				D638A77121F1DAF3005DFDFD /* QQ.png in Resources */,
 				D638A77921F1DAF3005DFDFD /* 头像.JPG in Resources */,
 				4F1228EC22636C0D00BD0B16 /* local.png in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
-				4FE5AB6022676B4B00F88C9B /* mode.bundle in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
-				4FE5AB6522676B4B00F88C9B /* DVHotMap.cfg in Resources */,
-				4FE5AB6422676B4B00F88C9B /* DVDirectory.cfg in Resources */,
 				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
-				4FE5AB6222676B4B00F88C9B /* DVStreet.cfg in Resources */,
 				D620E5312221AC9400CEF270 /* Info.plist in Resources */,
-				4FE5AB6322676B4B00F88C9B /* DVHotcity.cfg in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
-				4FE5AB6722676B4B00F88C9B /* DVVersion_pkg.cfg in Resources */,
-				4FE5AB6122676B4B00F88C9B /* street.sty in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
 				D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */,
 				4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */,
 				D638A76D21F1DAF3005DFDFD /* link.png in Resources */,
 				D638A77721F1DAF3005DFDFD /* weChat.png in Resources */,
 				D638A76C21F1DAF3005DFDFD /* like.png in Resources */,
-				4FE5AB6622676B4B00F88C9B /* DVSDirectory.cfg in Resources */,
 				D638A77321F1DAF3005DFDFD /* souRed.png in Resources */,
 				4F0FF7CF21FDA1DD005A3E64 /* ai06.png in Resources */,
 				D638A76F21F1DAF3005DFDFD /* menu.png in Resources */,
@@ -2865,7 +2743,6 @@
 				D638A77021F1DAF3005DFDFD /* priv.png in Resources */,
 				D638A76421F1DAF3005DFDFD /* add.png in Resources */,
 				4F2C5E7F21F9AF0800DCF62A /* upPicture9.png in Resources */,
-				4FE5AB6822676B4B00F88C9B /* updatelog.txt in Resources */,
 				D638A76721F1DAF3005DFDFD /* comment.png in Resources */,
 				D638A77521F1DAF3005DFDFD /* video.png in Resources */,
 				4F2C5E8321F9AF0800DCF62A /* upPicture12.png in Resources */,
