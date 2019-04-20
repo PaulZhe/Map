@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - BaiduMapKit (4.3.0)
-  - BMKLocationKit (1.3.0.2)
+  - BMKLocationKit (1.5.0)
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
 
@@ -37,7 +37,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   BaiduMapKit: 63575d9236b4112c4ff76391df637f2a6dc1ada8
-  BMKLocationKit: 6c47273f985609be0a0785f2f6f12bb7c1b7e8b6
+  BMKLocationKit: 40d267478acd8704ddebd0e9deaddc727b13df9f
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
