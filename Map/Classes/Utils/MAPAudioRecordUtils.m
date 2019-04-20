@@ -1,4 +1,4 @@
-//
+
 //  MAPAudioRecordUtils.m
 //  Map
 //
@@ -7,14 +7,16 @@
 //
 
 #import "MAPAudioRecordUtils.h"
+#import "MAPLameTool.h"
 
 @implementation MAPAudioRecordUtils
 
 -(AVAudioRecorder *)record {
     if (!_record) {
-         NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"text.caf"];
+         self.cafPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"text.caf"];
         // url : 录音文件的路径 (path是沙盒路径)
-        NSURL *url = [NSURL URLWithString:path];
+        NSURL *url = [NSURL URLWithString:_cafPath];
+        NSLog(@"%@", _cafPath);
         // setting:录音的设置项
         NSDictionary *configDic = @{// 编码格式
                                     AVFormatIDKey:@(kAudioFormatLinearPCM),
@@ -43,11 +45,12 @@
 }
 - (void)endClick {
     // 根据当前的录音时间，做处理
-    // 如果录音不超过两秒，则删除录音
-    if (self.record.currentTime > 2) {
+    // 如果录音不超过1秒，则删除录音
+    if (self.record.currentTime > 1) {
         [self.record stop];
+        self.mp3Path = [MAPLameTool audioToMP3:_cafPath isDeleteSourchFile:YES];
+        NSLog(@"%@", _mp3Path);
     } else {
-        // 删除录音文件
         //如果想要删除录音文件，必须先停止录音
         [self.record stop];
         [self.record deleteRecording];

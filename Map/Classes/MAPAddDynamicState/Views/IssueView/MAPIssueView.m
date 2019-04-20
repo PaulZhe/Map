@@ -17,7 +17,7 @@
 
 @implementation MAPIssueView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f];
@@ -53,7 +53,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(20);

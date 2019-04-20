@@ -27,7 +27,7 @@ typedef void (^buttonBlock)(UIButton *sender);
 @property (nonatomic, copy) buttonBlock block;
 - (void)addTapBlock:(buttonBlock)block;
 //重写view的init方法
-- (instancetype) initWithTypeString:(NSString *) typeString;
+- (instancetype)initWithTypeString:(NSString *) typeString;
 
 @end
 

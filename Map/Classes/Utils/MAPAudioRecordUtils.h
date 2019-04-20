@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface MAPAudioRecordUtils : NSObject
+@property (nonatomic, copy) NSString *cafPath;
+@property (nonatomic, copy) NSString *mp3Path;
 @property (nonatomic, strong) AVAudioRecorder *record;
 
 - (void)startClick;

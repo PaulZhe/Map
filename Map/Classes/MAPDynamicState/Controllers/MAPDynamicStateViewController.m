@@ -26,12 +26,12 @@
     
     //之所以要把View创建在ViewWillAppear中是因为需要反复打开这一界面，每次界面所显示内容不同
 //    if (!_dynamicStateView) {
-        _dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _dynamicStateView.dyanmicStateTableView.delegate = self;
+        self.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        self.dynamicStateView.dyanmicStateTableView.delegate = self;
         [self.view addSubview:_dynamicStateView];
 //    }
     
-    _dynamicStateView.typeMotiveString = _typeMotiveString;
+    self.dynamicStateView.typeMotiveString = _typeMotiveString;
 }
 
 - (void)viewDidLoad {

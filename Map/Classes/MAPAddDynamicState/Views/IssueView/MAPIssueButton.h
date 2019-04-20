@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPIssueButton : UIButton
 
-+ (instancetype) buttonWithTitle:(NSString *)title image:(UIImage *)image;
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END
