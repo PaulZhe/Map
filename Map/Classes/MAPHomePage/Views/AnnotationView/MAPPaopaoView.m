@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+//        self.userInteractionEnabled = NO;
         [self initPaopaoView];
     }
     return self;
@@ -64,6 +65,15 @@
         make.left.mas_equalTo(self->_voiceButton.mas_right).mas_equalTo(-16);
         make.size.mas_equalTo(CGSizeMake(45, 45));
     }];
+}
+
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *hitView = [super hitTest:point withEvent:event];
+    //如果上层透明视图是window 和 按钮（uibutton 继承自UIControl ）就允许点击
+    if(![hitView isKindOfClass:[UIButton class]]){
+        return nil;
+    }
+    return hitView;
 }
 
 @end

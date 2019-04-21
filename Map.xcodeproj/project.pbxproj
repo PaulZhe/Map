@@ -86,7 +86,6 @@
 		D638A77A21F1DAF3005DFDFD /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A76321F1DAF3005DFDFD /* 定位.png */; };
 		D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */; };
 		D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */; };
-		D656B5ED22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */; };
 		D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B42225506F00E30917 /* MAPGetPointManager.m */; };
 		D660A4B82225519800E30917 /* MAPGetPointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D660A4B72225519800E30917 /* MAPGetPointModel.m */; };
 		D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D66CCE0E21E4B45A009ADD17 /* AppDelegate.m */; };
@@ -218,8 +217,6 @@
 		D64FBBBB21EC886B00CB3BFC /* MAPHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageViewController.m; sourceTree = "<group>"; };
 		D64FBBBD21EC886B00CB3BFC /* MAPHomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPHomePageView.h; sourceTree = "<group>"; };
 		D64FBBBE21EC886B00CB3BFC /* MAPHomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPHomePageView.m; sourceTree = "<group>"; };
-		D656B5EB22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMKAnnotationView+MAPAnnotationView.h"; sourceTree = "<group>"; };
-		D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BMKAnnotationView+MAPAnnotationView.m"; sourceTree = "<group>"; };
 		D660A4B32225506F00E30917 /* MAPGetPointManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointManager.h; sourceTree = "<group>"; };
 		D660A4B42225506F00E30917 /* MAPGetPointManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetPointManager.m; sourceTree = "<group>"; };
 		D660A4B62225519800E30917 /* MAPGetPointModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetPointModel.h; sourceTree = "<group>"; };
@@ -432,8 +429,6 @@
 				4F10661721F327970035E47A /* MAPPaopaoView.m */,
 				4F10661921F328A10035E47A /* MAPPaopaoButton.h */,
 				4F10661A21F328A10035E47A /* MAPPaopaoButton.m */,
-				D656B5EB22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.h */,
-				D656B5EC22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m */,
 			);
 			path = AnnotationView;
 			sourceTree = "<group>";
@@ -966,7 +961,6 @@
 				D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */,
 				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
-				D656B5ED22641AA700E65974 /* BMKAnnotationView+MAPAnnotationView.m in Sources */,
 				4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */,
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
