@@ -32,7 +32,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
-    [manager POST:@"http://39.106.39.48:8080/user/getMessageByUserid" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager POST:@"http://39.106.39.48/user/getMessageByUserid" parameters:ID progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 请求成功

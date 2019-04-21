@@ -25,7 +25,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 }
 
 - (void)addPointWithName:(NSString *)name Latitude:(double)latitude Longitude:(double)longitude success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/point/addPoint"];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/point/addPoint"];
     NSDictionary *param = @{@"name" : name, @"longitude" : [NSNumber numberWithDouble:longitude], @"latitude" : [NSNumber numberWithDouble:latitude]};
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -55,7 +55,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 
 // 文字评论
 - (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/addMessage/%d", pointId];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/addMessage/%d", pointId];
     NSDictionary *param = @{@"content" : content};
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -86,7 +86,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 
 // 上传多张图片
 - (void)uploadPhotosWithPointId:(int)pointId Title:(NSString *)title Data:(NSArray *)fileDataArray success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/uploadMangPhotos/%d", pointId];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadMangPhotos/%d", pointId];
     
     NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -125,7 +125,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 
 // 上传文件
 - (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://47.95.207.40/markMap/upload/%d", pointId];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/upload/%d", pointId];
     //    NSLog(@"url:%@", URL);
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:type], @"file" : fileData}];
     if (type == 3) {

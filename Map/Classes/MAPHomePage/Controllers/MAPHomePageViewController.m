@@ -14,7 +14,6 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
-#import "BMKAnnotationView+MAPAnnotationView.h"
 #import "MAPIssueView.h"
 #import "MAPAddDynamicStateViewController.h"
 #import "MAPNavigationViewController.h"
@@ -210,27 +209,6 @@
 
 #pragma MAP -------------------------自定义样式点标记--------------------------
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
-//    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-//        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-//        BMKAnnotationView *annotationView = (MAPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-//        if (annotationView == nil)
-//        {
-//            annotationView = [[MAPAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-//    //                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
-//    //                //定义paopaoView
-//    //                pView.frame = _paopaoView.frame;
-//    //                annotationView.paopaoView = pView;
-//    //                self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 195, 132.5)];
-//    //                self.paopaoView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.f + annotationView.calloutOffset.x + 37, -CGRectGetHeight(self.paopaoView.bounds) / 2.f + annotationView.calloutOffset.y + 40);
-//    //                annotationView.paopaoView = _paopaoView;
-//
-////            [self paopaoViewButtonAddTarget:(MAPPaopaoView *)annotationView.paopaoView];
-//            annotationView.canShowCallout = NO;
-//        }
-//        annotationView.image = [UIImage imageNamed:@"info.png"];
-//        return annotationView;
-//    }
-
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
@@ -240,11 +218,10 @@
             annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
                                                            reuseIdentifier:reuseIndetifier];
         }
-        
         annotationView.image = [UIImage imageNamed:@"info.png"];
-        
         annotationView.canShowCallout = YES;
-        _paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
+        [annotationView setCalloutOffset:CGPointMake(25, 35)];
+        self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
         //给paopaoView中button添加点击事件
         [self paopaoViewButtonAddTarget:_paopaoView];
         
@@ -257,31 +234,38 @@
     return nil;
 }
 
+//气泡的点击事件
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+//    [view setSelected:!selected animated:YES];
+//    if (!view.selected) {
+////        view.paopaoView.center = CGPointMake(CGRectGetWidth(_homePageView.bounds) / 2.f + view.calloutOffset.x + 37, -CGRectGetHeight(view.paopaoView.bounds) / 2.f + view.calloutOffset.y + 40);
+//        [mapView selectAnnotation:view animated:NO];
+//    } else {
+//        [mapView deselectAnnotation:view animated:NO];
+//    }
+//    selected = !selected;
+//    view.selected = NO;
+    [mapView deselectAnnotation:view.annotation animated:NO];
+//    [view setSelected:NO];
+//    [mapView mapForceRefresh];
+
+}
+/**
+ *当点击annotation view弹出的泡泡时，调用此接口
+ *@param mapView 地图View
+ *@param view 泡泡所属的annotation view
+ */
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
+    [mapView deselectAnnotation:view.annotation animated:NO];
+}
 - (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
     NSLog(@"%@；；；；；；；；；", views);
 }
 
-//气泡的点击事件
-- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
-//    [view setSelected:!selected animated:YES];
-    if (!view.selected) {
-        view.paopaoView.center = CGPointMake(CGRectGetWidth(_homePageView.bounds) / 2.f + view.calloutOffset.x + 37, -CGRectGetHeight(view.paopaoView.bounds) / 2.f + view.calloutOffset.y + 40);
-        view.selected = YES;
-    } else {
-        [mapView deselectAnnotation:view.annotation animated:NO];
-        
-        view.selected = NO;
-    }
-//    selected = !selected;
-//    view.selected = NO;
-    [mapView deselectAnnotation:view.annotation animated:NO];
-    [view setSelected:NO];
-}
-
 //当取消选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
-    
+    NSLog(@"ss");
 }
 
 //泡泡内按钮点击事件
