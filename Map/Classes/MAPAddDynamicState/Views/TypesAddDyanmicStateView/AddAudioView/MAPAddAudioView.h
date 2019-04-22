@@ -15,7 +15,16 @@ typedef void(^ButtonClick)(UIButton *sender);
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *audioButton;
+
+@property (nonatomic, assign) int seconds;
+@property (nonatomic, assign) int minutes;
+@property (nonatomic, strong) NSTimer *timer;
+
 @property (nonatomic, copy) ButtonClick audioButtonAction;
 @property (nonatomic, copy) ButtonClick audioTouchDownAction;
+
+- (void)startRecord;
+- (void)endRecord;
+- (void)reset;
 
 @end

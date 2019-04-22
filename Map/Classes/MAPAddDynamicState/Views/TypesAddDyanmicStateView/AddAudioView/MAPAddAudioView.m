@@ -21,7 +21,7 @@
         [self addSubview:_nameLabel];
         
         _timeLabel = [[UILabel alloc] init];
-        _timeLabel.text = @"00:12";
+        _timeLabel.text = @"00:00";
         _timeLabel.textAlignment = NSTextAlignmentCenter;
         _timeLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:_timeLabel];
@@ -68,6 +68,29 @@
     if (_audioTouchDownAction) {
         self.audioTouchDownAction(button);
     }
+}
+
+- (void)startRecord {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startTimer) userInfo:nil repeats:YES];
+}
+
+- (void)startTimer {
+    self.seconds++;
+    if (_seconds == 60) {
+        self.minutes++;
+        self.seconds = 0;
+    }
+    self.timeLabel.text = [NSString stringWithFormat:@"%.2d:%.2d", _minutes, _seconds];
+}
+
+- (void)endRecord {
+    [_timer setFireDate:[NSDate distantFuture]];
+}
+
+- (void)reset {
+    self.seconds = 0;
+    self.minutes = 0;
+    self.timeLabel.text = [NSString stringWithFormat:@"%.2d:%.2d", _minutes, _seconds];
 }
 
 @end
