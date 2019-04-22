@@ -440,23 +440,32 @@
     
     MAPAddAudioView *addAudioView = [[MAPAddAudioView alloc] init];
     addAudioView.backgroundColor = [UIColor whiteColor];
-    //添加跳转功能的点击事件
-    addAudioView.audioButtonAction = ^(UIButton *sender) {
-        //结束录音
-        [self->_audioRecordUtils endClick];
-        
-        self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
-        self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
-        self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
-        [self HiddenAddDynamicStateView];
-        [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
-    };
+    
     //录音功能
+    __weak typeof(MAPAddAudioView) *weakAddAudioView = addAudioView;
     addAudioView.audioTouchDownAction = ^(UIButton *sender) {
         if (!self->_audioRecordUtils) {
             self.audioRecordUtils = [[MAPAudioRecordUtils alloc] init];
         }
         [self->_audioRecordUtils startClick];
+        [weakAddAudioView startRecord];
+    };
+    
+    //添加跳转功能的点击事件
+    addAudioView.audioButtonAction = ^(UIButton *sender) {
+        //结束录音
+        [self->_audioRecordUtils endClick];
+        [weakAddAudioView endRecord];
+        
+        if (self->_audioRecordUtils.jumpFlag) {
+            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
+            self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+            self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            [self HiddenAddDynamicStateView];
+            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
+        }
+        
+        [weakAddAudioView reset];
     };
     
     addAudioView.tag = 203;
@@ -469,8 +478,6 @@
     }];
 
 }
-
-
 
 //button点击事件
 - (void)ClikedButton:(UIButton *) button {

@@ -50,10 +50,12 @@
         [self.record stop];
         self.mp3Path = [MAPLameTool audioToMP3:_cafPath isDeleteSourchFile:YES];
         NSLog(@"%@", _mp3Path);
+        self.jumpFlag = YES;
     } else {
         //如果想要删除录音文件，必须先停止录音
         [self.record stop];
         [self.record deleteRecording];
+        self.jumpFlag = NO;
     }
     NSLog(@"结束录音");
 }
