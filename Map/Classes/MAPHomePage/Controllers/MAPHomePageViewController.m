@@ -220,10 +220,13 @@
         }
         annotationView.image = [UIImage imageNamed:@"info.png"];
         annotationView.canShowCallout = YES;
+        annotationView.tag = 1000;
+        annotationView.hidePaopaoWhenSingleTapOnMap = YES;
         [annotationView setCalloutOffset:CGPointMake(25, 35)];
+        
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
         //给paopaoView中button添加点击事件
-        [self paopaoViewButtonAddTarget:_paopaoView];
+//        [self paopaoViewButtonAddTarget:_paopaoView];
         
         BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
         pView.backgroundColor = [UIColor clearColor];
@@ -245,7 +248,7 @@
 //    }
 //    selected = !selected;
 //    view.selected = NO;
-    [mapView deselectAnnotation:view.annotation animated:NO];
+//    [mapView deselectAnnotation:view.annotation animated:NO];
 //    [view setSelected:NO];
 //    [mapView mapForceRefresh];
 
@@ -256,8 +259,23 @@
  *@param view 泡泡所属的annotation view
  */
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-    [mapView deselectAnnotation:view.annotation animated:NO];
+    int flag = 1;
+    if (flag == 1) {
+        for(id tmpView in [_paopaoView subviews]) {
+            if([tmpView isKindOfClass:[UIButton class]]){
+                UIButton *buttonView = (UIButton *)tmpView;
+                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
+                    [self paopaoViewButtonAddTarget:_paopaoView];
+                }
+            }
+        }
+    }
+    if (flag == 0) {
+        [mapView deselectAnnotation:view.annotation animated:NO];
+        flag = 1;
+    }
 }
+
 - (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
     NSLog(@"%@；；；；；；；；；", views);
@@ -265,7 +283,7 @@
 
 //当取消选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
-    NSLog(@"ss");
+    
 }
 
 //泡泡内按钮点击事件
