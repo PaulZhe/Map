@@ -144,7 +144,7 @@
     _block = block;
     [_adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
 }
-- (void) adjustmentLocation:(UIButton *) button {
+- (void)adjustmentLocation:(UIButton *)button {
     _block(button);
 }
 

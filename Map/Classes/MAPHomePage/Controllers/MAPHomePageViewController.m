@@ -79,8 +79,31 @@
     _homePageView.mapView.delegate = self;
     _homePageView.mapView.showsUserLocation = YES;
     [self.locationManager startUpdatingLocation];
-    [_homePageView.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_homePageView.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    __weak typeof(self) weakSelf = self;
+    //添加按钮点击事件
+    self.homePageView.addButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:weakSelf.view.frame];
+        alertView.tag = 202;
+        __weak MAPAlertView *weakAlertView = alertView;
+        [weakSelf.homePageView addSubview:alertView];
+        alertView.btnAction = ^(NSInteger tag) {
+            //tag=100是取消按钮，101是发布按钮
+            if (tag == 100) {
+                [weakAlertView removeFromSuperview];
+            } else {
+                //创建发布界面
+                [weakSelf creatIssueView];
+            }
+        };
+    };
+    //导航按钮点击事件
+    self.homePageView.navigationAction = ^(UIButton * _Nonnull sender) {
+        MAPNavigationViewController *navigationViewController = [[MAPNavigationViewController alloc] init];
+        navigationViewController.Latitude = weakSelf.userLocation.location.coordinate.latitude;
+        navigationViewController.Longitud = weakSelf.userLocation.location.coordinate.longitude;
+        [weakSelf.navigationController pushViewController:navigationViewController animated:YES];
+    };
     [self.view addSubview:_homePageView];
     
 //    //loginManager测试
@@ -222,11 +245,11 @@
         annotationView.canShowCallout = YES;
         annotationView.tag = 1000;
         annotationView.hidePaopaoWhenSingleTapOnMap = YES;
-        [annotationView setCalloutOffset:CGPointMake(25, 35)];
+        [annotationView setCalloutOffset:CGPointMake(26, 38)];
         
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
         //给paopaoView中button添加点击事件
-//        [self paopaoViewButtonAddTarget:_paopaoView];
+        [self paopaoViewButtonAddTarget:_paopaoView];
         
         BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
         pView.backgroundColor = [UIColor clearColor];
@@ -239,6 +262,7 @@
 
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+    NSLog(@"");
 //    [view setSelected:!selected animated:YES];
 //    if (!view.selected) {
 ////        view.paopaoView.center = CGPointMake(CGRectGetWidth(_homePageView.bounds) / 2.f + view.calloutOffset.x + 37, -CGRectGetHeight(view.paopaoView.bounds) / 2.f + view.calloutOffset.y + 40);
@@ -259,21 +283,22 @@
  *@param view 泡泡所属的annotation view
  */
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-    int flag = 1;
-    if (flag == 1) {
-        for(id tmpView in [_paopaoView subviews]) {
-            if([tmpView isKindOfClass:[UIButton class]]){
-                UIButton *buttonView = (UIButton *)tmpView;
-                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
-                    [self paopaoViewButtonAddTarget:_paopaoView];
-                }
-            }
-        }
-    }
-    if (flag == 0) {
-        [mapView deselectAnnotation:view.annotation animated:NO];
-        flag = 1;
-    }
+    NSLog(@":");
+//    int flag = 1;
+//    if (flag == 1) {
+//        for(id tmpView in [_paopaoView subviews]) {
+//            if([tmpView isKindOfClass:[UIButton class]]){
+//                UIButton *buttonView = (UIButton *)tmpView;
+//                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
+//                    [self paopaoViewButtonAddTarget:_paopaoView];
+//                }
+//            }
+//        }
+//    }
+//    if (flag == 0) {
+//        [mapView deselectAnnotation:view.annotation animated:NO];
+//        flag = 1;
+//    }
 }
 
 - (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
@@ -330,21 +355,6 @@
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
-- (void)addButtonClicked:(UIButton *) button {
-    MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:self.view.frame];
-    alertView.tag = 202;
-    [_homePageView addSubview:alertView];
-    
-    alertView.btnAction = ^(NSInteger tag) {
-        //tag=100是取消按钮，101是发布按钮
-        if (tag == 100) {
-            [alertView removeFromSuperview];
-        } else {
-            //创建发布界面
-            [self creatIssueView];
-        }
-    };
-}
 //创建发布界面
 - (void)creatIssueView {
     MAPIssueView *issueView = [[MAPIssueView alloc] init];
@@ -460,7 +470,7 @@
     addAudioView.backgroundColor = [UIColor whiteColor];
     
     //录音功能
-    __weak typeof(MAPAddAudioView) *weakAddAudioView = addAudioView;
+    __weak MAPAddAudioView *weakAddAudioView = addAudioView;
     addAudioView.audioTouchDownAction = ^(UIButton *sender) {
         if (!self->_audioRecordUtils) {
             self.audioRecordUtils = [[MAPAudioRecordUtils alloc] init];
@@ -504,14 +514,6 @@
     self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
     [self HiddenAddDynamicStateView];
     [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
-}
-
-#pragma MAP -----------------------导航按钮点击事件-------------------------
-- (void)navigationButtonClicked:(UIButton *)button {
-    MAPNavigationViewController *navigationViewController = [[MAPNavigationViewController alloc] init];
-    navigationViewController.Latitude = self->_userLocation.location.coordinate.latitude;
-    navigationViewController.Longitud = self->_userLocation.location.coordinate.longitude;
-    [self.navigationController pushViewController:navigationViewController animated:YES];
 }
 
 #pragma MAP -----------------------获取定位周围点-------------------------

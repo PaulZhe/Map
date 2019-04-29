@@ -24,6 +24,7 @@
         [self.addButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         [self.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
+        [self.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         //设置导航按钮
         self.navigationButton.layer.masksToBounds = YES;
@@ -32,6 +33,7 @@
         [self.navigationButton setTitle:@"导航" forState:UIControlStateNormal];
         [self.navigationButton setTintColor:[UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.00f]];
         self.navigationButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [self.navigationButton addTarget:self action:@selector(navigationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         //设置定位图标，模式，精度圈
         BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc] init];
@@ -60,6 +62,18 @@
     
     //设置推荐按钮
     self.navigationButton.frame = CGRectMake(self.frame.size.width - 65, 25, 55, 55);
+}
+
+- (void)addButtonClicked:(UIButton *)sender {
+    if (self.addButtonAction) {
+        self.addButtonAction(sender);
+    }
+}
+
+- (void)navigationButtonClicked:(UIButton *)sender {
+    if (self.navigationAction) {
+        self.navigationAction(sender);
+    }
 }
 
 @end
