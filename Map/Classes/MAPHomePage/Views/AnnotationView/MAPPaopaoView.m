@@ -9,6 +9,11 @@
 #import "MAPPaopaoView.h"
 #import <Masonry.h>
 
+@interface MAPPaopaoView()
+
+@property (nonatomic, strong) UITapGestureRecognizer * tapRG;
+
+@end
 @implementation MAPPaopaoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
