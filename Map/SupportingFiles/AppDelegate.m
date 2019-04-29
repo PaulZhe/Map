@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "MAPHomePageViewController.h"
+#import "BNaviService.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <BNNaviSoundDelegate>
 
 @end
 
@@ -32,12 +33,14 @@
         NSLog(@"manager start failed!");
     }
     
-//    [BNCoreServices_Instance startServicesAsyn:^{
-//        //导航SDK鉴权
-//        [BNCoreServices_Instance authorizeNaviAppKey:@"luyGEHG2lHmVRDUA44DUuX83uDoKLu9H" completion:^(BOOL suc) {
-//            NSLog(@"authorizeNaviAppKey ret = %d", suc);
-//        }];
-//    } fail:nil];
+    [BNaviService_Instance initNaviService:nil success:^{
+        [BNaviService_Instance authorizeNaviAppKey:@"luyGEHG2lHmVRDUA44DUuX83uDoKLu9H" completion:^(BOOL suc) {
+            NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!authorizedNaviAppKey ret = %d", suc);
+        }];
+        [BNaviService_Sound setSoundDelegate:self];
+    } fail:^{
+        NSLog(@"initNaviSDK fail");
+    }];
     
     //设置主界面导航栏
     MAPHomePageViewController *homePageViewController = [[MAPHomePageViewController alloc] init];
