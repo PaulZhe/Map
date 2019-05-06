@@ -11,11 +11,13 @@
 
 @interface MAPNavigationView ()
 @property (nonatomic, strong) NSMutableArray *locationMutableArray;
+@property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
+@property (nonatomic, assign) NSInteger section;
 @end
 
 @implementation MAPNavigationView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _mapView = [[BMKMapView alloc] init];
@@ -37,10 +39,9 @@
         [_navigationView addSubview:_loactionTableView];
         
         _checkButton = [[UIButton alloc] init];
-        [_checkButton setTitle:[NSString stringWithFormat:@"查看路线"] forState:UIControlStateNormal];
+        [_checkButton setTitle:[NSString stringWithFormat:@"开始导航"] forState:UIControlStateNormal];
         [_checkButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_checkButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
-        [_checkButton addTarget:self action:@selector(clickedCheckButton:) forControlEvents:UIControlEventTouchUpInside];
         [_navigationView addSubview:_checkButton];
         
         _locationMutableArray = [[NSMutableArray alloc] initWithObjects:@"起点", @"终点", nil];
@@ -80,7 +81,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _locationMutableArray.count + 1;
+    if (_locationMutableArray.count + 1 <= 5) {
+        return _locationMutableArray.count + 1;
+    } else {
+        return 5;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -96,6 +101,7 @@
         }
         cell1.locationTextField.placeholder = _locationMutableArray[indexPath.section];
         [cell1.locationTextField setValue:[UIColor colorWithRed:0.95f green:0.35f blue:0.35f alpha:1.00f] forKeyPath:@"_placeholderLabel.textColor"];
+        [cell1.locationTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
         return cell1;
     } else {
         if (cell2 == nil) {
@@ -131,10 +137,6 @@
     return 10;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    return NO;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == _locationMutableArray.count) {
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -159,7 +161,7 @@
 }
 
 //可以显示编译状态，当手指在单元格上移动时
-- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //删除数据源对应的数据
         [_locationMutableArray removeObjectAtIndex:indexPath.section];
@@ -167,9 +169,15 @@
         [_loactionTableView reloadData];
     }
 }
-    
-//查看路线点击事件
-- (void)clickedCheckButton:(UIButton *)button {
-    
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return NO;
+}
+
+- (void)textFieldEditChanged:(UITextField *)textField {
+    _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+   // [_locationDataMutableArray[_section] addObject:textField];
+    NSLog(@"locationDataArray = %@", _locationDataMutableArray);
 }
 @end
