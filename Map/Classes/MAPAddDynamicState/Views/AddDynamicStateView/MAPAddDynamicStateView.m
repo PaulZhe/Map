@@ -23,54 +23,55 @@
 - (instancetype) initWithTypeString:(NSString *) typeString {
     self = [super init];
     if (self) {
-        _mapView = [[BMKMapView alloc] init];
+        self.mapView = [[BMKMapView alloc] init];
         //将当前地图显示缩放等级设置为21级
         [self.mapView setZoomLevel:21];
         [self addSubview:_mapView];
         
-        _addDynamicStateView = [[UIView alloc] init];
-        _addDynamicStateView.backgroundColor = [UIColor whiteColor];
+        self.addDynamicStateView = [[UIView alloc] init];
+        self.addDynamicStateView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_addDynamicStateView];
         
-        _locationNameLabel = [[UILabel alloc] init];
-        [_addDynamicStateView addSubview:_locationNameLabel];
-        _locationNameLabel.text = @"西安邮电大学";
-        _locationNameLabel.font = [UIFont systemFontOfSize:23];
+        self.locationNameLabel = [[UILabel alloc] init];
+        [self.addDynamicStateView addSubview:_locationNameLabel];
+        self.locationNameLabel.text = @"西安邮电大学";
+        self.locationNameLabel.font = [UIFont systemFontOfSize:23];
         
-        _adjustmentButton = [[UIButton alloc] init];
-        [_addDynamicStateView addSubview:_adjustmentButton];
-        _adjustmentButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_adjustmentButton setTitle:[NSString stringWithFormat:@"地点微调？"] forState:UIControlStateNormal];
-        [_adjustmentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.adjustmentButton = [[UIButton alloc] init];
+        [self.addDynamicStateView addSubview:_adjustmentButton];
+        self.adjustmentButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [self.adjustmentButton setTitle:[NSString stringWithFormat:@"地点微调？"] forState:UIControlStateNormal];
+        [self.adjustmentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
         
-        _lineView = [[UIImageView alloc] init];
-        [_addDynamicStateView addSubview:_lineView];
-        _lineView.backgroundColor = [UIColor blackColor];
+        self.lineView = [[UIImageView alloc] init];
+        [self.addDynamicStateView addSubview:_lineView];
+        self.lineView.backgroundColor = [UIColor blackColor];
         
-        _issueButton = [[UIButton alloc] init];
-        [_addDynamicStateView addSubview:_issueButton];
-        [_issueButton setTitle:[NSString stringWithFormat:@"发  布"] forState:UIControlStateNormal];
-        [_issueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_issueButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
+        self.issueButton = [[UIButton alloc] init];
+        [self.addDynamicStateView addSubview:_issueButton];
+        [self.issueButton setTitle:[NSString stringWithFormat:@"发  布"] forState:UIControlStateNormal];
+        [self.issueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.issueButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
         
         if ([typeString isEqualToString:@"101"]) {
             //添加评论界面
-            _addCommentView = [[MAPAddCommentsView alloc] init];
-            _addCommentView.delegate = self;
-            [_addDynamicStateView addSubview:_addCommentView];
+            self.addCommentView = [[MAPAddCommentsView alloc] init];
+            self.addCommentView.delegate = self;
+            [self.addDynamicStateView addSubview:_addCommentView];
         } else if ([typeString isEqualToString:@"102"]) {
             //添加图片界面
-            _addPicturesView = [[MAPAddPicturesView alloc] init];
-            _addPicturesView.delegate = self;
-            [_addDynamicStateView addSubview:_addPicturesView];
+            self.addPicturesView = [[MAPAddPicturesView alloc] init];
+            self.addPicturesView.delegate = self;
+            [self.addDynamicStateView addSubview:_addPicturesView];
         } else if ([typeString isEqualToString:@"103"]) {
             //添加语音界面
             
         } else {
             //添加视频界面
-            _addVedioView = [[MAPAddVedioView alloc] init];
-            _addVedioView.delegate = self;
-            [_addDynamicStateView addSubview:_addVedioView];
+            self.addVedioView = [[MAPAddVedioView alloc] init];
+            self.addVedioView.delegate = self;
+            [self.addDynamicStateView addSubview:_addVedioView];
         }
     }
     return self;
@@ -140,12 +141,10 @@
 }
 
 //地点微调点击事件
-- (void)addTapBlock:(buttonBlock)block {
-    _block = block;
-    [_adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
-}
 - (void)adjustmentLocation:(UIButton *)button {
-    _block(button);
+    if (_adjustAction) {
+        self.adjustAction(button);
+    }
 }
 
 //键盘的弹出与收回事件

@@ -19,6 +19,8 @@
         
         self.timeLabel = [[UILabel alloc] init];
         [self addSubview:_timeLabel];
+        
+        [self addTarget:self action:@selector(PlayAudio:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -44,14 +46,10 @@
     _timeLabel.font = [UIFont systemFontOfSize:12];
 }
 
-//重写button的点击事件方法
-- (void)addTapBlock:(buttonBlock) block {
-    _block = block;
-    [self addTarget:self action:@selector(PlayAudio:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)PlayAudio:(UIButton *) button {
-    _block(button);
+- (void)PlayAudio:(UIButton *)button {
+    if (_motiveAudioAction) {
+        self.motiveAudioAction(button);
+    }
 }
 
 @end

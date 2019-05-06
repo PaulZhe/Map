@@ -15,8 +15,8 @@ typedef void (^buttonBlock)(UIButton *sender);
 @interface MAPMotiveAudioButton : UIButton
 @property (nonatomic, strong) UIImageView *audioImageView;//语音标签
 @property (nonatomic, strong) UILabel *timeLabel;//语音时长
-@property (nonatomic, copy) buttonBlock block;
-- (void)addTapBlock:(buttonBlock)block;
+@property (nonatomic, copy) buttonBlock motiveAudioAction;
+
 @end
 
 NS_ASSUME_NONNULL_END

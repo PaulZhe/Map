@@ -18,6 +18,8 @@
         [self addSubview:_backgroudImageView];
         _playVedioImageView = [[UIImageView alloc] init];
         [_backgroudImageView addSubview:_playVedioImageView];
+        
+        [self addTarget:self action:@selector(PlayVedio:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -40,13 +42,9 @@
     _playVedioImageView.image = [UIImage imageNamed:@"start"];
 }
 
-//重写button的点击事件方法
-- (void) addTapBlock:(buttonBlock) block {
-    _block = block;
-    [self addTarget:self action:@selector(PlayVedio:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)PlayVedio:(UIButton *) button {
-    _block(button);
+- (void)PlayVedio:(UIButton *)button {
+    if (_motiveVideoAction) {
+        self.motiveVideoAction(button);
+    }
 }
 @end
