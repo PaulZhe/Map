@@ -8,8 +8,11 @@
 
 #import "MAPNavigationViewController.h"
 #import <Masonry.h>
+#import "BNaviService.h"
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
-@interface MAPNavigationViewController ()
+@interface MAPNavigationViewController () <BNNaviRoutePlanDelegate, BNNaviUIManagerDelegate, BMKSuggestionSearchDelegate>
 @property (nonatomic, strong) NSMutableArray *annotationMutableArray;
 @end
 
@@ -39,20 +42,19 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc] init];
-    if (!annotation) {
-        [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
-        annotation.title = @"";
-        [_navigationView.mapView addAnnotation:annotation];
-        _annotationMutableArray = [NSMutableArray array];
-        [_annotationMutableArray addObject:annotation];
-        [_navigationView.mapView showAnnotations:_annotationMutableArray animated:YES];
-    }
+    [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
+    annotation.title = @"";
+    [_navigationView.mapView addAnnotation:annotation];
+    _annotationMutableArray = [NSMutableArray array];
+    [_annotationMutableArray addObject:annotation];
+    [_navigationView.mapView showAnnotations:_annotationMutableArray animated:YES];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+
     _navigationView = [[MAPNavigationView alloc] init];
     [self.view addSubview:_navigationView];
     [_navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,6 +63,8 @@
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
+    [_navigationView.checkButton addTarget:self action:@selector(ClickedCheckButton:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 //添加自定义点
@@ -81,6 +85,94 @@
 
 - (void)BackToHomePage:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)ClickedCheckButton:(UIButton *)button {
+    [self startNavi];
+}
+
+- (void)searchData:(BMKSuggestionSearchOption *)option {
+    //初始化BMKSuggestionSearch实例
+    BMKSuggestionSearch *suggestionSearch = [[BMKSuggestionSearch alloc] init];
+    //设置关键词检索的代理
+    suggestionSearch.delegate = self;
+    //初始化请求参数类BMKSuggestionSearchOption的实例
+    BMKSuggestionSearchOption* suggestionOption = [[BMKSuggestionSearchOption alloc] init];
+    //城市名
+    suggestionOption.cityname = option.cityname;
+    //检索关键字
+    suggestionOption.keyword  = option.keyword;
+    //是否只返回指定城市检索结果，默认为NO（海外区域暂不支持设置cityLimit）
+    suggestionOption.cityLimit = option.cityLimit;
+   
+    BOOL flag = [suggestionSearch suggestionSearch:suggestionOption];
+    if(flag) {
+        NSLog(@"关键词检索成功");
+    } else {
+        NSLog(@"关键词检索失败");
+    }
+}
+
+/**
+ *返回suggestion搜索结果
+ *@param searcher 搜索对象
+ *@param result 搜索结果
+ *@param error 错误号，@see BMKSearchErrorCode
+ */
+- (void)onGetSuggestionResult:(BMKSuggestionSearch*)searcher result:( BMKSuggestionSearchResult*)result errorCode:(BMKSearchErrorCode)error{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+    }
+    else {
+        NSLog(@"检索失败");
+    }
+}
+
+- (void)startNavi {
+    // 节点数组
+    NSMutableArray *nodesArray = [[NSMutableArray alloc] init];
+    
+    // 起点
+    BNRoutePlanNode *startNode = [[BNRoutePlanNode alloc] init];
+    startNode.pos = [[BNPosition alloc] init];
+    startNode.pos.x = 113.948222;
+    startNode.pos.y = 22.549555;
+    startNode.pos.eType = BNCoordinate_BaiduMapSDK;
+    [nodesArray addObject:startNode];
+    
+    BNRoutePlanNode *viaNode = [[BNRoutePlanNode alloc] init];
+    viaNode.pos = [[BNPosition alloc] init];
+    viaNode.pos.x = 113.9422200000;
+    viaNode.pos.y = 22.5529980000;
+    viaNode.pos.eType = BNCoordinate_BaiduMapSDK;
+    [nodesArray addObject:viaNode];
+    
+    BNRoutePlanNode *viaNode1 = [[BNRoutePlanNode alloc] init];
+    viaNode1.pos = [[BNPosition alloc] init];
+    viaNode1.pos.x = 113.9715960000;
+    viaNode1.pos.y = 22.5601200000;
+    viaNode1.pos.eType = BNCoordinate_BaiduMapSDK;
+    [nodesArray addObject:viaNode1];
+ 
+    // 终点
+    BNRoutePlanNode *endNode = [[BNRoutePlanNode alloc] init];
+    endNode.pos = [[BNPosition alloc] init];
+    endNode.pos.x = 113.940868;
+    endNode.pos.y = 22.54647;
+    endNode.pos.eType = BNCoordinate_BaiduMapSDK;
+    [nodesArray addObject:endNode];
+    
+    //关闭openURL,不想跳转百度地图可以设为YES
+    [BNaviService_RoutePlan setDisableOpenUrl:YES];
+    [BNaviService_RoutePlan startNaviRoutePlan:BNRoutePlanMode_Recommend naviNodes:nodesArray time:nil delegete:self userInfo:nil];
+}
+
+//算路成功回调
+-(void)routePlanDidFinished:(NSDictionary *)userInfo {
+    NSLog(@"算路成功");
+    
+    //路径规划成功，开始导航
+    [BNaviService_UI showPage:BNaviUI_NormalNavi delegate:self extParams:nil];
 }
 
 @end
