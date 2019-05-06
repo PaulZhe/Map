@@ -15,7 +15,7 @@
 @implementation MAPPointItemModel
 
 +(JSONKeyMapper *)keyMapper{
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"id":@"ID", @"name":@"pointName"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"ID":@"id", @"pointName":@"name"}];
 }
 
 +(BOOL)propertyIsOptional:(NSString *)propertyName {

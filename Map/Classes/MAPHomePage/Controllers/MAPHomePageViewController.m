@@ -40,6 +40,8 @@
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
 @property (nonatomic, strong) MAPHomePageViewController *homePageViewController;
+//获取点ID用的annotationView
+@property (nonatomic, strong) BMKAnnotationView *tempAnnotationView;
 
 @end
 
@@ -114,9 +116,9 @@
 //        NSLog(@"%@", error);
 //    }];
     
-//    //addPointManager测试
+    //addPointManager测试
 //    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-//    [addPointManager addPointWithName:@"香港测试点1" Latitude:22.28 Longitude:114.16 success:^(MAPAddPointModel *resultModel) {
+//    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
 //        NSLog(@"%@++++", resultModel.message);
 //    } error:^(NSError *error) {
 //        NSLog(@"%@", error);
@@ -158,7 +160,7 @@
 }
 
 #pragma MAP -------------------------清除多余view-------------------------
-- (void) clearAwaySomeViews {
+- (void)clearAwaySomeViews {
     //添加清除主界面之外所有view的手势
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenAddDynamicStateView)];
     tapGestureRecognizer.delegate = self;
@@ -262,20 +264,7 @@
 
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
-    NSLog(@"");
-//    [view setSelected:!selected animated:YES];
-//    if (!view.selected) {
-////        view.paopaoView.center = CGPointMake(CGRectGetWidth(_homePageView.bounds) / 2.f + view.calloutOffset.x + 37, -CGRectGetHeight(view.paopaoView.bounds) / 2.f + view.calloutOffset.y + 40);
-//        [mapView selectAnnotation:view animated:NO];
-//    } else {
-//        [mapView deselectAnnotation:view animated:NO];
-//    }
-//    selected = !selected;
-//    view.selected = NO;
-//    [mapView deselectAnnotation:view.annotation animated:NO];
-//    [view setSelected:NO];
-//    [mapView mapForceRefresh];
-
+    self.tempAnnotationView = view;
 }
 /**
  *当点击annotation view弹出的泡泡时，调用此接口
@@ -322,20 +311,19 @@
     danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
-        ///添加评论
-        //        [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+//        ///添加评论
+//                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
-        //        MAPAnnotationView *tempAnnotationView = (MAPAnnotationView *)sender.superview.superview;
-        //        int ID = [tempAnnotationView.annotation.title intValue];
-        //        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        //        [manager fetchPointCommentWithPointID:ID
-        //                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-        //                                             NSLog(@"getComment:%@", resultModel.message);
-        //                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
-        //                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-        //                                         } error:^(NSError *error) {
-        //                                             NSLog(@"%@", error);
-        //                                         }];
+//                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
+                                                 type:0 succeed:^(MAPCommentModel *resultModel) {
+                                                     NSLog(@"getComment:%@", resultModel.message);
+                                                     danamicStateViewController.dynamicStateView.commentModel = resultModel;
+                                                     [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                                 } error:^(NSError *error) {
+                                                     NSLog(@"%@", error);
+                                                 }];
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
@@ -443,7 +431,7 @@
     [albumButton addTarget:self action:@selector(clickedAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 //通过相册添加图片点击事件
-- (void)clickedAlbumButton:(UIButton *) button {
+- (void)clickedAlbumButton:(UIButton *)button {
     if (addDynamicStateTypeTag == 102) {
         self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
     } else if (addDynamicStateTypeTag == 104) {

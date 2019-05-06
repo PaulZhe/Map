@@ -24,8 +24,8 @@ typedef void (^buttonBlock)(UIButton *sender);
 @property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
 @property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
 //地点微调点击事件
-@property (nonatomic, copy) buttonBlock block;
-- (void)addTapBlock:(buttonBlock)block;
+@property (nonatomic, copy) buttonBlock adjustAction;
+
 //重写view的init方法
 - (instancetype)initWithTypeString:(NSString *) typeString;
 

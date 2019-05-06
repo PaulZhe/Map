@@ -19,9 +19,6 @@
         _dyanmicStateTableView.dataSource = self;
         [self addSubview:_dyanmicStateTableView];
         [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"motion"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [_dyanmicStateTableView reloadData];
-//        });
     }
     return self;
     
@@ -69,20 +66,19 @@
             voiceCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"voice" typeOfMotion:_typeMotiveString];
         }
         //添加语音点击事件
-        [voiceCell.audioButton addTapBlock:^(UIButton * _Nonnull sender) {
+        voiceCell.audioButton.motiveAudioAction = ^(UIButton * _Nonnull sender) {
             NSLog(@"点击了语音");
-//            [self audioPlay];
-        }];
+        };
         return voiceCell;
     } else {
         if (videoCell == nil) {
             videoCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"video" typeOfMotion:_typeMotiveString];
         }
         //添加视频点击事件
-        [videoCell.videoButton addTapBlock:^(UIButton * _Nonnull sender) {
+        videoCell.videoButton.motiveVideoAction = ^(UIButton * _Nonnull sender) {
             NSLog(@"点击了视频");
             [self vedioPlay];
-        }];
+        };
         return videoCell;
     }
 }

@@ -46,10 +46,10 @@
     [_addDynamicStateView.mapView viewWillAppear];
     _addDynamicStateView.mapView.delegate = self;
     __weak typeof(self) weakSelf = self;
-    [_addDynamicStateView addTapBlock:^(UIButton * _Nonnull sender) {
+    self.addDynamicStateView.adjustAction = ^(UIButton * _Nonnull sender) {
         //地点微调点击事件;
         [weakSelf adjustmentLocationAction];
-    }];
+    };
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

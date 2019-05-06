@@ -81,7 +81,7 @@
     
 }
 
-- (void) clickedButton:(UIButton *)button {
+- (void)clickedButton:(UIButton *)button {
 //    for (id obj in self.superview.subviews) {
 //        if ([obj isMemberOfClass:[MAPAlertView class]]) {
 //            [obj removeFromSuperview];
