@@ -33,8 +33,6 @@
             make.right.mas_equalTo(self.mas_right);
             make.bottom.mas_equalTo(self.mas_bottom);
         }];
-        
-        NSLog(@"location = %@", _locationTextField.text);
     }
     return self;
 }
