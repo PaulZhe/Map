@@ -8,11 +8,12 @@
 
 #import "MAPNavigationView.h"
 #import <Masonry.h>
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
-@interface MAPNavigationView ()
+@interface MAPNavigationView () <BMKSuggestionSearchDelegate>
 @property (nonatomic, strong) NSMutableArray *locationMutableArray;
 @property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
-@property (nonatomic, assign) NSInteger section;
 @end
 
 @implementation MAPNavigationView
@@ -45,6 +46,7 @@
         [_navigationView addSubview:_checkButton];
         
         _locationMutableArray = [[NSMutableArray alloc] initWithObjects:@"起点", @"终点", nil];
+        _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
     }
     return self;
 }
@@ -170,14 +172,74 @@
     }
 }
 
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return NO;
 }
 
+#pragma MAP  ---------------------------------------通过关键词进行提示检索----------------------------------------
 - (void)textFieldEditChanged:(UITextField *)textField {
-    _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
-   // [_locationDataMutableArray[_section] addObject:textField];
+    //获取所点击的indexPath
+    UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+    NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
+    [_locationDataMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
     NSLog(@"locationDataArray = %@", _locationDataMutableArray);
+}
+
+- (void)searchData:(BMKSuggestionSearchOption *)option {
+    //初始化BMKSuggestionSearch实例
+    BMKSuggestionSearch *suggestionSearch = [[BMKSuggestionSearch alloc] init];
+    //设置关键词检索的代理
+    suggestionSearch.delegate = self;
+    //初始化请求参数类BMKSuggestionSearchOption的实例
+    BMKSuggestionSearchOption* suggestionOption = [[BMKSuggestionSearchOption alloc] init];
+    //城市名
+    suggestionOption.cityname = option.cityname;
+    //检索关键字
+    suggestionOption.keyword  = option.keyword;
+    //是否只返回指定城市检索结果，默认为NO（海外区域暂不支持设置cityLimit）
+    suggestionOption.cityLimit = option.cityLimit;
+    /**
+     关键词检索，异步方法，返回结果在BMKSuggestionSearchDelegate
+     的onGetSuggestionResult里
+     
+     suggestionOption sug检索信息类
+     成功返回YES，否则返回NO
+     */
+    BOOL flag = [suggestionSearch suggestionSearch:suggestionOption];
+    if(flag) {
+        NSLog(@"关键词检索成功");
+    } else {
+        NSLog(@"关键词检索失败");
+    }
+}
+
+/**
+ 关键字检索结果回调
+ @param searcher 检索对象
+ @param result 关键字检索结果
+ @param error 错误码，@see BMKCloudErrorCode
+ */
+- (void)onGetSuggestionResult:(BMKSuggestionSearch *)searcher result:(BMKSuggestionSearchResult *)result errorCode:(BMKSearchErrorCode)error {
+    /**
+     移除一组标注
+     @param annotations 要移除的标注数组
+     */
+   // [_mapView removeAnnotations:_mapView.annotations];
+    //BMKSearchErrorCode错误码，BMK_SEARCH_NO_ERROR：检索结果正常返回
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSMutableArray *annotations = [NSMutableArray array];
+        for (BMKSuggestionInfo *sugInfo in result.suggestionList) {
+            BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
+            CLLocationCoordinate2D coor = sugInfo.location;
+            annotation.coordinate = coor;
+            _mapView.centerCoordinate = coor;
+            [annotations addObject:annotation];
+        }
+        //将一组标注添加到当前地图View中
+        [_mapView addAnnotations:annotations];
+    }
+    
+    BMKSuggestionInfo *sugInfo = result.suggestionList.firstObject;
+//    NSString *message = [NSString stringWithFormat:@"key：%@\n城市：%@\n区县：%@\nPOI的唯一标识：%@\n纬度：%f\n经度：%f",sugInfo.key,sugInfo.city,sugInfo.district,sugInfo.uid,sugInfo.location.latitude,sugInfo.location.longitude];
 }
 @end
