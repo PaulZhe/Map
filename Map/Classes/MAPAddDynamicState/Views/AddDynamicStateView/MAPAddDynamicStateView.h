@@ -11,7 +11,7 @@
 #import "MAPAddCommentsView.h"
 #import "MAPAddPicturesView.h"
 #import "MAPAddVedioView.h"
-
+#import "MAPIssueAudioView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^buttonBlock)(UIButton *sender);
@@ -23,6 +23,7 @@ typedef void (^buttonBlock)(UIButton *sender);
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框
 @property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
 @property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
+@property (nonatomic, strong) MAPIssueAudioView *issueAudioView;//添加语音发布界面
 //地点微调点击事件
 @property (nonatomic, copy) buttonBlock adjustAction;
 

@@ -14,34 +14,34 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _addCommentTextView = [[UITextView alloc] init];
+        self.addCommentTextView = [[UITextView alloc] init];
         [self addSubview:_addCommentTextView];
-        _addCommentTextView.delegate = self;
-        _addCommentTextView.font = [UIFont systemFontOfSize:16.5f];
-        _addCommentTextView.textColor = [UIColor blackColor];
-        _addCommentTextView.keyboardType = UIKeyboardTypeDefault;
-        _addCommentTextView.returnKeyType = UIReturnKeyDefault;
+        self.addCommentTextView.delegate = self;
+        self.addCommentTextView.font = [UIFont systemFontOfSize:16.5f];
+        self.addCommentTextView.textColor = [UIColor blackColor];
+        self.addCommentTextView.keyboardType = UIKeyboardTypeDefault;
+        self.addCommentTextView.returnKeyType = UIReturnKeyDefault;
         // 自定义文本框placeholder
-        _placeHolderLabel = [[UILabel alloc] init];
-        _placeHolderLabel.text = @"添加评论...";
-        _placeHolderLabel.font = [UIFont fontWithName:@"Arial" size:16.5f];
-        _placeHolderLabel.backgroundColor = [UIColor clearColor];
-        _placeHolderLabel.enabled = NO;
-        [_addCommentTextView addSubview:_placeHolderLabel];
+        self.placeHolderLabel = [[UILabel alloc] init];
+        self.placeHolderLabel.text = @"添加评论...";
+        self.placeHolderLabel.font = [UIFont fontWithName:@"Arial" size:16.5f];
+        self.placeHolderLabel.backgroundColor = [UIColor clearColor];
+        self.placeHolderLabel.enabled = NO;
+        [self.addCommentTextView addSubview:_placeHolderLabel];
         // 自定义文本框字数统计
-        _countLabel = [[UILabel alloc] init];
-        _countLabel.text = @"0/140";
-        _countLabel.tintColor = [UIColor blackColor];
-        _countLabel.textAlignment = NSTextAlignmentRight;
-        _countLabel.font = [UIFont fontWithName:@"Arial" size:15.0f];
-        _countLabel.backgroundColor = [UIColor clearColor];
-        _countLabel.enabled = NO;
-        [_addCommentTextView addSubview:_countLabel];
+        self.countLabel = [[UILabel alloc] init];
+        self.countLabel.text = @"0/140";
+        self.countLabel.tintColor = [UIColor blackColor];
+        self.countLabel.textAlignment = NSTextAlignmentRight;
+        self.countLabel.font = [UIFont fontWithName:@"Arial" size:15.0f];
+        self.countLabel.backgroundColor = [UIColor clearColor];
+        self.countLabel.enabled = NO;
+        [self.addCommentTextView addSubview:_countLabel];
    
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenkeyboardView)];
         //将触摸事件添加到当前view
         [_addCommentTextView addGestureRecognizer:tapGestureRecognizer];
-        _flag = 0;
+        self.flag = 0;
         
         //监听键盘的出现与消失
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
