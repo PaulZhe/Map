@@ -86,6 +86,7 @@
 		D60CBDE4225CE31A000CBB42 /* MAPAddAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */; };
 		D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F78221D423D0098483A /* MAPLoginManager.m */; };
 		D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */; };
+		D622533F22846328001D245C /* MAPIssueAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = D622533E22846328001D245C /* MAPIssueAudioView.m */; };
 		D622B1BA2201DB4C004F3C6A /* MAPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D622B1B92201DB4C004F3C6A /* MAPAlertView.m */; };
 		D638A76421F1DAF3005DFDFD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74D21F1DAF3005DFDFD /* add.png */; };
 		D638A76521F1DAF3005DFDFD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D638A74E21F1DAF3005DFDFD /* back.png */; };
@@ -254,6 +255,8 @@
 		D61D0F78221D423D0098483A /* MAPLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPLoginManager.m; sourceTree = "<group>"; };
 		D61D0F7E221D44BA0098483A /* MAPGetUserMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetUserMessageModel.h; sourceTree = "<group>"; };
 		D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetUserMessageModel.m; sourceTree = "<group>"; };
+		D622533D22846328001D245C /* MAPIssueAudioView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPIssueAudioView.h; sourceTree = "<group>"; };
+		D622533E22846328001D245C /* MAPIssueAudioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPIssueAudioView.m; sourceTree = "<group>"; };
 		D622B1B82201DB4C004F3C6A /* MAPAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAlertView.h; sourceTree = "<group>"; };
 		D622B1B92201DB4C004F3C6A /* MAPAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAlertView.m; sourceTree = "<group>"; };
 		D638A74D21F1DAF3005DFDFD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
@@ -741,6 +744,8 @@
 			children = (
 				D60CBDE2225CE31A000CBB42 /* MAPAddAudioView.h */,
 				D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */,
+				D622533D22846328001D245C /* MAPIssueAudioView.h */,
+				D622533E22846328001D245C /* MAPIssueAudioView.m */,
 			);
 			path = AddAudioView;
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 				D68297662223DA2A00D3F4A8 /* MAPAddPointModel.m in Sources */,
 				4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */,
 				4F4DF5812212BF8900A5E153 /* MAPAddDynamicStateJSONModel.m in Sources */,
+				D622533F22846328001D245C /* MAPIssueAudioView.m in Sources */,
 				4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */,
 				4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */,
 				4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */,
@@ -1278,9 +1284,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VBXN755W85;
+				DEVELOPMENT_TEAM = 5ZD3H39Z2A;
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1303,9 +1309,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VBXN755W85;
+				DEVELOPMENT_TEAM = 5ZD3H39Z2A;
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -66,7 +66,8 @@
             [self.addDynamicStateView addSubview:_addPicturesView];
         } else if ([typeString isEqualToString:@"103"]) {
             //添加语音界面
-            
+            self.issueAudioView = [[MAPIssueAudioView alloc] init];
+            [self.addDynamicStateView addSubview:_issueAudioView];
         } else {
             //添加视频界面
             self.addVedioView = [[MAPAddVedioView alloc] init];
@@ -120,6 +121,13 @@
     
     [_addCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self->_lineView.mas_bottom).mas_equalTo(0);
+        make.left.mas_equalTo(self->_addDynamicStateView.mas_left);
+        make.right.mas_equalTo(self->_addDynamicStateView.mas_right);
+        make.bottom.mas_equalTo(self->_issueButton.mas_top);
+    }];
+    
+    [self.issueAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self->_lineView.mas_bottom);
         make.left.mas_equalTo(self->_addDynamicStateView.mas_left);
         make.right.mas_equalTo(self->_addDynamicStateView.mas_right);
         make.bottom.mas_equalTo(self->_issueButton.mas_top);
