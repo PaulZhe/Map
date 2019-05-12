@@ -194,6 +194,7 @@
     BMKSuggestionSearchOption* suggestionOption = [[BMKSuggestionSearchOption alloc] init];
     //城市名
     suggestionOption.cityname = option.cityname;
+    
     //检索关键字
     suggestionOption.keyword  = option.keyword;
     //是否只返回指定城市检索结果，默认为NO（海外区域暂不支持设置cityLimit）
