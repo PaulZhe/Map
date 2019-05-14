@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPLocationTableViewCell : UITableViewCell <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *locationTextField;
+@property (nonatomic, strong) UITextField *cityTextField;
+@property (nonatomic, strong) UILabel *leftLabel;
 @end
 
 NS_ASSUME_NONNULL_END
