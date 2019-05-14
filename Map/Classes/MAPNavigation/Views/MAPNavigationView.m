@@ -14,6 +14,8 @@
 @interface MAPNavigationView () <BMKSuggestionSearchDelegate>
 @property (nonatomic, strong) NSMutableArray *locationMutableArray;
 @property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
+@property (nonatomic, strong) NSMutableArray *cityMutableArray;
+@property (nonatomic, strong) NSMutableArray *keyMutableArray;
 @end
 
 @implementation MAPNavigationView
@@ -46,7 +48,9 @@
         [_navigationView addSubview:_checkButton];
         
         _locationMutableArray = [[NSMutableArray alloc] initWithObjects:@"起点", @"终点", nil];
-        _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+        _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", nil];
+        _cityMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+        _keyMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
     }
     return self;
 }
@@ -101,9 +105,11 @@
         if (cell1 == nil) {
             cell1 = [_loactionTableView dequeueReusableCellWithIdentifier:@"location" forIndexPath:indexPath];
         }
-        cell1.locationTextField.placeholder = _locationMutableArray[indexPath.section];
-        [cell1.locationTextField setValue:[UIColor colorWithRed:0.95f green:0.35f blue:0.35f alpha:1.00f] forKeyPath:@"_placeholderLabel.textColor"];
+        cell1.leftLabel.text = _locationMutableArray[indexPath.section];
+        cell1.locationTextField.tag = 101;
+        cell1.cityTextField.tag = 102;
         [cell1.locationTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
+        [cell1.cityTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
         return cell1;
     } else {
         if (cell2 == nil) {
@@ -178,11 +184,27 @@
 
 #pragma MAP  ---------------------------------------通过关键词进行提示检索----------------------------------------
 - (void)textFieldEditChanged:(UITextField *)textField {
-    //获取所点击的indexPath
-    UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
-    NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
-    [_locationDataMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
+    if (textField.tag == 101) {
+        //获取所点击的indexPath
+        UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+        NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
+        [_keyMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
+    } else if (textField.tag == 102) {
+        //获取所点击的indexPath
+        UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+        NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
+        [_cityMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
+    }
+    [_locationDataMutableArray replaceObjectAtIndex:0 withObject:_cityMutableArray];
+    [_locationDataMutableArray replaceObjectAtIndex:1 withObject:_keyMutableArray];
     NSLog(@"locationDataArray = %@", _locationDataMutableArray);
+    BMKSuggestionSearchOption *suggestionOption = [[BMKSuggestionSearchOption alloc] init];
+    for (int i = 0; i < 5; i++) {
+        suggestionOption.keyword = _locationDataMutableArray[1][i];
+        suggestionOption.cityname = _locationDataMutableArray[0][i];
+        suggestionOption.cityLimit = NO;
+        [self searchData:suggestionOption];
+    }
 }
 
 - (void)searchData:(BMKSuggestionSearchOption *)option {
@@ -221,26 +243,22 @@
  @param error 错误码，@see BMKCloudErrorCode
  */
 - (void)onGetSuggestionResult:(BMKSuggestionSearch *)searcher result:(BMKSuggestionSearchResult *)result errorCode:(BMKSearchErrorCode)error {
-    /**
-     移除一组标注
-     @param annotations 要移除的标注数组
-     */
-   // [_mapView removeAnnotations:_mapView.annotations];
     //BMKSearchErrorCode错误码，BMK_SEARCH_NO_ERROR：检索结果正常返回
-    if (error == BMK_SEARCH_NO_ERROR) {
-        NSMutableArray *annotations = [NSMutableArray array];
-        for (BMKSuggestionInfo *sugInfo in result.suggestionList) {
-            BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
-            CLLocationCoordinate2D coor = sugInfo.location;
-            annotation.coordinate = coor;
-            _mapView.centerCoordinate = coor;
-            [annotations addObject:annotation];
-        }
-        //将一组标注添加到当前地图View中
-        [_mapView addAnnotations:annotations];
-    }
+//    if (error == BMK_SEARCH_NO_ERROR) {
+//        NSMutableArray *annotations = [NSMutableArray array];
+//        for (BMKSuggestionInfo *sugInfo in result.suggestionList) {
+//            BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
+//            CLLocationCoordinate2D coor = sugInfo.location;
+//            annotation.coordinate = coor;
+//            _mapView.centerCoordinate = coor;
+//            [annotations addObject:annotation];
+//        }
+//        //将一组标注添加到当前地图View中
+//        [_mapView addAnnotations:annotations];
+//    }
     
     BMKSuggestionInfo *sugInfo = result.suggestionList.firstObject;
-//    NSString *message = [NSString stringWithFormat:@"key：%@\n城市：%@\n区县：%@\nPOI的唯一标识：%@\n纬度：%f\n经度：%f",sugInfo.key,sugInfo.city,sugInfo.district,sugInfo.uid,sugInfo.location.latitude,sugInfo.location.longitude];
+    NSString *message = [NSString stringWithFormat:@"纬度：%f\n经度：%f",sugInfo.location.latitude,sugInfo.location.longitude];
+    NSLog(@"message = %@", message);
 }
 @end
