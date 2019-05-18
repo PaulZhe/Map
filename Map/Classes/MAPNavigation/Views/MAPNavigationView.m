@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
 @property (nonatomic, strong) NSMutableArray *cityMutableArray;
 @property (nonatomic, strong) NSMutableArray *keyMutableArray;
+@property (nonatomic, strong) NSMutableArray *locationCoordinate2DMutableArray;
+@property (nonatomic, assign) int flag;
 @end
 
 @implementation MAPNavigationView
@@ -51,6 +53,7 @@
         _locationDataMutableArray = [NSMutableArray arrayWithObjects:@"", @"", nil];
         _cityMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
         _keyMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+        _locationCoordinate2DMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
     }
     return self;
 }
@@ -197,7 +200,7 @@
     }
     [_locationDataMutableArray replaceObjectAtIndex:0 withObject:_cityMutableArray];
     [_locationDataMutableArray replaceObjectAtIndex:1 withObject:_keyMutableArray];
-    NSLog(@"locationDataArray = %@", _locationDataMutableArray);
+    NSLog(@"_locationMutableArray = %@", _locationDataMutableArray);
     BMKSuggestionSearchOption *suggestionOption = [[BMKSuggestionSearchOption alloc] init];
     for (int i = 0; i < 5; i++) {
         suggestionOption.keyword = _locationDataMutableArray[1][i];
@@ -258,7 +261,10 @@
 //    }
     
     BMKSuggestionInfo *sugInfo = result.suggestionList.firstObject;
-    NSString *message = [NSString stringWithFormat:@"纬度：%f\n经度：%f",sugInfo.location.latitude,sugInfo.location.longitude];
-    NSLog(@"message = %@", message);
+    NSMutableArray *locationMutableArray = [[NSMutableArray alloc] init];
+    [locationMutableArray addObject:@(sugInfo.location.latitude)];
+    [locationMutableArray addObject:@(sugInfo.location.longitude)];
+    [_locationCoordinate2DMutableArray replaceObjectAtIndex:_flag withObject:locationMutableArray];
+    NSLog(@"_flag = %d, _locationCoordinate2D = %@", _flag, _locationCoordinate2DMutableArray);
 }
 @end
