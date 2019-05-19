@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MAPMotiveAudioButton.h"
+#import "MAPAudioRecordUtils.h"
 
 @interface MAPIssueAudioView : UIView
 
 @property (nonatomic, strong) MAPMotiveAudioButton *motiveAudioButton;
 @property (nonatomic, assign) int seconds;
 @property (nonatomic, assign) int minutes;
+@property (nonatomic, strong) MAPAudioRecordUtils *audioRecordUtils;
 
 @end

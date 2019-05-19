@@ -54,7 +54,7 @@ static const float kMotiveButtonFromLeft = 65.0;
             make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
             make.left.mas_equalTo(kMotiveButtonFromLeft);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(100);
+            make.width.mas_equalTo(150);
         }];
         
         self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];

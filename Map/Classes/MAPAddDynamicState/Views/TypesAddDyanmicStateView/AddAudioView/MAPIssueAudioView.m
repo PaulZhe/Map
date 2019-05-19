@@ -20,14 +20,9 @@ static const float kMotiveAudioButtonHeight = 35.0;
     self = [super init];
     if (self) {
         self.motiveAudioButton = [[MAPMotiveAudioButton alloc] init];
-        NSString *timeStr;
-        if (_minutes == 0) {
-            timeStr = [NSString stringWithFormat:@"%ds", _seconds];
-        } else {
-            timeStr = [NSString stringWithFormat:@"%dm%ds", _minutes, _seconds];
-        }
-        self.motiveAudioButton.timeLabel.text = timeStr;
         [self addSubview:_motiveAudioButton];
+        
+        self.audioRecordUtils = [[MAPAudioRecordUtils alloc] init];
     }
     return self;
 }
