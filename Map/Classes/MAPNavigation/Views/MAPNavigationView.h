@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *navigationView;//导航界面
 @property (nonatomic, strong) UITableView *loactionTableView;//多个地点
 @property (nonatomic, strong) UIButton *checkButton;//导航按钮
+@property (nonatomic, strong) NSMutableArray *locationCoordinate2DMutableArray;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPNavigationView *navigationView;
 @property (nonatomic, assign) double Latitude;
 @property (nonatomic, assign) double Longitud;//记录点的位置
+@property (nonatomic, strong) NSMutableArray *dataMutableArray;//记录经纬度
 @end
 
 NS_ASSUME_NONNULL_END

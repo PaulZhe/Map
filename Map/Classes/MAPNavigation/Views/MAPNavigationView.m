@@ -11,12 +11,11 @@
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
-@interface MAPNavigationView () <BMKSuggestionSearchDelegate>
+@interface MAPNavigationView () <BMKSuggestionSearchDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) NSMutableArray *locationMutableArray;
 @property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
 @property (nonatomic, strong) NSMutableArray *cityMutableArray;
 @property (nonatomic, strong) NSMutableArray *keyMutableArray;
-@property (nonatomic, strong) NSMutableArray *locationCoordinate2DMutableArray;
 @property (nonatomic, assign) int flag;
 @end
 
@@ -54,6 +53,10 @@
         _cityMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
         _keyMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
         _locationCoordinate2DMutableArray = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+        
+        //监听键盘的出现与消失
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -200,8 +203,12 @@
     }
     [_locationDataMutableArray replaceObjectAtIndex:0 withObject:_cityMutableArray];
     [_locationDataMutableArray replaceObjectAtIndex:1 withObject:_keyMutableArray];
-    NSLog(@"_locationMutableArray = %@", _locationDataMutableArray);
     BMKSuggestionSearchOption *suggestionOption = [[BMKSuggestionSearchOption alloc] init];
+    for (int i = 0; i < 5; i++) {
+        if (![_locationDataMutableArray[1][i] isEqualToString:@""] && ![_locationDataMutableArray[0][i] isEqualToString:@""]) {
+            _flag = i;
+        }
+    }
     for (int i = 0; i < 5; i++) {
         suggestionOption.keyword = _locationDataMutableArray[1][i];
         suggestionOption.cityname = _locationDataMutableArray[0][i];
@@ -246,25 +253,33 @@
  @param error 错误码，@see BMKCloudErrorCode
  */
 - (void)onGetSuggestionResult:(BMKSuggestionSearch *)searcher result:(BMKSuggestionSearchResult *)result errorCode:(BMKSearchErrorCode)error {
-    //BMKSearchErrorCode错误码，BMK_SEARCH_NO_ERROR：检索结果正常返回
-//    if (error == BMK_SEARCH_NO_ERROR) {
-//        NSMutableArray *annotations = [NSMutableArray array];
-//        for (BMKSuggestionInfo *sugInfo in result.suggestionList) {
-//            BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
-//            CLLocationCoordinate2D coor = sugInfo.location;
-//            annotation.coordinate = coor;
-//            _mapView.centerCoordinate = coor;
-//            [annotations addObject:annotation];
-//        }
-//        //将一组标注添加到当前地图View中
-//        [_mapView addAnnotations:annotations];
-//    }
-    
     BMKSuggestionInfo *sugInfo = result.suggestionList.firstObject;
     NSMutableArray *locationMutableArray = [[NSMutableArray alloc] init];
     [locationMutableArray addObject:@(sugInfo.location.latitude)];
     [locationMutableArray addObject:@(sugInfo.location.longitude)];
     [_locationCoordinate2DMutableArray replaceObjectAtIndex:_flag withObject:locationMutableArray];
     NSLog(@"_flag = %d, _locationCoordinate2D = %@", _flag, _locationCoordinate2DMutableArray);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sendCoordinate" object:_locationCoordinate2DMutableArray];
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self endEditing:YES];
+}
+
+//键盘的收回
+- (void) keyboardWillDisappear:(NSNotification *)notification{
+    [UIView animateWithDuration:1 animations:^{
+        self.navigationView.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
+}
+//键盘的弹出
+- (void) keyboardWillAppear:(NSNotification *)notification{
+    // 计算键盘高度
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.navigationView.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height + 100);
+    }];
+}
+
 @end
