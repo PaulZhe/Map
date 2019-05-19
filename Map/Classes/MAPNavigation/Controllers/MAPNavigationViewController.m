@@ -64,6 +64,7 @@
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
     [_navigationView.checkButton addTarget:self action:@selector(ClickedCheckButton:) forControlEvents:UIControlEventTouchUpInside];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:) name:@"sendCoordinate" object:nil];
     
 }
 
@@ -91,26 +92,8 @@
     [self startNavi];
 }
 
-- (void)searchData:(BMKSuggestionSearchOption *)option {
-    //初始化BMKSuggestionSearch实例
-    BMKSuggestionSearch *suggestionSearch = [[BMKSuggestionSearch alloc] init];
-    //设置关键词检索的代理
-    suggestionSearch.delegate = self;
-    //初始化请求参数类BMKSuggestionSearchOption的实例
-    BMKSuggestionSearchOption* suggestionOption = [[BMKSuggestionSearchOption alloc] init];
-    //城市名
-    suggestionOption.cityname = option.cityname;
-    //检索关键字
-    suggestionOption.keyword  = option.keyword;
-    //是否只返回指定城市检索结果，默认为NO（海外区域暂不支持设置cityLimit）
-    suggestionOption.cityLimit = option.cityLimit;
-   
-    BOOL flag = [suggestionSearch suggestionSearch:suggestionOption];
-    if(flag) {
-        NSLog(@"关键词检索成功");
-    } else {
-        NSLog(@"关键词检索失败");
-    }
+- (void)tongzhi:(NSNotification *) notification {
+    _dataMutableArray = [[NSMutableArray alloc] initWithArray:_navigationView.locationCoordinate2DMutableArray];
 }
 
 /**
@@ -129,36 +112,45 @@
 }
 
 - (void)startNavi {
+    NSLog(@"controller = %@", _dataMutableArray);
+    long node = _dataMutableArray.count;
     // 节点数组
     NSMutableArray *nodesArray = [[NSMutableArray alloc] init];
     
     // 起点
     BNRoutePlanNode *startNode = [[BNRoutePlanNode alloc] init];
     startNode.pos = [[BNPosition alloc] init];
-    startNode.pos.x = 113.948222;
-    startNode.pos.y = 22.549555;
+    startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
+    startNode.pos.y = [_dataMutableArray[1][1] doubleValue];
     startNode.pos.eType = BNCoordinate_BaiduMapSDK;
     [nodesArray addObject:startNode];
     
     BNRoutePlanNode *viaNode = [[BNRoutePlanNode alloc] init];
     viaNode.pos = [[BNPosition alloc] init];
-    viaNode.pos.x = 113.9422200000;
-    viaNode.pos.y = 22.5529980000;
+    viaNode.pos.x = [_dataMutableArray[0][2] doubleValue];
+    viaNode.pos.y = [_dataMutableArray[0][2] doubleValue];
     viaNode.pos.eType = BNCoordinate_BaiduMapSDK;
     [nodesArray addObject:viaNode];
     
     BNRoutePlanNode *viaNode1 = [[BNRoutePlanNode alloc] init];
     viaNode1.pos = [[BNPosition alloc] init];
-    viaNode1.pos.x = 113.9715960000;
-    viaNode1.pos.y = 22.5601200000;
+    viaNode1.pos.x = [_dataMutableArray[0][3] doubleValue];
+    viaNode1.pos.y = [_dataMutableArray[0][3] doubleValue];
     viaNode1.pos.eType = BNCoordinate_BaiduMapSDK;
     [nodesArray addObject:viaNode1];
+    
+    BNRoutePlanNode *viaNode2 = [[BNRoutePlanNode alloc] init];
+    viaNode2.pos = [[BNPosition alloc] init];
+    viaNode2.pos.x = [_dataMutableArray[0][4] doubleValue];
+    viaNode2.pos.y = [_dataMutableArray[0][4] doubleValue];
+    viaNode2.pos.eType = BNCoordinate_BaiduMapSDK;
+    [nodesArray addObject:viaNode2];
  
     // 终点
     BNRoutePlanNode *endNode = [[BNRoutePlanNode alloc] init];
     endNode.pos = [[BNPosition alloc] init];
-    endNode.pos.x = 113.940868;
-    endNode.pos.y = 22.54647;
+    endNode.pos.x = [_dataMutableArray[0][5] doubleValue];
+    endNode.pos.y = [_dataMutableArray[0][5] doubleValue];
     endNode.pos.eType = BNCoordinate_BaiduMapSDK;
     [nodesArray addObject:endNode];
     
@@ -174,5 +166,8 @@
     //路径规划成功，开始导航
     [BNaviService_UI showPage:BNaviUI_NormalNavi delegate:self extParams:nil];
 }
+
+
+
 
 @end
