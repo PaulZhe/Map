@@ -12,5 +12,7 @@
 @interface MAPIssueAudioView : UIView
 
 @property (nonatomic, strong) MAPMotiveAudioButton *motiveAudioButton;
+@property (nonatomic, assign) int seconds;
+@property (nonatomic, assign) int minutes;
 
 @end

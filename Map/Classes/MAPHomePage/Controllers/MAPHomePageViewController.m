@@ -52,7 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_homePageView.mapView viewWillAppear];
-//    _homePageView.mapView.delegate = self;
+    //    _homePageView.mapView.delegate = self;
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -60,7 +60,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_homePageView.mapView viewWillDisappear];
-//    _homePageView.mapView.delegate = nil;
+    //    _homePageView.mapView.delegate = nil;
     [_locationManager stopUpdatingLocation];
 }
 
@@ -108,24 +108,24 @@
     };
     [self.view addSubview:_homePageView];
     
-//    //loginManager测试
-//    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
-//    [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
-//        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
-//    } Failure:^(NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
+    //    //loginManager测试
+    //    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
+    //    [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
+    //        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
+    //    } Failure:^(NSError *error) {
+    //        NSLog(@"%@", error);
+    //    }];
     
     //addPointManager测试
-//    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-//    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
-//        NSLog(@"%@++++", resultModel.message);
-//    } error:^(NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
+    //    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+    //    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+    //        NSLog(@"%@++++", resultModel.message);
+    //    } error:^(NSError *error) {
+    //        NSLog(@"%@", error);
+    //    }];
     
-//    //添加评论测试
-//    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+    //    //添加评论测试
+    //    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -148,7 +148,7 @@
     //设置是否自动停止位置更新
     _locationManager.pausesLocationUpdatesAutomatically = NO;
     //设置是否允许后台定位
-//    _locationManager.allowsBackgroundLocationUpdates = YES;
+    //    _locationManager.allowsBackgroundLocationUpdates = YES;
     //设置位置获取超时时间
     _locationManager.locationTimeout = 20;
     //设置获取地址信息超时时间
@@ -273,21 +273,21 @@
  */
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
     NSLog(@":");
-//    int flag = 1;
-//    if (flag == 1) {
-//        for(id tmpView in [_paopaoView subviews]) {
-//            if([tmpView isKindOfClass:[UIButton class]]){
-//                UIButton *buttonView = (UIButton *)tmpView;
-//                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
-//                    [self paopaoViewButtonAddTarget:_paopaoView];
-//                }
-//            }
-//        }
-//    }
-//    if (flag == 0) {
-//        [mapView deselectAnnotation:view.annotation animated:NO];
-//        flag = 1;
-//    }
+    //    int flag = 1;
+    //    if (flag == 1) {
+    //        for(id tmpView in [_paopaoView subviews]) {
+    //            if([tmpView isKindOfClass:[UIButton class]]){
+    //                UIButton *buttonView = (UIButton *)tmpView;
+    //                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
+    //                    [self paopaoViewButtonAddTarget:_paopaoView];
+    //                }
+    //            }
+    //        }
+    //    }
+    //    if (flag == 0) {
+    //        [mapView deselectAnnotation:view.annotation animated:NO];
+    //        flag = 1;
+    //    }
 }
 
 - (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
@@ -311,19 +311,19 @@
     danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
-//        ///添加评论
-//                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        //        ///添加评论
+        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
-//                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
         MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
         [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
-                                                 type:0 succeed:^(MAPCommentModel *resultModel) {
-                                                     NSLog(@"getComment:%@", resultModel.message);
-                                                     danamicStateViewController.dynamicStateView.commentModel = resultModel;
-                                                     [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-                                                 } error:^(NSError *error) {
-                                                     NSLog(@"%@", error);
-                                                 }];
+                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+                                             NSLog(@"getComment:%@", resultModel.message);
+                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
+                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                         } error:^(NSError *error) {
+                                             NSLog(@"%@", error);
+                                         }];
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
@@ -477,10 +477,12 @@
             self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
             self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
             self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
+            self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
+            
             [self HiddenAddDynamicStateView];
             [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
         }
-        
         [weakAddAudioView reset];
     };
     
@@ -492,7 +494,7 @@
         make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
         make.height.mas_equalTo(addAudioView.mas_width).multipliedBy(1.2);
     }];
-
+    
 }
 
 //button点击事件

@@ -13,7 +13,7 @@ static const float kMotiveButtonFromLeft = 65.0;
 
 @implementation MAPDynamicStateTableViewCell
 
-- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.nameLabel = [[UILabel alloc] init];
@@ -57,17 +57,6 @@ static const float kMotiveButtonFromLeft = 65.0;
             make.width.mas_equalTo(100);
         }];
         
-        self.likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-        [_likeButton setTitle:@"(2)" forState:UIControlStateNormal];
-        [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [self.contentView addSubview:_likeButton];
-        [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
-            make.right.mas_equalTo(self->_timeLabel.mas_right).mas_equalTo(180);
-            make.size.mas_equalTo(CGSizeMake(50, 20));
-        }];
-        
         self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commentButton setImage:[UIImage imageNamed:@"comt"] forState:UIControlStateNormal];
         [_commentButton setTitle:@"(2)" forState:UIControlStateNormal];
@@ -76,6 +65,17 @@ static const float kMotiveButtonFromLeft = 65.0;
         [_commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
             make.right.mas_equalTo(-15);
+            make.size.mas_equalTo(CGSizeMake(50, 20));
+        }];
+        
+        self.likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+        [_likeButton setTitle:@"(2)" forState:UIControlStateNormal];
+        [_likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:_likeButton];
+        [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
+            make.right.mas_equalTo(self->_commentButton.mas_left).mas_equalTo(-2);
             make.size.mas_equalTo(CGSizeMake(50, 20));
         }];
         
@@ -109,7 +109,7 @@ static const float kMotiveButtonFromLeft = 65.0;
             }];
         } else if ([typeString isEqualToString:@"4"]) {
             //这里是视频
-            _videoButton = [[MAPMotiveVideoButton alloc] init];
+            self.videoButton = [[MAPMotiveVideoButton alloc] init];
             [self.contentView addSubview:_videoButton];
             [_videoButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
