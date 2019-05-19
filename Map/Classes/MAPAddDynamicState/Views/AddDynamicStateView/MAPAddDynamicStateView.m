@@ -20,13 +20,7 @@
 
 @implementation MAPAddDynamicStateView
 
-//- (MAPIssueAudioView *)issueAudioView {
-//    if (!_issueAudioView) {
-//        self.issueAudioView = [[MAPIssueAudioView alloc] init];
-//    }
-//    return _issueAudioView;
-//}
-
+///101评论界面，102图片界面，103语音界面，104视频界面
 - (instancetype)initWithTypeString:(NSString *) typeString {
     self = [super init];
     if (self) {
@@ -73,7 +67,17 @@
             [self.addDynamicStateView addSubview:_addPicturesView];
         } else if ([typeString isEqualToString:@"103"]) {
             //添加语音界面
+            __weak typeof(self) weakSelf = self;
             self.issueAudioView = [[MAPIssueAudioView alloc] init];
+            
+            //点击语音button播放语音
+            self.issueAudioView.motiveAudioButton.motiveAudioAction = ^(UIButton * _Nonnull sender) {
+                NSURL *mp3Url = [NSURL fileURLWithPath:weakSelf.mp3Path];
+                weakSelf.issueAudioView.audioRecordUtils.player = [[AVAudioPlayer alloc] initWithContentsOfURL:mp3Url error:nil];
+                [weakSelf.issueAudioView.audioRecordUtils.player prepareToPlay];
+                [weakSelf.issueAudioView.audioRecordUtils.player play];
+                NSLog(@"++++mp3 play");
+            };
             [self.addDynamicStateView addSubview:_issueAudioView];
         } else {
             //添加视频界面

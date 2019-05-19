@@ -18,6 +18,7 @@ typedef void (^buttonBlock)(UIButton *sender);
 
 @interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate, MAPAddPicturesViewDelegate, MAPAddVedioViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
+@property (nonatomic, copy) NSString *mp3Path;
 //不同界面对应不同的view
 @property (nonatomic, strong) MAPAddCommentsView *addCommentView; //添加评论输入框
 @property (nonatomic, strong) MAPAddPicturesView *addPicturesView; //添加图片输入框

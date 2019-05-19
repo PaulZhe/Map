@@ -356,7 +356,7 @@
         make.size.mas_equalTo(CGSizeMake(300, 300));
     }];
     
-    _addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
+    self.addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
     addDynamicStateTypeTag = 0;
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
@@ -372,6 +372,7 @@
             [self addDynamicStateFromShootingOrAlbum];
         } else if (tag == 103) {
             //添加语音
+            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             self->addDynamicStateTypeTag = tag;
             [self addAudioDynamicStateView];
         } else if (tag == 104) {
@@ -474,9 +475,9 @@
         [weakAddAudioView endRecord];
         
         if (self->_audioRecordUtils.jumpFlag) {
-            self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)self->addDynamicStateTypeTag];
             self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
             self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            self->_addDyanmicStateViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
             self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
             self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
             
@@ -495,15 +496,6 @@
         make.height.mas_equalTo(addAudioView.mas_width).multipliedBy(1.2);
     }];
     
-}
-
-//button点击事件
-- (void)ClikedButton:(UIButton *) button {
-    self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)addDynamicStateTypeTag];
-    self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
-    self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
-    [self HiddenAddDynamicStateView];
-    [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
 }
 
 #pragma MAP -----------------------获取定位周围点-------------------------

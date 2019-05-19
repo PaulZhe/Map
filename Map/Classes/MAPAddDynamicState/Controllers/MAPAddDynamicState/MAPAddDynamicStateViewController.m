@@ -20,15 +20,7 @@
 
 @implementation MAPAddDynamicStateViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.barStyle = UIBaselineAdjustmentNone;
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
-    backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    
+- (MAPAddDynamicStateView *)addDynamicStateView {
     if (!_addDynamicStateView) {
         _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
         [self.view addSubview:_addDynamicStateView];
@@ -39,6 +31,19 @@
             make.bottom.mas_equalTo(self.view.mas_bottom);
         }];
     }
+    return _addDynamicStateView;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self createChildView];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barStyle = UIBaselineAdjustmentNone;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
+    backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
     
     //设置跳转相册代理
     _addDynamicStateView.addPicturesView.delegate = self;
@@ -78,6 +83,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+}
+
+- (void)createChildView {
+    if ([_typeString isEqualToString:@"103"]) {
+        NSString *timeStr;
+        if (_addDynamicStateView.issueAudioView.minutes == 0) {
+            timeStr = [NSString stringWithFormat:@"%ds", _addDynamicStateView.issueAudioView.seconds];
+        } else {
+            timeStr = [NSString stringWithFormat:@"%dm%ds", _addDynamicStateView.issueAudioView.minutes, _addDynamicStateView.issueAudioView.seconds];
+        }
+        _addDynamicStateView.issueAudioView.motiveAudioButton.timeLabel.text = timeStr;
+        
+        
+    }
 }
 
 //添加自定义点
