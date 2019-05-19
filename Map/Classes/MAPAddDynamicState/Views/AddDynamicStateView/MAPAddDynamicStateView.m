@@ -20,7 +20,14 @@
 
 @implementation MAPAddDynamicStateView
 
-- (instancetype) initWithTypeString:(NSString *) typeString {
+//- (MAPIssueAudioView *)issueAudioView {
+//    if (!_issueAudioView) {
+//        self.issueAudioView = [[MAPIssueAudioView alloc] init];
+//    }
+//    return _issueAudioView;
+//}
+
+- (instancetype)initWithTypeString:(NSString *) typeString {
     self = [super init];
     if (self) {
         self.mapView = [[BMKMapView alloc] init];

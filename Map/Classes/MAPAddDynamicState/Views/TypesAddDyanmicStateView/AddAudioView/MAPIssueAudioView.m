@@ -20,6 +20,13 @@ static const float kMotiveAudioButtonHeight = 35.0;
     self = [super init];
     if (self) {
         self.motiveAudioButton = [[MAPMotiveAudioButton alloc] init];
+        NSString *timeStr;
+        if (_minutes == 0) {
+            timeStr = [NSString stringWithFormat:@"%ds", _seconds];
+        } else {
+            timeStr = [NSString stringWithFormat:@"%dm%ds", _minutes, _seconds];
+        }
+        self.motiveAudioButton.timeLabel.text = timeStr;
         [self addSubview:_motiveAudioButton];
     }
     return self;
@@ -28,8 +35,8 @@ static const float kMotiveAudioButtonHeight = 35.0;
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.motiveAudioButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(30);
-        make.top.mas_equalTo(self.mas_top).offset(20);
+        make.left.mas_equalTo(self.mas_left).offset(kMotiveAudioButtonFromLeft);
+        make.top.mas_equalTo(self.mas_top).offset(kMotiveAudioButtonFromTop);
         make.width.mas_equalTo(self.mas_width).multipliedBy(0.3);
         make.height.mas_equalTo(kMotiveAudioButtonHeight);
     }];

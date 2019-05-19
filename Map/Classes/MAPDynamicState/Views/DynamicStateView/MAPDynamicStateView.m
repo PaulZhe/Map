@@ -11,7 +11,7 @@
 
 @implementation MAPDynamicStateView
 
-- (instancetype) initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
@@ -24,18 +24,18 @@
     
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (!_commentModel) {
         return 3;
     }
     return _commentModel.data.count;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MAPDynamicStateTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
     MAPDynamicStateTableViewCell *picturesCell = [tableView dequeueReusableCellWithIdentifier:@"pictures"];
     MAPDynamicStateTableViewCell *voiceCell = [tableView dequeueReusableCellWithIdentifier:@"voice"];
@@ -44,15 +44,15 @@
         if (commentCell == nil) {
             commentCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment" typeOfMotion:_typeMotiveString];
         }
-//        if (!_commentModel) {
-//            commentCell.nameLabel.text = @"111111111";
-//            commentCell.contentLabel.text = @"22222222";
-//            commentCell.timeLabel.text = @"333333333";
-//        } else {
-            commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
-            commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
-            commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
-//        }
+        //        if (!_commentModel) {
+        //            commentCell.nameLabel.text = @"111111111";
+        //            commentCell.contentLabel.text = @"22222222";
+        //            commentCell.timeLabel.text = @"333333333";
+        //        } else {
+        commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
+        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
+        commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
+        //        }
         return commentCell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         if (picturesCell == nil) {
@@ -97,7 +97,7 @@
 }
 
 //播放视频
-- (void) vedioPlay {
+- (void)vedioPlay {
     //视频播放器的Layer
     UIView *vedioView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     vedioView.backgroundColor = [UIColor lightGrayColor];
@@ -112,17 +112,17 @@
     [_vedioPlayer.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
     // 监听 videoPlayer 是否播放完成
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayerDidFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:_vedioPlayerItem];
-
+    
     _vedioPlayerLayer = [[AVPlayerLayer alloc] initWithLayer:_vedioPlayer];
     //AVLayerVideoGravityResizeAspect 等比例  默认
     _vedioPlayerLayer.videoGravity = AVVideoScalingModeResizeAspect;
     _vedioPlayerLayer.frame = vedioView.bounds;
     [vedioView.layer addSublayer:_vedioPlayerLayer];
-
+    
     //初始化底部视图
     _vedioButtonView = [[MAPMotiveVideoButtonView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 100, [UIScreen mainScreen].bounds.size.width, 100)];
     [self addSubview:_vedioButtonView];
-
+    
     //添加一个计时的标签不断更新当前的播放进度
     __weak typeof(self) weakSelf = self;
     [_vedioPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:nil usingBlock:^(CMTime time) {
