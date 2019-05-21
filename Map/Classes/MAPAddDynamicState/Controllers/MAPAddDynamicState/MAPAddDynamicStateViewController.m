@@ -36,7 +36,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self createChildView];
+    [self refreshData];
     
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
@@ -83,10 +83,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    //添加发布点点击事件
+    [self createChildView];
 }
 
-- (void)createChildView {
+//更新语音时长标签
+- (void)refreshData {
     if ([_typeString isEqualToString:@"103"]) {
         NSString *timeStr;
         if (_addDynamicStateView.issueAudioView.minutes == 0) {
@@ -95,9 +97,21 @@
             timeStr = [NSString stringWithFormat:@"%dm%ds", _addDynamicStateView.issueAudioView.minutes, _addDynamicStateView.issueAudioView.seconds];
         }
         _addDynamicStateView.issueAudioView.motiveAudioButton.timeLabel.text = timeStr;
-        
-        
     }
+}
+
+//添加发布点点击事件
+- (void)createChildView {
+    __weak typeof(self) weakSelf = self;
+    self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
+        NSData *mp3Cache = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:weakSelf.addDynamicStateView.mp3Path]];
+        [[MAPAddPointManager sharedManager] uploadWithPointId:6 Data:mp3Cache Type:2 Title:nil success:^(MAPAddPointModel *resultModel) {
+            NSLog(@"mp3上传成功");
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        } error:^(NSError *error) {
+            NSLog(@"mp3上传失败");
+        }];
+    };
 }
 
 //添加自定义点
@@ -129,7 +143,6 @@
 }
 
 // 上传图片评论
-
 - (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
     NSMutableArray *dataArray = [NSMutableArray array];
     for (id image in imageArray) {

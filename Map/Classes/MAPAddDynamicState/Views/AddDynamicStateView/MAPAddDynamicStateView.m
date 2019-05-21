@@ -54,6 +54,7 @@
         [self.issueButton setTitle:[NSString stringWithFormat:@"发  布"] forState:UIControlStateNormal];
         [self.issueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.issueButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
+        [self.issueButton addTarget:self action:@selector(issueButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         if ([typeString isEqualToString:@"101"]) {
             //添加评论界面
@@ -157,6 +158,13 @@
         make.right.mas_equalTo(self->_addDynamicStateView.mas_right);
         make.bottom.mas_equalTo(self->_issueButton.mas_top);
     }];
+}
+
+//发布按钮点击事件
+- (void)issueButtonClick:(UIButton *)sender {
+    if (_issueAction) {
+        self.issueAction(sender);
+    }
 }
 
 //地点微调点击事件

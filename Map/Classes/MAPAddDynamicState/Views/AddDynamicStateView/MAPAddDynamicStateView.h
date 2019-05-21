@@ -15,6 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^buttonBlock)(UIButton *sender);
+typedef void (^IssueButtonBlock)(UIButton *sender);
 
 @interface MAPAddDynamicStateView : UIView <MAPAddCommentViewDelegate, MAPAddPicturesViewDelegate, MAPAddVedioViewDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;//显示地图
@@ -27,6 +28,8 @@ typedef void (^buttonBlock)(UIButton *sender);
 @property (nonatomic, strong) MAPIssueAudioView *issueAudioView;//添加语音发布界面
 //地点微调点击事件
 @property (nonatomic, copy) buttonBlock adjustAction;
+//发布按钮点击事件
+@property (nonatomic, copy) IssueButtonBlock issueAction;
 
 //重写view的init方法
 - (instancetype)initWithTypeString:(NSString *) typeString;
