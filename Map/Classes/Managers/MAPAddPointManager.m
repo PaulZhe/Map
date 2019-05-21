@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPAddPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU3NzUxMzQ5LCJpYXQiOjE1NTcxNDY1NDksInVzZXJuYW1lIjoi5byg5ZOyIn0.m-W-IuH2GviszRkZnFHWHLqKA79CO1khXvgYV4Wpk6U";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5MDQ5MDExLCJpYXQiOjE1NTg0NDQyMTEsInVzZXJuYW1lIjoi5byg5ZOyIn0.voH1G59JgQWcJFmKsY7p4IMK8JMvV6zW0Q9YdS9ECBg";
 
 @implementation MAPAddPointManager
 
@@ -151,10 +151,8 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"responseJSON : %@", responseJSON);
         NSError *error;
-        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseJSON error:&error];
+        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseObject error:&error];
         NSLog(@"result:%@", result);
         if (result.status == 0) {
             succeedBlock(result);
