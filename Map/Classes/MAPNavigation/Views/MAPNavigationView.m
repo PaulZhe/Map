@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *locationDataMutableArray;
 @property (nonatomic, strong) NSMutableArray *cityMutableArray;
 @property (nonatomic, strong) NSMutableArray *keyMutableArray;
-@property (nonatomic, assign) int flag;
+@property (nonatomic, assign) long flag;
 @end
 
 @implementation MAPNavigationView
@@ -195,20 +195,18 @@
         UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
         NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
         [_keyMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
+        _flag = indexPath.section;
     } else if (textField.tag == 102) {
         //获取所点击的indexPath
         UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
         NSIndexPath *indexPath = [_loactionTableView indexPathForCell:cell];
         [_cityMutableArray replaceObjectAtIndex:indexPath.section withObject:textField.text];
+        _flag = indexPath.section;
     }
     [_locationDataMutableArray replaceObjectAtIndex:0 withObject:_cityMutableArray];
     [_locationDataMutableArray replaceObjectAtIndex:1 withObject:_keyMutableArray];
+    NSLog(@"_location = %@", _locationDataMutableArray);
     BMKSuggestionSearchOption *suggestionOption = [[BMKSuggestionSearchOption alloc] init];
-    for (int i = 0; i < 5; i++) {
-        if (![_locationDataMutableArray[1][i] isEqualToString:@""] && ![_locationDataMutableArray[0][i] isEqualToString:@""]) {
-            _flag = i;
-        }
-    }
     for (int i = 0; i < 5; i++) {
         suggestionOption.keyword = _locationDataMutableArray[1][i];
         suggestionOption.cityname = _locationDataMutableArray[0][i];
@@ -258,8 +256,9 @@
     [locationMutableArray addObject:@(sugInfo.location.latitude)];
     [locationMutableArray addObject:@(sugInfo.location.longitude)];
     [_locationCoordinate2DMutableArray replaceObjectAtIndex:_flag withObject:locationMutableArray];
-    NSLog(@"_flag = %d, _locationCoordinate2D = %@", _flag, _locationCoordinate2DMutableArray);
+    NSLog(@"_flag = %ld, _locationCoordinate2D = %@", _flag, _locationCoordinate2DMutableArray);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"sendCoordinate" object:_locationCoordinate2DMutableArray];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sendFlag" object:@(_flag)];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
