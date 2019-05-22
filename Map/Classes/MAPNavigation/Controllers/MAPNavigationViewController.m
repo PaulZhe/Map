@@ -14,6 +14,7 @@
 
 @interface MAPNavigationViewController () <BNNaviRoutePlanDelegate, BNNaviUIManagerDelegate, BMKSuggestionSearchDelegate>
 @property (nonatomic, strong) NSMutableArray *annotationMutableArray;
+@property (nonatomic, assign) long node;
 @end
 
 @implementation MAPNavigationViewController
@@ -65,6 +66,7 @@
     }];
     [_navigationView.checkButton addTarget:self action:@selector(ClickedCheckButton:) forControlEvents:UIControlEventTouchUpInside];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:) name:@"sendCoordinate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendFlag:) name:@"sendFlag" object:nil];
     
 }
 
@@ -96,6 +98,10 @@
     _dataMutableArray = [[NSMutableArray alloc] initWithArray:_navigationView.locationCoordinate2DMutableArray];
 }
 
+- (void)sendFlag:(NSNotification *) notificaton {
+    NSLog(@"flag = %@", notificaton.object);
+    _node = [notificaton.object longValue] + 1;
+}
 /**
  *返回suggestion搜索结果
  *@param searcher 搜索对象
@@ -113,47 +119,92 @@
 
 - (void)startNavi {
     NSLog(@"controller = %@", _dataMutableArray);
-    long node = _dataMutableArray.count;
+    
     // 节点数组
     NSMutableArray *nodesArray = [[NSMutableArray alloc] init];
     
     // 起点
     BNRoutePlanNode *startNode = [[BNRoutePlanNode alloc] init];
     startNode.pos = [[BNPosition alloc] init];
-    startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
-    startNode.pos.y = [_dataMutableArray[1][1] doubleValue];
     startNode.pos.eType = BNCoordinate_BaiduMapSDK;
-    [nodesArray addObject:startNode];
     
     BNRoutePlanNode *viaNode = [[BNRoutePlanNode alloc] init];
     viaNode.pos = [[BNPosition alloc] init];
-    viaNode.pos.x = [_dataMutableArray[0][2] doubleValue];
-    viaNode.pos.y = [_dataMutableArray[0][2] doubleValue];
     viaNode.pos.eType = BNCoordinate_BaiduMapSDK;
-    [nodesArray addObject:viaNode];
     
     BNRoutePlanNode *viaNode1 = [[BNRoutePlanNode alloc] init];
     viaNode1.pos = [[BNPosition alloc] init];
-    viaNode1.pos.x = [_dataMutableArray[0][3] doubleValue];
-    viaNode1.pos.y = [_dataMutableArray[0][3] doubleValue];
     viaNode1.pos.eType = BNCoordinate_BaiduMapSDK;
-    [nodesArray addObject:viaNode1];
     
     BNRoutePlanNode *viaNode2 = [[BNRoutePlanNode alloc] init];
     viaNode2.pos = [[BNPosition alloc] init];
-    viaNode2.pos.x = [_dataMutableArray[0][4] doubleValue];
-    viaNode2.pos.y = [_dataMutableArray[0][4] doubleValue];
     viaNode2.pos.eType = BNCoordinate_BaiduMapSDK;
-    [nodesArray addObject:viaNode2];
- 
+    
     // 终点
     BNRoutePlanNode *endNode = [[BNRoutePlanNode alloc] init];
     endNode.pos = [[BNPosition alloc] init];
-    endNode.pos.x = [_dataMutableArray[0][5] doubleValue];
-    endNode.pos.y = [_dataMutableArray[0][5] doubleValue];
     endNode.pos.eType = BNCoordinate_BaiduMapSDK;
-    [nodesArray addObject:endNode];
     
+    if (_node == 2) {
+        startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
+        startNode.pos.y = [_dataMutableArray[0][0] doubleValue];
+        [nodesArray addObject:startNode];
+        
+        endNode.pos.x = [_dataMutableArray[1][1] doubleValue];
+        endNode.pos.y = [_dataMutableArray[1][0] doubleValue];
+        [nodesArray addObject:endNode];
+    } else if (_node == 3) {
+        startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
+        startNode.pos.y = [_dataMutableArray[0][0] doubleValue];
+        [nodesArray addObject:startNode];
+        
+        viaNode.pos.x = [_dataMutableArray[1][1] doubleValue];
+        viaNode.pos.y = [_dataMutableArray[1][0] doubleValue];
+        [nodesArray addObject:viaNode];
+        
+        endNode.pos.x = [_dataMutableArray[2][1] doubleValue];
+        endNode.pos.y = [_dataMutableArray[2][0] doubleValue];
+        [nodesArray addObject:endNode];
+        
+    } else if (_node == 4) {
+        startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
+        startNode.pos.y = [_dataMutableArray[0][0] doubleValue];
+        [nodesArray addObject:startNode];
+        
+        viaNode.pos.x = [_dataMutableArray[1][1] doubleValue];
+        viaNode.pos.y = [_dataMutableArray[1][0] doubleValue];
+        [nodesArray addObject:viaNode];
+        
+        viaNode1.pos.x = [_dataMutableArray[2][1] doubleValue];
+        viaNode1.pos.y = [_dataMutableArray[2][0] doubleValue];
+        [nodesArray addObject:viaNode1];
+        
+        endNode.pos.x = [_dataMutableArray[3][1] doubleValue];
+        endNode.pos.y = [_dataMutableArray[3][0] doubleValue];
+        [nodesArray addObject:endNode];
+    } else {
+        startNode.pos.x = [_dataMutableArray[0][1] doubleValue];
+        startNode.pos.y = [_dataMutableArray[0][0] doubleValue];
+        [nodesArray addObject:startNode];
+        
+        viaNode.pos.x = [_dataMutableArray[1][1] doubleValue];
+        viaNode.pos.y = [_dataMutableArray[1][0] doubleValue];
+        [nodesArray addObject:viaNode];
+        
+        viaNode1.pos.x = [_dataMutableArray[2][1] doubleValue];
+        viaNode1.pos.y = [_dataMutableArray[2][0] doubleValue];
+        [nodesArray addObject:viaNode1];
+        
+        viaNode2.pos.x = [_dataMutableArray[3][1] doubleValue];
+        viaNode2.pos.y = [_dataMutableArray[3][0] doubleValue];
+        [nodesArray addObject:viaNode2];
+        
+        endNode.pos.x = [_dataMutableArray[4][1] doubleValue];
+        endNode.pos.y = [_dataMutableArray[4][0] doubleValue];
+        [nodesArray addObject:endNode];
+    }
+    
+    NSLog(@"nodesArray = %@", nodesArray);
     //关闭openURL,不想跳转百度地图可以设为YES
     [BNaviService_RoutePlan setDisableOpenUrl:YES];
     [BNaviService_RoutePlan startNaviRoutePlan:BNRoutePlanMode_Recommend naviNodes:nodesArray time:nil delegete:self userInfo:nil];
