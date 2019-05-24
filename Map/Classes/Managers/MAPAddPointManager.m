@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPAddPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5MDQ5MDExLCJpYXQiOjE1NTg0NDQyMTEsInVzZXJuYW1lIjoi5byg5ZOyIn0.voH1G59JgQWcJFmKsY7p4IMK8JMvV6zW0Q9YdS9ECBg";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5MzA4Nzk0LCJpYXQiOjE1NTg3MDM5OTQsInVzZXJuYW1lIjoi5byg5ZOyIn0.2VvsDvaN6YCBEW8cEyCSIy3kxpvb1g8gyY7UY5QEeMM";
 
 @implementation MAPAddPointManager
 
@@ -125,7 +125,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 
 // 上传文件
 - (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/upload/%d", pointId];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadAudio/%d", pointId];
     //    NSLog(@"url:%@", URL);
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:type], @"file" : fileData}];
     if (type == 3) {
