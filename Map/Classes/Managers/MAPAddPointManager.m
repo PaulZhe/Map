@@ -123,7 +123,43 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
     }];
 }
 
-// 上传文件
+// 上传语音
+- (void)uploadAudioWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Second:(int)seconds Minutes:(int)minutes success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadAudio/%d", pointId];
+    //    NSLog(@"url:%@", URL);
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:type], @"file" : fileData, @"second": [NSNumber numberWithInt:seconds], @"minutes": [NSNumber numberWithInt:minutes]}];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    
+    [manager POST:URL parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.mp3", str];
+        [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"mp3"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSError *error;
+        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseObject error:&error];
+        NSLog(@"result:%@", result);
+        if (result.status == 0) {
+            succeedBlock(result);
+        } else {
+            NSLog(@"%@", result.message);
+            NSError *error = [[NSError alloc] initWithDomain:result.message code:(NSInteger)result.status userInfo:nil];
+            errorBlock(error);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        errorBlock(error);
+    }];
+}
+
+// 上传视频
 - (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadAudio/%d", pointId];
     //    NSLog(@"url:%@", URL);
@@ -165,7 +201,6 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
         NSLog(@"%@", error);
         errorBlock(error);
     }];
-    
 }
 
 @end

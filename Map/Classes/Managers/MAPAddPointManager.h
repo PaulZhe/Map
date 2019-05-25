@@ -45,6 +45,6 @@ typedef void(^MAPErrorHandle)(NSError *error);
  *@param pointId  点的ID
  *@param title    文件标题
  */
-- (void)uploadWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Title:(NSString *)title success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock;
+- (void)uploadAudioWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Second:(int)seconds Minutes:(int)minutes success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock;
 
 @end
