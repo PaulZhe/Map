@@ -105,7 +105,7 @@
     __weak typeof(self) weakSelf = self;
     self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
         NSData *mp3Cache = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:weakSelf.addDynamicStateView.mp3Path]];
-        [[MAPAddPointManager sharedManager] uploadWithPointId:6 Data:mp3Cache Type:2 Title:nil success:^(MAPAddPointModel *resultModel) {
+        [[MAPAddPointManager sharedManager] uploadAudioWithPointId:6 Data:mp3Cache Type:2 Second:weakSelf.addDynamicStateView.issueAudioView.seconds Minutes:weakSelf.addDynamicStateView.issueAudioView.minutes success:^(MAPAddPointModel *resultModel) {
             NSLog(@"mp3上传成功");
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } error:^(NSError *error) {
