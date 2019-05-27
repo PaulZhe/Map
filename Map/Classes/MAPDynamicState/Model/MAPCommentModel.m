@@ -8,6 +8,14 @@
 
 #import "MAPCommentModel.h"
 
+@implementation MAPContentModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
 @implementation MAPCommentContentModel
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
