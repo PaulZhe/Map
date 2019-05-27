@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPLoginManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5MzA4Nzk0LCJpYXQiOjE1NTg3MDM5OTQsInVzZXJuYW1lIjoi5byg5ZOyIn0.2VvsDvaN6YCBEW8cEyCSIy3kxpvb1g8gyY7UY5QEeMM";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5Mzg2MjM5LCJpYXQiOjE1NTg3ODE0MzksInVzZXJuYW1lIjoi5byg5ZOyIn0.LqGvsK0pW-1WLkZLqXK1KyObm-LiBhQxKmybMiQjcpU";
 
 @implementation MAPLoginManager
 

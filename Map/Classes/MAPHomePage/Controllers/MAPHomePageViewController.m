@@ -334,6 +334,14 @@
     }];
     [paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"3";
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
+            NSLog(@"getComment:%@", resultModel.message);
+            danamicStateViewController.dynamicStateView.commentModel = resultModel;
+            [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+        } error:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
     }];
     [paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {

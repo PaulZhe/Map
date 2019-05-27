@@ -12,17 +12,27 @@
 @protocol MAPCommentContentModel
 @end
 
+@interface MAPContentModel : JSONModel
+
+@property (nonatomic, assign) int audioMinutes;
+@property (nonatomic, assign) int audioSecond;
+@property (nonatomic, copy) NSString *url;
+
+@end
+
 @interface MAPCommentContentModel : JSONModel
 
 @property (nonatomic, assign) int ID;
 @property (nonatomic, assign) int pointId;
 @property (nonatomic, assign) int type;
 @property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *content;
+@property (nonatomic, strong) MAPContentModel *content;
+//@property (nonatomic, copy) NSString *content;
 @property (nonatomic, assign) int remarkCount;
 @property (nonatomic, assign) int clickCount;
 @property (nonatomic, copy) NSString *createAt;
 @property (nonatomic, assign) int isClick;
+@property (nonatomic, assign) int userId;
 
 @end
 

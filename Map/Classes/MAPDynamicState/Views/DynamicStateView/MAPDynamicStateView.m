@@ -8,6 +8,22 @@
 
 #import "MAPDynamicStateView.h"
 #import "MAPDynamicStateTableViewCell.h"
+#import "MAPMotivePicturesView.h"
+#import "AVFoundation/AVFoundation.h"
+#import "MAPMotiveVideoButtonView.h"
+
+@interface MAPDynamicStateView()
+
+//点击播放按钮之后的界面
+@property (nonatomic, strong) MAPMotiveVideoButtonView *vedioButtonView;
+
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;//播放音频,支持播放在线音乐
+
+@property (nonatomic, strong) AVPlayer *vedioPlayer;//视频播放器
+@property (nonatomic, strong) AVPlayerItem *vedioPlayerItem;//播放元素
+@property (nonatomic, strong) AVPlayerLayer *vedioPlayerLayer;//播放界面
+
+@end
 
 @implementation MAPDynamicStateView
 
@@ -25,14 +41,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (!_commentModel) {
         return 3;
     }
     return _commentModel.data.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -49,9 +65,9 @@
         //            commentCell.contentLabel.text = @"22222222";
         //            commentCell.timeLabel.text = @"333333333";
         //        } else {
-        commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] username]];
-        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] content]];
-        commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[0] createAt]];
+        commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] username]];
+        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content]];
+        commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] createAt]];
         //        }
         return commentCell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
@@ -65,9 +81,15 @@
         if (voiceCell == nil) {
             voiceCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"voice" typeOfMotion:_typeMotiveString];
         }
+        
         //添加语音点击事件
         voiceCell.audioButton.motiveAudioAction = ^(UIButton * _Nonnull sender) {
-            NSLog(@"点击了语音");
+            NSLog(@"点击了语音%ld", (long)indexPath.row);
+            NSString *mp3Str = [NSString stringWithFormat:@"http://haojianqiang.top%@", [self->_commentModel.data[indexPath.row] content].url];
+            NSData *mp3Data = [NSData dataWithContentsOfURL:[[NSURL alloc] initWithString:mp3Str]];
+            self.audioPlayer = [[AVAudioPlayer alloc] initWithData:mp3Data error:nil];
+            [self.audioPlayer prepareToPlay];
+            [self.audioPlayer play];
         };
         return voiceCell;
     } else {
@@ -86,15 +108,15 @@
 
 
 //播放音频
-- (void)audioPlay {
-    NSURL *audioUrl = [NSURL URLWithString:[NSString stringWithFormat:@"123"]];
-    _audioPlayer = [[AVPlayer alloc] initWithURL:audioUrl];
-    if (_playerStatue == Play) {
-        [_audioPlayer pause];
-    }
-    [_audioPlayer play];
-    _playerStatue = Play;
-}
+//- (void)audioPlay {
+//    NSURL *audioUrl = [NSURL URLWithString:[NSString stringWithFormat:@"123"]];
+//    _audioPlayer = [[AVPlayer alloc] initWithURL:audioUrl];
+//    if (_playerStatue == Play) {
+//        [_audioPlayer pause];
+//    }
+//    [_audioPlayer play];
+//    _playerStatue = Play;
+//}
 
 //播放视频
 - (void)vedioPlay {
