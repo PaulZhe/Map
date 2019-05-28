@@ -29,6 +29,19 @@
 
 @end
 
+//@implementation MAPAudioContentModel
+//+ (JSONKeyMapper *)keyMapper {
+//    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+//                                                                  @"ID":@"id"
+//                                                                  }];
+//}
+//
+//+(BOOL)propertyIsOptional:(NSString *)propertyName {
+//    return  YES;
+//}
+//
+//@end
+
 @implementation MAPCommentModel
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
@@ -36,3 +49,11 @@
 }
 
 @end
+
+//@implementation MAPAudioModel
+//
+//+ (BOOL)propertyIsOptional:(NSString *)propertyName {
+//    return YES;
+//}
+//
+//@end

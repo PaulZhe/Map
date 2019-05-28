@@ -12,8 +12,10 @@
 
 // 获取周边point的回调block
 typedef void(^MAPGetPointHandle)(MAPGetPointModel *pointModel);
-// 定位请求返回数据的block
+// 定位请求返回评论数据的block
 typedef void(^MAPGetCommentHandle)(MAPCommentModel *resultModel);
+//// 定位请求返回音频数据的block
+//typedef void(^MAPGetAudioHandle)(MAPAudioModel *resultModel);
 // 请求失败统一回调block
 typedef void(^ErrorHandle)(NSError *error);
 
