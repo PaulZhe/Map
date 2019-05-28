@@ -66,7 +66,7 @@
         //            commentCell.timeLabel.text = @"333333333";
         //        } else {
         commentCell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] username]];
-        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content]];
+        commentCell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content].comm];
         commentCell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] createAt]];
         //        }
         return commentCell;
