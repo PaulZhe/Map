@@ -272,7 +272,7 @@
  *@param view 泡泡所属的annotation view
  */
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-    NSLog(@":");
+    //NSLog(@":");
     //    int flag = 1;
     //    if (flag == 1) {
     //        for(id tmpView in [_paopaoView subviews]) {
@@ -310,7 +310,7 @@
     MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
     danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    [paopaoView.commentButton addTapBlock:^(UIButton * _Nonnull sender) {
+    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         //        ///添加评论
         //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
@@ -326,13 +326,14 @@
                                          }];
         danamicStateViewController.typeMotiveString = @"1";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-    }];
-    [paopaoView.picturesButton addTapBlock:^(UIButton * _Nonnull sender) {
+    };
+
+    paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"2";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-        
-    }];
-    [paopaoView.voiceButton addTapBlock:^(UIButton * _Nonnull sender) {
+    };
+
+    paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"3";
         MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
         [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
@@ -343,11 +344,12 @@
             NSLog(@"%@", error);
         }];
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-    }];
-    [paopaoView.vedioButton addTapBlock:^(UIButton * _Nonnull sender) {
+    };
+    
+    paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         danamicStateViewController.typeMotiveString = @"4";
         [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
-    }];
+    };
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------

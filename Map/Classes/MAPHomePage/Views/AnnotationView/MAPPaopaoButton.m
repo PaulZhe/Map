@@ -10,9 +10,11 @@
 
 @implementation MAPPaopaoButton
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
+        [self addTarget:self action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
+        
         _countLabel = [[UILabel alloc] init];
         [self addSubview:_countLabel];
     }
@@ -29,14 +31,8 @@
     _countLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-//重写button的点击事件方法
-- (void)addTapBlock:(buttonBlock)block {
-    self.block = block;
-    [self addTarget:self action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
-}
-
 - (void)addingMotion:(UIButton *)button {
-    _block(button);
+    self.paopaoButtonAction(button);
 }
 
 @end

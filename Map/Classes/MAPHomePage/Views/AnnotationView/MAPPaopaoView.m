@@ -74,7 +74,9 @@
 
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *hitView = [super hitTest:point withEvent:event];
-    //如果上层透明视图是window 和 按钮（uibutton 继承自UIControl ）就允许点击
+    //如果上层透明视图是window  按钮（uibutton 继承自UIControl ）就允许点击
+    NSLog(@"+++++%f,%f", point.x, point.y);
+    NSLog(@"%@", hitView);
     if(![hitView isKindOfClass:[UIButton class]]){
         return nil;
     }
