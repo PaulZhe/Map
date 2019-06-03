@@ -42,7 +42,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!_commentModel) {
-        return 3;
+        return 1;
     }
     return _commentModel.data.count;
 }

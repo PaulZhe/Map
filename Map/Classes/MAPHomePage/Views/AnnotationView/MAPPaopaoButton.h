@@ -10,12 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^buttonBlock)(UIButton *sender);
+typedef void (^PaopaoButtonAction)(UIButton *sender);
 
 @interface MAPPaopaoButton : UIButton
 @property (nonatomic, strong) UILabel *countLabel;//评论数量
-@property (nonatomic, copy) buttonBlock block;
-- (void)addTapBlock:(buttonBlock)block;
+@property (nonatomic, copy) PaopaoButtonAction paopaoButtonAction;
 @end
 
 NS_ASSUME_NONNULL_END
