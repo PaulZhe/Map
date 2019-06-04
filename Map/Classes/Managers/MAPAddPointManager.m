@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPAddPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5NjU4MzM2LCJpYXQiOjE1NTkwNTM1MzYsInVzZXJuYW1lIjoi5byg5ZOyIn0._wPt4HxvePx0OBfXc-5UzolQ1ep1PT6R5mwtAXaLEXA";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTYwMjI0NjUzLCJpYXQiOjE1NTk2MTk4NTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.Y-Gj0w-eM60LkDstRm8aE43wuW06tR3_r4susLak_cc";
 
 @implementation MAPAddPointManager
 
@@ -24,7 +24,11 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
     return manager;
 }
 
-- (void)addPointWithName:(NSString *)name Latitude:(double)latitude Longitude:(double)longitude success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
+- (void)addPointWithName:(NSString *)name
+                Latitude:(double)latitude
+               Longitude:(double)longitude
+                 success:(MAPResultHandle)successBlock
+                   error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/point/addPoint"];
     NSDictionary *param = @{@"name" : name, @"longitude" : [NSNumber numberWithDouble:longitude], @"latitude" : [NSNumber numberWithDouble:latitude]};
 
@@ -54,7 +58,10 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 }
 
 // 文字评论
-- (void)addMessageWithPointId:(int)pointId Content:(NSString *)content success:(MAPResultHandle)successBlock error:(MAPErrorHandle)errorBlock {
+- (void)addMessageWithPointId:(int)pointId
+                      Content:(NSString *)content
+                      success:(MAPResultHandle)successBlock
+                        error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/addMessage/%d", pointId];
     NSDictionary *param = @{@"content" : content};
 
@@ -85,7 +92,11 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 }
 
 // 上传多张图片
-- (void)uploadPhotosWithPointId:(int)pointId Title:(NSString *)title Data:(NSArray *)fileDataArray success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
+- (void)uploadPhotosWithPointId:(int)pointId
+                          Title:(NSString *)title
+                           Data:(NSArray *)fileDataArray
+                        success:(MAPResultHandle)succeedBlock
+                          error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadMangPhotos/%d", pointId];
     
     NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
@@ -124,7 +135,13 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
 }
 
 // 上传语音
-- (void)uploadAudioWithPointId:(int)pointId Data:(NSData *)fileData Type:(int)type Second:(int)seconds Minutes:(int)minutes success:(MAPResultHandle)succeedBlock error:(MAPErrorHandle)errorBlock {
+- (void)uploadAudioWithPointId:(int)pointId
+                          Data:(NSData *)fileData
+                          Type:(int)type
+                        Second:(int)seconds
+                       Minutes:(int)minutes
+                       success:(MAPResultHandle)succeedBlock
+                         error:(MAPErrorHandle)errorBlock {
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadAudio/%d", pointId];
     //    NSLog(@"url:%@", URL);
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:type], @"file" : fileData, @"second": [NSNumber numberWithInt:seconds], @"minutes": [NSNumber numberWithInt:minutes]}];

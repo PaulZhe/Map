@@ -28,7 +28,7 @@
 
 - (void)initPaopaoView {
     _commentButton = [[MAPPaopaoButton alloc] init];
-    _commentButton.countLabel.text = @"2";
+    _commentButton.countLabel.text = [NSString stringWithFormat:@"%ld", _mesCount];
     [_commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
     _commentButton.tag = 101;
     [self addSubview:_commentButton];
@@ -39,7 +39,7 @@
     }];
     
     _picturesButton = [[MAPPaopaoButton alloc] init];
-    _picturesButton.countLabel.text = @"2";
+    _picturesButton.countLabel.text = [NSString stringWithFormat:@"%ld", _phoCount];
     [_picturesButton setImage:[UIImage imageNamed:@"image"] forState:UIControlStateNormal];
     _picturesButton.tag = 102;
     [self addSubview:_picturesButton];
@@ -50,7 +50,7 @@
     }];
     
     _voiceButton = [[MAPPaopaoButton alloc] init];
-    _voiceButton.countLabel.text = @"2";
+    _voiceButton.countLabel.text = [NSString stringWithFormat:@"%ld", _audCount];
     [_voiceButton setImage:[UIImage imageNamed:@"voice"] forState:UIControlStateNormal];
     _voiceButton.tag = 103;
     [self addSubview:_voiceButton];
@@ -61,7 +61,7 @@
     }];
     
     _vedioButton = [[MAPPaopaoButton alloc] init];
-    _vedioButton.countLabel.text = @"2";
+    _vedioButton.countLabel.text = [NSString stringWithFormat:@"%ld", _vidCount];
     [_vedioButton setImage:[UIImage imageNamed:@"video"] forState:UIControlStateNormal];
     _vedioButton.tag = 104;
     [self addSubview:_vedioButton];
