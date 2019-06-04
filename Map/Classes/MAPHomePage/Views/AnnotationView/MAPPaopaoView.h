@@ -16,6 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPPaopaoButton *picturesButton;
 @property (nonatomic, strong) MAPPaopaoButton *voiceButton;
 @property (nonatomic, strong) MAPPaopaoButton *vedioButton;
+@property (nonatomic, assign) long mesCount;
+@property (nonatomic, assign) long phoCount;
+@property (nonatomic, assign) long audCount;
+@property (nonatomic, assign) long vidCount;
+
+- (void)initPaopaoView;
 @end
 
 NS_ASSUME_NONNULL_END

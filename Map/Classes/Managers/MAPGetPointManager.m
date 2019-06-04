@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPGetPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTU5NjU4MzM2LCJpYXQiOjE1NTkwNTM1MzYsInVzZXJuYW1lIjoi5byg5ZOyIn0._wPt4HxvePx0OBfXc-5UzolQ1ep1PT6R5mwtAXaLEXA";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlwZSI6ImFkbWluIiwiZXhwIjoxNTYwMjI0NjUzLCJpYXQiOjE1NTk2MTk4NTMsInVzZXJuYW1lIjoi5byg5ZOyIn0.Y-Gj0w-eM60LkDstRm8aE43wuW06tR3_r4susLak_cc";
 
 @implementation MAPGetPointManager
 
@@ -24,7 +24,11 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
     return manager;
 }
 
-- (void)fetchPointWithLongitude:(double)longitude Latitude:(double)latitude Range:(int)range succeed:(MAPGetPointHandle)succeedBlock error:(ErrorHandle)errorBlock{
+- (void)fetchPointWithLongitude:(double)longitude
+                       Latitude:(double)latitude
+                          Range:(int)range
+                        succeed:(MAPGetPointHandle)succeedBlock
+                          error:(ErrorHandle)errorBlock{
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/none/getPoints"];
     
     NSDictionary *param = @{@"longitude":[NSNumber numberWithDouble:longitude],@"latitude":[NSNumber numberWithDouble:latitude],@"range":[NSNumber numberWithInt:range]};
@@ -51,7 +55,10 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
     }];
 }
 
-- (void)fetchPointCommentWithPointID:(int)ID type:(int)type succeed:(MAPGetCommentHandle)succeedBlock error:(ErrorHandle)errorBlock{
+- (void)fetchPointCommentWithPointID:(int)ID
+                                type:(int)type
+                             succeed:(MAPGetCommentHandle)succeedBlock
+                               error:(ErrorHandle)errorBlock{
     NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/none/getMessage/%d", ID];
     NSDictionary *param = @{@"type":[NSNumber numberWithInt:type]};
     
@@ -67,6 +74,39 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidHlw
         NSError *error;
         NSLog(@"%@", responseObject);
         MAPCommentModel *model = [[MAPCommentModel alloc] initWithDictionary:responseObject error:&error];
+        NSLog(@"%@", model);
+        if (error) {
+            errorBlock(error);
+        } else {
+            if (model.status == 0) {
+                succeedBlock(model);
+            } else {
+                NSError *error = [[NSError alloc] initWithDomain:model.message code:(NSInteger)model.status userInfo:nil];
+                errorBlock(error);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        errorBlock(error);
+    }];
+}
+
+- (void)fetchPointMessageCountWithPointID:(int)ID
+                                  succeed:(MAPGetMessageCountHandle)succeedBlock
+                                    error:(ErrorHandle)errorBlock {
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/none/getItems/%d", ID];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    
+    [[AFHTTPSessionManager manager] POST:URL parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSError *error;
+        NSLog(@"%@", responseObject);
+        MAPGetMessageCountModel *model = [[MAPGetMessageCountModel alloc] initWithDictionary:responseObject error:&error];
         NSLog(@"%@", model);
         if (error) {
             errorBlock(error);

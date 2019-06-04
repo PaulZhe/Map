@@ -84,6 +84,7 @@
 		D6046CEE22676235007D3D34 /* MAPLameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6046CED22676235007D3D34 /* MAPLameTool.m */; };
 		D6046CF222676653007D3D34 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6046CF122676653007D3D34 /* libmp3lame.a */; };
 		D60CBDE4225CE31A000CBB42 /* MAPAddAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */; };
+		D61473A822A6154700B34B44 /* MAPGetMessageCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61473A722A6154700B34B44 /* MAPGetMessageCountModel.m */; };
 		D61D0F79221D423D0098483A /* MAPLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F78221D423D0098483A /* MAPLoginManager.m */; };
 		D61D0F80221D44BA0098483A /* MAPGetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D0F7F221D44BA0098483A /* MAPGetUserMessageModel.m */; };
 		D622533F22846328001D245C /* MAPIssueAudioView.m in Sources */ = {isa = PBXBuildFile; fileRef = D622533E22846328001D245C /* MAPIssueAudioView.m */; };
@@ -251,6 +252,8 @@
 		D6046CF122676653007D3D34 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		D60CBDE2225CE31A000CBB42 /* MAPAddAudioView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddAudioView.h; sourceTree = "<group>"; };
 		D60CBDE3225CE31A000CBB42 /* MAPAddAudioView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddAudioView.m; sourceTree = "<group>"; };
+		D61473A622A6154700B34B44 /* MAPGetMessageCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetMessageCountModel.h; sourceTree = "<group>"; };
+		D61473A722A6154700B34B44 /* MAPGetMessageCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPGetMessageCountModel.m; sourceTree = "<group>"; };
 		D61D0F77221D423D0098483A /* MAPLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPLoginManager.h; sourceTree = "<group>"; };
 		D61D0F78221D423D0098483A /* MAPLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPLoginManager.m; sourceTree = "<group>"; };
 		D61D0F7E221D44BA0098483A /* MAPGetUserMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPGetUserMessageModel.h; sourceTree = "<group>"; };
@@ -909,6 +912,8 @@
 				D68297652223DA2A00D3F4A8 /* MAPAddPointModel.m */,
 				D660A4B62225519800E30917 /* MAPGetPointModel.h */,
 				D660A4B72225519800E30917 /* MAPGetPointModel.m */,
+				D61473A622A6154700B34B44 /* MAPGetMessageCountModel.h */,
+				D61473A722A6154700B34B44 /* MAPGetMessageCountModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */,
+				D61473A822A6154700B34B44 /* MAPGetMessageCountModel.m in Sources */,
 				4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
 				D68297662223DA2A00D3F4A8 /* MAPAddPointModel.m in Sources */,
@@ -1295,7 +1301,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 				);
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1329,7 +1335,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 				);
 				INFOPLIST_FILE = Map/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

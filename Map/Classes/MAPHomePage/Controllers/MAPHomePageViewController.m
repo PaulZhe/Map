@@ -238,6 +238,7 @@
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
         BMKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        
         if (annotationView == nil)
         {
             annotationView = [[BMKAnnotationView alloc] initWithAnnotation:annotation
@@ -253,10 +254,33 @@
         //给paopaoView中button添加点击事件
         [self paopaoViewButtonAddTarget:_paopaoView];
         
-        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
-        pView.backgroundColor = [UIColor clearColor];
-        pView.frame = _paopaoView.frame;
-        annotationView.paopaoView = pView;
+        dispatch_group_t group = dispatch_group_create();
+        
+        dispatch_group_enter(group);
+
+        //获取点的信息个数
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointMessageCountWithPointID:[annotation.title intValue] succeed:^(MAPGetMessageCountModel *resultModel) {
+            self.paopaoView.mesCount = resultModel.data.mesCount;
+            self.paopaoView.phoCount = resultModel.data.phoCount;
+            self.paopaoView.audCount = resultModel.data.audCount;
+            self.paopaoView.vidCount = resultModel.data.vidCount;
+//            self.paopaoView.commentButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.mesCount];
+//            self.paopaoView.picturesButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.phoCount];
+//            self.paopaoView.voiceButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.audCount];
+//            self.paopaoView.vedioButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.vidCount];
+            dispatch_group_leave(group);
+        } error:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+        dispatch_notify(group, dispatch_get_main_queue(), ^(){
+            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:self->_paopaoView];
+            pView.backgroundColor = [UIColor clearColor];
+            pView.frame = self->_paopaoView.frame;
+            annotationView.paopaoView = pView;
+            
+        });
         return annotationView;
     }
     return nil;
