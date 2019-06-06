@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeString;//标记字符串
 @property (nonatomic, assign) double Latitude;
 @property (nonatomic, assign) double Longitud;//记录点的位置
+@property (nonatomic, assign) bool isSelected;//记录主界面点击发布按钮跳转过来时是否有发布点
+@property (nonatomic, assign) int ID;//如果没有发布点，ID为0
 @end
 
 
