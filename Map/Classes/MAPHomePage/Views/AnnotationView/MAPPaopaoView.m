@@ -21,7 +21,7 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
 //        self.userInteractionEnabled = NO;
-        [self initPaopaoView];
+        //[self initPaopaoView];
     }
     return self;
 }

@@ -251,36 +251,25 @@
         [annotationView setCalloutOffset:CGPointMake(26, 38)];
         
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
+        NSRange pos0 = [annotation.subtitle rangeOfString:@"mesCount "];
+        NSRange pos1 = [annotation.subtitle rangeOfString:@" phoCount "];
+        NSRange pos2 = [annotation.subtitle rangeOfString:@" audCount "];
+        NSRange pos3 = [annotation.subtitle rangeOfString:@" vidCount "];
+        
+        self.paopaoView.mesCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos0.location + 9, pos1.location - pos0.location - 9)] intValue];
+        self.paopaoView.phoCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos1.location + 10, pos2.location - pos1.location - 10)] intValue];
+        self.paopaoView.audCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos2.location + 10, pos3.location - pos2.location - 10)] intValue];
+        self.paopaoView.vidCount = [[annotation.subtitle substringFromIndex:pos3.location + 10] intValue];
+        [self.paopaoView initPaopaoView];
+        
         //给paopaoView中button添加点击事件
         [self paopaoViewButtonAddTarget:_paopaoView];
         
-        dispatch_group_t group = dispatch_group_create();
+        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:self->_paopaoView];
+        pView.backgroundColor = [UIColor clearColor];
+        pView.frame = self->_paopaoView.frame;
+        annotationView.paopaoView = pView;
         
-        dispatch_group_enter(group);
-
-        //获取点的信息个数
-        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        [manager fetchPointMessageCountWithPointID:[annotation.title intValue] succeed:^(MAPGetMessageCountModel *resultModel) {
-            self.paopaoView.mesCount = resultModel.data.mesCount;
-            self.paopaoView.phoCount = resultModel.data.phoCount;
-            self.paopaoView.audCount = resultModel.data.audCount;
-            self.paopaoView.vidCount = resultModel.data.vidCount;
-//            self.paopaoView.commentButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.mesCount];
-//            self.paopaoView.picturesButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.phoCount];
-//            self.paopaoView.voiceButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.audCount];
-//            self.paopaoView.vedioButton.countLabel.text = [NSString stringWithFormat:@"%ld", resultModel.data.vidCount];
-            dispatch_group_leave(group);
-        } error:^(NSError *error) {
-            NSLog(@"%@", error);
-        }];
-        
-        dispatch_notify(group, dispatch_get_main_queue(), ^(){
-            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:self->_paopaoView];
-            pView.backgroundColor = [UIColor clearColor];
-            pView.frame = self->_paopaoView.frame;
-            annotationView.paopaoView = pView;
-            
-        });
         return annotationView;
     }
     return nil;
@@ -544,8 +533,9 @@
                                      BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
                                      annotation.coordinate = coordinate;
                                      annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID]];
+                                     annotation.subtitle = [NSString stringWithFormat:@"mesCount %ld phoCount %ld audCount %ld vidCount %ld", [pointModel.data[i] mesCount], [pointModel.data[i] phoCount], [pointModel.data[i] audCount], [pointModel.data[i] vidCount]];
                                      [self.homePageView.mapView addAnnotation:annotation];
-                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID] ];
+//                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID] ];
                                      self->annotationMutableArray = [NSMutableArray array];
                                      [self->annotationMutableArray addObject:annotation];
                                      [self.homePageView.mapView showAnnotations:self->annotationMutableArray animated:YES];
