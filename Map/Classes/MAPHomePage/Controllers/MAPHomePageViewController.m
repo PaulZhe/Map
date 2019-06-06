@@ -278,6 +278,14 @@
 //气泡的点击事件
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
     self.tempAnnotationView = view;
+    
+    [self.homePageView.addButton setTitle:@"发  布" forState:UIControlStateNormal];
+    [self.homePageView.addButton setTitle:@"发  布" forState:UIControlStateHighlighted];
+    [self.homePageView.addButton setImage:nil forState:UIControlStateNormal];
+    [self.homePageView.addButton setImage:nil forState:UIControlStateHighlighted];
+    
+    [self.addDyanmicStateViewController setIsSelected:YES];
+    self.addDyanmicStateViewController.ID = [view.annotation.title intValue];
 }
 /**
  *当点击annotation view弹出的泡泡时，调用此接口
@@ -285,32 +293,22 @@
  *@param view 泡泡所属的annotation view
  */
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-    //NSLog(@":");
-    //    int flag = 1;
-    //    if (flag == 1) {
-    //        for(id tmpView in [_paopaoView subviews]) {
-    //            if([tmpView isKindOfClass:[UIButton class]]){
-    //                UIButton *buttonView = (UIButton *)tmpView;
-    //                if(buttonView.tag == 101 || buttonView.tag == 102 || buttonView.tag == 103 || buttonView.tag == 104) {
-    //                    [self paopaoViewButtonAddTarget:_paopaoView];
-    //                }
-    //            }
-    //        }
-    //    }
-    //    if (flag == 0) {
-    //        [mapView deselectAnnotation:view.annotation animated:NO];
-    //        flag = 1;
-    //    }
+    
 }
 
 - (void)mapView:(BMKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
-    NSLog(@"%@；；；；；；；；；", views);
 }
 
 //当取消选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view {
+    [self.homePageView.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    [self.homePageView.addButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateHighlighted];
+    [self.homePageView.addButton setTitle:nil forState:UIControlStateNormal];
+    [self.homePageView.addButton setTitle:nil forState:UIControlStateHighlighted];
     
+    [self.addDyanmicStateViewController setIsSelected:NO];
+    self.addDyanmicStateViewController.ID = 0;
 }
 
 //泡泡内按钮点击事件
