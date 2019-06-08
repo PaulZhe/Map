@@ -26,6 +26,7 @@ typedef void (^IssueButtonBlock)(UIButton *sender);
 @property (nonatomic, strong) UIView *addAndioView;//添加语音录入框
 @property (nonatomic, strong) MAPAddVedioView *addVedioView;//添加视频界输入框
 @property (nonatomic, strong) MAPIssueAudioView *issueAudioView;//添加语音发布界面
+@property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
 //地点微调点击事件
 @property (nonatomic, copy) buttonBlock adjustAction;
 //发布按钮点击事件

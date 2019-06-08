@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) long phoCount;
 @property (nonatomic, assign) long audCount;
 @property (nonatomic, assign) long vidCount;
+@property (nonatomic, assign) NSString *pointName;
 
 - (void)initPaopaoView;
 @end

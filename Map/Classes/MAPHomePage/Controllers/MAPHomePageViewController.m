@@ -76,6 +76,9 @@
 
 #pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
+    //初始化展示界面controller
+    self.addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
     _homePageView.mapView.delegate = self;
@@ -85,19 +88,24 @@
     __weak typeof(self) weakSelf = self;
     //添加按钮点击事件
     self.homePageView.addButtonAction = ^(UIButton * _Nonnull sender) {
-        MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:weakSelf.view.frame];
-        alertView.tag = 202;
-        __weak MAPAlertView *weakAlertView = alertView;
-        [weakSelf.homePageView addSubview:alertView];
-        alertView.btnAction = ^(NSInteger tag) {
-            //tag=100是取消按钮，101是发布按钮
-            if (tag == 100) {
-                [weakAlertView removeFromSuperview];
-            } else {
-                //创建发布界面
-                [weakSelf creatIssueView];
-            }
-        };
+        if (self->_addDyanmicStateViewController.isSelected == YES) {
+            //创建发布界面
+            [weakSelf creatIssueView];
+        } else {
+            MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:weakSelf.view.frame];
+            alertView.tag = 202;
+            __weak MAPAlertView *weakAlertView = alertView;
+            [weakSelf.homePageView addSubview:alertView];
+            alertView.btnAction = ^(NSInteger tag) {
+                //tag=100是取消按钮，101是发布按钮
+                if (tag == 100) {
+                    [weakAlertView removeFromSuperview];
+                } else {
+                    //创建发布界面
+                    [weakSelf creatIssueView];
+                }
+            };
+        }
     };
     //导航按钮点击事件
     self.homePageView.navigationAction = ^(UIButton * _Nonnull sender) {
@@ -115,15 +123,7 @@
     //    } Failure:^(NSError *error) {
     //        NSLog(@"%@", error);
     //    }];
-    
-    //addPointManager测试
-    //    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-    //    [addPointManager addPointWithName:@"香港测试点2" Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
-    //        NSLog(@"%@++++", resultModel.message);
-    //    } error:^(NSError *error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
+
     //    //添加评论测试
     //    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
 }
@@ -212,7 +212,8 @@
             NSLog(@"rgc = %@",[location.rgcData description]);
         }
     }
-    
+    NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
+    self.userLocation.title = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
     //获取定位坐标周围点
@@ -251,12 +252,23 @@
         [annotationView setCalloutOffset:CGPointMake(26, 38)];
         
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
-        NSRange pos0 = [annotation.subtitle rangeOfString:@"mesCount "];
+//        NSRange pos0 = [annotation.subtitle rangeOfString:@"mesCount "];
+//        NSRange pos1 = [annotation.subtitle rangeOfString:@" phoCount "];
+//        NSRange pos2 = [annotation.subtitle rangeOfString:@" audCount "];
+//        NSRange pos3 = [annotation.subtitle rangeOfString:@" vidCount "];
+//
+//        self.paopaoView.mesCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos0.location + 9, pos1.location - pos0.location - 9)] intValue];
+//        self.paopaoView.phoCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos1.location + 10, pos2.location - pos1.location - 10)] intValue];
+//        self.paopaoView.audCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos2.location + 10, pos3.location - pos2.location - 10)] intValue];
+//        self.paopaoView.vidCount = [[annotation.subtitle substringFromIndex:pos3.location + 10] intValue];
+        NSRange pos = [annotation.subtitle rangeOfString:@" pointName "];
+        NSRange pos0 = [annotation.subtitle rangeOfString:@" mesCount "];
         NSRange pos1 = [annotation.subtitle rangeOfString:@" phoCount "];
         NSRange pos2 = [annotation.subtitle rangeOfString:@" audCount "];
         NSRange pos3 = [annotation.subtitle rangeOfString:@" vidCount "];
-        
-        self.paopaoView.mesCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos0.location + 9, pos1.location - pos0.location - 9)] intValue];
+
+        self.paopaoView.pointName = [annotation.subtitle substringFromIndex:pos.location + 11];
+        self.paopaoView.mesCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos0.location + 10, pos1.location - pos0.location - 10)] intValue];
         self.paopaoView.phoCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos1.location + 10, pos2.location - pos1.location - 10)] intValue];
         self.paopaoView.audCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos2.location + 10, pos3.location - pos2.location - 10)] intValue];
         self.paopaoView.vidCount = [[annotation.subtitle substringFromIndex:pos3.location + 10] intValue];
@@ -285,7 +297,10 @@
     [self.homePageView.addButton setImage:nil forState:UIControlStateHighlighted];
     
     [self.addDyanmicStateViewController setIsSelected:YES];
+    //传递点击点ID和name
     self.addDyanmicStateViewController.ID = [view.annotation.title intValue];
+    NSRange pos = [view.annotation.subtitle rangeOfString:@" pointName "];
+    self.addDyanmicStateViewController.pointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
 }
 /**
  *当点击annotation view弹出的泡泡时，调用此接口
@@ -309,6 +324,7 @@
     
     [self.addDyanmicStateViewController setIsSelected:NO];
     self.addDyanmicStateViewController.ID = 0;
+    self.addDyanmicStateViewController.pointName = _userLocation.title;
 }
 
 //泡泡内按钮点击事件
@@ -377,7 +393,6 @@
         make.size.mas_equalTo(CGSizeMake(300, 300));
     }];
     
-    self.addDyanmicStateViewController = [[MAPAddDynamicStateViewController alloc] init];
     addDynamicStateTypeTag = 0;
     issueView.btnAction = ^(NSInteger tag) {
         if (tag == 101) {
@@ -385,6 +400,7 @@
             self->_addDyanmicStateViewController.typeString = [NSString stringWithFormat:@"%ld", (long)tag];
             self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
             self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            //self->_addDyanmicStateViewController.pointName =
             [self HiddenAddDynamicStateView];
             [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
         } else if (tag == 102) {
@@ -531,7 +547,7 @@
                                      BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
                                      annotation.coordinate = coordinate;
                                      annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID]];
-                                     annotation.subtitle = [NSString stringWithFormat:@"mesCount %ld phoCount %ld audCount %ld vidCount %ld", [pointModel.data[i] mesCount], [pointModel.data[i] phoCount], [pointModel.data[i] audCount], [pointModel.data[i] vidCount]];
+                                     annotation.subtitle = [NSString stringWithFormat:@" mesCount %ld phoCount %ld audCount %ld vidCount %ld pointName %@", [pointModel.data[i] mesCount], [pointModel.data[i] phoCount], [pointModel.data[i] audCount], [pointModel.data[i] vidCount], [pointModel.data[i] pointName]];
                                      [self.homePageView.mapView addAnnotation:annotation];
 //                                     annotation.title = [NSString stringWithFormat:@"%d", [pointModel.data[i] ID] ];
                                      self->annotationMutableArray = [NSMutableArray array];

@@ -102,16 +102,45 @@
 
 //添加发布点点击事件
 - (void)createChildView {
+    self.addDynamicStateView.locationNameLabel.text = _pointName;
     __weak typeof(self) weakSelf = self;
     self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
+        if (weakSelf.isSelected == NO) {
+            //addPointManager测试
+                MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+            [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+                    NSLog(@"%@++++", resultModel.message);
+                    //更新添加点
+                    [weakSelf variousKindsInterfaceAddActions];
+                } error:^(NSError *error) {
+                    NSLog(@"%@", error);
+                }];
+            
+        } else {
+            [weakSelf variousKindsInterfaceAddActions];
+        }
+        
+    };
+}
+
+//各个不同界面的点击事件
+- (void)variousKindsInterfaceAddActions {
+    __weak typeof(self) weakSelf = self;
+    if ([_typeString isEqualToString:@"101"]) {
+        
+    } else if ([_typeString isEqualToString:@"102"]) {
+        
+    } else if ([_typeString isEqualToString:@"103"]) {
         NSData *mp3Cache = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:weakSelf.addDynamicStateView.mp3Path]];
-        [[MAPAddPointManager sharedManager] uploadAudioWithPointId:6 Data:mp3Cache Type:2 Second:weakSelf.addDynamicStateView.issueAudioView.seconds Minutes:weakSelf.addDynamicStateView.issueAudioView.minutes success:^(MAPAddPointModel *resultModel) {
+        [[MAPAddPointManager sharedManager] uploadAudioWithPointId:weakSelf.ID Data:mp3Cache Type:2 Second:weakSelf.addDynamicStateView.issueAudioView.seconds Minutes:weakSelf.addDynamicStateView.issueAudioView.minutes success:^(MAPAddPointModel *resultModel) {
             NSLog(@"mp3上传成功");
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } error:^(NSError *error) {
             NSLog(@"mp3上传失败");
         }];
-    };
+    } else if ([_typeString isEqualToString:@"104"]) {
+        
+    }
 }
 
 //添加自定义点
