@@ -11,7 +11,6 @@
 @interface MAPAddDynamicStateView()
 
 @property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
-@property (nonatomic, strong) UILabel *locationNameLabel;//地点名称
 @property (nonatomic, strong) UIButton *adjustmentButton;//地点微调按钮
 @property (nonatomic, strong) UIView *lineView;//分界线
 @property (nonatomic, strong) UIButton *issueButton;//发布按钮
@@ -35,7 +34,7 @@
         
         self.locationNameLabel = [[UILabel alloc] init];
         [self.addDynamicStateView addSubview:_locationNameLabel];
-        self.locationNameLabel.text = @"西安邮电大学";
+        //self.locationNameLabel.text = @"西安邮电大学";
         self.locationNameLabel.font = [UIFont systemFontOfSize:23];
         
         self.adjustmentButton = [[UIButton alloc] init];
