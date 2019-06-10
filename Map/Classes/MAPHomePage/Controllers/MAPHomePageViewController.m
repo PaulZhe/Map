@@ -249,6 +249,7 @@
         annotationView.canShowCallout = YES;
         annotationView.tag = 1000;
         annotationView.hidePaopaoWhenSingleTapOnMap = YES;
+        annotationView.hidePaopaoWhenSelectOthers = YES;
         [annotationView setCalloutOffset:CGPointMake(26, 38)];
         
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
