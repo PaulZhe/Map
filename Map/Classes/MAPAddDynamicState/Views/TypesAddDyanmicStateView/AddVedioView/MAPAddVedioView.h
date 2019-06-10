@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *countLabel;//输入框字数限制
 @property (nonatomic, strong) UIView *addVedioView;//添加视频
 @property (nonatomic, strong) UIButton *addVedioButton;//选择视频按钮
+@property (nonatomic, strong) UIImagePickerController *picker;//打开相册
 @property (nonatomic, weak) id<MAPAddVedioViewDelegate> delegate;
 @end
 

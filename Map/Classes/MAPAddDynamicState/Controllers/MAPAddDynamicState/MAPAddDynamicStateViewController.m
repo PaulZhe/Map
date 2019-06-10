@@ -12,7 +12,8 @@
 #import <Photos/Photos.h>
 #import "MAPPhotoKitViewController.h"
 
-@interface MAPAddDynamicStateViewController () {
+@interface MAPAddDynamicStateViewController () <MAPAddPicturesViewDelegate, UINavigationControllerDelegate>
+{
     NSMutableArray *annotationMutableArray;
 }
 
@@ -20,19 +21,19 @@
 
 @implementation MAPAddDynamicStateViewController
 
-- (MAPAddDynamicStateView *)addDynamicStateView {
-    if (!_addDynamicStateView) {
-        _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
-        [self.view addSubview:_addDynamicStateView];
-        [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.view.mas_top);
-            make.left.mas_equalTo(self.view.mas_left);
-            make.right.mas_equalTo(self.view.mas_right);
-            make.bottom.mas_equalTo(self.view.mas_bottom);
-        }];
-    }
-    return _addDynamicStateView;
-}
+//- (MAPAddDynamicStateView *)addDynamicStateView {
+//    if (!_addDynamicStateView) {
+//        _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
+//        [self.view addSubview:_addDynamicStateView];
+//        [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(self.view.mas_top);
+//            make.left.mas_equalTo(self.view.mas_left);
+//            make.right.mas_equalTo(self.view.mas_right);
+//            make.bottom.mas_equalTo(self.view.mas_bottom);
+//        }];
+//    }
+//    return _addDynamicStateView;
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -44,6 +45,24 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
+    
+    _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
+    [self.view addSubview:_addDynamicStateView];
+    [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top);
+        make.left.mas_equalTo(self.view.mas_left);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.bottom.mas_equalTo(self.view.mas_bottom);
+    }];
+    
+    //为上传视频设置picker
+    _addDynamicStateView.addVedioView.picker = [[UIImagePickerController alloc] init];
+    _addDynamicStateView.addVedioView.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _addDynamicStateView.addVedioView.picker.mediaTypes = [NSArray arrayWithObjects:@"public.movie", nil];
+    _addDynamicStateView.addVedioView.picker.delegate = self;
+    _addDynamicStateView.addVedioView.picker.allowsEditing = YES;
+    //给上传视频界面button设置点击事件
+    [_addDynamicStateView.addVedioView.addVedioButton addTarget:self action:@selector(clickAddVedioButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //设置跳转相册代理
     _addDynamicStateView.addPicturesView.delegate = self;
@@ -141,6 +160,23 @@
     } else if ([_typeString isEqualToString:@"104"]) {
         
     }
+}
+
+
+//给视频界面button添加事件
+- (void)clickAddVedioButton:(UIButton *)button {
+    [self presentViewController:_addDynamicStateView.addVedioView.picker animated:YES completion:nil];
+}
+
+//获取到视频后返回
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    NSString *mediaType=[info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.movie"]){
+        //如果是视频
+        NSURL *url = info[UIImagePickerControllerMediaURL];//获得视频的URL
+        NSLog(@"url %@",url);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //添加自定义点

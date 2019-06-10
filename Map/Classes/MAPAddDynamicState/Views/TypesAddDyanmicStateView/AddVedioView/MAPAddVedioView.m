@@ -11,7 +11,7 @@
 
 @implementation MAPAddVedioView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _hintLabel = [[UILabel alloc] init];
@@ -45,8 +45,10 @@
         
         _addVedioButton = [[UIButton alloc] init];
         [_addVedioView addSubview:_addVedioButton];
-        _addVedioButton.backgroundColor = [UIColor blackColor];
+        _addVedioButton.backgroundColor = [UIColor grayColor];
+        [_addVedioButton setImage:[UIImage imageNamed:@"jiahao-2"] forState:UIControlStateNormal];
         
+        //添加手势用来键盘收起
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];
         UITapGestureRecognizer *tapSurfaceGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboardView)];
         [_addTitleTextField addGestureRecognizer:tapTextGesture];
@@ -83,12 +85,13 @@
     
     [_addVedioButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self->_addVedioView).mas_offset(10);
-        make.left.mas_equalTo(self.mas_left).mas_offset(10);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-10);
-        make.height.mas_equalTo(50);
+        make.left.mas_equalTo(self.mas_left).mas_offset(15);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-15);
+        make.height.mas_equalTo(170);
     }];
     
 }
+
 
 //字数限制
 - (void) textFieldDidChangeValue:(NSNotification *) notifcation {
@@ -145,7 +148,7 @@
     [_addTitleTextField becomeFirstResponder];
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
