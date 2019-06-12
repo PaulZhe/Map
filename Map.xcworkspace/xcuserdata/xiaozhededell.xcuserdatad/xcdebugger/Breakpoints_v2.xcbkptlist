@@ -20,75 +20,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
-            timestampString = "581869329.352205"
+            timestampString = "582041787.880241"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "@implementation MAPAddDynamicStateViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
+            timestampString = "582041787.887269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
             landmarkName = "-variousKindsInterfaceAddActions"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
-            timestampString = "581869329.352643"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "-variousKindsInterfaceAddActions"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
-            timestampString = "581869329.352878"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-createChildView"
-            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[MAPAddDynamicStateViewController createChildView]"
+                  symbolName = "-[MAPAddDynamicStateViewController variousKindsInterfaceAddActions]"
                   moduleName = "Map"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaozhededell/Desktop/Map/Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
-                  timestampString = "581869424.0981621"
+                  timestampString = "582035112.409446"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "179">
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "1324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__51-[MAPAddDynamicStateViewController createChildView]_block_invoke"
+                  symbolName = "-[MAPAddDynamicStateViewController variousKindsInterfaceAddActions]"
                   moduleName = "Map"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xiaozhededell/Desktop/Map/Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
-                  timestampString = "581869424.101868"
+                  timestampString = "582035112.422286"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "47">
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "1355">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -99,13 +83,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "581869427.8259929"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
+            timestampString = "582041787.887711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
-            landmarkName = "-addAudioDynamicStateView"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-createChildView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
+            timestampString = "582041787.888033"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-addDynamicStateView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/MAPAddDynamicState/MAPAddDynamicStateViewController.m"
+            timestampString = "582041787.888393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-addDynamicStateView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
