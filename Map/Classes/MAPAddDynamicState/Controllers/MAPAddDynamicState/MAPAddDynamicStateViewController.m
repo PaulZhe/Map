@@ -80,7 +80,6 @@
     [super viewWillDisappear:animated];
     [_addDynamicStateView.mapView viewWillDisappear];
     _addDynamicStateView.mapView.delegate = nil;
-    self.addDynamicStateView = nil;
 }
 
 //显示定位点
@@ -88,19 +87,13 @@
     [super viewDidAppear:animated];
     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     [annotation setCoordinate:CLLocationCoordinate2DMake(_Latitude, _Longitud)];
-    NSLog(@"location = %@", annotation);
     annotation.title = @"";
     [_addDynamicStateView.mapView addAnnotation:annotation];
     annotationMutableArray = [NSMutableArray array];
     [annotationMutableArray addObject:annotation];
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
     
-//    self.addDynamicStateView = [self.addDynamicStateView initWithTypeString:_typeString];
     self.addDynamicStateView.locationNameLabel.text = _pointName;
-
-    //测试上传图片
-//    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
-//    [self postImageCommentWithArray:imageArray andTitle:@"Test"];
 }
 
 - (void)viewDidLoad {
