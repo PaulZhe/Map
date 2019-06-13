@@ -135,9 +135,6 @@
     //    } Failure:^(NSError *error) {
     //        NSLog(@"%@", error);
     //    }];
-
-    //    //添加评论测试
-    //    [self addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -226,6 +223,7 @@
     }
     NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
     self.userLocation.title = placeTitle;
+    _addDyanmicStateViewController.pointName = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
     //获取定位坐标周围点
@@ -265,15 +263,7 @@
         [annotationView setCalloutOffset:CGPointMake(26, 38)];
         
         self.paopaoView = [[MAPPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 165, 145)];
-//        NSRange pos0 = [annotation.subtitle rangeOfString:@"mesCount "];
-//        NSRange pos1 = [annotation.subtitle rangeOfString:@" phoCount "];
-//        NSRange pos2 = [annotation.subtitle rangeOfString:@" audCount "];
-//        NSRange pos3 = [annotation.subtitle rangeOfString:@" vidCount "];
-//
-//        self.paopaoView.mesCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos0.location + 9, pos1.location - pos0.location - 9)] intValue];
-//        self.paopaoView.phoCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos1.location + 10, pos2.location - pos1.location - 10)] intValue];
-//        self.paopaoView.audCount = [[annotation.subtitle substringWithRange:NSMakeRange(pos2.location + 10, pos3.location - pos2.location - 10)] intValue];
-//        self.paopaoView.vidCount = [[annotation.subtitle substringFromIndex:pos3.location + 10] intValue];
+
         NSRange pos = [annotation.subtitle rangeOfString:@" pointName "];
         NSRange pos0 = [annotation.subtitle rangeOfString:@" mesCount "];
         NSRange pos1 = [annotation.subtitle rangeOfString:@" phoCount "];
@@ -602,18 +592,6 @@
                                error:^(NSError *error) {
                                    NSLog(@"+++++getLocationAroundPointsError:%@", error);
                                }];
-}
-
-//添加评论
-- (void)addCommentsWithPointID:(int)ID Content:(NSString *)content {
-    MAPAddPointManager *manager = [MAPAddPointManager sharedManager];
-    [manager addMessageWithPointId:ID
-                           Content:content
-                           success:^(MAPAddPointModel *resultModel) {
-                               NSLog(@"addComment:%@", resultModel.message);
-                           } error:^(NSError *error) {
-                               NSLog(@"%@", error);
-                           }];
 }
 
 @end
