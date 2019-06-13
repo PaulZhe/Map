@@ -11,7 +11,7 @@
 
 @implementation MAPMotiveVideoButton
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _backgroudImageView = [[UIImageView alloc] init];
@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);

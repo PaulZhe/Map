@@ -11,6 +11,7 @@
 #import "MAPMotivePicturesView.h"
 #import "AVFoundation/AVFoundation.h"
 #import "MAPMotiveVideoButtonView.h"
+#import "MAPAddPointManager.h"
 
 @interface MAPDynamicStateView()
 
@@ -104,7 +105,6 @@
         return videoCell;
     }
 }
-
 
 
 //播放音频

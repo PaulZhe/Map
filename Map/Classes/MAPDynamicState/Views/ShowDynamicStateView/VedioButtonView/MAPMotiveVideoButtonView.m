@@ -11,7 +11,7 @@
 
 @implementation MAPMotiveVideoButtonView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:0.54f green:0.54f blue:0.54f alpha:0.50f];
@@ -25,7 +25,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);

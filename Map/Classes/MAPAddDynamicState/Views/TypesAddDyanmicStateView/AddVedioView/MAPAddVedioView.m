@@ -11,7 +11,7 @@
 
 @implementation MAPAddVedioView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _hintLabel = [[UILabel alloc] init];
@@ -59,7 +59,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).mas_equalTo(10);
@@ -91,7 +91,7 @@
 }
 
 //字数限制
-- (void) textFieldDidChangeValue:(NSNotification *) notifcation {
+- (void)textFieldDidChangeValue:(NSNotification *) notifcation {
     UITextField *textField = (UITextField *)[notifcation object];
     NSInteger kMaxLength = 10 ;
     NSString *toBeString = textField.text;
@@ -119,7 +119,7 @@
 }
 
 //键盘的收回
-- (void) keyboardWillDisappear:(NSNotification *)notification{
+- (void)keyboardWillDisappear:(NSNotification *)notification{
     // 计算键盘高度
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
@@ -128,7 +128,7 @@
     }
 }
 //键盘的弹出
-- (void) keyboardWillAppear:(NSNotification *)notification{
+- (void)keyboardWillAppear:(NSNotification *)notification{
     // 计算键盘高度
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
@@ -145,7 +145,7 @@
     [_addTitleTextField becomeFirstResponder];
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

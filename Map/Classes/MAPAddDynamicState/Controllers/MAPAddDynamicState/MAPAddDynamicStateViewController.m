@@ -45,6 +45,8 @@
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
+    self.addDynamicStateView.locationNameLabel.text = _pointName;
+    
     //设置跳转相册代理
     _addDynamicStateView.addPicturesView.delegate = self;
     //设置地图的代理
@@ -77,7 +79,6 @@
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
     
 //    self.addDynamicStateView = [self.addDynamicStateView initWithTypeString:_typeString];
-    self.addDynamicStateView.locationNameLabel.text = _pointName;
 
     //测试上传图片
 //    NSArray *imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"upPicture1"], [UIImage imageNamed:@"uoPicture2"], nil];
@@ -111,7 +112,7 @@
     self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
         if (weakSelf.isSelected == NO) {
             //addPointManager测试
-                MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+            MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
             [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
                     NSLog(@"%@++++", resultModel.message);
                     //更新添加点
@@ -127,11 +128,24 @@
     };
 }
 
+//添加评论
+- (void)addCommentsWithPointID:(int)ID Content:(NSString *)content {
+    MAPAddPointManager *manager = [MAPAddPointManager sharedManager];
+    [manager addMessageWithPointId:ID
+                           Content:content
+                           success:^(MAPAddPointModel *resultModel) {
+                               NSLog(@"addComment:%@", resultModel.message);
+                           } error:^(NSError *error) {
+                               NSLog(@"%@", error);
+                           }];
+}
+
 //各个不同界面的点击事件
 - (void)variousKindsInterfaceAddActions {
     __weak typeof(self) weakSelf = self;
     if ([_typeString isEqualToString:@"101"]) {
-        
+        //添加评论
+        [self addCommentsWithPointID:_ID Content:self.addDynamicStateView.addCommentView.addCommentTextView.text];
     } else if ([_typeString isEqualToString:@"102"]) {
         
     } else if ([_typeString isEqualToString:@"103"]) {
