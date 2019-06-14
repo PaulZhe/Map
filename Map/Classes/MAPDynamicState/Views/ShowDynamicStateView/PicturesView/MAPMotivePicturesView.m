@@ -88,7 +88,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"选中cell: %ld", indexPath.row);
 }
 
 @end

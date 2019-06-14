@@ -7,7 +7,7 @@
 //
 
 #import "MAPHomePageViewController.h"
-#import "MAPDynamicStateViewController.h"
+//#import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
 #import <Masonry.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
@@ -15,10 +15,16 @@
 #import <BMKLocationkit/BMKLocationComponent.h>
 #import "MAPHomePageView.h"
 #import "MAPIssueView.h"
+//添加动态的四个controller
 #import "MAPAddCommentsViewController.h"
 #import "MAPAddPicturesViewController.h"
 #import "MAPAddVedioViewController.h"
 #import "MAPAddAudioViewController.h"
+//展示动态的四个controller
+#import "MAPShowReplyViewController.h"
+#import "MAPShowPicturesViewController.h"
+#import "MAPShowVedioViewController.h"
+#import "MAPShowAudioViewController.h"
 #import "MAPNavigationViewController.h"
 #import "MAPPaopaoView.h"
 #import "MAPLoginManager.h"
@@ -36,10 +42,16 @@
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
+//添加动态controller
 @property (nonatomic, strong) MAPAddCommentsViewController *addCommentViewController;
 @property (nonatomic, strong) MAPAddPicturesViewController *addPictureViewController;
 @property (nonatomic, strong) MAPAddAudioViewController *addAudioViewController;
 @property (nonatomic, strong) MAPAddVedioViewController *addVedioViewController;
+//展示动态controller
+@property (nonatomic, strong) MAPShowReplyViewController *showReplyViewController;
+@property (nonatomic, strong) MAPShowPicturesViewController *showPicturesViewController;
+@property (nonatomic, strong) MAPShowAudioViewController *showAudioViewController;
+@property (nonatomic, strong) MAPShowVedioViewController *showVedioViewController;
 
 @property (nonatomic, strong) MAPAudioRecordUtils *audioRecordUtils;
 
@@ -82,14 +94,17 @@
 
 #pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
-    //初始化添加评论界面
+    //初始化添加动态界面
     _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
-    //初始化添加图片界面
     _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
-    //初始化添加语音界面
     _addAudioViewController = [[MAPAddAudioViewController alloc] init];
-    //初始化添加视频界面
     _addVedioViewController = [[MAPAddVedioViewController alloc] init];
+    
+    //初始化展示动态界面
+    _showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
+    _showReplyViewController = [[MAPShowReplyViewController alloc] init];
+    _showVedioViewController = [[MAPShowVedioViewController alloc] init];
+    _showAudioViewController = [[MAPShowAudioViewController alloc] init];
     
     self.view.backgroundColor = [UIColor whiteColor];
     _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
@@ -100,10 +115,10 @@
     __weak typeof(self) weakSelf = self;
     //添加按钮点击事件
     self.homePageView.addButtonAction = ^(UIButton * _Nonnull sender) {
-//        if (self->_addDyanmicStateViewController.isSelected == YES) {
+        if (self->_addCommentViewController.isSelected == YES || self->_addPictureViewController.isSelected == YES || self->_addVedioViewController.isSelected == YES || self->_addAudioViewController.isSelected == YES) {
             //创建发布界面
-//            [weakSelf creatIssueView];
-//        } else {
+            [weakSelf creatIssueView];
+        } else {
             MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:weakSelf.view.frame];
             alertView.tag = 202;
             __weak MAPAlertView *weakAlertView = alertView;
@@ -117,7 +132,7 @@
                     [weakSelf creatIssueView];
                 }
             };
-//        }
+        }
     };
     //导航按钮点击事件
     self.homePageView.navigationAction = ^(UIButton * _Nonnull sender) {
@@ -223,7 +238,15 @@
     }
     NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
     self.userLocation.title = placeTitle;
-    _addDyanmicStateViewController.pointName = placeTitle;
+    
+    
+    
+//---------------------------------------这里还未修改--------------------------------
+    
+    
+    
+    
+//    _addDyanmicStateViewController.pointName = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
     //获取定位坐标周围点
@@ -359,48 +382,54 @@
         paopaoView = [MAPPaopaoView new];
     }
     
-    MAPDynamicStateViewController *danamicStateViewController = [[MAPDynamicStateViewController alloc] init];
-    danamicStateViewController.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
     paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         //        ///添加评论
         //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
         ///获取评论
         //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
-        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
-                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-                                             NSLog(@"getComment:%@", resultModel.message);
-                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
-                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-                                         } error:^(NSError *error) {
-                                             NSLog(@"%@", error);
-                                         }];
-        danamicStateViewController.typeMotiveString = @"1";
-        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+        
+        
+        
+//---------------------------------------这里还未修改--------------------------------
+        
+        
+        
+//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
+//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+//                                             NSLog(@"getComment:%@", resultModel.message);
+//                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
+//                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+//                                         } error:^(NSError *error) {
+//                                             NSLog(@"%@", error);
+//                                         }];
+        [weakSelf.navigationController pushViewController:self->_showReplyViewController animated:YES];
     };
 
     paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-        danamicStateViewController.typeMotiveString = @"2";
-        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+        [weakSelf.navigationController pushViewController:self->_showPicturesViewController animated:YES];
     };
 
     paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-        danamicStateViewController.typeMotiveString = @"3";
         MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
         [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
             NSLog(@"getComment:%@", resultModel.message);
-            danamicStateViewController.dynamicStateView.commentModel = resultModel;
-            [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
+            
+            
+//---------------------------------------这里还未修改--------------------------------
+            
+            
+            
+//            danamicStateViewController.dynamicStateView.commentModel = resultModel;
+//            [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
         } error:^(NSError *error) {
             NSLog(@"%@", error);
         }];
-        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+        [weakSelf.navigationController pushViewController:self->_showAudioViewController animated:YES];
     };
     
     paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-        danamicStateViewController.typeMotiveString = @"4";
-        [weakSelf.navigationController pushViewController:danamicStateViewController animated:YES];
+        [weakSelf.navigationController pushViewController:self->_showVedioViewController animated:YES];
     };
 }
 
@@ -536,6 +565,14 @@
         [self->_audioRecordUtils startClick];
         [weakAddAudioView startRecord];
     };
+    
+    
+    
+    
+//---------------------------------------这里还未修改--------------------------------
+    
+    
+    
     
 //    //添加跳转功能的点击事件
 //    addAudioView.audioButtonAction = ^(UIButton *sender) {
