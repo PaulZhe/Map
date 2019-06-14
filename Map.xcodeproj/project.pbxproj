@@ -85,6 +85,10 @@
 		4F6C0C3422B28BD3001BFBAF /* MAPAddAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C0C3322B28BD3001BFBAF /* MAPAddAudioViewController.m */; };
 		4F6C0C3722B28BE0001BFBAF /* MAPAddVedioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C0C3622B28BE0001BFBAF /* MAPAddVedioViewController.m */; };
 		4FC2DB1822AE85C3004A4E21 /* jiahao-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */; };
+		4FC8FCC122B3D12B0095AB6A /* MAPShowReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC022B3D12B0095AB6A /* MAPShowReplyViewController.m */; };
+		4FC8FCC422B3D13A0095AB6A /* MAPShowPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC322B3D13A0095AB6A /* MAPShowPicturesViewController.m */; };
+		4FC8FCC722B3D1450095AB6A /* MAPShowAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC622B3D1450095AB6A /* MAPShowAudioViewController.m */; };
+		4FC8FCCA22B3D1530095AB6A /* MAPShowVedioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC922B3D1530095AB6A /* MAPShowVedioViewController.m */; };
 		4FDD95702211CFE30047A9BC /* MAPMotiveReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */; };
 		D6046CEE22676235007D3D34 /* MAPLameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6046CED22676235007D3D34 /* MAPLameTool.m */; };
 		D6046CF222676653007D3D34 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6046CF122676653007D3D34 /* libmp3lame.a */; };
@@ -257,6 +261,14 @@
 		4F6C0C3522B28BE0001BFBAF /* MAPAddVedioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddVedioViewController.h; sourceTree = "<group>"; };
 		4F6C0C3622B28BE0001BFBAF /* MAPAddVedioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddVedioViewController.m; sourceTree = "<group>"; };
 		4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jiahao-2.png"; sourceTree = "<group>"; };
+		4FC8FCBF22B3D12B0095AB6A /* MAPShowReplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowReplyViewController.h; sourceTree = "<group>"; };
+		4FC8FCC022B3D12B0095AB6A /* MAPShowReplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowReplyViewController.m; sourceTree = "<group>"; };
+		4FC8FCC222B3D13A0095AB6A /* MAPShowPicturesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowPicturesViewController.h; sourceTree = "<group>"; };
+		4FC8FCC322B3D13A0095AB6A /* MAPShowPicturesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowPicturesViewController.m; sourceTree = "<group>"; };
+		4FC8FCC522B3D1450095AB6A /* MAPShowAudioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowAudioViewController.h; sourceTree = "<group>"; };
+		4FC8FCC622B3D1450095AB6A /* MAPShowAudioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowAudioViewController.m; sourceTree = "<group>"; };
+		4FC8FCC822B3D1530095AB6A /* MAPShowVedioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowVedioViewController.h; sourceTree = "<group>"; };
+		4FC8FCC922B3D1530095AB6A /* MAPShowVedioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowVedioViewController.m; sourceTree = "<group>"; };
 		4FDD956E2211CFE30047A9BC /* MAPMotiveReplyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveReplyView.h; sourceTree = "<group>"; };
 		4FDD956F2211CFE30047A9BC /* MAPMotiveReplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveReplyView.m; sourceTree = "<group>"; };
 		7547F341E163CF40B251C20D /* Pods-Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map/Pods-Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -420,27 +432,27 @@
 			path = VedioButtonView;
 			sourceTree = "<group>";
 		};
-		4F07E548222E8AC800F00EDD /* MAPAddDynamicState */ = {
+		4F07E548222E8AC800F00EDD /* AddDynamicStateViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4F6C0C2822B28B4A001BFBAF /* MAPAddComments */,
-				4F6C0C2922B28B5F001BFBAF /* MAPAddPictures */,
-				4F6C0C2B22B28B82001BFBAF /* MAPAddAudio */,
-				4F6C0C2A22B28B6E001BFBAF /* MAPAddVedio */,
+				4F6C0C2822B28B4A001BFBAF /* AddCommentsViewController */,
+				4F6C0C2922B28B5F001BFBAF /* AddPicturesViewController */,
+				4F6C0C2B22B28B82001BFBAF /* AddAudioViewController */,
+				4F6C0C2A22B28B6E001BFBAF /* AddVedioViewController */,
 				4F2C2C1B2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.h */,
 				4F2C2C1C2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m */,
 			);
-			path = MAPAddDynamicState;
+			path = AddDynamicStateViewController;
 			sourceTree = "<group>";
 		};
-		4F07E549222E8ADA00F00EDD /* MAPPhotoKit */ = {
+		4F07E549222E8ADA00F00EDD /* PhotoKitViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4F07E54D222E9F8800F00EDD /* PhotoKit */,
 				4F07E54E222EB16C00F00EDD /* SelectPhotoes */,
 				4F0A5CF52233F47D00C010C4 /* ScrollerViewShowPhoto */,
 			);
-			path = MAPPhotoKit;
+			path = PhotoKitViewController;
 			sourceTree = "<group>";
 		};
 		4F07E54D222E9F8800F00EDD /* PhotoKit */ = {
@@ -568,6 +580,10 @@
 		4F1013B021F6EEC300C549A3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4FC8FCBB22B3D0020095AB6A /* ShowReplyViewController */,
+				4FC8FCBC22B3D0C60095AB6A /* ShowPicturesViewController */,
+				4FC8FCBD22B3D0D40095AB6A /* ShowAudioViewController */,
+				4FC8FCBE22B3D0DD0095AB6A /* ShowVedioViewController */,
 				4F1013B321F6EF1E00C549A3 /* MAPDynamicStateViewController.h */,
 				4F1013B421F6EF1E00C549A3 /* MAPDynamicStateViewController.m */,
 			);
@@ -647,8 +663,8 @@
 		4F2C2C192202DF6600CA0ECB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F07E548222E8AC800F00EDD /* MAPAddDynamicState */,
-				4F07E549222E8ADA00F00EDD /* MAPPhotoKit */,
+				4F07E548222E8AC800F00EDD /* AddDynamicStateViewController */,
+				4F07E549222E8ADA00F00EDD /* PhotoKitViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -696,40 +712,40 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4F6C0C2822B28B4A001BFBAF /* MAPAddComments */ = {
+		4F6C0C2822B28B4A001BFBAF /* AddCommentsViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4F6C0C2C22B28BB5001BFBAF /* MAPAddCommentsViewController.h */,
 				4F6C0C2D22B28BB5001BFBAF /* MAPAddCommentsViewController.m */,
 			);
-			path = MAPAddComments;
+			path = AddCommentsViewController;
 			sourceTree = "<group>";
 		};
-		4F6C0C2922B28B5F001BFBAF /* MAPAddPictures */ = {
+		4F6C0C2922B28B5F001BFBAF /* AddPicturesViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4F6C0C2F22B28BC3001BFBAF /* MAPAddPicturesViewController.h */,
 				4F6C0C3022B28BC3001BFBAF /* MAPAddPicturesViewController.m */,
 			);
-			path = MAPAddPictures;
+			path = AddPicturesViewController;
 			sourceTree = "<group>";
 		};
-		4F6C0C2A22B28B6E001BFBAF /* MAPAddVedio */ = {
+		4F6C0C2A22B28B6E001BFBAF /* AddVedioViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4F6C0C3522B28BE0001BFBAF /* MAPAddVedioViewController.h */,
 				4F6C0C3622B28BE0001BFBAF /* MAPAddVedioViewController.m */,
 			);
-			path = MAPAddVedio;
+			path = AddVedioViewController;
 			sourceTree = "<group>";
 		};
-		4F6C0C2B22B28B82001BFBAF /* MAPAddAudio */ = {
+		4F6C0C2B22B28B82001BFBAF /* AddAudioViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4F6C0C3222B28BD3001BFBAF /* MAPAddAudioViewController.h */,
 				4F6C0C3322B28BD3001BFBAF /* MAPAddAudioViewController.m */,
 			);
-			path = MAPAddAudio;
+			path = AddAudioViewController;
 			sourceTree = "<group>";
 		};
 		4F8B6B8A221D211700A6E21A /* MAPNavigation */ = {
@@ -759,6 +775,42 @@
 				4F099DDD2252485100CA2C2F /* MAPNavigationViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4FC8FCBB22B3D0020095AB6A /* ShowReplyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FC8FCBF22B3D12B0095AB6A /* MAPShowReplyViewController.h */,
+				4FC8FCC022B3D12B0095AB6A /* MAPShowReplyViewController.m */,
+			);
+			path = ShowReplyViewController;
+			sourceTree = "<group>";
+		};
+		4FC8FCBC22B3D0C60095AB6A /* ShowPicturesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FC8FCC222B3D13A0095AB6A /* MAPShowPicturesViewController.h */,
+				4FC8FCC322B3D13A0095AB6A /* MAPShowPicturesViewController.m */,
+			);
+			path = ShowPicturesViewController;
+			sourceTree = "<group>";
+		};
+		4FC8FCBD22B3D0D40095AB6A /* ShowAudioViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FC8FCC522B3D1450095AB6A /* MAPShowAudioViewController.h */,
+				4FC8FCC622B3D1450095AB6A /* MAPShowAudioViewController.m */,
+			);
+			path = ShowAudioViewController;
+			sourceTree = "<group>";
+		};
+		4FC8FCBE22B3D0DD0095AB6A /* ShowVedioViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FC8FCC822B3D1530095AB6A /* MAPShowVedioViewController.h */,
+				4FC8FCC922B3D1530095AB6A /* MAPShowVedioViewController.m */,
+			);
+			path = ShowVedioViewController;
 			sourceTree = "<group>";
 		};
 		4FDD956D2211CFB30047A9BC /* ReplyView */ = {
@@ -1163,6 +1215,7 @@
 				4F04453C21FCB33500C4F71E /* MAPMotiveAudioButton.m in Sources */,
 				D61473A822A6154700B34B44 /* MAPGetMessageCountModel.m in Sources */,
 				4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */,
+				4FC8FCC722B3D1450095AB6A /* MAPShowAudioViewController.m in Sources */,
 				D64FBBBF21EC886B00CB3BFC /* MAPHomePageViewController.m in Sources */,
 				D68297662223DA2A00D3F4A8 /* MAPAddPointModel.m in Sources */,
 				4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */,
@@ -1171,6 +1224,7 @@
 				4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */,
 				4F0A15CD22069FD9007F1D0D /* MAPAddPicturesView.m in Sources */,
 				4F2C2C232202E05100CA0ECB /* MAPIssueButton.m in Sources */,
+				4FC8FCC422B3D13A0095AB6A /* MAPShowPicturesViewController.m in Sources */,
 				4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */,
 				4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */,
 				4F07E54C222E8B0600F00EDD /* MAPPhotoKitViewController.m in Sources */,
@@ -1190,11 +1244,13 @@
 				4F1013B521F6EF1E00C549A3 /* MAPDynamicStateViewController.m in Sources */,
 				D64FBBC021EC886B00CB3BFC /* MAPHomePageView.m in Sources */,
 				4F0BDFDA22369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m in Sources */,
+				4FC8FCCA22B3D1530095AB6A /* MAPShowVedioViewController.m in Sources */,
 				4F2C5E6F21F9A44F00DCF62A /* MAPMotivePicturesView.m in Sources */,
 				D660A4B52225506F00E30917 /* MAPGetPointManager.m in Sources */,
 				D6DAE38022145832009B1406 /* MAPCommentModel.m in Sources */,
 				4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */,
 				4F07AE6022282506002071BB /* MAPAddCommentsView.m in Sources */,
+				4FC8FCC122B3D12B0095AB6A /* MAPShowReplyViewController.m in Sources */,
 				4F2C2C1D2202DF9E00CA0ECB /* MAPAddDynamicStateViewController.m in Sources */,
 				D66CCE0F21E4B45A009ADD17 /* AppDelegate.m in Sources */,
 				4F2C2C202202DFFB00CA0ECB /* MAPIssueView.m in Sources */,
