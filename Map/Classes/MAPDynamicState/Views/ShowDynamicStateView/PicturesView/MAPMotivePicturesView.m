@@ -22,13 +22,13 @@
         //垂直方向滚动
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 200) collectionViewLayout:flowLayout];
+        //注册collectionView的cell
+        [_picturesCollectionView registerClass:[MAPMotivePicturesCollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
         _picturesCollectionView.dataSource = self;
         _picturesCollectionView.delegate = self;
         _picturesCollectionView.backgroundColor = [UIColor clearColor];
         _picturesCollectionView.showsVerticalScrollIndicator = NO;
         [self addSubview:_picturesCollectionView];
-        //注册collectionView的cell
-        [_picturesCollectionView registerClass:[MAPMotivePicturesCollectionViewCell class] forCellWithReuseIdentifier:@"pictures"];
     }
     return self;
 }

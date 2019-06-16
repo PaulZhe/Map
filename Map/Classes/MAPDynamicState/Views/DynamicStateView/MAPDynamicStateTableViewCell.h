@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPMotiveVideoButton *videoButton;//播放视频
 
 //重写init方法，实现cell的封装
-- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString;
+//- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier typeOfMotion:(nonnull NSString *)typeString;
 
 @end
 
