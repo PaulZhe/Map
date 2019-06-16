@@ -21,7 +21,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(BackToHomePage:)];
-    
+
     backButtonItem.tintColor = [UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f];
     self.navigationItem.leftBarButtonItem = backButtonItem;
 }
@@ -29,12 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    if (!_dynamicStateView) {
-        self.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        self.dynamicStateView.dyanmicStateTableView.delegate = self;
-        [self.view addSubview:_dynamicStateView];
-        self.dynamicStateView.typeMotiveString = [NSString stringWithFormat:@"%d", 1];
-    }
+//    if (!_dynamicStateView) {
+//        self.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        self.dynamicStateView.dyanmicStateTableView.delegate = self;
+//        [self.view addSubview:_dynamicStateView];
+//        self.dynamicStateView.typeMotiveString = [NSString stringWithFormat:@"%d", 1];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,6 +64,10 @@
 //导航栏返回按钮点击事件
 - (void)BackToHomePage:(UIButton *) button {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 
 @end

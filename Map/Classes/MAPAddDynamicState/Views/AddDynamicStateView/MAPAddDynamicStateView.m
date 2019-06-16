@@ -23,6 +23,7 @@
 - (instancetype)initWithTypeString:(NSString *) typeString {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         self.mapView = [[BMKMapView alloc] init];
         //将当前地图显示缩放等级设置为21级
         [self.mapView setZoomLevel:21];

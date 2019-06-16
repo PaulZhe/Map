@@ -35,7 +35,10 @@
         _dyanmicStateTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
         _dyanmicStateTableView.dataSource = self;
         [self addSubview:_dyanmicStateTableView];
-        [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"motion"];
+        [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"comment"];
+        [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"picture"];
+        [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"audio"];
+        [_dyanmicStateTableView registerClass:[MAPDynamicStateTableViewCell class] forCellReuseIdentifier:@"vedio"];
     }
     return self;
     
@@ -53,6 +56,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([_typeMotiveString isEqualToString:@"1"]) {
+        MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" forIndexPath:indexPath];
+        return cell;
+    } else if ([_typeMotiveString isEqualToString:@"2"]) {
+        MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"picture" forIndexPath:indexPath];
+        return cell;
+    } else if ([_typeMotiveString isEqualToString:@"3"]) {
+        MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"audio" forIndexPath:indexPath];
+        return cell;
+    } else {
+        MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"vedio" forIndexPath:indexPath];
+        return cell;
+    }
+
+    /*
     MAPDynamicStateTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
     MAPDynamicStateTableViewCell *picturesCell = [tableView dequeueReusableCellWithIdentifier:@"pictures"];
     MAPDynamicStateTableViewCell *voiceCell = [tableView dequeueReusableCellWithIdentifier:@"voice"];
@@ -84,13 +102,14 @@
         }
         
         //添加语音点击事件
+        __weak MAPDynamicStateView *weakSelf = self;
         voiceCell.audioButton.motiveAudioAction = ^(UIButton * _Nonnull sender) {
             NSLog(@"点击了语音%ld", (long)indexPath.row);
-            NSString *mp3Str = [NSString stringWithFormat:@"http://haojianqiang.top%@", [self->_commentModel.data[indexPath.row] content].url];
+            NSString *mp3Str = [NSString stringWithFormat:@"http://haojianqiang.top%@", [weakSelf.commentModel.data[indexPath.row] content].url];
             NSData *mp3Data = [NSData dataWithContentsOfURL:[[NSURL alloc] initWithString:mp3Str]];
-            self.audioPlayer = [[AVAudioPlayer alloc] initWithData:mp3Data error:nil];
-            [self.audioPlayer prepareToPlay];
-            [self.audioPlayer play];
+            weakSelf.audioPlayer = [[AVAudioPlayer alloc] initWithData:mp3Data error:nil];
+            [weakSelf.audioPlayer prepareToPlay];
+            [weakSelf.audioPlayer play];
         };
         return voiceCell;
     } else {
@@ -98,12 +117,13 @@
             videoCell = [[MAPDynamicStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"video" typeOfMotion:_typeMotiveString];
         }
         //添加视频点击事件
+        __weak MAPDynamicStateView *weakSelf = self;
         videoCell.videoButton.motiveVideoAction = ^(UIButton * _Nonnull sender) {
             NSLog(@"点击了视频");
-            [self vedioPlay];
+            [weakSelf vedioPlay];
         };
         return videoCell;
-    }
+    }*/
 }
 
 
