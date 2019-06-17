@@ -41,16 +41,12 @@
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置
 @property (nonatomic, strong) MAPHomePageView *homePageView;//主界面
-//添加动态controller
-@property (nonatomic, strong) MAPAddCommentsViewController *addCommentViewController;
-@property (nonatomic, strong) MAPAddPicturesViewController *addPictureViewController;
-@property (nonatomic, strong) MAPAddAudioViewController *addAudioViewController;
-@property (nonatomic, strong) MAPAddVedioViewController *addVedioViewController;
-//展示动态controller
-@property (nonatomic, strong) MAPShowReplyViewController *showReplyViewController;
-@property (nonatomic, strong) MAPShowPicturesViewController *showPicturesViewController;
-@property (nonatomic, strong) MAPShowAudioViewController *showAudioViewController;
-@property (nonatomic, strong) MAPShowVedioViewController *showVedioViewController;
+
+//记录主界面点击发布按钮跳转过去时是否有发布点
+@property (nonatomic, assign) bool addViewControllerIsSelected;
+//记录各个controller的各个属性
+@property (nonatomic, assign) int addViewControllerID;
+@property (nonatomic, copy) NSString *addViewControllerPointName;
 
 @property (nonatomic, strong) MAPAudioRecordUtils *audioRecordUtils;
 
@@ -93,18 +89,6 @@
 
 #pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
-    //初始化添加动态界面
-    _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
-    _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
-    _addAudioViewController = [[MAPAddAudioViewController alloc] init];
-    _addVedioViewController = [[MAPAddVedioViewController alloc] init];
-    
-    //初始化展示动态界面
-    self.showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
-    self.showReplyViewController = [[MAPShowReplyViewController alloc] init];
-    self.showVedioViewController = [[MAPShowVedioViewController alloc] init];
-    self.showAudioViewController = [[MAPShowAudioViewController alloc] init];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
     self.homePageView.mapView.delegate = self;
@@ -114,7 +98,7 @@
     __weak typeof(self) weakSelf = self;
     //添加按钮点击事件
     self.homePageView.addButtonAction = ^(UIButton * _Nonnull sender) {
-        if (self->_addCommentViewController.isSelected == YES || self->_addPictureViewController.isSelected == YES || self->_addVedioViewController.isSelected == YES || self->_addAudioViewController.isSelected == YES) {
+        if (self->_addViewControllerIsSelected == YES) {
             //创建发布界面
             [weakSelf creatIssueView];
         } else {
@@ -236,10 +220,7 @@
     }
     NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
     self.userLocation.title = placeTitle;
-    self.addCommentViewController.pointName = placeTitle;
-    self.addAudioViewController.pointName = placeTitle;
-    self.addPictureViewController.pointName = placeTitle;
-    self.addVedioViewController.pointName = placeTitle;
+    self.addViewControllerPointName = placeTitle;;
 //    _addDyanmicStateViewController.pointName = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
@@ -316,22 +297,13 @@
     [self.homePageView.addButton setImage:nil forState:UIControlStateNormal];
     [self.homePageView.addButton setImage:nil forState:UIControlStateHighlighted];
 
-    [self.addCommentViewController setIsSelected:YES];
-    [self.addPictureViewController setIsSelected:YES];
-    [self.addAudioViewController setIsSelected:YES];
-    [self.addVedioViewController setIsSelected:YES];
+    self.addViewControllerIsSelected = YES;
     
     //传递点击点ID和name
-    self.addCommentViewController.ID = [view.annotation.title intValue];
-    self.addPictureViewController.ID = [view.annotation.title intValue];
-    self.addAudioViewController.ID = [view.annotation.title intValue];
-    self.addVedioViewController.ID = [view.annotation.title intValue];
+    self.addViewControllerID = [view.annotation.title intValue];
 
     NSRange pos = [view.annotation.subtitle rangeOfString:@" pointName "];
-    self.addCommentViewController.pointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
-    self.addPictureViewController.pointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
-    self.addAudioViewController.pointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
-    self.addVedioViewController.pointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
+    self.addViewControllerPointName = [view.annotation.subtitle substringFromIndex:pos.location + 11];
 }
 /**
  *当点击annotation view弹出的泡泡时，调用此接口
@@ -353,20 +325,9 @@
     [self.homePageView.addButton setTitle:nil forState:UIControlStateNormal];
     [self.homePageView.addButton setTitle:nil forState:UIControlStateHighlighted];
 
-    [self.addCommentViewController setIsSelected:NO];
-    [self.addPictureViewController setIsSelected:NO];
-    [self.addAudioViewController setIsSelected:NO];
-    [self.addVedioViewController setIsSelected:NO];
+    self.addViewControllerIsSelected = NO;
 
-    self.addCommentViewController.ID = 0;
-    self.addPictureViewController.ID = 0;
-    self.addAudioViewController.ID = 0;
-    self.addVedioViewController.ID = 0;
-    
-    self.addCommentViewController.pointName = _userLocation.title;
-    self.addPictureViewController.pointName = _userLocation.title;
-    self.addAudioViewController.pointName = _userLocation.title;
-    self.addVedioViewController.pointName = _userLocation.title;
+    self.addViewControllerPointName = _userLocation.title;
 }
 
 //泡泡内按钮点击事件
@@ -376,6 +337,10 @@
         paopaoView = [MAPPaopaoView new];
     }
 
+    MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
+    MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
+    MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
+    MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
     paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
 
         //        ///添加评论
@@ -386,32 +351,32 @@
         [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
                                          type:0 succeed:^(MAPCommentModel *resultModel) {
                                              NSLog(@"getComment:%@", resultModel.message);
-                                             self.showReplyViewController.dynamicStateView.commentModel = resultModel;
-                                             [self.showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
+                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
                                          } error:^(NSError *error) {
                                              NSLog(@"%@", error);
                                          }];
-        [weakSelf.navigationController pushViewController:weakSelf.showReplyViewController animated:YES];
+        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
     };
 
     paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-        [weakSelf.navigationController pushViewController:weakSelf.showPicturesViewController animated:YES];
+        [weakSelf.navigationController pushViewController:showPicturesViewController animated:YES];
     };
 
     paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
         [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
             NSLog(@"getComment:%@", resultModel.message);
-            self.showAudioViewController.dynamicStateView.commentModel = resultModel;
-            [self.showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
+            showAudioViewController.dynamicStateView.commentModel = resultModel;
+            [showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
         } error:^(NSError *error) {
             NSLog(@"%@", error);
         }];
-        [weakSelf.navigationController pushViewController:weakSelf.showAudioViewController animated:YES];
+        [weakSelf.navigationController pushViewController:showAudioViewController animated:YES];
     };
 
     paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-        [weakSelf.navigationController pushViewController:weakSelf.showVedioViewController animated:YES];
+        [weakSelf.navigationController pushViewController:showVedioViewController animated:YES];
     };
 }
 
@@ -435,6 +400,9 @@
         if (tag == 101) {
             //添加评论
             MAPAddCommentsViewController *addCommentViewController = [[MAPAddCommentsViewController alloc] init];
+            //传值
+            addCommentViewController.pointName = weakSelf.addViewControllerPointName;
+            addCommentViewController.ID = weakSelf.addViewControllerID;
             addCommentViewController.Latitude = weakSelf.userLocation.location.coordinate.latitude;
             addCommentViewController.Longitud = weakSelf.userLocation.location.coordinate.longitude;
             [weakSelf HiddenAddDynamicStateView];
@@ -508,11 +476,15 @@
 - (void)clickedAlbumButton:(UIButton *)button {
     if (self.addDynamicStateTypeTag == 102) {
         MAPAddPicturesViewController *addPictureViewController = [[MAPAddPicturesViewController alloc] init];
+        addPictureViewController.pointName = _addViewControllerPointName;
+        addPictureViewController.ID = _addViewControllerID;
         addPictureViewController.Latitude = self.userLocation.location.coordinate.latitude;
         addPictureViewController.Longitud = self.userLocation.location.coordinate.longitude;
         [self.navigationController pushViewController:addPictureViewController animated:YES];
     } else if (self.addDynamicStateTypeTag == 104) {
         MAPAddVedioViewController *addVedioController = [[MAPAddVedioViewController alloc] init];
+        addVedioController.pointName = _addViewControllerPointName;
+        addVedioController.ID = _addViewControllerID;
         addVedioController.Latitude = self.userLocation.location.coordinate.latitude;
         addVedioController.Longitud = self.userLocation.location.coordinate.longitude;
         [self.navigationController pushViewController:addVedioController animated:YES];
@@ -543,6 +515,8 @@
         [self->_audioRecordUtils startClick];
         [weakAddAudioView startRecord];
     };
+    
+    MAPAddAudioViewController *addAudioViewController = [[MAPAddAudioViewController alloc] init];
 
     //添加跳转功能的点击事件
     addAudioView.audioButtonAction = ^(UIButton *sender) {
@@ -551,14 +525,16 @@
         [weakAddAudioView endRecord];
 
         if (self->_audioRecordUtils.jumpFlag) {
-            self->_addAudioViewController.Latitude = self->_userLocation.location.coordinate.latitude;
-            self->_addAudioViewController.Longitud = self->_userLocation.location.coordinate.longitude;
-            self->_addAudioViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
-            self->_addAudioViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
-            self->_addAudioViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
+            addAudioViewController.pointName = self->_addViewControllerPointName;
+            addAudioViewController.ID = self->_addViewControllerID;
+            addAudioViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+            addAudioViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            addAudioViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
+            addAudioViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
+            addAudioViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
 
             [self HiddenAddDynamicStateView];
-            [self.navigationController pushViewController:self->_addAudioViewController animated:YES];
+            [self.navigationController pushViewController:addAudioViewController animated:YES];
         }
         [weakAddAudioView reset];
     };
