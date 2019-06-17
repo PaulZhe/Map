@@ -8,6 +8,7 @@
 
 #import "MAPAddVedioViewController.h"
 #import "MAPAddDynamicStateView.h"
+#import "MAPAddPointManager.h"
 #import <Masonry.h>
 
 @interface MAPAddVedioViewController () <BMKMapViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
@@ -80,6 +81,29 @@
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
     
     self.addDynamicStateView.locationNameLabel.text = _pointName;
+}
+
+//添加发布点点击事件
+- (void)createChildView {
+    self.addDynamicStateView.locationNameLabel.text = _pointName;
+    __weak typeof(self) weakSelf = self;
+    self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
+        if (weakSelf.isSelected == NO) {
+            //addPointManager测试
+            MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+            [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+                NSLog(@"%@++++", resultModel.message);
+                //更新添加点
+                
+            } error:^(NSError *error) {
+                NSLog(@"%@", error);
+            }];
+            
+        } else {
+            
+        }
+        
+    };
 }
 
 //添加自定义点

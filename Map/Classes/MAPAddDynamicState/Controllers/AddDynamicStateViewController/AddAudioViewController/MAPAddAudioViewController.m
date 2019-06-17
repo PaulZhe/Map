@@ -7,13 +7,12 @@
 //
 
 #import "MAPAddAudioViewController.h"
-#import "MAPAddDynamicStateView.h"
+#import "MAPAddPointManager.h"
 #import <Masonry.h>
 
 @interface MAPAddAudioViewController () <BMKMapViewDelegate> {
     NSMutableArray *annotationMutableArray;
 }
-@property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
 
 @end
 
@@ -70,6 +69,50 @@
     [_addDynamicStateView.mapView showAnnotations:annotationMutableArray animated:YES];
     
     self.addDynamicStateView.locationNameLabel.text = _pointName;
+}
+
+//更新语音时长标签
+- (void)refreshData {
+    NSString *timeStr;
+    if (_addDynamicStateView.issueAudioView.minutes == 0) {
+        timeStr = [NSString stringWithFormat:@"%ds", _addDynamicStateView.issueAudioView.seconds];
+    } else {
+        timeStr = [NSString stringWithFormat:@"%dm%ds", _addDynamicStateView.issueAudioView.minutes, _addDynamicStateView.issueAudioView.seconds];
+    }
+    self.addDynamicStateView.issueAudioView.motiveAudioButton.timeLabel.text = timeStr;
+}
+
+//添加发布点点击事件
+- (void)createChildView {
+    self.addDynamicStateView.locationNameLabel.text = _pointName;
+    __weak typeof(self) weakSelf = self;
+    self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
+        if (weakSelf.isSelected == NO) {
+            //addPointManager测试
+            MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+            [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+                NSLog(@"%@++++", resultModel.message);
+                //更新添加点
+                NSData *mp3Cache = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:weakSelf.addDynamicStateView.mp3Path]];
+                [[MAPAddPointManager sharedManager] uploadAudioWithPointId:weakSelf.ID Data:mp3Cache Type:2 Second:weakSelf.addDynamicStateView.issueAudioView.seconds Minutes:weakSelf.addDynamicStateView.issueAudioView.minutes success:^(MAPAddPointModel *resultModel) {
+                    NSLog(@"mp3上传成功");
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                } error:^(NSError *error) {
+                    NSLog(@"mp3上传失败");
+                }];
+            } error:^(NSError *error) {
+                NSLog(@"%@", error);
+            }];
+        } else {
+            NSData *mp3Cache = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:weakSelf.addDynamicStateView.mp3Path]];
+            [[MAPAddPointManager sharedManager] uploadAudioWithPointId:weakSelf.ID Data:mp3Cache Type:2 Second:weakSelf.addDynamicStateView.issueAudioView.seconds Minutes:weakSelf.addDynamicStateView.issueAudioView.minutes success:^(MAPAddPointModel *resultModel) {
+                NSLog(@"mp3上传成功");
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            } error:^(NSError *error) {
+                NSLog(@"mp3上传失败");
+            }];
+        }
+    };
 }
 
 //添加自定义点

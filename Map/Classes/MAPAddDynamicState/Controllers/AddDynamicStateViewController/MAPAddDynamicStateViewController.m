@@ -22,17 +22,17 @@
 @implementation MAPAddDynamicStateViewController
 
 - (MAPAddDynamicStateView *)addDynamicStateView {
-   if (!_addDynamicStateView) {
-       _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
-       [self.view addSubview:_addDynamicStateView];
-       [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
-           make.top.mas_equalTo(self.view.mas_top);
-           make.left.mas_equalTo(self.view.mas_left);
-           make.right.mas_equalTo(self.view.mas_right);
-           make.bottom.mas_equalTo(self.view.mas_bottom);
-       }];
-   }
-   return _addDynamicStateView;
+    if (!_addDynamicStateView) {
+        _addDynamicStateView = [[MAPAddDynamicStateView alloc] initWithTypeString:_typeString];
+        [self.view addSubview:_addDynamicStateView];
+        [_addDynamicStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view.mas_top);
+            make.left.mas_equalTo(self.view.mas_left);
+            make.right.mas_equalTo(self.view.mas_right);
+            make.bottom.mas_equalTo(self.view.mas_bottom);
+        }];
+    }
+    return _addDynamicStateView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -165,7 +165,6 @@
         
     }
 }
-
 
 //给视频界面button添加事件
 - (void)clickAddVedioButton:(UIButton *)button {

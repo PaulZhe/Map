@@ -7,7 +7,6 @@
 //
 
 #import "MAPHomePageViewController.h"
-//#import "MAPDynamicStateViewController.h"
 #import "MAPAlertView.h"
 #import <Masonry.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
@@ -95,21 +94,21 @@
 #pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
     //初始化添加动态界面
-//    _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
-//    _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
-//    _addAudioViewController = [[MAPAddAudioViewController alloc] init];
-//    _addVedioViewController = [[MAPAddVedioViewController alloc] init];
+    _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
+    _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
+    _addAudioViewController = [[MAPAddAudioViewController alloc] init];
+    _addVedioViewController = [[MAPAddVedioViewController alloc] init];
     
     //初始化展示动态界面
-    _showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
-    _showReplyViewController = [[MAPShowReplyViewController alloc] init];
-    _showVedioViewController = [[MAPShowVedioViewController alloc] init];
-    _showAudioViewController = [[MAPShowAudioViewController alloc] init];
+    self.showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
+    self.showReplyViewController = [[MAPShowReplyViewController alloc] init];
+    self.showVedioViewController = [[MAPShowVedioViewController alloc] init];
+    self.showAudioViewController = [[MAPShowAudioViewController alloc] init];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    _homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
-    _homePageView.mapView.delegate = self;
-    _homePageView.mapView.showsUserLocation = YES;
+    self.homePageView = [[MAPHomePageView alloc] initWithFrame:self.view.bounds];
+    self.homePageView.mapView.delegate = self;
+    self.homePageView.mapView.showsUserLocation = YES;
     [self.locationManager startUpdatingLocation];
     
     __weak typeof(self) weakSelf = self;
@@ -214,7 +213,6 @@
     return YES;
 }
 
-
 #pragma MAP ----------------------定位中位置变更的回调--------------------
 - (BMKUserLocation *)userLocation {
     if (!_userLocation) {
@@ -238,14 +236,10 @@
     }
     NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
     self.userLocation.title = placeTitle;
-    
-    
-    
-//---------------------------------------这里还未修改--------------------------------
-    
-    
-    
-    
+    self.addCommentViewController.pointName = placeTitle;
+    self.addAudioViewController.pointName = placeTitle;
+    self.addPictureViewController.pointName = placeTitle;
+    self.addVedioViewController.pointName = placeTitle;
 //    _addDyanmicStateViewController.pointName = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
@@ -377,83 +371,48 @@
 
 //泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
-//    __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     if (!paopaoView) {
         paopaoView = [MAPPaopaoView new];
     }
-    
-    [paopaoView.commentButton addTarget:self action:@selector(replyAciton:) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.picturesButton addTarget:self action:@selector(pictureAciton:) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.vedioButton addTarget:self action:@selector(videoAciton:) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.voiceButton addTarget:self action:@selector(audioAciton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-//    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//
-//        //        ///添加评论
-//        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
-//        ///获取评论
-//        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
-//
-//
-//
-////---------------------------------------这里还未修改--------------------------------
-//
-//
-//
-////        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-////        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
-////                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-////                                             NSLog(@"getComment:%@", resultModel.message);
-////                                             danamicStateViewController.dynamicStateView.commentModel = resultModel;
-////                                             [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-////                                         } error:^(NSError *error) {
-////                                             NSLog(@"%@", error);
-////                                         }];
-//        [weakSelf.navigationController pushViewController:weakSelf.showReplyViewController animated:YES];
-//    };
-//
-//    paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        [weakSelf.navigationController pushViewController:weakSelf.showPicturesViewController animated:YES];
-//    };
-//
-//    paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
-//            NSLog(@"getComment:%@", resultModel.message);
-//
-//
-////---------------------------------------这里还未修改--------------------------------
-//
-//
-//
-////            danamicStateViewController.dynamicStateView.commentModel = resultModel;
-////            [danamicStateViewController.dynamicStateView.dyanmicStateTableView reloadData];
-//        } error:^(NSError *error) {
-//            NSLog(@"%@", error);
-//        }];
-//        [weakSelf.navigationController pushViewController:weakSelf.showAudioViewController animated:YES];
-//    };
-//
-//    paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        [weakSelf.navigationController pushViewController:weakSelf.showVedioViewController animated:YES];
-//    };
-}
 
-- (void)replyAciton:(UIButton *)button {
-    [self.navigationController pushViewController:self.showReplyViewController animated:YES];
-}
+    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
 
-- (void)pictureAciton:(UIButton *)button {
-    [self.navigationController pushViewController:self.showPicturesViewController animated:YES];
-}
+        //        ///添加评论
+        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        ///获取评论
+        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
+                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+                                             NSLog(@"getComment:%@", resultModel.message);
+                                             self.showReplyViewController.dynamicStateView.commentModel = resultModel;
+                                             [self.showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                         } error:^(NSError *error) {
+                                             NSLog(@"%@", error);
+                                         }];
+        [weakSelf.navigationController pushViewController:weakSelf.showReplyViewController animated:YES];
+    };
 
-- (void)videoAciton:(UIButton *)button {
-    [self.navigationController pushViewController:self.showVedioViewController animated:YES];
-}
+    paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        [weakSelf.navigationController pushViewController:weakSelf.showPicturesViewController animated:YES];
+    };
 
-- (void)audioAciton:(UIButton *)button {
-    [self.navigationController pushViewController:self.showAudioViewController animated:YES];
+    paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
+            NSLog(@"getComment:%@", resultModel.message);
+            self.showAudioViewController.dynamicStateView.commentModel = resultModel;
+            [self.showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
+        } error:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        [weakSelf.navigationController pushViewController:weakSelf.showAudioViewController animated:YES];
+    };
+
+    paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        [weakSelf.navigationController pushViewController:weakSelf.showVedioViewController animated:YES];
+    };
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
@@ -461,7 +420,7 @@
 - (void)creatIssueView {
     MAPIssueView *issueView = [[MAPIssueView alloc] init];
     issueView.tag = 200;
-    [self->_homePageView addSubview:issueView];
+    [self.homePageView addSubview:issueView];
     issueView.layer.masksToBounds = YES;
     issueView.layer.cornerRadius = 150;
     [issueView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -584,42 +543,34 @@
         [self->_audioRecordUtils startClick];
         [weakAddAudioView startRecord];
     };
-    
-    
-    
-    
-//---------------------------------------这里还未修改--------------------------------
-    
-    
-    
-    
-//    //添加跳转功能的点击事件
-//    addAudioView.audioButtonAction = ^(UIButton *sender) {
-//        //结束录音
-//        [self->_audioRecordUtils endClick];
-//        [weakAddAudioView endRecord];
-//
-//        if (self->_audioRecordUtils.jumpFlag) {
-//            self->_addDyanmicStateViewController.Latitude = self->_userLocation.location.coordinate.latitude;
-//            self->_addDyanmicStateViewController.Longitud = self->_userLocation.location.coordinate.longitude;
-//            self->_addDyanmicStateViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
-//            self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
-//            self->_addDyanmicStateViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
-//
-//            [self HiddenAddDynamicStateView];
-//            [self.navigationController pushViewController:self->_addDyanmicStateViewController animated:YES];
-//        }
-//        [weakAddAudioView reset];
-//    };
-//
-//    addAudioView.tag = 203;
-//    [_homePageView addSubview:addAudioView];
-//    [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.mas_equalTo(self.homePageView);
-//        make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
-//        make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
-//        make.height.mas_equalTo(addAudioView.mas_width).multipliedBy(1.2);
-//    }];
+
+    //添加跳转功能的点击事件
+    addAudioView.audioButtonAction = ^(UIButton *sender) {
+        //结束录音
+        [self->_audioRecordUtils endClick];
+        [weakAddAudioView endRecord];
+
+        if (self->_audioRecordUtils.jumpFlag) {
+            self->_addAudioViewController.Latitude = self->_userLocation.location.coordinate.latitude;
+            self->_addAudioViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            self->_addAudioViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
+            self->_addAudioViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
+            self->_addAudioViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;
+
+            [self HiddenAddDynamicStateView];
+            [self.navigationController pushViewController:self->_addAudioViewController animated:YES];
+        }
+        [weakAddAudioView reset];
+    };
+
+    addAudioView.tag = 203;
+    [_homePageView addSubview:addAudioView];
+    [addAudioView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.homePageView);
+        make.left.mas_equalTo(self.homePageView.mas_left).mas_equalTo(50);
+        make.right.mas_equalTo(self.homePageView.mas_right).mas_equalTo(-50);
+        make.height.mas_equalTo(addAudioView.mas_width).multipliedBy(1.2);
+    }];
 
 }
 
