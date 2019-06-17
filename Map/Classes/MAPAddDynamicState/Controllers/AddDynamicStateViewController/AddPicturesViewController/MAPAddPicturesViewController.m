@@ -41,19 +41,20 @@
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
     //设置地图的代理
-    [_addDynamicStateView.mapView viewWillAppear];
-    _addDynamicStateView.mapView.delegate = self;
+    [self.addDynamicStateView.mapView viewWillAppear];
+    self.addDynamicStateView.mapView.delegate = self;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_addDynamicStateView.mapView viewWillDisappear];
-    _addDynamicStateView.mapView.delegate = nil;
+    [self.addDynamicStateView.mapView viewWillDisappear];
+    self.addDynamicStateView.mapView.delegate = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.addDynamicStateView.addPicturesView.backgroundColor = [UIColor whiteColor];
 }
 
 //显示定位点

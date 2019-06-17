@@ -13,7 +13,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self addTarget:self action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
+//        __weak MAPPaopaoButton *weakSelf = self;
+//        [self addTarget:weakSelf action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
         
         _countLabel = [[UILabel alloc] init];
         [self addSubview:_countLabel];
@@ -31,8 +32,8 @@
     _countLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)addingMotion:(UIButton *)button {
-    self.paopaoButtonAction(button);
-}
+//- (void)addingMotion:(UIButton *)button {
+//    self.paopaoButtonAction(button);
+//}
 
 @end
