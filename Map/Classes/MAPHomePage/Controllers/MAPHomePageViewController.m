@@ -94,10 +94,10 @@
 #pragma MAP -------------------------初始化界面-------------------------
 - (void)createChileView {
     //初始化添加动态界面
-//    _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
-//    _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
-//    _addAudioViewController = [[MAPAddAudioViewController alloc] init];
-//    _addVedioViewController = [[MAPAddVedioViewController alloc] init];
+    _addCommentViewController = [[MAPAddCommentsViewController alloc] init];
+    _addPictureViewController = [[MAPAddPicturesViewController alloc] init];
+    _addAudioViewController = [[MAPAddAudioViewController alloc] init];
+    _addVedioViewController = [[MAPAddVedioViewController alloc] init];
     
     //初始化展示动态界面
     self.showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
