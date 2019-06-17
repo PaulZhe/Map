@@ -166,7 +166,6 @@
     }
 }
 
-
 //给视频界面button添加事件
 - (void)clickAddVedioButton:(UIButton *)button {
     [self presentViewController:_addDynamicStateView.addVedioView.picker animated:YES completion:nil];

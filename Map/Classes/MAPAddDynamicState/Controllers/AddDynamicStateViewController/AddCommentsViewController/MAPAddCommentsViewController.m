@@ -8,7 +8,8 @@
 
 #import "MAPAddCommentsViewController.h"
 #import <Masonry.h>
-#include "MAPAddDynamicStateView.h"
+#import "MAPAddDynamicStateView.h"
+#import "MAPAddPointManager.h"
 
 @interface MAPAddCommentsViewController () <BMKMapViewDelegate> {
      NSMutableArray *annotationMutableArray;
@@ -69,6 +70,41 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addCommentView.backgroundColor = [UIColor whiteColor];
+}
+
+//添加发布点点击事件
+- (void)createChildView {
+    self.addDynamicStateView.locationNameLabel.text = _pointName;
+    __weak typeof(self) weakSelf = self;
+    self.addDynamicStateView.issueAction = ^(UIButton * _Nonnull sender) {
+        if (weakSelf.isSelected == NO) {
+            //addPointManager测试
+            MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+            [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+                NSLog(@"%@++++", resultModel.message);
+                //更新添加点
+                [weakSelf addCommentsWithPointID:weakSelf.ID Content:weakSelf.addDynamicStateView.addCommentView.addCommentTextView.text];
+            } error:^(NSError *error) {
+                NSLog(@"%@", error);
+            }];
+            
+        } else {
+            [weakSelf addCommentsWithPointID:weakSelf.ID Content:weakSelf.addDynamicStateView.addCommentView.addCommentTextView.text];
+        }
+        
+    };
+}
+
+//添加评论
+- (void)addCommentsWithPointID:(int)ID Content:(NSString *)content {
+    MAPAddPointManager *manager = [MAPAddPointManager sharedManager];
+    [manager addMessageWithPointId:ID
+                           Content:content
+                           success:^(MAPAddPointModel *resultModel) {
+                               NSLog(@"addComment:%@", resultModel.message);
+                           } error:^(NSError *error) {
+                               NSLog(@"%@", error);
+                           }];
 }
 
 //添加自定义点
