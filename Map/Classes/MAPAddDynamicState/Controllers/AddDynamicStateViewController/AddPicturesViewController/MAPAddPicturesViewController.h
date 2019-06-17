@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MAPAddPicturesView.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAPAddPicturesViewController : UIViewController
+@interface MAPAddPicturesViewController : UIViewController <MAPAddPicturesViewDelegate>
 @property (nonatomic, assign) double Latitude;
 @property (nonatomic, assign) double Longitud;//记录点的位置
 @property (nonatomic, copy) NSString *pointName;

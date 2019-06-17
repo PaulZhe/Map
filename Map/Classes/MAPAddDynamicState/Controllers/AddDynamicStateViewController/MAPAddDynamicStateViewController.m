@@ -12,7 +12,7 @@
 #import <Photos/Photos.h>
 #import "MAPPhotoKitViewController.h"
 
-@interface MAPAddDynamicStateViewController () <MAPAddPicturesViewDelegate, UINavigationControllerDelegate>
+@interface MAPAddDynamicStateViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     NSMutableArray *annotationMutableArray;
 }

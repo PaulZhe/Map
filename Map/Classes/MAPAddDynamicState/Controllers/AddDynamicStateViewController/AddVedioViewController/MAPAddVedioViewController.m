@@ -140,9 +140,25 @@
     if ([mediaType isEqualToString:@"public.movie"]){
         //如果是视频
         NSURL *url = info[UIImagePickerControllerMediaURL];//获得视频的URL
-        NSLog(@"url %@",url);
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSLog(@"data %@",data);
+        UIImage *image = [self thumbnailImageForVideo:url];
+        [_addDynamicStateView.addVedioView.addVedioButton setImage:image forState:UIControlStateNormal];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//获取视频封面，本地视频，网络视频都可以用
+- (UIImage*) thumbnailImageForVideo:(NSURL *)videoURL {
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(2.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *thumbImg = [[UIImage alloc] initWithCGImage:image];
+    return thumbImg;
 }
 
 - (void)dealloc
