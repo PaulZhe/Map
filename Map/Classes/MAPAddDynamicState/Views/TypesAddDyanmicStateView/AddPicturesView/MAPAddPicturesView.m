@@ -230,7 +230,7 @@
         }];
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:photoKitViewController];
-        [_delegate getToPhotoAlbumViewAndViewController:navigationController];
+        [self.delegate getToPhotoAlbumViewAndViewController:navigationController];
     }
 }
 
