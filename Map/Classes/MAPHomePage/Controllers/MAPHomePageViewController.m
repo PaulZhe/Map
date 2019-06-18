@@ -83,6 +83,15 @@
     [self createChileView];
     //初始化坐标
     [self createLocation];
+    //addPointManager测试
+    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+    [addPointManager addPointWithName:@"西安邮电大学" Latitude:34.15 Longitude:108.85 success:^(MAPAddPointModel *resultModel) {
+        NSLog(@"%@++++", resultModel.message);
+        //更新添加点
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
     //删除view
     [self clearAwaySomeViews];
 }
@@ -573,7 +582,9 @@
                                  }
                              }
                                error:^(NSError *error) {
-                                   NSLog(@"+++++getLocationAroundPointsError:%@", error);
+                                   //NSLog(@"+++++getLocationAroundPointsError:%@", error);
+                                   NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:NSJSONReadingMutableContainers error:&error];
+                                   NSLog(@"+++++getLocationAroundPointsError:%@", dict);
                                }];
 }
 
