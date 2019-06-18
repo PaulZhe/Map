@@ -29,11 +29,16 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
                           Range:(int)range
                         succeed:(MAPGetPointHandle)succeedBlock
                           error:(ErrorHandle)errorBlock{
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/none/getPoints"];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/none/getPoints"];
     
     NSDictionary *param = @{@"longitude":[NSNumber numberWithDouble:longitude],@"latitude":[NSNumber numberWithDouble:latitude],@"range":[NSNumber numberWithInt:range]};
     
-    [[AFHTTPSessionManager manager] POST:URL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:URL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"response : %@", responseObject);
@@ -59,7 +64,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
                                 type:(int)type
                              succeed:(MAPGetCommentHandle)succeedBlock
                                error:(ErrorHandle)errorBlock{
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/none/getMessage/%d", ID];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48:8080/none/getMessage/%d", ID];
     NSDictionary *param = @{@"type":[NSNumber numberWithInt:type]};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

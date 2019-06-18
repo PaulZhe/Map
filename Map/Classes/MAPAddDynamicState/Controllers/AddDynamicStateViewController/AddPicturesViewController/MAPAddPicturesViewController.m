@@ -81,7 +81,7 @@
         if (weakSelf.isSelected == NO) {
             //addPointManager测试
             MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-            [addPointManager addPointWithName:weakSelf.pointName Latitude:22.278 Longitude:114.158 success:^(MAPAddPointModel *resultModel) {
+            [addPointManager addPointWithName:weakSelf.pointName Latitude:weakSelf.Latitude Longitude:weakSelf.Longitud success:^(MAPAddPointModel *resultModel) {
                 NSLog(@"%@++++", resultModel.message);
                 //更新添加点
                 
