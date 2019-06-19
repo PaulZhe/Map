@@ -84,14 +84,14 @@
     //初始化坐标
     [self createLocation];
     //addPointManager测试
-    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
-    [addPointManager addPointWithName:@"西安邮电大学" Latitude:34.15 Longitude:108.85 success:^(MAPAddPointModel *resultModel) {
-        NSLog(@"%@++++", resultModel.message);
-        //更新添加点
-        
-    } error:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+//    MAPAddPointManager *addPointManager = [MAPAddPointManager sharedManager];
+//    [addPointManager addPointWithName:@"西安邮电大学" Latitude:34.165 Longitude:108.95 success:^(MAPAddPointModel *resultModel) {
+//        NSLog(@"%@++++", resultModel.message);
+//        //更新添加点
+//
+//    } error:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
     //删除view
     [self clearAwaySomeViews];
 }
@@ -135,13 +135,13 @@
     };
     [self.view addSubview:_homePageView];
     
-    //    //loginManager测试
-    //    MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
-    //    [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
-    //        NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
-    //    } Failure:^(NSError *error) {
-    //        NSLog(@"%@", error);
-    //    }];
+        //loginManager测试
+//        MAPLoginManager *loginManager = [MAPLoginManager sharedManager];
+//        [loginManager requestUserMessageWith:@2 Success:^(MAPGetUserMessageModel *messageModel) {
+//            NSLog(@"+++%@+++%@", messageModel.status, [messageModel.data[0] username]);
+//        } Failure:^(NSError *error) {
+//            NSLog(@"%@", error);
+//        }];
 }
 
 #pragma MAP -------------------------初始化位置-------------------------
@@ -230,7 +230,6 @@
     NSString *placeTitle = [NSString stringWithFormat:@"%@%@", location.rgcData.district, location.rgcData.street];
     self.userLocation.title = placeTitle;
     self.addViewControllerPointName = placeTitle;;
-//    _addDyanmicStateViewController.pointName = placeTitle;
     self.userLocation.location = location.location;
     [self.homePageView.mapView updateLocationData:_userLocation];
     //获取定位坐标周围点
@@ -562,6 +561,8 @@
 #pragma MAP -----------------------获取定位周围点-------------------------
 - (void)getLocationAroundPoints {
     MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//    double longitude = (double)_userLocation.location.coordinate.longitude;
+//    double latitude = (double)_userLocation.location.coordinate.latitude;
     [manager fetchPointWithLongitude:_userLocation.location.coordinate.longitude
                             Latitude:_userLocation.location.coordinate.latitude
                                Range:30000
