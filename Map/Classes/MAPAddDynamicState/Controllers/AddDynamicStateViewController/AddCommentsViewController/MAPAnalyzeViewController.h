@@ -11,9 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPAnalyzeViewController : UIViewController
-@property (nonatomic, strong) UIImageView *pictureImageView;
+@property (nonatomic, strong) UIView *pictureView;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *sureButton;
+@property (nonatomic, strong) UILabel *simleLabel;
+@property (nonatomic, strong) UILabel *countLabel;
 @end
 
 NS_ASSUME_NONNULL_END
