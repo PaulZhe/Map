@@ -12,7 +12,7 @@
 #import "MAPAddPointManager.h"
 #import "MAPAnalyzeViewController.h"
 
-@interface MAPAddCommentsViewController () <BMKMapViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
+@interface MAPAddCommentsViewController () <BMKMapViewDelegate> {
      NSMutableArray *annotationMutableArray;
 }
 @property (nonatomic, strong) MAPAddDynamicStateView *addDynamicStateView;
@@ -71,8 +71,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addCommentView.backgroundColor = [UIColor whiteColor];
-    self.pickerController.delegate = self;
-    self.pickerController.allowsEditing = YES;
     [self.addDynamicStateView.addCommentView.takePictureButton addTarget:self action:@selector(clicekTakePictureButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -134,47 +132,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (UIImagePickerController *)pickerController
-{
-    if (!_pickerController) {
-        _pickerController = [[UIImagePickerController alloc] init];
-    }
-    return _pickerController;
-}
-
 //给图像识别添加点击事件
 - (void)clicekTakePictureButton:(UIButton *)button {
-    BOOL isPicker = NO;
-    //判断相机是否可用
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        self.pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        isPicker = true;
-    }
-    
-    if (isPicker) {
-        [self presentViewController:self.pickerController animated:YES completion:nil];
-    }else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"相机不可用" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:action];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    MAPAnalyzeViewController *viewController = [[MAPAnalyzeViewController alloc] init];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
-
-//获取图片
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    MAPAnalyzeViewController *analyzeViewController = [[MAPAnalyzeViewController alloc] init];
-    analyzeViewController.pictureImageView = [[UIImageView alloc] init];
-    analyzeViewController.pictureImageView.image = image;
-    [picker presentViewController:analyzeViewController animated:YES completion:nil];
-}
-
-//按取消按钮时候的功能
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 @end

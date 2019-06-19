@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *pointName;
 @property (nonatomic, assign) int ID;//如果没有发布点，ID为0
 @property (nonatomic, assign) bool isSelected;//记录主界面点击发布按钮跳转过来时是否有发布点
-@property (nonatomic, strong) UIImagePickerController *pickerController;//打开相机
 @end
 
 NS_ASSUME_NONNULL_END
