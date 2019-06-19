@@ -41,7 +41,7 @@
         displayParam.locationViewImgName = @"local";
         displayParam.locationViewImage = [UIImage imageNamed:@"local"];
         //精度圈不显示
-        displayParam.isAccuracyCircleShow = YES;
+        displayParam.isAccuracyCircleShow = NO;
         //显示我的位置，我的位置图标会旋转，地图不会旋转
         self.mapView.userTrackingMode = BMKUserTrackingModeHeading;
         //根据配置参数更新定位图层样式

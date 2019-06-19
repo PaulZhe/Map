@@ -14,8 +14,16 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.takePictureButton = [[UIButton alloc] init];
+        [self addSubview:self.takePictureButton];
+        self.takePictureButton.layer.cornerRadius = 60;
+        self.takePictureButton.backgroundColor = [UIColor blackColor];
+        
         self.addCommentTextView = [[UITextView alloc] init];
         [self addSubview:_addCommentTextView];
+        self.addCommentTextView.layer.cornerRadius = 15;
+        self.addCommentTextView.layer.borderWidth = 0.8f;
+        self.addCommentTextView.layer.borderColor = [UIColor grayColor].CGColor;
         self.addCommentTextView.delegate = self;
         self.addCommentTextView.font = [UIFont systemFontOfSize:16.5f];
         self.addCommentTextView.textColor = [UIColor blackColor];
@@ -52,20 +60,25 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.takePictureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).mas_offset(10);
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(120, 120));
+    }];
     [_addCommentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top);
-        make.right.mas_equalTo(0);
-        make.left.mas_equalTo(0);
-        make.bottom.mas_equalTo(self);
+        make.top.mas_equalTo(self.takePictureButton.mas_bottom).mas_offset(10);
+        make.right.mas_equalTo(-20);
+        make.left.mas_equalTo(20);
+        make.height.mas_equalTo(150);
     }];
     [_placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_addCommentTextView.mas_top).mas_equalTo(3);
-        make.left.mas_equalTo(self->_addCommentTextView.mas_left).mas_equalTo(5);
+        make.top.mas_equalTo(self.addCommentTextView.mas_top).mas_equalTo(3);
+        make.left.mas_equalTo(self.addCommentTextView.mas_left).mas_equalTo(5);
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-5);
+        make.top.mas_equalTo(self.addCommentTextView.mas_top).mas_offset(115);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-8);
         make.size.mas_equalTo(CGSizeMake(100, 30));
     }];
 }
