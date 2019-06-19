@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface MAPAddCommentsView : UIView <UITextViewDelegate>
+@property (nonatomic, strong) UIButton *takePictureButton;
 @property (nonatomic, strong) UITextView *addCommentTextView;//添加评论窗口
 @property (nonatomic, strong) UILabel *placeHolderLabel;//自定义文本框placehoder
 @property (nonatomic, strong) UILabel *countLabel;//自定义文本框字数统计
