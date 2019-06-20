@@ -52,7 +52,6 @@
 
 //测试泡泡点击事件
 @property (nonatomic, strong) MAPPaopaoView *paopaoView;
-@property (nonatomic, strong) MAPHomePageViewController *homePageViewController;
 //获取点ID用的annotationView
 @property (nonatomic, strong) BMKAnnotationView *tempAnnotationView;
 @property (nonatomic, assign) NSInteger addDynamicStateTypeTag;
@@ -107,9 +106,13 @@
     __weak typeof(self) weakSelf = self;
     //添加按钮点击事件
     self.homePageView.addButtonAction = ^(UIButton * _Nonnull sender) {
-        if (self->_addViewControllerIsSelected == YES) {
+        if (weakSelf.addViewControllerIsSelected == YES) {
             //创建发布界面
-            [weakSelf creatIssueView];
+            UIView *transparentView = [[UIView alloc] initWithFrame:weakSelf.view.frame];
+            transparentView.backgroundColor= [UIColor colorWithWhite:0 alpha:0.25];
+            transparentView.tag = 205;
+            [weakSelf.homePageView addSubview:transparentView];
+            [weakSelf creatIssueView:transparentView];
         } else {
             MAPAlertView *alertView = [[MAPAlertView alloc] initWithFrame:weakSelf.view.frame];
             alertView.tag = 202;
@@ -121,7 +124,7 @@
                     [weakAlertView removeFromSuperview];
                 } else {
                     //创建发布界面
-                    [weakSelf creatIssueView];
+                    [weakSelf creatIssueView:weakSelf.homePageView];
                 }
             };
         }
@@ -192,7 +195,7 @@
         //找到要删除的子视图的对象
         if([tmpView isKindOfClass:[UIView class]]){
             UIView *view = (UIView *)tmpView;
-            if(view.tag == 200 || view.tag == 201 || view.tag == 202 || view.tag == 203 || view.tag == 204) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203 recommendView.tag == 204
+            if(view.tag == 200 || view.tag == 201 || view.tag == 202 || view.tag == 203 || view.tag == 204 || view.tag == 205) {  //判断是否满足自己要删除的子视图的条件,alertView.tag == 200  addSelectedView.tag == 201  issueView.tag == 202  addAudioView.tag == 203 recommendView.tag == 204 阴影view.tag == 205
                 [view removeFromSuperview];
             }
         }
@@ -200,7 +203,7 @@
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    if ([touch.view.superview isEqual:self.homePageView] || [touch.view.superview.superview.superview isEqual:self.homePageView]) {
+    if ([touch.view isKindOfClass:[MAPIssueView class]]) {
         return NO;
     }
     return YES;
@@ -284,7 +287,8 @@
         [self.paopaoView initPaopaoView];
         
         //给paopaoView中button添加 点击事件
-        [self paopaoViewButtonAddTarget:_paopaoView];
+        __weak typeof(self) weakSelf = self;
+        [weakSelf paopaoViewButtonAddTarget:_paopaoView];
         
         BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:self->_paopaoView];
         pView.backgroundColor = [UIColor clearColor];
@@ -341,31 +345,29 @@
 //泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
     __weak typeof(self) weakSelf = self;
-    if (!paopaoView) {
-        paopaoView = [MAPPaopaoView new];
-    }
 
     MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
     MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
     MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
     MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
-    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-
-        //        ///添加评论
-        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
-        ///获取评论
-        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
-        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-        [manager fetchPointCommentWithPointID:[self->_tempAnnotationView.annotation.title intValue]
-                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-                                             NSLog(@"getComment:%@", resultModel.message);
-                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
-                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
-                                         } error:^(NSError *error) {
-                                             NSLog(@"%@", error);
-                                         }];
-        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
-    };
+//    [paopaoView.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
+//    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+//
+//        //        ///添加评论
+//        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+//        ///获取评论
+//        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
+//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+//                                             NSLog(@"getComment:%@", resultModel.message);
+//                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
+//                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+//                                         } error:^(NSError *error) {
+//                                             NSLog(@"%@", error);
+//                                         }];
+//        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
+//    };
 
     paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         [weakSelf.navigationController pushViewController:showPicturesViewController animated:YES];
@@ -390,10 +392,10 @@
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
 //创建发布界面
-- (void)creatIssueView {
+- (void)creatIssueView:(id)superView {
     MAPIssueView *issueView = [[MAPIssueView alloc] init];
     issueView.tag = 200;
-    [self.homePageView addSubview:issueView];
+    [superView addSubview:issueView];
     issueView.layer.masksToBounds = YES;
     issueView.layer.cornerRadius = 150;
     [issueView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -561,8 +563,6 @@
 #pragma MAP -----------------------获取定位周围点-------------------------
 - (void)getLocationAroundPoints {
     MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//    double longitude = (double)_userLocation.location.coordinate.longitude;
-//    double latitude = (double)_userLocation.location.coordinate.latitude;
     [manager fetchPointWithLongitude:_userLocation.location.coordinate.longitude
                             Latitude:_userLocation.location.coordinate.latitude
                                Range:30000
