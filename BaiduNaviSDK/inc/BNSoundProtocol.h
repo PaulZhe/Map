@@ -55,11 +55,7 @@
 - (BOOL)resume;
 
 /**
-<<<<<<< Updated upstream
  *   播报文本，使用内部TTS播报时有效
-=======
- *   播报文本
->>>>>>> Stashed changes
  *   @param text : 需要播报的文本
  */
 - (BOOL)playText:(NSString *)text;
