@@ -16,9 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) UILabel *simleLabel;
 @property (nonatomic, strong) UILabel *countLabel;
-@property (nonatomic, strong) UIButton *lengMoButton;
-@property (nonatomic, strong) UIButton *simleButton;
-@property (nonatomic, strong) UIButton *bigSimleButton;
 @end
 
 NS_ASSUME_NONNULL_END

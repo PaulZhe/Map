@@ -58,7 +58,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_typeMotiveString isEqualToString:@"1"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" forIndexPath:indexPath];
-        
         return cell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"picture" forIndexPath:indexPath];

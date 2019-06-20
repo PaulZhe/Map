@@ -75,36 +75,6 @@
         make.top.mas_equalTo(self.pictureView.mas_bottom).mas_offset(20);
     }];
     
-    self.simleButton = [[UIButton alloc] init];
-    [self.simleButton setImage:[UIImage imageNamed:@"Smile"] forState:UIControlStateNormal];
-    [self.simleButton setImage:[UIImage imageNamed:@"Smile-2"] forState:UIControlStateSelected];
-    [self.view addSubview:self.simleButton];
-    [self.simleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.slider.mas_bottom).mas_offset(20);
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.size.mas_equalTo(CGSizeMake(70, 70));
-    }];
-    
-    self.lengMoButton = [[UIButton alloc] init];
-    [self.lengMoButton setImage:[UIImage imageNamed:@"Strait-2"] forState:UIControlStateNormal];
-    [self.lengMoButton setImage:[UIImage imageNamed:@"Strait"] forState:UIControlStateSelected];
-    [self.view addSubview:self.lengMoButton];
-    [self.lengMoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.slider.mas_bottom).mas_offset(20);
-        make.right.mas_equalTo(self.simleButton.mas_left).mas_offset(-30);
-        make.size.mas_equalTo(CGSizeMake(70, 70));
-    }];
-    
-    self.bigSimleButton = [[UIButton alloc] init];
-    [self.bigSimleButton setImage:[UIImage imageNamed:@"Big-Smile"] forState:UIControlStateNormal];
-    [self.bigSimleButton setImage:[UIImage imageNamed:@"Big-Smile-2"] forState:UIControlStateSelected];
-    [self.view addSubview:self.bigSimleButton];
-    [self.bigSimleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.slider.mas_bottom).mas_offset(20);
-        make.left.mas_equalTo(self.simleButton.mas_right).mas_offset(30);
-        make.size.mas_equalTo(CGSizeMake(70, 70));
-    }];
-    
     self.cancelButton = [[UIButton alloc] init];
     [self.cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [self.view addSubview:self.cancelButton];
@@ -116,7 +86,7 @@
     [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(80);
         make.size.mas_equalTo(CGSizeMake(50, 30));
-        make.top.mas_equalTo(self.bigSimleButton.mas_bottom).mas_offset(50);
+        make.top.mas_equalTo(self.pictureView.mas_bottom).mas_offset(100);
     }];
 
     self.sureButton = [[UIButton alloc] init];
@@ -130,13 +100,16 @@
     [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-80);
         make.size.mas_equalTo(CGSizeMake(50, 30));
-        make.top.mas_equalTo(self.bigSimleButton.mas_bottom).mas_offset(50);
+        make.top.mas_equalTo(self.pictureView.mas_bottom).mas_offset(100);
     }];
-    
     
     [self.arSession runWithConfiguration:self.arConfiguration options:ARSessionRunOptionRemoveExistingAnchors];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    [self.arSession runWithConfiguration:self.arConfiguration];
+}
 
 - (void)clickedCnacnelButton:(UIButton *)button {
     [self.navigationController popViewControllerAnimated:YES];
@@ -161,16 +134,10 @@
     CGFloat leftSmile = [blendShips[ARBlendShapeLocationMouthSmileLeft] floatValue];
     CGFloat rightSmile = [blendShips[ARBlendShapeLocationMouthSmileRight] floatValue];
     
+    NSLog(@"leftSmile = %f, rightSmile = %f", leftSmile, rightSmile);
     dispatch_async(dispatch_get_main_queue(), ^{
         self.slider.value = (leftSmile + rightSmile)/2;
         self.countLabel.text = [NSString stringWithFormat:@"%.2f", self.slider.value];
-        if (0 < self.slider.value <= 0.3) {
-            [self.lengMoButton setSelected:YES];
-        } else if (0.3 < self.slider.value <= 0.6) {
-            [self.simleButton setSelected:YES];
-        } else {
-            [self.bigSimleButton setSelected:YES];
-        }
     });
 }
 

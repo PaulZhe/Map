@@ -13,9 +13,10 @@ static const float kMotiveButtonFromLeft = 65.0;
 
 @implementation MAPDynamicStateTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier /*typeOfMotion:(nonnull NSString *)typeString*/ {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+//        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 20, 300, 20)];
         self.nameLabel = [[UILabel alloc] init];
         self.nameLabel.numberOfLines = 0;
         self.nameLabel.font = [UIFont systemFontOfSize:15];
@@ -26,6 +27,7 @@ static const float kMotiveButtonFromLeft = 65.0;
             make.size.mas_equalTo(CGSizeMake(300, 20));
         }];
         
+//        self.headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 45, 45)];
         self.headImageView = [[UIImageView alloc] init];
         self.headImageView.layer.masksToBounds=YES;
         self.headImageView.layer.cornerRadius = 22.5;
@@ -36,6 +38,7 @@ static const float kMotiveButtonFromLeft = 65.0;
             make.size.mas_equalTo(CGSizeMake(45, 45));
         }];
         
+//        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 45, [UIScreen mainScreen].bounds.size.width - 65 - 15, 20)];
         self.contentLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.contentLabel];
         self.contentLabel.numberOfLines = 0;
