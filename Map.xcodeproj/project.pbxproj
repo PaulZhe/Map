@@ -49,16 +49,6 @@
 		4F0BDFDA22369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BDFD922369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
 		4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */; };
-		4F0D2B4F226AD3D7001A3BD8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0D2B4E226AD3D7001A3BD8 /* Accelerate.framework */; };
-		4F0D2B51226AD3DE001A3BD8 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0D2B50226AD3DE001A3BD8 /* CallKit.framework */; };
-		4F0D2B52226AD3E4001A3BD8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466822660D67009BDC01 /* AdSupport.framework */; };
-		4F0D2B53226AD3EA001A3BD8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466C22660D77009BDC01 /* AssetsLibrary.framework */; };
-		4F0D2B54226AD3F5001A3BD8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466E22660D7D009BDC01 /* libiconv.tbd */; };
-		4F0D2B55226AD3FF001A3BD8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467022660D85009BDC01 /* UserNotifications.framework */; };
-		4F0D2B56226AD405001A3BD8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467622660D9B009BDC01 /* MediaPlayer.framework */; };
-		4F0D2B57226AD40C001A3BD8 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467822660DA4009BDC01 /* libc++.tbd */; };
-		4F0D2B58226AD414001A3BD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467E22660DBB009BDC01 /* CoreLocation.framework */; };
-		4F0D2B59226AD41B001A3BD8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */; };
 		4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */; };
 		4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EEE4F222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m */; };
 		4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */; };
@@ -95,6 +85,12 @@
 		4F6C0C3122B28BC3001BFBAF /* MAPAddPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C0C3022B28BC3001BFBAF /* MAPAddPicturesViewController.m */; };
 		4F6C0C3422B28BD3001BFBAF /* MAPAddAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C0C3322B28BD3001BFBAF /* MAPAddAudioViewController.m */; };
 		4F6C0C3722B28BE0001BFBAF /* MAPAddVedioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C0C3622B28BE0001BFBAF /* MAPAddVedioViewController.m */; };
+		4F8343E922BBC042000E7997 /* Smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E322BBC042000E7997 /* Smile.png */; };
+		4F8343EA22BBC042000E7997 /* Big-Smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E422BBC042000E7997 /* Big-Smile.png */; };
+		4F8343EB22BBC042000E7997 /* Big-Smile-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E522BBC042000E7997 /* Big-Smile-2.png */; };
+		4F8343EC22BBC042000E7997 /* Smile-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E622BBC042000E7997 /* Smile-2.png */; };
+		4F8343ED22BBC042000E7997 /* Strait-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E722BBC042000E7997 /* Strait-2.png */; };
+		4F8343EE22BBC042000E7997 /* Strait.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8343E822BBC042000E7997 /* Strait.png */; };
 		4FC2DB1822AE85C3004A4E21 /* jiahao-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */; };
 		4FC8FCC122B3D12B0095AB6A /* MAPShowReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC022B3D12B0095AB6A /* MAPShowReplyViewController.m */; };
 		4FC8FCC422B3D13A0095AB6A /* MAPShowPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8FCC322B3D13A0095AB6A /* MAPShowPicturesViewController.m */; };
@@ -217,9 +213,6 @@
 		4F0C2A5F220D932400102404 /* shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shanchu.png; sourceTree = "<group>"; };
 		4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesCollectionViewCell.h; sourceTree = "<group>"; };
 		4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesCollectionViewCell.m; sourceTree = "<group>"; };
-		4F0D2B4E226AD3D7001A3BD8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		4F0D2B50226AD3DE001A3BD8 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
-		4F0D2B5A226AD7CE001A3BD8 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbaiduNaviSDK.a; path = ../../BaiduNaviSDK_v4.6.0.0/BaiduNaviSDK/libbaiduNaviSDK.a; sourceTree = "<group>"; };
 		4F0DD90422018F08006BD23F /* MAPMotiveVideoButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVideoButtonView.h; sourceTree = "<group>"; };
 		4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVideoButtonView.m; sourceTree = "<group>"; };
 		4F0EEE4E222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoSelectCollectionViewCell.h; sourceTree = "<group>"; };
@@ -276,6 +269,12 @@
 		4F6C0C3322B28BD3001BFBAF /* MAPAddAudioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddAudioViewController.m; sourceTree = "<group>"; };
 		4F6C0C3522B28BE0001BFBAF /* MAPAddVedioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddVedioViewController.h; sourceTree = "<group>"; };
 		4F6C0C3622B28BE0001BFBAF /* MAPAddVedioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddVedioViewController.m; sourceTree = "<group>"; };
+		4F8343E322BBC042000E7997 /* Smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smile.png; sourceTree = "<group>"; };
+		4F8343E422BBC042000E7997 /* Big-Smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Big-Smile.png"; sourceTree = "<group>"; };
+		4F8343E522BBC042000E7997 /* Big-Smile-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Big-Smile-2.png"; sourceTree = "<group>"; };
+		4F8343E622BBC042000E7997 /* Smile-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Smile-2.png"; sourceTree = "<group>"; };
+		4F8343E722BBC042000E7997 /* Strait-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Strait-2.png"; sourceTree = "<group>"; };
+		4F8343E822BBC042000E7997 /* Strait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Strait.png; sourceTree = "<group>"; };
 		4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jiahao-2.png"; sourceTree = "<group>"; };
 		4FC8FCBF22B3D12B0095AB6A /* MAPShowReplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPShowReplyViewController.h; sourceTree = "<group>"; };
 		4FC8FCC022B3D12B0095AB6A /* MAPShowReplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPShowReplyViewController.m; sourceTree = "<group>"; };
@@ -371,7 +370,6 @@
 				3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */,
 				4F09EACF227732C800D49029 /* libBNTTSComponentSDK.a in Frameworks */,
 				D6046CF222676653007D3D34 /* libmp3lame.a in Frameworks */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +909,12 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F8343E522BBC042000E7997 /* Big-Smile-2.png */,
+				4F8343E422BBC042000E7997 /* Big-Smile.png */,
+				4F8343E622BBC042000E7997 /* Smile-2.png */,
+				4F8343E322BBC042000E7997 /* Smile.png */,
+				4F8343E722BBC042000E7997 /* Strait-2.png */,
+				4F8343E822BBC042000E7997 /* Strait.png */,
 				4F1228EB22636C0D00BD0B16 /* local.png */,
 				4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */,
 				4F071BBA2232A8FC0093E57E /* ico_check_select.png */,
@@ -1137,12 +1141,14 @@
 				4F2C5E8121F9AF0800DCF62A /* upPicture11.png in Resources */,
 				D638A77421F1DAF3005DFDFD /* start.png in Resources */,
 				D638A76521F1DAF3005DFDFD /* back.png in Resources */,
+				4F8343E922BBC042000E7997 /* Smile.png in Resources */,
 				4F2C5E8021F9AF0800DCF62A /* upPicture10.png in Resources */,
 				D638A76921F1DAF3005DFDFD /* comt.png in Resources */,
 				4F0FF7D121FDA1E5005A3E64 /* bofang.png in Resources */,
 				4F0C2A60220D932400102404 /* shanchu.png in Resources */,
 				D638A76B21F1DAF3005DFDFD /* info.png in Resources */,
 				4F2C5E8621F9AF0800DCF62A /* upPicture7.png in Resources */,
+				4F8343ED22BBC042000E7997 /* Strait-2.png in Resources */,
 				4F071BBD2232A9C00093E57E /* noimage.png in Resources */,
 				D66CCE1721E4B45B009ADD17 /* Assets.xcassets in Resources */,
 				4F071BB92232A8F00093E57E /* ico_check_nomal.png in Resources */,
@@ -1151,16 +1157,19 @@
 				4F1228EC22636C0D00BD0B16 /* local.png in Resources */,
 				4F09EADD227732C800D49029 /* DVVersion_pkg.cfg in Resources */,
 				4F09EADC227732C800D49029 /* DVSDirectory.cfg in Resources */,
+				4F8343EA22BBC042000E7997 /* Big-Smile.png in Resources */,
 				4F09EAD8227732C800D49029 /* baiduNaviSDK.bundle in Resources */,
 				4F09EAD9227732C800D49029 /* DVDirectory.cfg in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
+				4F8343EB22BBC042000E7997 /* Big-Smile-2.png in Resources */,
 				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
 				D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */,
 				4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */,
 				D638A76D21F1DAF3005DFDFD /* link.png in Resources */,
+				4F8343EE22BBC042000E7997 /* Strait.png in Resources */,
 				D638A77721F1DAF3005DFDFD /* weChat.png in Resources */,
 				4F09EADB227732C800D49029 /* DVHotMap.cfg in Resources */,
 				D638A76C21F1DAF3005DFDFD /* like.png in Resources */,
@@ -1170,6 +1179,7 @@
 				4F09EAD0227732C800D49029 /* routeplan_errorcode.plist in Resources */,
 				4F2C5E7C21F9AF0800DCF62A /* upPicture4.png in Resources */,
 				4F2C5E8421F9AF0800DCF62A /* upPicture2.png in Resources */,
+				4F8343EC22BBC042000E7997 /* Smile-2.png in Resources */,
 				D638A77021F1DAF3005DFDFD /* priv.png in Resources */,
 				D638A76421F1DAF3005DFDFD /* add.png in Resources */,
 				4F2C5E7F21F9AF0800DCF62A /* upPicture9.png in Resources */,
