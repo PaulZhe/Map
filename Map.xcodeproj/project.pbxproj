@@ -49,6 +49,16 @@
 		4F0BDFDA22369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0BDFD922369AB4002AA1FF /* MAPShowPhotoCollectionViewCell.m */; };
 		4F0C2A60220D932400102404 /* shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C2A5F220D932400102404 /* shanchu.png */; };
 		4F0C47D92231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */; };
+		4F0D2B4F226AD3D7001A3BD8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0D2B4E226AD3D7001A3BD8 /* Accelerate.framework */; };
+		4F0D2B51226AD3DE001A3BD8 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0D2B50226AD3DE001A3BD8 /* CallKit.framework */; };
+		4F0D2B52226AD3E4001A3BD8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466822660D67009BDC01 /* AdSupport.framework */; };
+		4F0D2B53226AD3EA001A3BD8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466C22660D77009BDC01 /* AssetsLibrary.framework */; };
+		4F0D2B54226AD3F5001A3BD8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03466E22660D7D009BDC01 /* libiconv.tbd */; };
+		4F0D2B55226AD3FF001A3BD8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467022660D85009BDC01 /* UserNotifications.framework */; };
+		4F0D2B56226AD405001A3BD8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467622660D9B009BDC01 /* MediaPlayer.framework */; };
+		4F0D2B57226AD40C001A3BD8 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467822660DA4009BDC01 /* libc++.tbd */; };
+		4F0D2B58226AD414001A3BD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03467E22660DBB009BDC01 /* CoreLocation.framework */; };
+		4F0D2B59226AD41B001A3BD8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F03468222660DC8009BDC01 /* libsqlite3.0.tbd */; };
 		4F0DD90622018F08006BD23F /* MAPMotiveVideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */; };
 		4F0EEE50222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0EEE4F222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.m */; };
 		4F0FF7CA21FD8AA3005A3E64 /* MAPMotiveVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF7C921FD8AA3005A3E64 /* MAPMotiveVideoButton.m */; };
@@ -207,6 +217,9 @@
 		4F0C2A5F220D932400102404 /* shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shanchu.png; sourceTree = "<group>"; };
 		4F0C47D72231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddPicturesCollectionViewCell.h; sourceTree = "<group>"; };
 		4F0C47D82231581D00EC78D8 /* MAPAddPicturesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddPicturesCollectionViewCell.m; sourceTree = "<group>"; };
+		4F0D2B4E226AD3D7001A3BD8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4F0D2B50226AD3DE001A3BD8 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		4F0D2B5A226AD7CE001A3BD8 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbaiduNaviSDK.a; path = ../../BaiduNaviSDK_v4.6.0.0/BaiduNaviSDK/libbaiduNaviSDK.a; sourceTree = "<group>"; };
 		4F0DD90422018F08006BD23F /* MAPMotiveVideoButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPMotiveVideoButtonView.h; sourceTree = "<group>"; };
 		4F0DD90522018F08006BD23F /* MAPMotiveVideoButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPMotiveVideoButtonView.m; sourceTree = "<group>"; };
 		4F0EEE4E222FF3770020F5FF /* MAPPhotoSelectCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPhotoSelectCollectionViewCell.h; sourceTree = "<group>"; };
@@ -358,6 +371,7 @@
 				3D0D89642A677A7944FEBA0A /* libPods-Map.a in Frameworks */,
 				4F09EACF227732C800D49029 /* libBNTTSComponentSDK.a in Frameworks */,
 				D6046CF222676653007D3D34 /* libmp3lame.a in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

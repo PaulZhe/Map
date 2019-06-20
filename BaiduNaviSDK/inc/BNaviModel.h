@@ -21,7 +21,11 @@
 
 @property (nonatomic, assign, readonly) BNRoadType mapRoadType; /**< 主辅路桥上下当前可执行的操作 */
 
+<<<<<<< Updated upstream
 @property (nonatomic, assign) BOOL playDingVoice;   /**< 是否播放偏航叮的声音，使用内部TTS播报时有效，否则返回NO */
+=======
+@property (nonatomic, assign) BOOL playDingVoice;   /**< 是否播放偏航叮的声音 */
+>>>>>>> Stashed changes
 
 /**
  *  获取导航Model单例，该单例不可以释放
