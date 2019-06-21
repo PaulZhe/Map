@@ -58,6 +58,12 @@
 		4F1013B821F6EF3A00C549A3 /* MAPDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1013B721F6EF3A00C549A3 /* MAPDynamicStateView.m */; };
 		4F10661821F327970035E47A /* MAPPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661721F327970035E47A /* MAPPaopaoView.m */; };
 		4F10661B21F328A10035E47A /* MAPPaopaoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10661A21F328A10035E47A /* MAPPaopaoButton.m */; };
+		4F10A3BC22BC7FC300866836 /* Strait.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3B622BC7FC200866836 /* Strait.png */; };
+		4F10A3BE22BC7FC300866836 /* Big-Smile-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3B822BC7FC200866836 /* Big-Smile-2.png */; };
+		4F10A3BF22BC7FC300866836 /* Big-Smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3B922BC7FC200866836 /* Big-Smile.png */; };
+		4F10A3C122BC7FC300866836 /* Strait-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3BB22BC7FC300866836 /* Strait-2.png */; };
+		4F10A3C822BC809A00866836 /* Smile-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3C622BC809A00866836 /* Smile-2.png */; };
+		4F10A3C922BC809A00866836 /* Smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3C722BC809A00866836 /* Smile.png */; };
 		4F1228EC22636C0D00BD0B16 /* local.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1228EB22636C0D00BD0B16 /* local.png */; };
 		4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */; };
 		4F2BBC10222C15B800306ECE /* xukuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2BBC0F222C15B800306ECE /* xukuang.png */; };
@@ -223,6 +229,12 @@
 		4F10661721F327970035E47A /* MAPPaopaoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoView.m; sourceTree = "<group>"; };
 		4F10661921F328A10035E47A /* MAPPaopaoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPPaopaoButton.h; sourceTree = "<group>"; };
 		4F10661A21F328A10035E47A /* MAPPaopaoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPPaopaoButton.m; sourceTree = "<group>"; };
+		4F10A3B622BC7FC200866836 /* Strait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Strait.png; sourceTree = "<group>"; };
+		4F10A3B822BC7FC200866836 /* Big-Smile-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Big-Smile-2.png"; sourceTree = "<group>"; };
+		4F10A3B922BC7FC200866836 /* Big-Smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Big-Smile.png"; sourceTree = "<group>"; };
+		4F10A3BB22BC7FC300866836 /* Strait-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Strait-2.png"; sourceTree = "<group>"; };
+		4F10A3C622BC809A00866836 /* Smile-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Smile-2.png"; sourceTree = "<group>"; };
+		4F10A3C722BC809A00866836 /* Smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smile.png; sourceTree = "<group>"; };
 		4F1228EB22636C0D00BD0B16 /* local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local.png; sourceTree = "<group>"; };
 		4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateView.h; sourceTree = "<group>"; };
 		4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateView.m; sourceTree = "<group>"; };
@@ -897,6 +909,12 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F10A3C722BC809A00866836 /* Smile.png */,
+				4F10A3C622BC809A00866836 /* Smile-2.png */,
+				4F10A3B822BC7FC200866836 /* Big-Smile-2.png */,
+				4F10A3B922BC7FC200866836 /* Big-Smile.png */,
+				4F10A3BB22BC7FC300866836 /* Strait-2.png */,
+				4F10A3B622BC7FC200866836 /* Strait.png */,
 				4F1228EB22636C0D00BD0B16 /* local.png */,
 				4FC2DB1722AE85C3004A4E21 /* jiahao-2.png */,
 				4F071BBA2232A8FC0093E57E /* ico_check_select.png */,
@@ -1113,6 +1131,7 @@
 				4F09EAD4227732C800D49029 /* mode.bundle in Resources */,
 				D638A77A21F1DAF3005DFDFD /* 定位.png in Resources */,
 				4F09EAD5227732C800D49029 /* street.sty in Resources */,
+				4F10A3C922BC809A00866836 /* Smile.png in Resources */,
 				4F09EAD1227732C800D49029 /* readme.txt in Resources */,
 				D66CCE1A21E4B45B009ADD17 /* LaunchScreen.storyboard in Resources */,
 				4F2C5E7E21F9AF0800DCF62A /* upPicture8.png in Resources */,
@@ -1142,10 +1161,13 @@
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
 				4F071BBB2232A8FD0093E57E /* ico_check_select.png in Resources */,
+				4F10A3BE22BC7FC300866836 /* Big-Smile-2.png in Resources */,
+				4F10A3C122BC7FC300866836 /* Strait-2.png in Resources */,
 				D638A77621F1DAF3005DFDFD /* voice.png in Resources */,
 				D638A76821F1DAF3005DFDFD /* compass.png in Resources */,
 				D66CCE1521E4B45A009ADD17 /* Main.storyboard in Resources */,
 				4F2C5E8721F9AF0800DCF62A /* upPicture3.png in Resources */,
+				4F10A3BF22BC7FC300866836 /* Big-Smile.png in Resources */,
 				D638A76D21F1DAF3005DFDFD /* link.png in Resources */,
 				D638A77721F1DAF3005DFDFD /* weChat.png in Resources */,
 				4F09EADB227732C800D49029 /* DVHotMap.cfg in Resources */,
@@ -1159,8 +1181,10 @@
 				D638A77021F1DAF3005DFDFD /* priv.png in Resources */,
 				D638A76421F1DAF3005DFDFD /* add.png in Resources */,
 				4F2C5E7F21F9AF0800DCF62A /* upPicture9.png in Resources */,
+				4F10A3C822BC809A00866836 /* Smile-2.png in Resources */,
 				D638A76721F1DAF3005DFDFD /* comment.png in Resources */,
 				4F09EAD7227732C800D49029 /* DVHotcity.cfg in Resources */,
+				4F10A3BC22BC7FC300866836 /* Strait.png in Resources */,
 				D638A77521F1DAF3005DFDFD /* video.png in Resources */,
 				4FC2DB1822AE85C3004A4E21 /* jiahao-2.png in Resources */,
 				4F2C5E8321F9AF0800DCF62A /* upPicture12.png in Resources */,
