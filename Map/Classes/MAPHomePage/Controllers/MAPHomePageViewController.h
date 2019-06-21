@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAPPaopaoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPHomePageViewController : UIViewController 
-
+//测试泡泡点击事件
+@property (nonatomic, strong, nullable) MAPPaopaoView *paopaoView;
 @end
 
 NS_ASSUME_NONNULL_END
