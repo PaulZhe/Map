@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MAPDynamicStateView.h"
+#import "MAPHomePageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MAPDynamicStateView *dynamicStateView;
 //接收主页传来的类型值，并传给View
 @property (nonatomic, strong) NSString *typeMotiveString;
+@property (nonatomic, copy) void (^callBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

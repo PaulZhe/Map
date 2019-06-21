@@ -50,8 +50,7 @@
 
 @property (nonatomic, strong) MAPAudioRecordUtils *audioRecordUtils;
 
-//测试泡泡点击事件
-@property (nonatomic, strong) MAPPaopaoView *paopaoView;
+
 //获取点ID用的annotationView
 @property (nonatomic, strong) BMKAnnotationView *tempAnnotationView;
 @property (nonatomic, assign) NSInteger addDynamicStateTypeTag;
@@ -351,23 +350,27 @@
     MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
     MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
 //    [paopaoView.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
-//    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//
-//        //        ///添加评论
-//        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
-//        ///获取评论
-//        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
-//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
-//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-//                                             NSLog(@"getComment:%@", resultModel.message);
-//                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
-//                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
-//                                         } error:^(NSError *error) {
-//                                             NSLog(@"%@", error);
-//                                         }];
-//        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
-//    };
+    showReplyViewController.callBlock = ^{
+        self.paopaoView = nil;
+    };
+    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+
+        //        ///添加评论
+        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        ///获取评论
+        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
+                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+                                             NSLog(@"getComment:%@", resultModel.message);
+                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
+                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                         } error:^(NSError *error) {
+                                             NSLog(@"%@", error);
+                                         }];
+        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
+        
+    };
 
     paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
         [weakSelf.navigationController pushViewController:showPicturesViewController animated:YES];

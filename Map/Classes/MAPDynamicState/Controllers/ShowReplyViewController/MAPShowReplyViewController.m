@@ -64,6 +64,9 @@
 //导航栏返回按钮点击事件
 - (void)BackToHomePage:(UIButton *) button {
     [self.navigationController popViewControllerAnimated:YES];
+    if (self.callBlock) {
+        self.callBlock();
+    }
 }
 
 - (void)dealloc {
