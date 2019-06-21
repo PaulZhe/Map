@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MAPMotiveReplyView : UIView
 
-@property (nonatomic, strong) UILabel *replyLabel;
-@property (nonatomic, strong) UILabel *allCountLabel;
+@property (nonatomic, strong) UILabel *replyLable1;
+@property (nonatomic, strong) UILabel *replyLable2;
+@property (nonatomic, strong) UIButton *moreButton;
 @end
 
 NS_ASSUME_NONNULL_END
