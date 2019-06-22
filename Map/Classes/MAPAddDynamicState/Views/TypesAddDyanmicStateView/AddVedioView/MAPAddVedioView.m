@@ -43,10 +43,12 @@
         _addVedioView = [[UIView alloc] init];
         [self addSubview:_addVedioView];
         
-        _addVedioButton = [[UIButton alloc] init];
-        [_addVedioView addSubview:_addVedioButton];
-        _addVedioButton.backgroundColor = [UIColor grayColor];
-        [_addVedioButton setImage:[UIImage imageNamed:@"jiahao-2"] forState:UIControlStateNormal];
+        self.addVedioButton = [[UIButton alloc] init];
+        [self.addVedioView addSubview:_addVedioButton];
+        self.addVedioButton.layer.borderWidth = 1.2f;
+        self.addVedioButton.layer.borderColor = [UIColor grayColor].CGColor;
+        [self.addVedioButton setImage:[[UIImage imageNamed:@"jiahao-2"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [self.addVedioButton setTintColor:[UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f]];
         
         //添加手势用来键盘收起
         UITapGestureRecognizer *tapTextGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showKeyboard)];

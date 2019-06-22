@@ -11,7 +11,6 @@
 @interface MAPAddDynamicStateView()
 
 @property (nonatomic, strong) UIView *addDynamicStateView;//添加动态
-@property (nonatomic, strong) UIButton *adjustmentButton;//地点微调按钮
 @property (nonatomic, strong) UIView *lineView;//分界线
 @property (nonatomic, strong) UIButton *issueButton;//发布按钮
 
@@ -38,12 +37,6 @@
         //self.locationNameLabel.text = @"西安邮电大学";
         self.locationNameLabel.font = [UIFont systemFontOfSize:23];
         
-        self.adjustmentButton = [[UIButton alloc] init];
-        [self.addDynamicStateView addSubview:_adjustmentButton];
-        self.adjustmentButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [self.adjustmentButton setTitle:[NSString stringWithFormat:@"地点微调？"] forState:UIControlStateNormal];
-        [self.adjustmentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.adjustmentButton addTarget:self action:@selector(adjustmentLocation:) forControlEvents:UIControlEventTouchUpInside];
         
         self.lineView = [[UIImageView alloc] init];
         [self.addDynamicStateView addSubview:_lineView];
@@ -108,13 +101,7 @@
     [_locationNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(15);
         make.left.mas_equalTo(25);
-        make.size.mas_equalTo(CGSizeMake(200, 30));
-    }];
-    
-    [_adjustmentButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
-        make.size.mas_equalTo(CGSizeMake(80, 30));
+        make.right.mas_equalTo(-25);
     }];
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -164,13 +151,6 @@
 - (void)issueButtonClick:(UIButton *)sender {
     if (_issueAction) {
         self.issueAction(sender);
-    }
-}
-
-//地点微调点击事件
-- (void)adjustmentLocation:(UIButton *)button {
-    if (_adjustAction) {
-        self.adjustAction(button);
     }
 }
 
