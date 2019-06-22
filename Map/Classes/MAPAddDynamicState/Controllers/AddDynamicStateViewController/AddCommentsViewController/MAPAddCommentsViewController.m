@@ -72,6 +72,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addCommentView.backgroundColor = [UIColor whiteColor];
     [self.addDynamicStateView.addCommentView.takePictureButton addTarget:self action:@selector(clicekTakePictureButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self createChildView];
 }
 
 //添加发布点点击事件
@@ -89,9 +90,10 @@
             } error:^(NSError *error) {
                 NSLog(@"%@", error);
             }];
-            
+            [weakSelf.navigationController popViewControllerAnimated:NO];
         } else {
             [weakSelf addCommentsWithPointID:weakSelf.ID Content:weakSelf.addDynamicStateView.addCommentView.addCommentTextView.text];
+            [weakSelf.navigationController popViewControllerAnimated:NO];
         }
         
     };

@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "582817679.826447"
+            timestampString = "582884402.494362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "591"
-            endingLineNumber = "591"
+            startingLineNumber = "631"
+            endingLineNumber = "631"
             landmarkName = "-getLocationAroundPoints"
             landmarkType = "7">
          </BreakpointContent>
@@ -83,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPDynamicState/Controllers/ShowReplyViewController/MAPShowReplyViewController.m"
-            timestampString = "582817679.826816"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/AddDynamicStateViewController/AddCommentsViewController/MAPAddCommentsViewController.m"
+            timestampString = "582884060.176451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-dealloc"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-createChildView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -99,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPDynamicState/Controllers/ShowReplyViewController/MAPShowReplyViewController.m"
-            timestampString = "582817679.826866"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/AddDynamicStateViewController/AddCommentsViewController/MAPAddCommentsViewController.m"
+            timestampString = "582884060.176499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-dealloc"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-createChildView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,13 +115,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "582817679.82691"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/AddDynamicStateViewController/AddCommentsViewController/MAPAddCommentsViewController.m"
+            timestampString = "582884060.176542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
-            landmarkName = "-paopaoViewButtonAddTarget:"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-createChildView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/AddDynamicStateViewController/AddCommentsViewController/MAPAddCommentsViewController.m"
+            timestampString = "582884060.176582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-createChildView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
