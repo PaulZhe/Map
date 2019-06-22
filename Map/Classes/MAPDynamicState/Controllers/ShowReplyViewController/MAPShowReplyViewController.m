@@ -29,12 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    if (!_dynamicStateView) {
-//        self.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//        self.dynamicStateView.dyanmicStateTableView.delegate = self;
-//        [self.view addSubview:_dynamicStateView];
-//        self.dynamicStateView.typeMotiveString = [NSString stringWithFormat:@"%d", 1];
-//    }
+    if (!_dynamicStateView) {
+        self.dynamicStateView = [[MAPDynamicStateView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        self.dynamicStateView.dyanmicStateTableView.delegate = self;
+        [self.view addSubview:_dynamicStateView];
+        self.dynamicStateView.typeMotiveString = [NSString stringWithFormat:@"%d", 1];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
