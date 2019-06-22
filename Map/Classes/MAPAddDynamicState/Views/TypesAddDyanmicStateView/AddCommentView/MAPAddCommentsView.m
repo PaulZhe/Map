@@ -17,7 +17,11 @@
         self.takePictureButton = [[UIButton alloc] init];
         [self addSubview:self.takePictureButton];
         self.takePictureButton.layer.cornerRadius = 60;
-        self.takePictureButton.backgroundColor = [UIColor blackColor];
+        self.takePictureButton.layer.borderWidth = 1.2f;
+        self.takePictureButton.layer.borderColor = [UIColor grayColor].CGColor;
+        [self.takePictureButton setImage:[[UIImage imageNamed:@"hao"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [self.takePictureButton setTintColor:[UIColor colorWithRed:0.95f green:0.54f blue:0.54f alpha:1.00f]];
+
         
         self.addCommentTextView = [[UITextView alloc] init];
         [self addSubview:_addCommentTextView];

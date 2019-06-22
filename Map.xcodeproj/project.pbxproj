@@ -64,6 +64,7 @@
 		4F10A3C122BC7FC300866836 /* Strait-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3BB22BC7FC300866836 /* Strait-2.png */; };
 		4F10A3C822BC809A00866836 /* Smile-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3C622BC809A00866836 /* Smile-2.png */; };
 		4F10A3C922BC809A00866836 /* Smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3C722BC809A00866836 /* Smile.png */; };
+		4F10A3CD22BC8E5B00866836 /* hao.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F10A3CC22BC8E5B00866836 /* hao.png */; };
 		4F1228EC22636C0D00BD0B16 /* local.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1228EB22636C0D00BD0B16 /* local.png */; };
 		4F14204B2204344D00A6E769 /* MAPAddDynamicStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */; };
 		4F2BBC10222C15B800306ECE /* xukuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2BBC0F222C15B800306ECE /* xukuang.png */; };
@@ -235,6 +236,7 @@
 		4F10A3BB22BC7FC300866836 /* Strait-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Strait-2.png"; sourceTree = "<group>"; };
 		4F10A3C622BC809A00866836 /* Smile-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Smile-2.png"; sourceTree = "<group>"; };
 		4F10A3C722BC809A00866836 /* Smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smile.png; sourceTree = "<group>"; };
+		4F10A3CC22BC8E5B00866836 /* hao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hao.png; sourceTree = "<group>"; };
 		4F1228EB22636C0D00BD0B16 /* local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local.png; sourceTree = "<group>"; };
 		4F1420492204344D00A6E769 /* MAPAddDynamicStateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAPAddDynamicStateView.h; sourceTree = "<group>"; };
 		4F14204A2204344D00A6E769 /* MAPAddDynamicStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAPAddDynamicStateView.m; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 		D638A74C21F1DAF3005DFDFD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4F10A3CC22BC8E5B00866836 /* hao.png */,
 				4F10A3C722BC809A00866836 /* Smile.png */,
 				4F10A3C622BC809A00866836 /* Smile-2.png */,
 				4F10A3B822BC7FC200866836 /* Big-Smile-2.png */,
@@ -1157,6 +1160,7 @@
 				4F09EADD227732C800D49029 /* DVVersion_pkg.cfg in Resources */,
 				4F09EADC227732C800D49029 /* DVSDirectory.cfg in Resources */,
 				4F09EAD8227732C800D49029 /* baiduNaviSDK.bundle in Resources */,
+				4F10A3CD22BC8E5B00866836 /* hao.png in Resources */,
 				4F09EAD9227732C800D49029 /* DVDirectory.cfg in Resources */,
 				D638A76621F1DAF3005DFDFD /* cancel.png in Resources */,
 				4F2C5E8521F9AF0800DCF62A /* upPicture6.png in Resources */,
