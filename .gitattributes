@@ -1,3 +1,6 @@
 /Users/tuqiangyao/Desktop/MAP/Map/BaiduNaviSDK/libbaiduNaviSDK.a[[:space:]] filter=lfs diff=lfs merge=lfs -text
 /Users/tuqiangyao/Desktop/MAP/Map/BaiduNaviSDK[[:space:]] filter=lfs diff=lfs merge=lfs -text
 libbaiduNaviSDK.a filter=lfs diff=lfs merge=lfs -text
+new_library.a[[:space:]] filter=lfs diff=lfs merge=lfs -text
+libBNTTSComponentSDK.a filter=lfs diff=lfs merge=lfs -text
+new_library.a filter=lfs diff=lfs merge=lfs -text
