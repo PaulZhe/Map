@@ -341,96 +341,99 @@
     self.addViewControllerPointName = _userLocation.title;
 }
 
-- (void)comment {
-    MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
-    MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-    [manager fetchPointCommentWithPointID:[self.tempAnnotationView.annotation.title intValue]
-                                     type:0 succeed:^(MAPCommentModel *resultModel) {
-                                         NSLog(@"getComment:%@", resultModel.message);
-                                         showReplyViewController.dynamicStateView.commentModel = resultModel;
-                                         [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
-                                     } error:^(NSError *error) {
-                                         NSLog(@"%@", error);
-                                     }];
-    [self.navigationController pushViewController:showReplyViewController animated:YES];
-}
-
-- (void)picture {
-    MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
-    [self.navigationController pushViewController:showPicturesViewController animated:YES];
-    
-}
-
-- (void)audio {
-    MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
-    MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-    [manager fetchPointCommentWithPointID:[self.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
-        NSLog(@"getComment:%@", resultModel.message);
-        showAudioViewController.dynamicStateView.commentModel = resultModel;
-        [showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
-    } error:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    [self.navigationController pushViewController:showAudioViewController animated:YES];
-}
-
-- (void)vedio {
-    MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
-    [self.navigationController pushViewController:showVedioViewController animated:YES];
-}
+//- (void)comment {
+//    MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
+//    MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//    [manager fetchPointCommentWithPointID:[self.tempAnnotationView.annotation.title intValue]
+//                                     type:0 succeed:^(MAPCommentModel *resultModel) {
+//                                         NSLog(@"getComment:%@", resultModel.message);
+//                                         showReplyViewController.dynamicStateView.commentModel = resultModel;
+//                                         [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+//                                     } error:^(NSError *error) {
+//                                         NSLog(@"%@", error);
+//                                     }];
+//    [self.navigationController pushViewController:showReplyViewController animated:YES];
+//}
+//
+//- (void)picture {
+//    MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
+//    [self.navigationController pushViewController:showPicturesViewController animated:YES];
+//
+//}
+//
+//- (void)audio {
+//    MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
+//    MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+//    [manager fetchPointCommentWithPointID:[self.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
+//        NSLog(@"getComment:%@", resultModel.message);
+//        showAudioViewController.dynamicStateView.commentModel = resultModel;
+//        [showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
+//    } error:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+//    [self.navigationController pushViewController:showAudioViewController animated:YES];
+//}
+//
+//- (void)vedio {
+//    MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
+//    [self.navigationController pushViewController:showVedioViewController animated:YES];
+//}
 
 //泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
-//    __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
 
-//    MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
-//    MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
-//    MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
-//    MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
-    [paopaoView.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.picturesButton addTarget:self action:@selector(picture) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.voiceButton addTarget:self action:@selector(audio) forControlEvents:UIControlEventTouchUpInside];
-    [paopaoView.vedioButton addTarget:self action:@selector(vedio) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+//    [paopaoView.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
+//    [paopaoView.picturesButton addTarget:self action:@selector(picture) forControlEvents:UIControlEventTouchUpInside];
+//    [paopaoView.voiceButton addTarget:self action:@selector(audio) forControlEvents:UIControlEventTouchUpInside];
+//    [paopaoView.vedioButton addTarget:self action:@selector(vedio) forControlEvents:UIControlEventTouchUpInside];
 //    showReplyViewController.callBlock = ^{
 //        self.paopaoView = nil;
 //    };
-//    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//
-//        //        ///添加评论
-//        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
-//        ///获取评论
-//        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
-//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
-//                                         type:0 succeed:^(MAPCommentModel *resultModel) {
-//                                             NSLog(@"getComment:%@", resultModel.message);
-//                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
-//                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
-//                                         } error:^(NSError *error) {
-//                                             NSLog(@"%@", error);
-//                                         }];
-//        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
-//    };
+    paopaoView.commentButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPShowReplyViewController *showReplyViewController = [[MAPShowReplyViewController alloc] init];
+        //        ///添加评论
+        //                [weakSelf addCommentsWithPointID:6 Content:@"这里是香港测试点1"];
+        ///获取评论
+        //                BMKAnnotationView *tempAnnotationView = (BMKAnnotationView *)sender.superview.superview;
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
+                                         type:0 succeed:^(MAPCommentModel *resultModel) {
+                                             NSLog(@"getComment:%@", resultModel.message);
+                                             showReplyViewController.dynamicStateView.commentModel = resultModel;
+                                             [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
+                                         } error:^(NSError *error) {
+                                             NSLog(@"%@", error);
+                                         }];
+        [weakSelf.navigationController pushViewController:showReplyViewController animated:YES];
+    };
 
-//    paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        [weakSelf.navigationController pushViewController:showPicturesViewController animated:YES];
-//    };
+    paopaoView.picturesButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPShowPicturesViewController *showPicturesViewController = [[MAPShowPicturesViewController alloc] init];
+        [weakSelf.navigationController pushViewController:showPicturesViewController animated:YES];
+    };
 
-//    paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
-//        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
-//            NSLog(@"getComment:%@", resultModel.message);
-//            showAudioViewController.dynamicStateView.commentModel = resultModel;
-//            [showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
-//        } error:^(NSError *error) {
-//            NSLog(@"%@", error);
-//        }];
-//        [weakSelf.navigationController pushViewController:showAudioViewController animated:YES];
-//    };
+    paopaoView.voiceButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPShowAudioViewController *showAudioViewController = [[MAPShowAudioViewController alloc] init];
+        MAPGetPointManager *manager = [MAPGetPointManager sharedManager];
+        [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue] type:2 succeed:^(MAPCommentModel *resultModel) {
+            NSLog(@"getComment:%@", resultModel.message);
+            showAudioViewController.dynamicStateView.commentModel = resultModel;
+            [showAudioViewController.dynamicStateView.dyanmicStateTableView reloadData];
+        } error:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        [weakSelf.navigationController pushViewController:showAudioViewController animated:YES];
+    };
 
-//    paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
-//        [weakSelf.navigationController pushViewController:showVedioViewController animated:YES];
-//    };
+    paopaoView.vedioButton.paopaoButtonAction = ^(UIButton * _Nonnull sender) {
+        MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
+        [weakSelf.navigationController pushViewController:showVedioViewController animated:YES];
+    };
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------
@@ -458,8 +461,9 @@
             addCommentViewController.ID = weakSelf.addViewControllerID;
             addCommentViewController.Latitude = weakSelf.userLocation.location.coordinate.latitude;
             addCommentViewController.Longitud = weakSelf.userLocation.location.coordinate.longitude;
-            [weakSelf HiddenAddDynamicStateView];
+            addCommentViewController.isSelected = weakSelf.addViewControllerIsSelected;
             [weakSelf.navigationController pushViewController:addCommentViewController animated:YES];
+            [weakSelf HiddenAddDynamicStateView];
         } else if (tag == 102) {
             //添加图片
             weakSelf.addDynamicStateTypeTag = tag;
