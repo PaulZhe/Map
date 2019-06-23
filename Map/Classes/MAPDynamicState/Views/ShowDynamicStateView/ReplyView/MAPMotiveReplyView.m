@@ -63,10 +63,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.flag == 0) {
-        return 3;
-    }else {
+    if (self.replyMutableArray.count < 3) {
         return self.replyMutableArray.count;
+    }else {
+        if (self.flag == 0) {
+            return 3;
+        } else {
+            return self.replyMutableArray.count + 1;
+        }
     }
 }
 
@@ -75,11 +79,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MAPReplyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reply" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
-    cell.replyLabel.text = self.replyMutableArray[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    if (self.flag == 0) {
+        MAPReplyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reply" forIndexPath:indexPath];
+        if (indexPath.row < 2) {
+            cell.backgroundColor = [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
+            cell.replyLabel.text = self.replyMutableArray[indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        } else {
+            cell.replyLabel.text = @"更多回复 >";
+        }
+        return cell;
+    } else {
+        MAPReplyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reply" forIndexPath:indexPath];
+        if (indexPath.row < self.replyMutableArray.count) {
+            cell.backgroundColor = [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
+            cell.replyLabel.text = self.replyMutableArray[indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        if (indexPath.row == self.replyMutableArray.count) {
+            cell.replyLabel.text = @"   收回";
+        }
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,6 +125,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
+    if (self.flag == 0) {
+        if (indexPath.row == 2) {
+            self.flag = 1;
+            [self.replyTableView reloadData];
+        }
+    } else {
+        if (indexPath.row == self.replyMutableArray.count) {
+            self.flag = 0;
+            [self.replyTableView reloadData];
+        }
+    }
 }
 
 //- (void)clickedMoreButton:(UIButton *)button {
