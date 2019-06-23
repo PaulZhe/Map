@@ -55,6 +55,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addAndioView.backgroundColor = [UIColor whiteColor];
+    [self createChildView];
 }
 
 //显示定位点
