@@ -13,7 +13,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-//        [self addTarget:self action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
+        [self addTarget:self action:@selector(addingMotion:) forControlEvents:UIControlEventTouchUpInside];
         
         _countLabel = [[UILabel alloc] init];
         [self addSubview:_countLabel];

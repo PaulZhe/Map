@@ -46,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!_commentModel) {
-        return 2;
+        return 0;
     }
     return _commentModel.data.count;
 }
@@ -58,18 +58,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_typeMotiveString isEqualToString:@"1"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" forIndexPath:indexPath];
-        if (!_commentModel) {
-                        cell.nameLabel.text = @"111111111";
-                        cell.contentLabel.text = @"22222222";
-                        cell.timeLabel.text = @"333333333";
-                    } else {
-            cell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] username]];
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content].comm];
-            cell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] createAt]];
-        }
+        cell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] username]];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content].comm];
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] createAt]];
         return cell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"picture" forIndexPath:indexPath];
+        cell.nameLabel.text = @"1111";
+        cell.timeLabel.text = @"2019";
         return cell;
     } else if ([_typeMotiveString isEqualToString:@"3"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"audio" forIndexPath:indexPath];
