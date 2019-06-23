@@ -17,6 +17,8 @@
         self.replyLabel = [[UILabel alloc] init];
         [self.contentView addSubview:self.replyLabel];
         self.replyLabel.textAlignment = NSTextAlignmentLeft;
+        self.replyLabel.font = [UIFont systemFontOfSize:18];
+        self.replyLabel.numberOfLines = 0;
         self.replyLabel.backgroundColor = [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
         [self.replyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.contentView);
