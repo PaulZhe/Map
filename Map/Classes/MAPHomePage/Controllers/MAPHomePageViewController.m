@@ -54,6 +54,8 @@
 //获取点ID用的annotationView
 @property (nonatomic, strong) BMKAnnotationView *tempAnnotationView;
 @property (nonatomic, assign) NSInteger addDynamicStateTypeTag;
+
+@property (nonatomic, strong) NSMutableArray *contentCellHeight;
 @end
 
 @implementation MAPHomePageViewController
@@ -240,17 +242,6 @@
     [self getLocationAroundPoints];
 }
 
-#pragma MAP --------------------------添加点---------------------------
-//- (void)addAnnotation:(BMKLocation *) location {
-//    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
-//    annotation.coordinate = location.location.coordinate;
-//    annotation.title = @"";
-//    [self.homePageView.mapView addAnnotation:annotation];
-//    annotationMutableArray = [NSMutableArray array];
-//    [annotationMutableArray addObject:annotation];
-//    [self.homePageView.mapView showAnnotations:annotationMutableArray animated:YES];
-//}
-
 #pragma MAP -------------------------自定义样式点标记--------------------------
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
@@ -382,7 +373,7 @@
 //泡泡内按钮点击事件
 - (void)paopaoViewButtonAddTarget:(MAPPaopaoView *)paopaoView {
     __weak typeof(self) weakSelf = self;
-
+    self.contentCellHeight = [[NSMutableArray alloc] init];
     
     
     
@@ -404,6 +395,7 @@
         [manager fetchPointCommentWithPointID:[weakSelf.tempAnnotationView.annotation.title intValue]
                                          type:0 succeed:^(MAPCommentModel *resultModel) {
                                              NSLog(@"getComment:%@", resultModel.message);
+                                             showReplyViewController.cellHeightMutableArray = [[NSMutableArray alloc] initWithArray:[self calcutaleCommentContentHeight:resultModel]];
                                              showReplyViewController.dynamicStateView.commentModel = resultModel;
                                              [showReplyViewController.dynamicStateView.dyanmicStateTableView reloadData];
                                          } error:^(NSError *error) {
@@ -434,6 +426,32 @@
         MAPShowVedioViewController *showVedioViewController = [[MAPShowVedioViewController alloc] init];
         [weakSelf.navigationController pushViewController:showVedioViewController animated:YES];
     };
+}
+
+//计算文本高度
+- (CGFloat)calculateCellHeight:(NSString *)string {
+    NSDictionary *arrti = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
+    CGRect rect = [string boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 80, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:arrti context:nil];
+    CGFloat contentHeight = ceil(rect.size.height);
+    return contentHeight;
+}
+
+- (NSMutableArray *)calcutaleCommentContentHeight:(MAPCommentModel *)commentModel {
+     NSMutableArray *replyMutableArray = [[NSMutableArray alloc] initWithObjects:@"我爱丽丽：那里最漂亮呢？", @"李四：对啊！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！", @"小李：真美", @"小王：真的很美！", @"小哲：的确很美！", nil];
+    CGFloat all = 0;
+    for (int i = 0; i < 3; i++) {
+        NSString *string = replyMutableArray[i];
+        CGFloat content = [self calculateCellHeight:string];
+        all+=content;
+    }
+    
+    for (int i = 0; i < commentModel.data.count; i++) {
+        NSString *string = [[commentModel.data[i] content] comm];
+        CGFloat content = [self calculateCellHeight:string];
+        [self.contentCellHeight addObject:@(content + all)];
+    }
+    NSLog(@"-------%@", self.contentCellHeight);
+    return self.contentCellHeight;
 }
 
 #pragma MAP -----------------------添加按钮点击事件------------------------

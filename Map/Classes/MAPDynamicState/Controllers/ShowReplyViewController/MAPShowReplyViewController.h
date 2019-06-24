@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 //接收主页传来的类型值，并传给View
 @property (nonatomic, strong) NSString *typeMotiveString;
 @property (nonatomic, copy) void (^callBlock)(void);
+@property (nonatomic, strong) NSMutableArray *cellHeightMutableArray;
 @end
 
 NS_ASSUME_NONNULL_END
