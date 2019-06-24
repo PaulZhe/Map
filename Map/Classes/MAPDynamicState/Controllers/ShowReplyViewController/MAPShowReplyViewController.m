@@ -38,7 +38,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300;
+    return [self.cellHeightMutableArray[indexPath.row] integerValue] + 70;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -61,13 +61,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
 }
 
-- (CGFloat)calculateCellHeight:(NSIndexPath *)indexpath {
-    NSDictionary *arrti = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    NSString *contentString = [[NSString alloc] init];
-    CGRect rect = [contentString boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 80, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:arrti context:nil];
-    CGFloat contentHeight = ceil(rect.size.height);
-    return contentHeight;
-}
 
 //导航栏返回按钮点击事件
 - (void)BackToHomePage:(UIButton *) button {

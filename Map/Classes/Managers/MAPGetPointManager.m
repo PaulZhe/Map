@@ -75,7 +75,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
-        NSLog(@"%@", responseObject);
+        NSLog(@"--------------%@", responseObject);
         MAPCommentModel *model = [[MAPCommentModel alloc] initWithDictionary:responseObject error:&error];
         NSLog(@"%@", model);
         if (error) {

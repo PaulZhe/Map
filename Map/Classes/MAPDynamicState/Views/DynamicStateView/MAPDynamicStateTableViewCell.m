@@ -87,7 +87,7 @@ static const float kMotiveButtonFromLeft = 65.0;
                 make.top.mas_equalTo(self.contentLabel.mas_bottom).mas_equalTo(5);
                 make.left.mas_equalTo(kMotiveButtonFromLeft);
                 make.right.mas_equalTo(-15);
-                make.height.mas_equalTo(160);
+                make.height.mas_equalTo(152);
             }];
             return self;
         } else if ([reuseIdentifier isEqualToString:@"picture"]) {

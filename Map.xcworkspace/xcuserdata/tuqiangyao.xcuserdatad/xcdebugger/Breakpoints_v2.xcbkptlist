@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPDynamicState/Views/ShowDynamicStateView/ReplyView/MAPMotiveReplyView.m"
-            timestampString = "582988221.070888"
+            timestampString = "583079844.699127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Map/Classes/MAPDynamicState/Views/ShowDynamicStateView/ReplyView/MAPMotiveReplyView.m"
-            timestampString = "582988221.0709521"
+            timestampString = "583079844.69919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>

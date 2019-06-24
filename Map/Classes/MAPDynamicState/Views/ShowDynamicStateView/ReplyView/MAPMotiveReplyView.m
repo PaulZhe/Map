@@ -20,27 +20,8 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        self.replyMutableArray = [[NSMutableArray alloc] initWithObjects:@"我爱丽丽：那里最漂亮呢？", @"李四：对啊！确实很美呢！", @"小李：真美", @"小王：真的很美！", @"小哲：的确很美！", nil];
+        self.replyMutableArray = [[NSMutableArray alloc] initWithObjects:@"我爱丽丽：那里最漂亮呢？", @"李四：对啊！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！确实很美呢！哲总是弟弟，崽种，智障！", @"小李：真美", @"小王：真的很美！", @"小哲：的确很美！", nil];
         self.flag = 0;
-//        self.replyLable1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, [UIScreen mainScreen].bounds.size.width - 80, 30)];
-//        self.replyLable1.textColor = [UIColor blackColor];
-//        self.replyLable1.text = @"我爱丽丽：那里最漂亮呢？";
-//        self.replyLable1.textAlignment = NSTextAlignmentLeft;
-//        [self addSubview:self.replyLable1];
-//
-//        self.replyLable2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width - 80, 30)];
-//        self.replyLable2.text =  @"李四：对啊！确实很美呢！";
-//        self.replyLable2.textColor = [UIColor blackColor];
-//        self.replyLable2.textAlignment = NSTextAlignmentLeft;
-//        [self addSubview:self.replyLable2];
-//
-//        self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 75, 100, 30)];
-//        [self.moreButton setTitle:@"更多回复 >" forState:UIControlStateNormal];
-//        self.moreButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-//        [self.moreButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//        [self.moreButton addTarget:self action:@selector(clickedMoreButton:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:self.moreButton];
-        
         
         self.backgroundColor = [UIColor whiteColor];
         self.replyTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -56,7 +37,6 @@
         }];
         [self.replyTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.replyTableView.showsVerticalScrollIndicator = NO;
-//        self.replyTableView.allowsSelection = NO;
         [self.replyTableView registerClass:[MAPReplyTableViewCell class] forCellReuseIdentifier:@"reply"];
     }
     return self;
