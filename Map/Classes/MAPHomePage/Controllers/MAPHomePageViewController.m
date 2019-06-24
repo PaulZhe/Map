@@ -630,9 +630,9 @@
                                  }
                              }
                                error:^(NSError *error) {
-                                   //NSLog(@"+++++getLocationAroundPointsError:%@", error);
-                                   NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:NSJSONReadingMutableContainers error:&error];
-                                   NSLog(@"+++++getLocationAroundPointsError:%@", dict);
+                                   NSLog(@"+++++getLocationAroundPointsError:%@", error);
+//                                   NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:NSJSONReadingMutableContainers error:&error];
+//                                   NSLog(@"+++++getLocationAroundPointsError:%@", dict);
                                }];
 }
 
