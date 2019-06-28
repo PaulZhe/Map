@@ -179,13 +179,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Map/Classes/MAPHomePage/Controllers/MAPHomePageViewController.m"
-            timestampString = "583075344.3478"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/PhotoKitViewController/SelectPhotoes/MAPPhotoSelectViewController.m"
+            timestampString = "583427383.470892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "-BMKLocationManager:didUpdateLocation:orError:"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-resetSizeOfImageData:maxSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/PhotoKitViewController/SelectPhotoes/MAPPhotoSelectViewController.m"
+            timestampString = "583427383.470955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "-resetSizeOfImageData:maxSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/PhotoKitViewController/SelectPhotoes/MAPPhotoSelectViewController.m"
+            timestampString = "583427383.471"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "-resetSizeOfImageData:maxSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Map/Classes/MAPAddDynamicState/Controllers/AddDynamicStateViewController/AddPicturesViewController/MAPAddPicturesViewController.m"
+            timestampString = "583427383.471043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-postImageCommentWithArray:andTitle:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -13,13 +13,13 @@
 //#import <QuartzCore/QuartzCore.h>
 
 @interface MAPAddPicturesView ()
-@property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) NSDictionary *selectImageDictionary;
+@property (nonatomic, copy) NSMutableArray *dataSource;
+@property (nonatomic, copy) NSDictionary *selectImageDictionary;
 @end
 
 @implementation MAPAddPicturesView
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _hintLabel = [[UILabel alloc] init];
@@ -75,7 +75,7 @@
     return self;
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     [_hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).mas_equalTo(10);
@@ -107,7 +107,7 @@
 
 #pragma MAP  -------------textField的阴纹和字数限制与键盘弹出与收回------------
 //字数限制
-- (void) textFieldDidChangeValue:(NSNotification *) notifcation {
+- (void)textFieldDidChangeValue:(NSNotification *) notifcation {
     UITextField *textField = (UITextField *)[notifcation object];
     NSInteger kMaxLength = 10 ;
     NSString *toBeString = textField.text;
@@ -134,7 +134,7 @@
     }
 }
 //键盘的收回
-- (void) keyboardWillDisappear:(NSNotification *)notification{
+- (void)keyboardWillDisappear:(NSNotification *)notification{
     // 计算键盘高度
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
@@ -143,7 +143,7 @@
     }
 }
 //键盘的弹出
-- (void) keyboardWillAppear:(NSNotification *)notification{
+- (void)keyboardWillAppear:(NSNotification *)notification{
     // 计算键盘高度
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
@@ -175,7 +175,7 @@
     }
 }
 
-- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MAPAddPicturesCollectionViewCell *cell = [_picturesCollectionView dequeueReusableCellWithReuseIdentifier:@"pictures" forIndexPath:indexPath];
     
     NSString *addPicture = [NSString stringWithFormat:@"xukuang"];
@@ -204,17 +204,17 @@
 }
 
 //返回每个cell大小
-- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 41)/3, ([UIScreen mainScreen].bounds.size.width - 41)/3);
 }
 
 //返回cell之间 行 间隙
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 10;
 }
 
 //返回cell之间 列 间隙
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 10;
 }
 
@@ -228,6 +228,20 @@
             self->_selectImageDictionary = selectDictionary;
             [self upDataCollection];
         }];
+        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+        requestOptions.synchronous = NO;
+        requestOptions.networkAccessAllowed = NO;
+        requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+        NSMutableArray *tempMutableArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < _dataSource.count; i++) {
+            [[PHImageManager defaultManager] requestImageForAsset:_dataSource[i] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                if (result) {
+                    [tempMutableArray addObject:result];
+                }
+                self.uploadPicturesMutableArray = [NSMutableArray arrayWithArray:tempMutableArray];
+            }];
+        }
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:photoKitViewController];
         [self.delegate getToPhotoAlbumViewAndViewController:navigationController];

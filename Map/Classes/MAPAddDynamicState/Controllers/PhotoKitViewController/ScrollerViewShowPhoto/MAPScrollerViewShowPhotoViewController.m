@@ -312,7 +312,7 @@
 //点击完成
 - (void)pressComplete:(UIButton *)button {
     NSArray *photoArray = _thisSelectedDictionary[@"photoArray"];
-    __weak MAPScrollerViewShowPhotoViewController *detailSelf = self;
+//    __weak MAPScrollerViewShowPhotoViewController *detailSelf = self;
     NSMutableArray *dataMutableArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < photoArray.count; i++) {
         PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
@@ -326,7 +326,7 @@
                     if (result) {
                         NSData *imageData = UIImageJPEGRepresentation(result, 0.3);
                         UIImage *image = [UIImage imageWithData:imageData];
-                        NSData *imageDataTwo = [detailSelf resetSizeOfImageData:image maxSize:100];
+                        NSData *imageDataTwo = [self resetSizeOfImageData:image maxSize:100];
                         [dataMutableArray addObject:imageDataTwo];
                     } else {
                         
