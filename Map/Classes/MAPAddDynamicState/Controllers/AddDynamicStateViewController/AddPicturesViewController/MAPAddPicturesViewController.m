@@ -57,6 +57,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addPicturesView.backgroundColor = [UIColor whiteColor];
     self.addDynamicStateView.addPicturesView.delegate = self;
+    
+    [self createChildView];
 }
 
 //显示定位点
@@ -84,13 +86,13 @@
             [addPointManager addPointWithName:weakSelf.pointName Latitude:weakSelf.Latitude Longitude:weakSelf.Longitud success:^(MAPAddPointModel *resultModel) {
                 NSLog(@"%@++++", resultModel.message);
                 //更新添加点
-                
             } error:^(NSError *error) {
                 NSLog(@"%@", error);
             }];
             
+            [weakSelf postImageCommentWithArray:weakSelf.addDynamicStateView.addPicturesView.uploadPicturesMutableArray andTitle:weakSelf.addDynamicStateView.addPicturesView.addTitleTextField.text];
         } else {
-            
+            [weakSelf postImageCommentWithArray:weakSelf.addDynamicStateView.addPicturesView.uploadPicturesMutableArray andTitle:weakSelf.addDynamicStateView.addPicturesView.addTitleTextField.text];
         }
         
     };
@@ -103,13 +105,12 @@
         NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         [dataArray addObject:imageData];
     }
-    __weak MAPAddPicturesViewController *weakSelf = self;
-    
+
     [[MAPAddPointManager sharedManager] uploadPhotosWithPointId:_ID Title:title Data:dataArray success:^(MAPAddPointModel *resultModel) {
         NSLog(@"上传成功");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *error) {
-        NSLog(@"上传失败");
+        NSLog(@"上传失败%@", error);
     }];
 }
 
