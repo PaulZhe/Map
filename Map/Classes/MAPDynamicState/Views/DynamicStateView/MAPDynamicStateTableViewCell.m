@@ -71,7 +71,9 @@ static const float kMotiveButtonFromLeft = 65.0;
         self.likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
         [self.likeButton setTitle:@"(2)" forState:UIControlStateNormal];
+        [self.likeButton setTitle:@"(2)" forState:UIControlStateSelected];
         [self.likeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.likeButton addTarget:self action:@selector(clickLikeButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.likeButton];
         [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.mas_bottom).mas_equalTo(-10);
@@ -126,6 +128,10 @@ static const float kMotiveButtonFromLeft = 65.0;
         
     }
     return self;
+}
+
+- (void)clickLikeButton:(UIButton *)button {
+    button.selected = !button.selected;
 }
 
 - (void)awakeFromNib {
