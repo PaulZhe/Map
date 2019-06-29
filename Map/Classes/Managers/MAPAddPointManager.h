@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "MAPAddPointModel.h"
+#import "MAPAddPicturesModel.h"
 
 // 成功回调的 block
 typedef void(^MAPResultHandle)(MAPAddPointModel *resultModel);
+typedef void(^MAPPicturesResultHandle)(MAPAddPicturesModel *resultModel);
 // 失败回调的 block
 typedef void(^MAPErrorHandle)(NSError *error);
 
@@ -47,7 +49,7 @@ typedef void(^MAPErrorHandle)(NSError *error);
 - (void)uploadPhotosWithPointId:(int)pointId
                           Title:(NSString *)title
                            Data:(NSArray *)fileDataArray
-                        success:(MAPResultHandle)succeedBlock
+                        success:(MAPPicturesResultHandle)succeedBlock
                           error:(MAPErrorHandle)errorBlock;
 /**
  *上传音频，视频文件

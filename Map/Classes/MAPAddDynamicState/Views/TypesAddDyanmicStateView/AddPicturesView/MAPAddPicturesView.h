@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *addPicturesView;//添加图片
 @property (nonatomic, strong) UICollectionView *picturesCollectionView;//九宫格显示图片
 @property (nonatomic, weak) id<MAPAddPicturesViewDelegate> delegate;
-@property (nonatomic, copy) NSMutableArray *uploadPicturesMutableArray;
+@property (nonatomic, strong) NSMutableArray *uploadPicturesMutableArray;
 
 @end
 
