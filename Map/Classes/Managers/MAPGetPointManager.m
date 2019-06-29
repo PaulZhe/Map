@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPGetPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6InVzZXIiLCJleHAiOjE1NjE5ODg5MjYsImlhdCI6MTU2MTM4NDEyNiwidXNlcm5hbWUiOiLlvKDlk7IifQ.S2Iv4pkw4I9y527tqzJKEXq4mMvCGwztYJ3KKZvKpgA";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6InVzZXIiLCJleHAiOjE1NjI0MDIyMTQsImlhdCI6MTU2MTc5NzQxNCwidXNlcm5hbWUiOiLlvKDlk7IifQ.vXS92DJG6rTn4tLaVDhl1stRkL8HaDbEU9LgmLawQzg";
 
 @implementation MAPGetPointManager
 

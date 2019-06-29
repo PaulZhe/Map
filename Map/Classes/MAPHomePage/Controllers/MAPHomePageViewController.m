@@ -555,6 +555,7 @@
         addPictureViewController.ID = _addViewControllerID;
         addPictureViewController.Latitude = self.userLocation.location.coordinate.latitude;
         addPictureViewController.Longitud = self.userLocation.location.coordinate.longitude;
+        addPictureViewController.isSelected = self.addViewControllerIsSelected;
         [self.navigationController pushViewController:addPictureViewController animated:YES];
     } else if (self.addDynamicStateTypeTag == 104) {
         MAPAddVedioViewController *addVedioController = [[MAPAddVedioViewController alloc] init];
@@ -562,6 +563,7 @@
         addVedioController.ID = _addViewControllerID;
         addVedioController.Latitude = self.userLocation.location.coordinate.latitude;
         addVedioController.Longitud = self.userLocation.location.coordinate.longitude;
+        addVedioController.isSelected = self.addViewControllerIsSelected;
         [self.navigationController pushViewController:addVedioController animated:YES];
     }
     [self HiddenAddDynamicStateView];
@@ -604,6 +606,7 @@
             addAudioViewController.ID = self->_addViewControllerID;
             addAudioViewController.Latitude = self->_userLocation.location.coordinate.latitude;
             addAudioViewController.Longitud = self->_userLocation.location.coordinate.longitude;
+            addAudioViewController.isSelected = self.addViewControllerIsSelected;
             addAudioViewController.addDynamicStateView.mp3Path = self->_audioRecordUtils.mp3Path;
             addAudioViewController.addDynamicStateView.issueAudioView.seconds = weakAddAudioView.seconds;
             addAudioViewController.addDynamicStateView.issueAudioView.minutes = weakAddAudioView.minutes;

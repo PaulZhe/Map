@@ -102,7 +102,7 @@
 - (void)postImageCommentWithArray:(NSArray *)imageArray andTitle:(NSString *)title {
     NSMutableArray *dataArray = [NSMutableArray array];
     for (id image in imageArray) {
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.1);
         [dataArray addObject:imageData];
     }
 

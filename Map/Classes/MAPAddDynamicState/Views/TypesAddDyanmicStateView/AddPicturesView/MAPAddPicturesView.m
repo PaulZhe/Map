@@ -13,7 +13,7 @@
 //#import <QuartzCore/QuartzCore.h>
 
 @interface MAPAddPicturesView ()
-@property (nonatomic, copy) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, copy) NSDictionary *selectImageDictionary;
 @end
 
@@ -228,20 +228,6 @@
             self->_selectImageDictionary = selectDictionary;
             [self upDataCollection];
         }];
-        PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
-        requestOptions.synchronous = NO;
-        requestOptions.networkAccessAllowed = NO;
-        requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
-        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-        NSMutableArray *tempMutableArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < _dataSource.count; i++) {
-            [[PHImageManager defaultManager] requestImageForAsset:_dataSource[i] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                if (result) {
-                    [tempMutableArray addObject:result];
-                }
-                self.uploadPicturesMutableArray = [NSMutableArray arrayWithArray:tempMutableArray];
-            }];
-        }
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:photoKitViewController];
         [self.delegate getToPhotoAlbumViewAndViewController:navigationController];
@@ -252,12 +238,30 @@
 - (void)upDataCollection {
     if (_dataSource.count > 0) {
         [_dataSource removeAllObjects];
+        [self.uploadPicturesMutableArray removeAllObjects];
     }
     
     NSMutableArray *photoesArray = [_selectImageDictionary objectForKey:@"photoArray"];
     for (int i = 0; i < photoesArray.count; i++) {
         [_dataSource addObject:[photoesArray[i] objectForKey:@"photoAsset"]];
     }
+    //为上传数组赋值
+    if (!_uploadPicturesMutableArray) {
+        self.uploadPicturesMutableArray = [[NSMutableArray alloc] init];
+    }
+    PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+    requestOptions.synchronous = NO;
+    requestOptions.networkAccessAllowed = NO;
+    requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+    requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    for (int i = 0; i < _dataSource.count; i++) {
+        [[PHImageManager defaultManager] requestImageForAsset:_dataSource[i] targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            if (result) {
+                [self.uploadPicturesMutableArray addObject:result];
+            }
+        }];
+    }
+    
     [_picturesCollectionView reloadData];
 }
 @end

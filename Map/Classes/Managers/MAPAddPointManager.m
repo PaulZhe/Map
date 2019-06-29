@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 static MAPAddPointManager *manager = nil;
-static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6InVzZXIiLCJleHAiOjE1NjE5ODg5MjYsImlhdCI6MTU2MTM4NDEyNiwidXNlcm5hbWUiOiLlvKDlk7IifQ.S2Iv4pkw4I9y527tqzJKEXq4mMvCGwztYJ3KKZvKpgA";
+static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6InVzZXIiLCJleHAiOjE1NjI0MDIyMTQsImlhdCI6MTU2MTc5NzQxNCwidXNlcm5hbWUiOiLlvKDlk7IifQ.vXS92DJG6rTn4tLaVDhl1stRkL8HaDbEU9LgmLawQzg";
 
 @implementation MAPAddPointManager
 
@@ -95,11 +95,12 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
 - (void)uploadPhotosWithPointId:(int)pointId
                           Title:(NSString *)title
                            Data:(NSArray *)fileDataArray
-                        success:(MAPResultHandle)succeedBlock
+                        success:(MAPPicturesResultHandle)succeedBlock
                           error:(MAPErrorHandle)errorBlock {
-    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadMangPhotos/%d", pointId];
+    NSString *URL = [NSString stringWithFormat:@"http://39.106.39.48/uploadPhotos/%d", pointId];
     
-    NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
+//    NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"photos" : fileDataArray, @"title" : title};
+    NSDictionary *param = @{@"pointId" : [NSNumber numberWithInt:pointId], @"title" : title};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     
@@ -110,16 +111,25 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
             formatter.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-            [formData appendPartWithFileData:obj name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:obj name:@"file" fileName:fileName mimeType:@"image/jpg"];
         }
+//        if (fileDataArray.count > 0) {
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            // 设置时间格式
+//            formatter.dateFormat = @"yyyyMMddHHmmss";
+//            NSString *str = [formatter stringFromDate:[NSDate date]];
+//            NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+//            [formData appendPartWithFileData:fileDataArray[0] name:@"file" fileName:fileName mimeType:@"image/jpg"];
+//        }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
-        NSLog(@"---上传进度--- %@",uploadProgress);
+        NSLog(@"---上传进度--- %@",uploadProgress.localizedDescription);
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"response : %@", responseObject);
         NSError *error;
-        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseObject error:&error];
+//        MAPAddPointModel *result = [[MAPAddPointModel alloc] initWithDictionary:responseObject error:&error];
+        MAPAddPicturesModel *result = [[MAPAddPicturesModel alloc] initWithDictionary:responseObject error:&error];
         NSLog(@"result:%@", result);
         if (result.status == 0) {
             succeedBlock(result);
@@ -130,6 +140,8 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:NSJSONReadingMutableContainers error:&error];
+        NSLog(@"+++++uploadPhotosError:%@", dict);
         errorBlock(error);
     }];
 }
@@ -172,6 +184,7 @@ static NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlw
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
+        
         errorBlock(error);
     }];
 }
