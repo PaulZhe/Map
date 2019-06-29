@@ -13,7 +13,12 @@
 #import "MAPMotiveVideoButtonView.h"
 #import "MAPAddPointManager.h"
 
-@interface MAPDynamicStateView()
+
+@interface MAPDynamicStateView() <UITextFieldDelegate, UIGestureRecognizerDelegate>
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIView *commentView;//回复界面
+@property (nonatomic, strong) UITextField *commentTextField;//评论框
+@property (nonatomic, strong) UIButton *sendCommentButton;//发生评论界面
 
 //点击播放按钮之后的界面
 @property (nonatomic, strong) MAPMotiveVideoButtonView *vedioButtonView;
@@ -61,6 +66,7 @@
         cell.nameLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] username]];
         cell.contentLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] content].comm];
         cell.timeLabel.text = [NSString stringWithFormat:@"%@", [_commentModel.data[indexPath.row] createAt]];
+        [cell.commentButton addTarget:self action:@selector(clickCommentButton:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else if ([_typeMotiveString isEqualToString:@"2"]) {
         MAPDynamicStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"picture" forIndexPath:indexPath];
@@ -236,4 +242,81 @@
     return [NSString stringWithFormat:@"%@:%@", minuteString, secendString];
 }
 
+//添加回复点击事件
+- (void)clickCommentButton:(UIButton *)button {
+    self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    self.backgroundView.tag = 201;
+    [self addSubview:self.backgroundView];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(HiddenCommentView)];
+    tapGestureRecognizer.delegate = self;
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = YES;
+    //将触摸事件添加到当前view
+    [self.backgroundView addGestureRecognizer:tapGestureRecognizer];
+    
+    self.commentView = [[UIView alloc] initWithFrame:CGRectMake(0, ([UIScreen mainScreen].bounds.size.height/2), [UIScreen mainScreen].bounds.size.width, ([UIScreen mainScreen].bounds.size.height/2))];
+    self.commentView.backgroundColor = [UIColor whiteColor];
+    self.commentView.layer.borderWidth = 0.8f;
+    self.commentView.layer.borderColor = [UIColor grayColor].CGColor;
+    [self.backgroundView addSubview:self.commentView];
+    
+    
+    self.commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, ([UIScreen mainScreen].bounds.size.height / 2) - 50, [UIScreen mainScreen].bounds.size.width - 60, 40)];
+    self.commentTextField.placeholder = @"添加回复:";
+    self.commentTextField.layer.cornerRadius = 3;
+    self.commentTextField.layer.borderWidth = 0.8f;
+    self.commentTextField.layer.borderColor = [UIColor grayColor].CGColor;
+    self.commentTextField.delegate = self;
+    self.commentTextField.font = [UIFont systemFontOfSize:16.5f];
+    self.commentTextField.textColor = [UIColor blackColor];
+    self.commentTextField.keyboardType = UIKeyboardTypeDefault;
+    self.commentTextField.returnKeyType = UIReturnKeyDefault;
+    self.commentTextField.inputAccessoryView = self.commentTextField;
+    [self.commentView addSubview:self.commentTextField];
+    [self.commentTextField becomeFirstResponder];
+//    [self.commentTextField becomeFirstResponder];
+    
+    self.sendCommentButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 50, ([UIScreen mainScreen].bounds.size.height)/2 - 50, 45, 40)];
+    [self.commentView addSubview:self.sendCommentButton];
+    self.commentView.layer.cornerRadius = 1;
+    [self.sendCommentButton setTitle:@"发送" forState:UIControlStateNormal];
+    [self.sendCommentButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
+    
+    //监听键盘的出现与消失
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+//键盘的收回
+- (void)keyboardWillDisappear:(NSNotification *)notification {
+    [UIView animateWithDuration:1 animations:^{
+        self.commentTextField.transform = CGAffineTransformMakeTranslation(0, 0);
+        self.sendCommentButton.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
+}
+//键盘的弹出
+- (void)keyboardWillAppear:(NSNotification *)notification{
+    // 计算键盘高度
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.commentTextField.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height);
+        self.sendCommentButton.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height);
+    }];
+}
+
+- (void)HiddenCommentView {
+    //删除相册or拍摄view
+    for(id tmpView in [self subviews]) {
+        //找到要删除的子视图的对象
+        if([tmpView isKindOfClass:[UIView class]]){
+            UIView *view = (UIView *)tmpView;
+            if(view.tag == 201 ) {
+                [view removeFromSuperview];
+            }
+        }
+    }
+}
 @end
