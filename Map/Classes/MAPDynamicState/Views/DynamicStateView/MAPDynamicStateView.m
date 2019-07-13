@@ -16,7 +16,6 @@
 
 @interface MAPDynamicStateView() <UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, strong) UIView *commentView;//回复界面
 @property (nonatomic, strong) UITextField *commentTextField;//评论框
 @property (nonatomic, strong) UIButton *sendCommentButton;//发生评论界面
 
@@ -256,14 +255,8 @@
     //将触摸事件添加到当前view
     [self.backgroundView addGestureRecognizer:tapGestureRecognizer];
     
-    self.commentView = [[UIView alloc] initWithFrame:CGRectMake(0, ([UIScreen mainScreen].bounds.size.height/2), [UIScreen mainScreen].bounds.size.width, ([UIScreen mainScreen].bounds.size.height/2))];
-    self.commentView.backgroundColor = [UIColor whiteColor];
-    self.commentView.layer.borderWidth = 0.8f;
-    self.commentView.layer.borderColor = [UIColor grayColor].CGColor;
-    [self.backgroundView addSubview:self.commentView];
-    
-    
-    self.commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, ([UIScreen mainScreen].bounds.size.height / 2) - 50, [UIScreen mainScreen].bounds.size.width - 60, 40)];
+    self.commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, [UIScreen mainScreen].bounds.size.height - 80, [UIScreen mainScreen].bounds.size.width - 60, 40)];
+    self.commentTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
     self.commentTextField.placeholder = @"添加回复:";
     self.commentTextField.layer.cornerRadius = 3;
     self.commentTextField.layer.borderWidth = 0.8f;
@@ -273,14 +266,14 @@
     self.commentTextField.textColor = [UIColor blackColor];
     self.commentTextField.keyboardType = UIKeyboardTypeDefault;
     self.commentTextField.returnKeyType = UIReturnKeyDefault;
-    self.commentTextField.inputAccessoryView = self.commentTextField;
-    [self.commentView addSubview:self.commentTextField];
-    [self.commentTextField becomeFirstResponder];
+    [self.backgroundView addSubview:self.commentTextField];
 //    [self.commentTextField becomeFirstResponder];
     
-    self.sendCommentButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 50, ([UIScreen mainScreen].bounds.size.height)/2 - 50, 45, 40)];
-    [self.commentView addSubview:self.sendCommentButton];
-    self.commentView.layer.cornerRadius = 1;
+    self.sendCommentButton = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height - 80, 45, 40)];
+    [self.backgroundView addSubview:self.sendCommentButton];
+    self.sendCommentButton.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+    self.sendCommentButton.layer.borderWidth = 0.8f;
+    self.sendCommentButton.layer.borderColor = [UIColor grayColor].CGColor;
     [self.sendCommentButton setTitle:@"发送" forState:UIControlStateNormal];
     [self.sendCommentButton setBackgroundColor:[UIColor colorWithRed:0.95f green:0.55f blue:0.55f alpha:1.00f]];
     
@@ -302,8 +295,8 @@
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat keyboardY = keyboardFrame.origin.y;
     [UIView animateWithDuration:1.0 animations:^{
-        self.commentTextField.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height);
-        self.sendCommentButton.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height);
+        self.commentTextField.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height + 30);
+        self.sendCommentButton.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.frame.size.height + 30);
     }];
 }
 
